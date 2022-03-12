@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 33.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediaton:
+      retries: 3
+  upgrade:
+    remediaton:
+      retries: 3
+  values:
+    fullnameOverride: prometheus
+    prometheus:
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "traefik"
+        hosts:
+          - &host "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+            secretName: "prometheus-tls"
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+      prometheusSpec:
+        replicas: 1
+        replicaExternalLabelName: "replica"
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retention: 6h
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "local-path"
+              resources:
+                requests:
+                  storage: 5Gi
+        thanos:
+          image: quay.io/thanos/thanos
+          version: v025.1
+          objectStorageConfig:
+            name: thanos-objstore
+            key: objstore.yml
+        additionalScrapeConfigs:
+          - job_name: traefik
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "traefik.${SECRET_DOMAIN}/metrics"
