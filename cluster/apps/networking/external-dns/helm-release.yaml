@@ -46,4 +46,4 @@ spec:
         memory: 100Mi
         cpu: 25m
       limits:
-        memoty: 250Mi
+        memory: 250Mi
