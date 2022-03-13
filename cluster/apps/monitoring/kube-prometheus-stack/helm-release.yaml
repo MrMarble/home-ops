@@ -121,7 +121,7 @@ spec:
                 requests:
                   storage: 5Gi
         thanos:
-          image: quay.io/thanos/thanos
+          image: quay.io/thanos/thanos:v0.25.1
           version: v0.25.1
           objectStorageConfig:
             name: thanos-objstore
