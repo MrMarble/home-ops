@@ -8,8 +8,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: traefik
-      version: 10.15.0
+      chart: authentik
+      version: 5.2.2
       sourceRef:
         kind: HelmRepository
         name: authentik-charts
