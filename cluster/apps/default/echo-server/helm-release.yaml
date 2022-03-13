@@ -37,7 +37,7 @@ spec:
       hosts:
         - host: "echo-server.${SECRET_DOMAIN}"
           paths:
-            - path: /
+            - /
       tls:
         - secretName: echo-server-tls
           hosts:
