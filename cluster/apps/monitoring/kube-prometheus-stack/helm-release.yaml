@@ -126,9 +126,3 @@ spec:
           objectStorageConfig:
             name: thanos-objstore
             key: objstore.yml
-        additionalScrapeConfigs:
-          - job_name: traefik
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - "traefik.${SECRET_DOMAIN}/metrics"
