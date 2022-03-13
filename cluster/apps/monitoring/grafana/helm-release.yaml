@@ -102,6 +102,7 @@ spec:
       tls:
         - hosts:
             - *host
+          secretName: "grafana-tls"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         hajimari.io/enable: "true"
