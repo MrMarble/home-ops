@@ -30,7 +30,7 @@ spec:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
-        hajimari.io/enable: "true"
+        hajimari.io/enable: true
         hajimari.io/icon: "video-input-antenna"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         kubernetes.io/ingress.class: "traefik"
