@@ -102,6 +102,11 @@ spec:
       tls:
         - hosts:
             - *host
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "chart-areaspline"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     serviceAccount:
       create: true
       autoMount: true
