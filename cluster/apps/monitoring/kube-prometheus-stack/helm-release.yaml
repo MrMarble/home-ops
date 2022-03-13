@@ -24,6 +24,71 @@ spec:
       retries: 3
   values:
     fullnameOverride: prometheus
+    alertmanager:
+      enabled: false
+    kube-state-metrics:
+      fullnameOverride: kube-state-metrics
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          multicluster:
+            etcd:
+              enabled: true
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
+    kubeApiServer:
+      enabled: true
+    kubeControllerManager:
+      enabled: true
+      endpoints:
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
+    kubeScheduler:
+      enabled: true
+      endpoints:
+        - 192.168.1.220
+    kubeProxy:
+      enabled: true
+      endpoints:
+        - 192.168.1.220
+    kubeEtcd:
+      enabled: true
+      endpoints:
+        - 192.168.1.220
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
+    prometheusOperator:
+      prometheusConfigReloader:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi
     prometheus:
       ingress:
         enabled: true
@@ -34,7 +99,6 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "prometheus-tls"
       thanosService:
         enabled: true
       thanosServiceMonitor:
@@ -58,7 +122,7 @@ spec:
                   storage: 5Gi
         thanos:
           image: quay.io/thanos/thanos
-          version: v025.1
+          version: v0.25.1
           objectStorageConfig:
             name: thanos-objstore
             key: objstore.yml
