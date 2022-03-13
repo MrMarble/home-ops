@@ -7,3 +7,8 @@ tasks:
     cmds:
       - flux reconcile source git flux-system
     silent: true
+  kustomizations:
+    desc: Get flux kustomizations
+    cmds:
+      - flux get kustomizations
+    silent: true

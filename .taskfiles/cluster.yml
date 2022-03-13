@@ -1,0 +1,35 @@
+---
+version: "3"
+
+tasks:
+  namespace:
+    desc: creates a new namespace
+    vars:
+      NAMESPACE: '{{default "default" .NAMESPACE}}'
+    cmds:
+      - mkdir -p cluster/apps/{{.NAMESPACE}}
+      - echo -e "\n  - {{.NAMESPACE}}" >> cluster/apps/kustomization.yaml
+      - 'echo -e "---\napiVersion: 1\nkind: Namespace\nmetadata:\n  name: monitoring" >> cluster/core/namespaces/{{.NAMESPACE}}.yaml'
+      - 'echo -e "apiVersion: kustomize.config.k8s.io/v1beta1\nkind: Kustomization\nresources:\n" >> cluster/apps/{{.NAMESPACE}}/kustomization.yaml'
+    status:
+      - test -d cluster/apps/{{.NAMESPACE}}
+      - test -f cluster/apps/{{.NAMESPACE}}/kustomization.yaml
+      - test -f cluster/core/namespaces/{{.NAMESPACE}}.yaml
+    silent: true
+  app:
+    desc: add new app
+    vars:
+      NAMESPACE: '{{default "default" .NAMESPACE}}'
+    cmds:
+      - task: namespace
+        vars:
+          NAMESPACE: "{{.NAMESPACE}}"
+      - mkdir -p cluster/apps/{{.NAMESPACE}}/{{.APP}}
+      - echo -e "\n  - {{.APP}}" >> cluster/apps/{{.NAMESPACE}}/kustomization.yaml
+      - 'echo -e "---\napiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: {{.APP}}\n  namespace: {{.NAMESPACE}}\n" >> cluster/apps/{{.NAMESPACE}}/{{.APP}}/helm-release.yaml'
+      - 'echo -e "apiVersion: kustomize.config.k8s.io/v1beta1\nkind: Kustomization\nresources:\n  - helm-release.yaml" >> cluster/apps/{{.NAMESPACE}}/{{.APP}}/kustomization.yaml'
+    status:
+      - test -d cluster/apps/{{.NAMESPACE}}/{{.APP}}
+      - test -f cluster/apps/{{.NAMESPACE}}/{{.APP}}/kustomization.yaml
+      - test -f cluster/apps/{{.NAMESPACE}}/{{.APP}}/helm-release.yaml
+    silent: true
