@@ -17,10 +17,10 @@ spec:
       interval: 5m
   install:
     createNamespace: true
-    remediaton:
+    remediation:
       retries: 3
   upgrade:
-    remediaton:
+    remediation:
       retries: 3
   values:
     fullnameOverride: prometheus
