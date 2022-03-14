@@ -30,6 +30,78 @@ Work in progress indefinitely.
 
 I've used the [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s) highly opionated template for deploying a k3s cluster with Ansible and Terraform backed by Flux and SOPS.
 
+
+### :octocat: GitOps
+
+In order to follow GitOps, all operations are made through Github.
+
+```mermaid
+flowchart LR
+    a["👦\nme"]-->|edit|code-->|commit|g[Github]
+
+    classDef git fill:#171515;
+    class g git
+
+```
+
+On Github my cat (Pepinillo) is making sure [every dependency is up to date](https://github.com/MrMarble/home-ops/issues/5).
+
+```mermaid
+flowchart LR
+    h["🤖 Renovate workflow"]-->|update dependencies\non a schedule|g[Source]
+
+    classDef reno fill:#21409a;
+
+    class h reno
+```
+
+Fluxcd is then in charge of updating my cluster through automatic reconciliation.
+
+```mermaid
+flowchart RL
+    c[Source Controller]-->|sync|a[Github]
+    d[Kustomize Controler]--->c
+    e["☸ Kubernetes API"]<-->c
+    e<-->d
+    f[Helm Controller]-->c
+    f-->|Apply|b
+    d-->|Apply|b
+    subgraph b[Cluster]
+    h[Namespaces]
+    i["CRDs"]
+    z[Helm Releases]
+    end
+
+    classDef default fill:#326ce5;
+    classDef git fill:#171515;
+    classDef cluster fill:none,stroke-dasharray:5 10,stroke:#fdfdfd;
+
+    class a git
+    class b cluster
+```
+
+### Directories
+
+The Git repository contains the following directories under cluster and are orderer below by how Flux will apply them.
+- **base**: Flux entrypoint
+- **crsd**: Custom resource definitions (CRDs) that need to exist globally
+- **core**: Important applications that should never be pruned by flux
+- **apps**: Common applications grouped by namespaces. Flux will prune resources here if not tracked by Git anymore.
+
+### Networking
+
+| Name                         | CIDR                |
+|------------------------------|---------------------|
+| Kubernetes Nodes             | `192.168.1.0/24`    |
+| Kubernetes external services | `192.168.1.220-230` |
+| Kubernetes pods              | `10.42.18.0/24`     |
+| Kubernetes services          | `10.43.0.0/16`      |
+
+
+### Persistent Volume
+
+I'm in the process of deploying my cluster, currently the only storage option is localy on each node.
+
 ---
 
 ## 🔧 Hardware
