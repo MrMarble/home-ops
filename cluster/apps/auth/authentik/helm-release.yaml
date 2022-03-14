@@ -28,6 +28,7 @@ spec:
     authentik:
       error_reporting:
         enabled: false
+      log_level: "debug"
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -49,6 +50,12 @@ spec:
       enabled: true
     readis:
       enabled: true
+    prometheus:
+      rules:
+        create: true
+      serviceMonitor:
+        create: true
+
   valuesFrom:
     - kind: Secret
       name: authentik-secrets
