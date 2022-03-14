@@ -60,7 +60,7 @@ jobs:
         with:
           github-token: ${{ steps.generate-token.outputs.token }}
           script: |
-            const output = #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             <details><summary>Validation Output</summary>
