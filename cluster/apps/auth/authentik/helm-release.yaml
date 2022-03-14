@@ -48,7 +48,7 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     postgresql:
       enabled: true
-    readis:
+    redis:
       enabled: true
     prometheus:
       rules:
