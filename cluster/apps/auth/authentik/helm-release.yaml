@@ -26,11 +26,19 @@ spec:
       repository: ghcr.io/goauthentik/server
       tag: 2022.3.1
     authentik:
-      secret_key: ${SECRET_KEY}
+      secret_key:
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: SECRET_KEY
       error_reporting:
         enabled: false
       postgresql:
-        password: ${POSTGRES_PASSWORD}
+        password:
+          valueFrom:
+            secretKeyRef:
+              name: authentik
+              key: POSTGRES_PASSWORD
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -50,6 +58,10 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     postgresql:
       enabled: true
-      postgresqlPassword: ${POSTGRES_PASSWORD}
+      postgresqlPassword:
+        valueFrom:
+          secretKeyRef:
+            name: authentik
+            key: POSTGRES_PASSWORD
     readis:
       enabled: true
