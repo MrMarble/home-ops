@@ -52,3 +52,5 @@ spec:
   valuesFrom:
     - kind: Secret
       name: authentik
+      valuesKey: values.yaml
+      optional: false
