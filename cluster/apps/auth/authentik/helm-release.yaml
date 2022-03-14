@@ -52,5 +52,16 @@ spec:
   valuesFrom:
     - kind: Secret
       name: authentik
-      valuesKey: values.yaml
+      valuesKey: SECRET_KEY
+      targetPath: authentik.secret_key
+      optional: false
+    - kind: Secret
+      name: authentik
+      valuesKey: POSTGRE_PASSWORD
+      targetPath: authentik.postgresql.password
+      optional: false
+    - kind: Secret
+      name: authentik
+      valuesKey: POSTGRE_PASSWORD
+      targetPath: postgresql.postgresqlPassword
       optional: false
