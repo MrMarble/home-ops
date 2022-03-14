@@ -51,17 +51,4 @@ spec:
       enabled: true
   valuesFrom:
     - kind: Secret
-      name: authentik
-      valuesKey: SECRET_KEY
-      targetPath: authentik.secret_key
-      optional: false
-    - kind: Secret
-      name: authentik
-      valuesKey: POSTGRE_PASSWORD
-      targetPath: authentik.postgresql.password
-      optional: false
-    - kind: Secret
-      name: authentik
-      valuesKey: POSTGRE_PASSWORD
-      targetPath: postgresql.postgresqlPassword
-      optional: false
+      name: authentik-secrets
