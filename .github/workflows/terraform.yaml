@@ -16,12 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      SOPS_AGE_KEY: '{{ secrets.SOPS_AGE_KEY }}'
+      SOPS_AGE_KEY: '${{ secrets.SOPS_AGE_KEY }}'
+      tf_actions_working_dir: 'provision/terraform/cloudflare'
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-        working-directory: 'provision/terraform/cloudflare'
+        working-directory: '${{ env.tf_actions_working_dir }}'
 
     steps:
       - uses: actions/checkout@v2
