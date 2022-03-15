@@ -47,6 +47,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns/is-public: "true"
