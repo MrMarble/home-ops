@@ -42,6 +42,13 @@ spec:
         externalIPs:
           - "${METALLB_HOME_ASSISTANT_ADDR}"
         externalTrafficPolicy: Local
+    http:
+      server_host: 0.0.0.0
+      ip_ban_enabled: true
+      login_attempts_threshold: 6
+      use_x_forwarded_for: true
+      trusted_proxies:
+        - 10.42.0.0/16
     ingress:
       main:
         enabled: true
