@@ -42,13 +42,40 @@ spec:
         externalIPs:
           - "${METALLB_HOME_ASSISTANT_ADDR}"
         externalTrafficPolicy: Local
-    http:
-      server_host: 0.0.0.0
-      ip_ban_enabled: true
-      login_attempts_threshold: 6
-      use_x_forwarded_for: true
-      trusted_proxies:
-        - 10.42.0.0/16
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/k8s-at-home/code-server
+          tag: v4.1.0
+        env:
+          TZ: "${TIMEZONE}"
+        git:
+          deployKeySecret: code-server
+        workingDir: "/config"
+        args:
+          - --auth
+          - "none"
+          - --user-data-dir
+          - "/config/.vscode"
+          - --extensions-dir
+          - "/config/.vscode"
+        ingress:
+          enabled: true
+          ingressClassName: "traefik"
+          annotations:
+            cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hosts:
+            - host: &host "hass-config.${SECRET_PUBLIC_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *host
+        volumeMounts:
+          - name: config
+            mountPath: /config
     ingress:
       main:
         enabled: true
