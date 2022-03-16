@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: code-server
+    namespace: home
+type: Opaque
+stringData:
+    id_rsa: ENC[AES256_GCM,data:/O4A71uxJT06/Pp9QWqnZ9HWROdMeLyC4VQCwB1KCAncPaAeai3LqUsqofYej17cyjFZZpVeOBjQJvqzG7DMIAPY2bTQIS3pC1rHCwmHL/rfNKDXfW2GRjOSGVImSysT3N2ePCn9mgSw0DFH23OXgJA6ElmUp4zvyjCQ1F9pA1YiVxW3WlU5liVuY9cyaebNfKxY1SyPE/Q4ldUm6h09W5wEKD5y4H9wZsViwUlbjjyD3x1x8NjhkHGIASi6+GAatSUwDYzYbGw5YkQZ/w2j77lo7+Q3OZ1aZuMYXHDBfTn1+h64/dH98yj/lNtjGmBEuQj69O72hcOQpMwcQlExvFmI5ZYEyeRSXmq0lm2J9Y6JxoUZrzLWRSrWT6h30JXLuNbf4KEypWJPRGE91PkA8DdbZCy5X38sG+/NEbd7fNnlOoeMY81h0M+KTgywTjmGTW/TkxhgfT9KdMiVScwbV2190+sMBZg2QxQF1CpNz4b/Oz4n0eI9kL4kUKoUnouCztPY,iv:wTZ4NiVxd2P0WonT3HRf8vUZjairStraP9z+OKX2/yI=,tag:wOX8FWSgZhAfzfMLX/hWLw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age16x9emguyj2j2d9uvf5r2uahrczxd9agjesuekfcdyvyedkm4j3gqp6umt8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLVWNRMWdRa0xrYWgyelEr
+            THFybTBBczI5dUVBUXZ2TVp3eWNzWGN4MGtJCkVOYnRkUTRyR253eFRudHNEV1pt
+            Z2VKcWI2RlgzVFZWd21UZStqazNuMjgKLS0tICtPdGwwSU4xOXkrTmQ5RGt0Yi9S
+            TVFCRW9wNTNuZU90WWpqMWdjYm0xNGsKrXauf5UiiTP7k4TEbjch36d16VcSSUZv
+            cFEyt7BttpEN2XcxAK/MIGTnnFsPsemSESMVqlyyai8dWQEKPMKuTw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-03-16T09:20:40Z"
+    mac: ENC[AES256_GCM,data:eQmsjS8RNJ5Wg/VfXHkQDzgDz+YgkUyFXKQzMPbPyocs/EX6fQzLgtL8kK9+1liVGV7Qy98kyZ73XIqtvCcatpZ1gGdvNAwCmshYnWe/t7HOuu38px7edxsPSPHKn+q0TM9POnRj+34SYDfucpe69rmiEGU+FfstTFFQzazNj48=,iv:gVZRenvJupgRcDlUNrRmkygaAjya5/Y+QV4xw472Yzo=,tag:A45dpAbMok8f+IXSXr9sAw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.2
