@@ -50,8 +50,6 @@ spec:
           tag: v4.1.0
         env:
           TZ: "${TIMEZONE}"
-        git:
-          deployKeySecret: code-server
         workingDir: "/config"
         args:
           - --auth
