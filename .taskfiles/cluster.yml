@@ -9,7 +9,7 @@ tasks:
     cmds:
       - mkdir -p cluster/apps/{{.NAMESPACE}}
       - echo -e "\n  - {{.NAMESPACE}}" >> cluster/apps/kustomization.yaml
-      - 'echo -e "---\napiVersion: 1\nkind: Namespace\nmetadata:\n  name: monitoring" >> cluster/core/namespaces/{{.NAMESPACE}}.yaml'
+      - 'echo -e "---\napiVersion: 1\nkind: Namespace\nmetadata:\n  name: {{.NAMESPACE}}" >> cluster/core/namespaces/{{.NAMESPACE}}.yaml'
       - 'echo -e "apiVersion: kustomize.config.k8s.io/v1beta1\nkind: Kustomization\nresources:\n" >> cluster/apps/{{.NAMESPACE}}/kustomization.yaml'
     status:
       - test -d cluster/apps/{{.NAMESPACE}}
