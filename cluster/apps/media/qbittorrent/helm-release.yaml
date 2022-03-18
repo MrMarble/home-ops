@@ -23,6 +23,8 @@ spec:
       tag: v4.4.1
     env:
       TZ: "${TIMEZONE}"
+      DOCKER_MODS: "ghcr.io/gilbn/theme.park:qbittorrent"
+      TP_THEME: "nord"
     settings:
       automaticPortSetup: false
     service:
