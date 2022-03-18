@@ -80,7 +80,8 @@ spec:
         type: custom
         volumeSpec:
           hostPath:
-            DirectoryOrCreate: /mnt/media
+            type: DirectoryOrCreate
+            path: /mnt/media
         mountPath: /media
     resources:
       requests:
