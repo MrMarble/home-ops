@@ -104,6 +104,27 @@ I'm in the process of deploying my cluster, currently the only storage option is
 
 ---
 
+## 🌐 DNS
+
+```mermaid
+flowchart TB
+    a(Service\nTraefik\n192.168.1.220)-->b[/Ingress\napp.domain.tld\]
+    b-->d(["internal dns\n(no annotation)"])
+    b-->|is-public=true|e(["external dns\n(annotation filter)"])
+
+    %%external
+    e-->f("Cloudflare DNS")
+    f-.->g[/"A  record\nipv4.domain.tld"/]
+    h{"CronJob\nUpdate WAN IP"}--->g
+    f-->i[/"CNAME Record\napp.domain.tld"/]
+    i-->g
+
+    %%internal
+    d-->j[(etcd)]
+```
+
+---
+
 ## 🔧 Hardware
 
 | Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System | Purpose           |
