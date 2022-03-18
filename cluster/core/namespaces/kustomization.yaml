@@ -9,3 +9,4 @@ resources:
   - auth.yaml
   - home.yaml
   - flux-system.yaml
+  - media.yaml

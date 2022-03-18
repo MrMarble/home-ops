@@ -10,3 +10,4 @@ resources:
   - auth
   - home
   - flux-system
+  - media
