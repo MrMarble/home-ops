@@ -5,9 +5,9 @@ metadata:
   name: qbittorrent-config-v1
   namespace: media
 spec:
-  accessModes:
-    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: Filesystem
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
