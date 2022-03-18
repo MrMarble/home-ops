@@ -57,6 +57,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: "qbittorrent-tls"
     metrics:
       enabled: true
       exporter:
