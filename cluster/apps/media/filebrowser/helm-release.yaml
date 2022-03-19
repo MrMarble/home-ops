@@ -41,6 +41,15 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
     env:
       TZ: ${TIMEZONE}
+    config: |
+      {
+        "port": 80,
+        "baseURL": "",
+        "address": "",
+        "log": "stdout",
+        "database": "/config/database.db",
+        "root": "/srv"
+      }
     persistence:
       config:
         enabled: true
@@ -49,7 +58,6 @@ spec:
       data:
         enabled: true
         type: custom
-        mountpath: /srv/data
         volumeSpec:
           hostPath:
             type: DirectoryOrCreate
