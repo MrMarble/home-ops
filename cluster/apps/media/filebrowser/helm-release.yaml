@@ -22,9 +22,6 @@ spec:
     remediation:
       retries: 3
   values:
-    image:
-      repository: ghcr.io/filebrower/filebrowser
-      tag: v2.18.0
     ingress:
       main:
         enabled: true
