@@ -23,7 +23,7 @@ spec:
       tag: 1.28.0
     env:
       TZ: "${TIMEZONE}"
-      LOG_LEVEL: "info"
+      LOG_LEVEL: "debug"
     ingress:
       main:
         enabled: true
