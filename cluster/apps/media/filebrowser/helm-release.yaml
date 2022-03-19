@@ -27,7 +27,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         hosts:
-          - &host "filebrowser.${SECRET_DOMAIN}"
+          - host: &host "filebrowser.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - *host
@@ -41,7 +41,8 @@ spec:
         TZ: ${TIMEZONE}
     persistence:
       config:
-        enabled: false
+        enabled: true
+        existingClaim: filebrowser-config-v1
         mountpath: /config
       data:
         enabled: true
