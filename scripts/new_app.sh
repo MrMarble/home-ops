@@ -44,6 +44,9 @@ spec:
     remediation:
       retries: 3
   values:
+    image:
+      repository: ghcr.io/CHANGE_THIS
+      tag: CHANGE_THIS
     ingress:
       main:
         enabled: true
