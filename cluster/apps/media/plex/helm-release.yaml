@@ -23,7 +23,6 @@ spec:
       tag: v1.25.7.5604-980a13e02
     env:
       TZ: "${TIMEZONE}"
-      PLEX_CLAIM: "${SECRET_PLEX_CLAIM_TOKEN}"
     podSecurityContext:
       supplementalGroups:
         - 44
@@ -35,6 +34,10 @@ spec:
         externalIPs:
           - "${METALLB_PLEX_ADDR}"
         externalTrafficPolicy: Local
+      dnla-tcp:
+        enabled: true
+      dnla-udp:
+        enabled: true
     ingress:
       main:
         enabled: true
