@@ -23,6 +23,7 @@ spec:
       tag: v1.25.7.5604-980a13e02
     env:
       TZ: "${TIMEZONE}"
+      PLX_CLAIM: "${SECRET_PLEX_CLAIM_TOKEN}"
     podSecurityContext:
       supplementalGroups:
         - 44
