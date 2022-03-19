@@ -52,7 +52,10 @@ spec:
         enabled: true
         ingressClassName: \"traefik\"
         hosts:
-          - &host \"$2.\${SECRET_DOMAIN}\"
+          - host: &host \"$2.\${SECRET_DOMAIN}\"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
               - *host
