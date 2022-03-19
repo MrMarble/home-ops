@@ -31,10 +31,10 @@ spec:
   chart:
     spec:
       chart: $2
-      version: 2022.3.1
+      version: CHANGE_THIS!!
       sourceRef:
         kind: HelmRepository
-        name: CHANGE_THIS
+        name: CHANGE_THIS!!
         namespace: flux-system
   install:
     createNamespace: true
@@ -43,25 +43,25 @@ spec:
   upgrade:
     remediation:
       retries: 3
-values:
-  ingress:
-    main:
-      enabled: true
-      ingressClassName: \"traefik\"
-      hosts:
-        - &host \"$2.\${SECRET_DOMAIN}\"
-      tls:
-        - hosts:
-            - *host
-          secretName: \"$2-tls\" # Kubernetes secret where SSL cert will be stored
-      annotations:
-        hajimari.io/icon: \"chart-areaspline\" # Hajimari dashboard custom icon
+  values:
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: \"traefik\"
+        hosts:
+          - &host \"$2.\${SECRET_DOMAIN}\"
+        tls:
+          - hosts:
+              - *host
+            secretName: \"$2-tls\" # Kubernetes secret where SSL cert will be stored
+        annotations:
+          hajimari.io/icon: \"chart-areaspline\" # Hajimari dashboard custom icon
 
-        traefik.ingress.kubernetes.io/router.entrypoints: \"websecure\" # Use HTTPS
+          traefik.ingress.kubernetes.io/router.entrypoints: \"websecure\" # Use HTTPS
 
-        cert-manager.io/cluster-issuer: \"letsencrypt-production\" # Request SSL Certificate
+          cert-manager.io/cluster-issuer: \"letsencrypt-production\" # Request SSL Certificate
 
-        external-dns/is-public: \"true\" # Access Outside LAN
-        external-dns.alpha.kubernetes.io/target: \"\${SECRET_DOMAIN}\" # Create a CNAME registry
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: \"true\" # Proxify DNS
+          external-dns/is-public: \"true\" # Access Outside LAN
+          external-dns.alpha.kubernetes.io/target: \"\${SECRET_DOMAIN}\" # Create a CNAME registry
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: \"true\" # Proxify DNS
 " > cluster/apps/$1/$2/helm-release.yaml
