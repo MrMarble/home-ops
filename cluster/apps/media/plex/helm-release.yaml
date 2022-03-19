@@ -23,17 +23,23 @@ spec:
       tag: v1.25.7.5604-980a13e02
     env:
       TZ: "${TIMEZONE}"
+      ADVERTISE_IP: "http://${METALLB_PLEX_ADDR}:32400/"
+      PLEX_PREFERENCE_1: "GdmEnabled=1"
+      PLEX_PREFERENCE_2: "DlnaEnabled=1"
+      PLEX_PREFERENCE_3: "DlnaPlatinumLoggingLevel=INFO"
     podSecurityContext:
       supplementalGroups:
-        - 44
-        - 109
-        - 100
+        - 44  # video
+        - 109 # render
+        - 100 # users
     service:
       main:
         type: LoadBalancer
         externalIPs:
           - "${METALLB_PLEX_ADDR}"
         externalTrafficPolicy: Local
+        port:
+          port: 32400
       dnla-tcp:
         enabled: true
       dnla-udp:
@@ -79,3 +85,21 @@ spec:
         memory: 1000Mi
       limits:
         memory: 2000Mi
+    addons:
+      promtail:
+        enabled: true
+        image:
+          repository: grafana/promtail
+          tag: 2.4.2
+        loki: https://loki.logs.svc.cluster.local:3100/loki/api/v1/push
+        logs:
+          - name: promtail/plex
+            path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
+          - name: promtail/plex/plugins
+            path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+            readOnly: true
+        securityContext:
+          runAsUser: 0
