@@ -5,3 +5,4 @@ resources:
   - kube-prometheus-stack
   - grafana
   - node-problem-detector
+  - loki
