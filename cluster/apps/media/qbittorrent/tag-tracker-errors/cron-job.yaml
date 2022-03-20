@@ -24,5 +24,8 @@ spec:
                   value: http://qbittorrent:8080
                 - name: QB_TAG
                   value: "Tracker Errors"
+              envFrom:
+                - secretRef:
+                    name: qbittorrent
               args:
                 - "/app/tag-tracker-errors.py"
