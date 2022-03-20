@@ -38,12 +38,22 @@ spec:
         externalIPs:
           - "${METALLB_PLEX_ADDR}"
         externalTrafficPolicy: Local
-        port:
-          port: 32400
-      dnla-tcp:
-        enabled: true
-      dnla-udp:
-        enabled: true
+        ports:
+          http:
+            enabled: true
+            port: 32400
+            targetPort: 32400
+            protocol: HTTP
+          dlna-udp:
+            enabled: true
+            port: 1900
+            targetPort: 1900
+            protocol: UDP
+          dlna-tcp:
+            enabled: true
+            port: 32469
+            targetPort: 32469
+            protocol: TCP
     ingress:
       main:
         enabled: true
