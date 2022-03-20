@@ -32,6 +32,7 @@ spec:
         - 44  # video
         - 109 # render
         - 100 # users
+    hostNetwork: true
     service:
       main:
         type: LoadBalancer
