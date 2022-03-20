@@ -33,6 +33,7 @@ spec:
       tls:
         - hosts:
             - *host
+          secretName: "loki-tls"
     serviceMonitor:
       enabled: true
     # extraArgs:
