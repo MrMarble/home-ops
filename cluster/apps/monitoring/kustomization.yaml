@@ -6,3 +6,4 @@ resources:
   - grafana
   - node-problem-detector
   - loki
+  - karma

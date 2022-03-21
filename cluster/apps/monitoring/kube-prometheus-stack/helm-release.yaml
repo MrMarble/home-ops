@@ -25,7 +25,43 @@ spec:
   values:
     fullnameOverride: prometheus
     alertmanager:
-      enabled: false
+      config:
+        receivers:
+          - name: "null"
+        route:
+          group_by: ["alertname", "job"]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 6h
+          receiver: "discord"
+          routes:
+            - receiver: "null"
+              match:
+                alertname: InfoInhibitor
+            - receiver: "null"
+              match:
+                alertname: Watchdog
+        inhibit_rules:
+          - source_match:
+              severity: "critical"
+            target_match:
+              severity: "warning"
+            equal: ["alertname", "namespace"]
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "traefik"
+        hosts:
+          - &host "alert-manager.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+            secretName: "alert-manager-tls"
+      alertmanagerSpec:
+        storage:
+          type: local
+          local:
+            directory: /alerts
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
     prometheus-node-exporter:
