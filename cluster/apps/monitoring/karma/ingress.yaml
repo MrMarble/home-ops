@@ -7,12 +7,12 @@ metadata:
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
-spec:
-  ingressClassName: traefik
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/enable: "true"
     hajimari.io/icon: "alert-decagram-outline"
+spec:
+  ingressClassName: traefik
   rules:
     - host: &host "karma.${SECRET_DOMAIN}"
       http:
