@@ -18,7 +18,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: minecraft-update-bot
-              image: ghcr.io/mrmarble/minecraft-update-bot:latest
+              image: ghcr.io/mrmarble/minecraft-update-bot:v1.5.3
               env:
                 - name: MINE_OUTPUT
                   value: /config
