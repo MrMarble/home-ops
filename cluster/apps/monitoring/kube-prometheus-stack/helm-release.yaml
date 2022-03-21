@@ -33,7 +33,6 @@ spec:
           group_wait: 30s
           group_interval: 5m
           repeat_interval: 6h
-          receiver: "discord"
           routes:
             - receiver: "null"
               match:
@@ -51,6 +50,10 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "alert"
         hosts:
           - &host "alert-manager.${SECRET_DOMAIN}"
         tls:
