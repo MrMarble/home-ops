@@ -62,7 +62,12 @@ spec:
             secretName: "alert-manager-tls"
       alertmanagerSpec:
         storage:
-          type: local
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "local-path"
+              resources:
+                requests:
+                  storage: 5Gi
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
     prometheus-node-exporter:
