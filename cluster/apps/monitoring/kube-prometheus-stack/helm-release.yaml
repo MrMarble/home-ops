@@ -63,8 +63,6 @@ spec:
       alertmanagerSpec:
         storage:
           type: local
-          local:
-            directory: /alerts
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
     prometheus-node-exporter:
