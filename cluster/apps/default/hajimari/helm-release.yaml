@@ -28,6 +28,8 @@ spec:
       tag: v0.2.0
     hajimari:
       defaultEnable: false
+      namespaceSelector:
+        any: true
       name: "Alvaro"
       groups:
         - name: Communicate

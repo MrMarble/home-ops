@@ -36,6 +36,7 @@ spec:
               - *host
             secretName: "filebrowser-tls" # Kubernetes secret where SSL cert will be stored
         annotations:
+          hajimari.io/enable: "true"
           hajimari.io/icon: "text-box-search" # Hajimari dashboard custom icon
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
