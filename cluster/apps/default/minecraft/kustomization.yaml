@@ -6,4 +6,5 @@ bases:
   - "./daily"
   - "./weekly"
 resources:
+  - secrets.sops.yaml
   - minecraft.pvc.yaml
