@@ -156,5 +156,5 @@ spec:
                 requests:
                   storage: 5Gi
         thanos:
-          image: quay.io/thanos/thanos:v0.25.1
+          image: quay.io/thanos/thanos:v0.25.2
           version: v0.25.1
