@@ -1,28 +1,29 @@
-name: 'Terraform'
+---
+name: "Terraform"
 
 on: # yamllint disable-line rule:truthy
   push:
     branches:
       - main
     paths:
-      - 'provision/terraform/**'
+      - "provision/terraform/**"
   pull_request:
     paths:
-      - 'provision/terraform/**'
+      - "provision/terraform/**"
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: "Terraform"
     runs-on: ubuntu-latest
     environment: production
     env:
-      SOPS_AGE_KEY: '${{ secrets.SOPS_AGE_KEY }}'
-      tf_actions_working_dir: 'provision/terraform/cloudflare'
+      SOPS_AGE_KEY: "${{ secrets.SOPS_AGE_KEY }}"
+      tf_actions_working_dir: "provision/terraform/cloudflare"
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-        working-directory: '${{ env.tf_actions_working_dir }}'
+        working-directory: "${{ env.tf_actions_working_dir }}"
 
     steps:
       - uses: actions/checkout@v3

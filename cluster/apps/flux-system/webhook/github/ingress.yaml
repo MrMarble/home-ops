@@ -9,8 +9,6 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-
-
 spec:
   ingressClassName: "traefik"
   rules:

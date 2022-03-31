@@ -29,7 +29,7 @@ spec:
       PLEX_PREFERENCE_3: "DlnaPlatinumLoggingLevel=INFO"
     podSecurityContext:
       supplementalGroups:
-        - 44  # video
+        - 44 # video
         - 109 # render
         - 100 # users
     hostNetwork: true
