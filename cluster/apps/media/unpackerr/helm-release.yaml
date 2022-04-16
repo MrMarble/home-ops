@@ -42,7 +42,7 @@ spec:
         volumeSpec:
           hostPath:
             type: DirectoryOrCreate
-            path: /mnt/media
+            path: /mnt/media/downloads/completed
         mountPath: /complete
     resources:
       requests:
