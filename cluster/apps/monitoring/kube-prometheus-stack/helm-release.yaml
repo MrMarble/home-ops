@@ -155,11 +155,6 @@ spec:
               - targets:
                   - 192.168.1.1 # mikrotik_ip
             metrics_path: /snmp
-            kubernetes_sd_configs:
-              - role: pod
-                namespaces:
-                  names:
-                    - monitoring
             params:
               module: [mikrotik]
             relabel_configs:
