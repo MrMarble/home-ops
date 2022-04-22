@@ -148,6 +148,27 @@ spec:
         retention: 6h
         enableAdminAPI: true
         walCompression: true
+        additionalScrapeConfigs:
+          - job_name: Mikrotik
+            scrape_interval: 15s
+            static_configs:
+              - targets:
+                  - 192.168.1.1 # mikrotik_ip
+            metrics_path: /snmp
+            kubernetes_sd_configs:
+              - role: pod
+                namespaces:
+                  names:
+                    - monitoring
+            params:
+              module: [mikrotik]
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                target_label: instance
+              - target_label: __address__
+                replacement: mikrotik-exporter:9116
         storageSpec:
           volumeClaimTemplate:
             spec:

@@ -7,3 +7,4 @@ resources:
   - node-problem-detector
   - loki
   - karma
+  - mikrotik
