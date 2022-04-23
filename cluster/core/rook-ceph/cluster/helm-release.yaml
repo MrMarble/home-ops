@@ -26,6 +26,9 @@ spec:
   values:
     monitoring:
       enabled: true
+    mon:
+      count: 1 # TODO: buy more nodes :P
+      allowMultiplePerNode: true
     ingress:
       dashboard:
         annotations:
