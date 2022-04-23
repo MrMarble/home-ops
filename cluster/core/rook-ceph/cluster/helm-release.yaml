@@ -26,9 +26,6 @@ spec:
   values:
     monitoring:
       enabled: true
-    mon:
-      count: 1 # TODO: buy more nodes :P
-      allowMultiplePerNode: true
     ingress:
       dashboard:
         ingressClassName: "traefik"
@@ -45,6 +42,9 @@ spec:
               - "rook.${SECRET_DOMAIN}"
             secretName: rook-tls
     cephClusterSpec:
+      mon:
+        count: 1 # TODO: buy more nodes :P
+        allowMultiplePerNode: true
       cephVersion:
         image: quay.io/ceph/ceph:v17.2.0
       dashboard:
