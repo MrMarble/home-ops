@@ -45,6 +45,8 @@ spec:
               - "rook.${SECRET_DOMAIN}"
             secretName: rook-tls
     cephClusterSpec:
+      cephVersion:
+        image: quay.io/ceph/ceph:v17.2.0
       dashboard:
         enabled: true
         urlPrefix: /
