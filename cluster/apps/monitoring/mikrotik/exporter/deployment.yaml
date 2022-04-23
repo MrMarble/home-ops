@@ -31,10 +31,10 @@ spec:
               mountPath: /etc/mikrotik-exporter
           resources:
             requests:
-              cpu: 10m
+              cpu: 100m
               memory: 50Mi
             limits:
-              cpu: 100m
+              cpu: 200m
               memory: 200Mi
       restartPolicy: Always
       terminationGracePeriodSeconds: 60
