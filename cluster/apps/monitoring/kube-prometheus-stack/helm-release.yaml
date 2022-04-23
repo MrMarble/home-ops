@@ -105,19 +105,19 @@ spec:
     kubeControllerManager:
       enabled: false # can't connect without port
       endpoints:
-        - 192.168.1.77
+        - 192.168.1.29
     kubeScheduler:
       enabled: false # can't connect without port
       endpoints:
-        - 192.168.1.77
+        - 192.168.1.29
     kubeProxy:
       enabled: true
       endpoints:
-        - 192.168.1.77
+        - 192.168.1.29
     kubeEtcd:
       enabled: true
       endpoints:
-        - 192.168.1.77
+        - 192.168.1.29
       service:
         enabled: true
         port: 2381
