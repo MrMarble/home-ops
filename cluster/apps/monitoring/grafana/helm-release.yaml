@@ -94,11 +94,6 @@ spec:
           gnetId: 4475
           revision: 5
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11001
-        cert-manager:
-          gnetId: 11001
-          revision: 1
-          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
