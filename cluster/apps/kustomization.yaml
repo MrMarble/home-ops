@@ -11,4 +11,3 @@ resources:
   - home
   - flux-system
   - media
-  - rook-ceph

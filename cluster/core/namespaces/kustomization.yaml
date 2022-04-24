@@ -10,4 +10,3 @@ resources:
   - home.yaml
   - flux-system.yaml
   - media.yaml
-  - rook-ceph.yaml
