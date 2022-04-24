@@ -33,15 +33,9 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "traefik"
-      hosts:
-        - host: &host "longhorn.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - hosts:
-            - *host
-          secretName: "longhorn-tls" # Kubernetes secret where SSL cert will be stored
+      host: "longhorn.${SECRET_DOMAIN}"
+      tls: true
+      tlsSecret: "longhorn-tls"
       annotations:
         hajimari.io/icon: "server" # Hajimari dashboard custom icon
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
