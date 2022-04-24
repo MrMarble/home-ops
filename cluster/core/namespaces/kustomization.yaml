@@ -10,3 +10,4 @@ resources:
   - home.yaml
   - flux-system.yaml
   - media.yaml
+  - longhorn-system.yaml

@@ -11,3 +11,4 @@ resources:
   - home
   - flux-system
   - media
+  - longhorn-system
