@@ -41,8 +41,12 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
     podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 100
+        - 1000
     persistence:
       config:
         enabled: true

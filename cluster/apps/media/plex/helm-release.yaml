@@ -28,7 +28,12 @@ spec:
       PLEX_PREFERENCE_2: "DlnaEnabled=1"
       PLEX_PREFERENCE_3: "DlnaPlatinumLoggingLevel=INFO"
     podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
+        - 1000
         - 44 # video
         - 109 # render
         - 100 # users
