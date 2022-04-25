@@ -150,7 +150,7 @@ spec:
         walCompression: true
         additionalScrapeConfigs:
           - job_name: Mikrotik
-            scrape_interval: 15s
+            scrape_interval: 30s
             static_configs:
               - targets:
                   - 192.168.1.1 # mikrotik_ip
