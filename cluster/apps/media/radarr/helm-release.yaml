@@ -49,12 +49,12 @@ spec:
       supplementalGroups:
         - 1000
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         interval: 3m
         scrapeTimeout: 1m
       prometheusRule:
-        enabled: true
+        enabled: false
     persistence:
       config:
         enabled: true
