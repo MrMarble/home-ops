@@ -37,6 +37,7 @@ spec:
       tls: true
       tlsSecret: "longhorn-tls"
       annotations:
-        hajimari.io/icon: "server" # Hajimari dashboard custom icon
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "database" # Hajimari dashboard custom icon
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
         cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
