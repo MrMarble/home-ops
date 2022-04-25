@@ -9,7 +9,7 @@ metadata:
     external-dns/is-public: "false"
     hajimari.io/appName: "traefik"
     hajimari.io/enable: "true"
-    hajimari.io/icon: "shield-key"
+    hajimari.io/icon: "arrow-decision"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
   ingressClassName: "traefik"
