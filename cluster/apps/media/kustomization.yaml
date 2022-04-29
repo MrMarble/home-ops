@@ -10,3 +10,4 @@ resources:
   - filebrowser
   - unpackerr
   - readarr
+  - sonarr
