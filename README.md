@@ -100,7 +100,7 @@ The Git repository contains the following directories under cluster and are orde
 
 ### Persistent Volume
 
-I'm in the process of deploying my cluster, currently the only storage option is localy on each node.
+Currently the only storage option is locally on each node with longhorn.
 
 ---
 
