@@ -6,8 +6,6 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: $1
-  labels:
-    goldilocks.fairwinds.com/enabled: \"true\"
 " > cluster/core/namespaces/$1.yaml
 
 # Include new namespace in cluster

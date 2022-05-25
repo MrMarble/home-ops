@@ -94,11 +94,6 @@ spec:
           gnetId: 4475
           revision: 5
           datasource: Prometheus
-          # Ref: https://grafana.com/grafana/dashboards/14588
-        vpa:
-          gnetId: 14588
-          revision: 2
-          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
@@ -140,10 +135,3 @@ spec:
       autoMount: true
     persistence:
       enabled: false
-    resources:
-      requests:
-        cpu: 23m
-        memory: 94M
-      limits:
-        cpu: 23m
-        memory: 94M

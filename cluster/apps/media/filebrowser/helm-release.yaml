@@ -63,10 +63,3 @@ spec:
           hostPath:
             type: DirectoryOrCreate
             path: /mnt/media
-    resources:
-      requests:
-        cpu: 15m
-        memory: 64M
-      limits:
-        cpu: 15m
-        memory: 64M
