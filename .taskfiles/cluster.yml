@@ -25,3 +25,13 @@ tasks:
       - test -f cluster/apps/{{.NAMESPACE}}/{{.APP}}/kustomization.yaml
       - test -f cluster/apps/{{.NAMESPACE}}/{{.APP}}/helm-release.yaml
     silent: true
+  repository:
+    desc: add a new helm repository
+    vars:
+      NAME: '{{(split " " .CLI_ARGS)._0}}'
+      URL: '{{(split " " .CLI_ARGS)._1}}'
+    cmds:
+      - ./scripts/new_repository.sh {{.CLI_ARGS}}
+    status:
+      - test -f cluster/base/flux-system/charts/helm/{{.NAMESPACE}}.yaml
+    silent: true
