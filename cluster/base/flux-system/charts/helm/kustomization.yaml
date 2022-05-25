@@ -26,3 +26,4 @@ resources:
   - traefik-charts.yaml
   - weaveworks-kured-charts.yaml
   - longhorn-charts.yaml
+  - fairwinds-charts.yaml
