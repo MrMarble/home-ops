@@ -132,10 +132,11 @@ spec:
         enabled: false
     resources:
       requests:
-        cpu: 1000m
-        memory: 1000Mi
+        cpu: 50m
+        memory: 79M
       limits:
-        memory: 2000Mi
+        cpu: 50m
+        memory: 79M
     addons:
       promtail:
         enabled: true

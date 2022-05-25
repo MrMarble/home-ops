@@ -52,7 +52,8 @@ spec:
         mountPath: /app/config
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
+        cpu: 23m
+        memory: 79M
       limits:
-        memory: 750Mi
+        cpu: 23m
+        memory: 79M

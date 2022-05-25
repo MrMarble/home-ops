@@ -52,8 +52,6 @@ spec:
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "alert"
         hosts:
           - &host "alert-manager.${SECRET_DOMAIN}"
         tls:
@@ -70,6 +68,8 @@ spec:
                   storage: 5Gi
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
+      collectors:
+        verticalpodautoscalers: true
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -133,7 +133,20 @@ spec:
             memory: 100Mi
     prometheus:
       ingress:
-        enabled: false
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "lightning-bolt"
+        hosts:
+          - &host "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+            secretName: "prometheus-tls"
       thanosService:
         enabled: true
       thanosServiceMonitor:

@@ -71,7 +71,8 @@ spec:
         enabled: false
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
+        cpu: 50m
+        memory: 64M
       limits:
-        memory: 2000Mi
+        cpu: 50m
+        memory: 64M

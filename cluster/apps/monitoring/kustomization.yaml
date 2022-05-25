@@ -8,3 +8,5 @@ resources:
   - loki
   - karma
   - mikrotik
+  - vpa
+  - goldilocks
