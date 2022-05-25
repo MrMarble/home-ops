@@ -133,7 +133,19 @@ spec:
             memory: 100Mi
     prometheus:
       ingress:
-        enabled: false
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "torch"
+        hosts:
+          - &host "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+            secretName: "prometheus-tls"
       thanosService:
         enabled: true
       thanosServiceMonitor:
