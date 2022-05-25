@@ -15,6 +15,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrmarble/home-ops/Schedule%20-%20Renovate?label=Renovate&logo=renovatebot)
 ![Lines](https://img.shields.io/tokei/lines/github/mrmarble/home-ops?color=success&label=Lines%20of%20code&logo=codefactor&logoColor=white)
 [![k3s](https://img.shields.io/badge/k3s-v1.23.4-success.svg?style=flat)]()
+
 </div>
 
 ---
@@ -29,7 +30,6 @@ Work in progress indefinitely.
 ## ☸ Kubernetes
 
 I've used the [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s) highly opionated template for deploying a k3s cluster with Ansible and Terraform backed by Flux and SOPS.
-
 
 ### :octocat: GitOps
 
@@ -83,6 +83,7 @@ flowchart RL
 ### Directories
 
 The Git repository contains the following directories under cluster and are orderer below by how Flux will apply them.
+
 - **base**: Flux entrypoint
 - **crsd**: Custom resource definitions (CRDs) that need to exist globally
 - **core**: Important applications that should never be pruned by flux
@@ -91,12 +92,11 @@ The Git repository contains the following directories under cluster and are orde
 ### Networking
 
 | Name                         | CIDR                |
-|------------------------------|---------------------|
+| ---------------------------- | ------------------- |
 | Kubernetes Nodes             | `192.168.1.0/24`    |
 | Kubernetes external services | `192.168.1.220-230` |
 | Kubernetes pods              | `10.42.18.0/24`     |
 | Kubernetes services          | `10.43.0.0/16`      |
-
 
 ### Persistent Volume
 
@@ -128,7 +128,7 @@ flowchart TB
 ## 🔧 Hardware
 
 | Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System | Purpose           |
-|--------------------------|-------|--------------|----------------|-------|------------------|-------------------|
+| ------------------------ | ----- | ------------ | -------------- | ----- | ---------------- | ----------------- |
 | MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.2     | Router            |
 | HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | Ubuntu 20.04     | k3s Master/Worker |
 | Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 4GB   | Raspbian         | Pi-hole           |

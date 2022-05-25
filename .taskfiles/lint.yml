@@ -24,3 +24,9 @@ tasks:
     cmds:
       - prettier --ignore-path '.github/linters/.prettierignore' --config '.github/linters/.prettierrc.yaml' --check .
     ignore_errors: true
+
+  fix:
+    desc: Lint general formatting
+    cmds:
+      - prettier --ignore-path '.github/linters/.prettierignore' --config '.github/linters/.prettierrc.yaml' --write .
+    ignore_errors: true
