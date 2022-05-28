@@ -51,13 +51,42 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     postgresql:
       enabled: true
+      requests:
+        cpu: 23m
+        memory: 110M
+      limits:
+        cpu: 23m
+        memory: 110M
     redis:
       enabled: true
+      resources:
+        server:
+          requests:
+            cpu: 23m
+            memory: 110M
+          limits:
+            cpu: 23m
+            memory: 110M
     prometheus:
       rules:
         create: true
       serviceMonitor:
         create: true
+    resources:
+      server:
+        requests:
+          cpu: 35m
+          memory: 445M
+        limits:
+          cpu: 35m
+          memory: 445M
+      worker:
+        requests:
+          cpu: 15m
+          memory: 480M
+        limits:
+          cpu: 35m
+          memory: 480M
 
   valuesFrom:
     - kind: Secret
