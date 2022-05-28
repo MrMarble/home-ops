@@ -23,7 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16294,
   "graphTooltip": 0,
-  "iteration": 1653752239003,
+  "iteration": 1653752239049,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -664,7 +664,10 @@
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -845,13 +848,15 @@
       "targets": [
         {
           "datasource": "Prometheus",
+          "editorMode": "builder",
           "exemplar": true,
-          "expr": "avg(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", pod=~\"$targetName-(.+)\", container=\"$container\"}) by (container)",
+          "expr": "avg by(container) (irate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$targetName-(.+)\", container=\"$container\"}[$__interval]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{container}} actual usage",
+          "range": true,
           "refId": "D"
         },
         {
@@ -1165,8 +1170,8 @@
       {
         "current": {
           "selected": true,
-          "text": "media",
-          "value": "media"
+          "text": "monitoring",
+          "value": "monitoring"
         },
         "datasource": {
           "type": "prometheus",
@@ -1195,8 +1200,8 @@
       {
         "current": {
           "selected": true,
-          "text": "plex",
-          "value": "plex"
+          "text": "grafana",
+          "value": "grafana"
         },
         "datasource": {
           "type": "prometheus",
