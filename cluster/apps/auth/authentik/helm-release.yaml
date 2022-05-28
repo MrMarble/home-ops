@@ -78,8 +78,8 @@ spec:
           cpu: 35m
           memory: 445M
         limits:
-          cpu: 100m
-          memory: 445M
+          cpu: 300m
+          memory: 700M
       worker:
         requests:
           cpu: 15m
