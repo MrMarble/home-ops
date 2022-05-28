@@ -23,7 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16294,
   "graphTooltip": 0,
-  "iteration": 1653508672630,
+  "iteration": 1653752239003,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -43,7 +43,10 @@
       "type": "row"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -136,15 +139,16 @@
       "targets": [
         {
           "datasource": "Prometheus",
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "avg(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", pod=~\"$targetName-(.+)\", container=\"$container\"}) by (container)",
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "avg by(container) (irate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$targetName-(.+)\", container=\"$container\"}[$__interval]))",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "CPU usage",
+          "range": true,
           "refId": "A"
         },
         {
@@ -1161,8 +1165,12 @@
       {
         "current": {
           "selected": true,
-          "text": "monitoring",
-          "value": "monitoring"
+          "text": "media",
+          "value": "media"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(kube_verticalpodautoscaler_labels, namespace)",
         "hide": 0,
@@ -1187,8 +1195,12 @@
       {
         "current": {
           "selected": true,
-          "text": "karma",
-          "value": "karma"
+          "text": "plex",
+          "value": "plex"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(kube_verticalpodautoscaler_labels{namespace=\"$namespace\"}, target_name)",
         "hide": 0,
@@ -1215,6 +1227,10 @@
           "selected": true,
           "text": ["All"],
           "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(kube_verticalpodautoscaler_status_recommendation_containerrecommendations_target{ namespace=\"$namespace\", target_name=\"$targetName\"},container)",
         "hide": 0,
@@ -1256,6 +1272,6 @@
   "timezone": "browser",
   "title": "VPA Recommendations",
   "uid": "_BFbbSg7k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
