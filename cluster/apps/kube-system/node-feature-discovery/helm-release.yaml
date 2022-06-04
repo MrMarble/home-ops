@@ -54,4 +54,4 @@ spec:
                   matchExpressions:
                     class: ["255", "ff"]
                     vendor: ["1a86"]
-                    device: ["USB_Serial"]
+                    device: ["USB_Serial", "7523"]
