@@ -40,6 +40,11 @@ spec:
       main:
         enabled: true
         ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "zigbee"
         hosts:
           - host: &host "zigbee2mqtt.${SECRET_DOMAIN}"
             paths:
@@ -48,6 +53,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: "zigbee2mqtt-tls"
     persistence:
       config:
         enabled: true
@@ -58,6 +64,8 @@ spec:
         type: hostPath
         hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
         hostPathType: CharDevice
+    serial:
+      port: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
