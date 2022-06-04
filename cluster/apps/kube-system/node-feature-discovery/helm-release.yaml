@@ -48,8 +48,9 @@ spec:
               - device
           custom:
             - name: zigbee
-              matchOn:
-                - usbId:
-                    class: ["02"]
+              matchFeatures:
+                - feature: usb.device
+                  matchExpressions:
+                    class: { op: InRegexp, value: ["02"] }
                     vendor: ["1a86"]
                     device: ["USB_Serial"]
