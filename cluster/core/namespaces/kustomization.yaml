@@ -10,3 +10,4 @@ resources:
   - flux-system.yaml
   - media.yaml
   - longhorn-system.yaml
+  - kube-system.yaml

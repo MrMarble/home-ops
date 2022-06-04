@@ -11,3 +11,4 @@ resources:
   - flux-system
   - media
   - longhorn-system
+  - kube-system
