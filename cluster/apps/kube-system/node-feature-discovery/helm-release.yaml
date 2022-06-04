@@ -42,6 +42,9 @@ spec:
             deviceClassWhitelist:
               # https://elinux.org/images/5/5e/Opasiak.pdf
               - "02" # Communications and CDC control
+              - "0e" # Video
+              - "ef" # Miscellaneous
+              - "fe" # Application Specific
               - "ff" # Vendor specific
             deviceLabelFields:
               - class
@@ -52,6 +55,5 @@ spec:
               matchFeatures:
                 - feature: usb.device
                   matchExpressions:
-                    class: ["255", "ff"]
-                    vendor: ["1a86"]
-                    device: ["USB_Serial", "7523"]
+                    vendor: {op: In, value: ["1a86"]}
+                    device: {op: In, value: ["7523"]}
