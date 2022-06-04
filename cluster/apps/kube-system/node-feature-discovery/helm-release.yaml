@@ -54,14 +54,14 @@ spec:
           custom:
             - name: zigbee
               # deprecated
-              # matchOn:
-              #   - usbId:
-              #       class: ["ff"]
-              #       vendor: ["1a86"]
-              #       device: ["7523"]
-              matchFeatures:
-                - feature: usb.device
-                  matchExpressions:
+              matchOn:
+                - usbId:
                     class: ["ff"]
                     vendor: ["1a86"]
                     device: ["7523"]
+              # matchFeatures:
+              #   - feature: usb.device
+              #     matchExpressions:
+              #       class: ["ff"]
+              #       vendor: ["1a86"]
+              #       device: ["7523"]
