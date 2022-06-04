@@ -42,6 +42,7 @@ spec:
             deviceClassWhitelist:
               # https://elinux.org/images/5/5e/Opasiak.pdf
               - "02" # Communications and CDC control
+              - "ff" # Vendor specific
             deviceLabelFields:
               - class
               - vendor
@@ -51,6 +52,6 @@ spec:
               matchFeatures:
                 - feature: usb.device
                   matchExpressions:
-                    class: { op: InRegexp, value: ["02"] }
+                    class: ["255", "ff"]
                     vendor: ["1a86"]
                     device: ["USB_Serial"]
