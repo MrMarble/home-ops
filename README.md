@@ -131,6 +131,6 @@ flowchart TB
 | ------------------------ | ----- | ------------ | -------------- | ----- | ---------------- | ----------------- |
 | MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.2     | Router            |
 | HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | Ubuntu 20.04     | k3s Master/Worker |
-| Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 4GB   | Raspbian         | Pi-hole           |
+| Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 1GB   | Raspbian         | Pi-hole           |
 | Pi Zero 2 W              | 1     | 32GB SDCard  | N/A            | 512MB | Raspbian         | Pi-hole backup    |
-| Raspberry Pi 3           | 1     | 32GB SDCard  | N/A            | 4GB   | Raspbian         | Octoprint         |
+| Raspberry Pi 3B           | 1     | 32GB SDCard  | N/A            | 1GB   | Ubuntu 22         | Worker         |
