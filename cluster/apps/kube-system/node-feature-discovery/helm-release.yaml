@@ -42,6 +42,7 @@ spec:
             deviceClassWhitelist:
               # https://elinux.org/images/5/5e/Opasiak.pdf
               - "02" # Communications and CDC control
+              - "03" # Human interface devices
               - "0e" # Video
               - "ef" # Miscellaneous
               - "fe" # Application Specific
@@ -52,8 +53,15 @@ spec:
               - device
           custom:
             - name: zigbee
+              # deprecated
+              # matchOn:
+              #   - usbId:
+              #       class: ["ff"]
+              #       vendor: ["1a86"]
+              #       device: ["7523"]
               matchFeatures:
                 - feature: usb.device
                   matchExpressions:
-                    vendor: {op: In, value: ["1a86"]}
-                    device: {op: In, value: ["7523"]}
+                    class: ["ff"]
+                    vendor: ["1a86"]
+                    device: ["7523"]
