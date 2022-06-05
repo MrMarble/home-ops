@@ -31,11 +31,10 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_DATA: /data
-    service:
-      main:
-        ports:
-          http:
-            port: 8080
+    frontend:
+      port: 8080
+    experimental:
+      new_api: true
     ingress:
       main:
         enabled: true
