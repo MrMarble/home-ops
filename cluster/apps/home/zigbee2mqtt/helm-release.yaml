@@ -65,6 +65,8 @@ spec:
         hostPathType: CharDevice
     serial:
       port: null # auto-detect
+    securityContext:
+      privileged: true
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
