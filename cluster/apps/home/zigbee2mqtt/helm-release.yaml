@@ -41,10 +41,12 @@ spec:
         server: "mqtt://emqx"
         user: "${SECRET_EMQX_USER_1_USERNAME}"
         password: "${SECRET_EMQX_USER_1_PASSWORD}"
-    frontend:
-      port: 8080
-    experimental:
-      new_api: true
+      serial:
+        port: "tcp://192.168.1.16:20108"
+      frontend:
+        port: 8080
+      experimental:
+        new_api: true
     ingress:
       main:
         enabled: true
@@ -68,5 +70,3 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
-    serial:
-      port: "tcp://192.168.1.16:20108"
