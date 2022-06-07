@@ -8,8 +8,8 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: zigbee2mqtt
-      version: 9.3.2
+      chart: kah-common-chart
+      version: 1.1.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -26,8 +26,6 @@ spec:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.25.1
-    global:
-      nameOverride: *app
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_DATA: /data
