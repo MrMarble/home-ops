@@ -33,7 +33,7 @@ spec:
       EMQX_AUTH__USER__1__USERNAME: ${SECRET_EQMX_1_USERNAME}
       EMQX_AUTH__USER__1__PASSWORD: ${SECRET_EQMX_1_PASSWORD}
     emqxAclConfig: >
-      {allow, {user, "dashboard"}, suscribe, ["$SYS/#"]}.
+      {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
       {allow, all, subscribe, ["$SYS/#", {eq, "#"}]}.
       {allow, all}.
