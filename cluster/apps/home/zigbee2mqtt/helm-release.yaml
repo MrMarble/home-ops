@@ -70,3 +70,4 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
+    privileged: true
