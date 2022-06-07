@@ -31,6 +31,16 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       ZIGBEE2MQTT_DATA: /data
+    config:
+      homeassistant: true
+      device_options:
+        retain: true
+      permit_join: true
+      mqtt:
+        base_topic: zigbee2mqtt
+        server: "mqtt://emqx"
+        user: "${SECRET_EMQX_USER_1_USERNAME}"
+        password: "${SECRET_EMQX_USER_1_PASSWORD}"
     frontend:
       port: 8080
     experimental:
@@ -58,21 +68,5 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
-      usb:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
-        hostPathType: CharDevice
     serial:
-      port: null # auto-detect
-    securityContext:
-      privileged: true
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: feature.node.kubernetes.io/custom-zigbee
-                  operator: In
-                  values:
-                    - "true"
+      port: "tcp://192.168.1.16:20108"
