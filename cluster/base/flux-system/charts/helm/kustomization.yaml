@@ -27,3 +27,4 @@ resources:
   - weaveworks-kured-charts.yaml
   - longhorn-charts.yaml
   - fairwinds-charts.yaml
+  - emqx-charts.yaml
