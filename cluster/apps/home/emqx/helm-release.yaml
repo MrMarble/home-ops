@@ -30,8 +30,8 @@ spec:
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"
       EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
-      EMQX_AUTH__USER__1__USERNAME: ${SECRET_EQMX_1_USERNAME}
-      EMQX_AUTH__USER__1__PASSWORD: ${SECRET_EQMX_1_PASSWORD}
+      EMQX_AUTH__USER__1__USERNAME: ${SECRET_EMQX_USER_1_USERNAME}
+      EMQX_AUTH__USER__1__PASSWORD: ${SECRET_EMQX_USER_1_PASSWORD}
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
