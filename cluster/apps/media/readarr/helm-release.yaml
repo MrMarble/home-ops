@@ -38,6 +38,7 @@ spec:
             secretName: "readarr-tls" # Kubernetes secret where SSL cert will be stored
         annotations:
           hajimari.io/icon: "book-open-variant" # Hajimari dashboard custom icon
+          hajimari.io/enable: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
     podSecurityContext:
