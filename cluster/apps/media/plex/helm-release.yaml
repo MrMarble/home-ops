@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/plex
-      tag: v1.26.2.5797-5bd057d2b
+      tag: v1.27.1.5916-6b0e31a64
     env:
       TZ: "${TIMEZONE}"
       ADVERTISE_IP: "http://${METALLB_PLEX_ADDR}:32400/"
