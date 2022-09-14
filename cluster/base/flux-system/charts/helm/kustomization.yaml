@@ -28,3 +28,4 @@ resources:
   - longhorn-charts.yaml
   - fairwinds-charts.yaml
   - emqx-charts.yaml
+  - bjw-s-charts.yaml
