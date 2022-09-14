@@ -28,7 +28,6 @@
       "semanticCommitType": "feat",
       "semanticCommitScope": "helm"
     },
-
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
@@ -46,7 +45,6 @@
       "semanticCommitType": "feat",
       "semanticCommitScope": "ansible"
     },
-
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["patch"],
@@ -103,6 +101,23 @@
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
       "semanticCommitScope": "github-action"
+    },
+    {
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(pip)!:"
+    },
+    {
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "pip"
+    },
+    {
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "pip"
     }
   ]
 }
