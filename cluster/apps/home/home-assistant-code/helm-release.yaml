@@ -38,13 +38,13 @@ spec:
       - --extensions-dir
       - "/config/.vscode/"
       - --port
-      - "81"
+      - "8080"
       - "/config"
     service:
       main:
         ports:
           http:
-            port: 81
+            port: 8080
     ingress:
       main:
         enabled: true
