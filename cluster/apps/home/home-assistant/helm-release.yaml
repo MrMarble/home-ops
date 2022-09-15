@@ -35,9 +35,9 @@ spec:
     securityContext:
       privileged: true
     podSecurityContext:
-      #runAsUser: 568
-      #runAsGroup: 568
-      #fsGroup: 568
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
