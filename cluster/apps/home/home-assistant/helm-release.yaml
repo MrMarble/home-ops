@@ -41,6 +41,7 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
+        - 117 # bluetooth
     dnsPolicy: ClusterFirstWithHostNet
     service:
       main:
