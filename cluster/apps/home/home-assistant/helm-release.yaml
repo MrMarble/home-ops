@@ -27,6 +27,7 @@ spec:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2022.9.4
     env:
+      DISPLAY: ":0" # hack for dbus
       TZ: "${TIMEZONE}"
     envFrom:
       - secretRef:
