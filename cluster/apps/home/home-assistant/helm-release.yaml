@@ -32,11 +32,14 @@ spec:
       - secretRef:
           name: *app
     hostNetwork: true
+    securityContext:
+      privileged: true
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
+      allowPrivilegeEscalation: true
       supplementalGroups:
         - 100
     dnsPolicy: ClusterFirstWithHostNet
