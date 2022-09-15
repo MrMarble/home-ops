@@ -34,14 +34,14 @@ spec:
     hostNetwork: true
     securityContext:
       privileged: true
+      # TODO: change to 568 once D-Bus is supported
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
-        - 117 # bluetooth
     dnsPolicy: ClusterFirstWithHostNet
     service:
       main:
