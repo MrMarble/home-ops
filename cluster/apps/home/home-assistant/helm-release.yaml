@@ -4,6 +4,7 @@ kind: HelmRelease
 metadata:
   name: &app home-assistant
   namespace: home
+  container.apparmor.security.beta.kubernetes.io/home-assistant: localhost/docker-ble-policy
 spec:
   interval: 15m
   chart:
