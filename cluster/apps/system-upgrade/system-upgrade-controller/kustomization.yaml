@@ -5,7 +5,7 @@ resources:
   - github.com/rancher/system-upgrade-controller?ref=v0.9.1
   - plans
 images:
-  - name: ranger/system-upgrade-controller
+  - name: rancher/system-upgrade-controller
     newTag: v0.9.1
 patchesStrategicMerge:
   # Delete namespace resource
