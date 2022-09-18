@@ -7,7 +7,7 @@
     ":semanticCommits",
     ":enablePreCommit",
     ":automergeDigest",
-    ":automergeBranchPush",
+    ":automergeBranch",
     "github>MrMarble/home-ops//.github/renovate/autoMerge",
     "github>MrMarble/home-ops//.github/renovate/labels",
     "github>MrMarble/home-ops//.github/renovate/semanticCommits",
