@@ -14,6 +14,7 @@
     "github>MrMarble/home-ops//.github/renovate/commitMessage",
     "github>MrMarble/home-ops//.github/renovate/groups",
   ],
+  configMigration: true,
   platform: "github",
   username: "pepinillo-bot[bot]",
   repositories: ["MrMarble/home-ops"],
