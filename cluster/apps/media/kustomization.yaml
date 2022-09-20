@@ -11,3 +11,4 @@ resources:
   - unpackerr
   - readarr
   - sonarr
+  - jellyfin
