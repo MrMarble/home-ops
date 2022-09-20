@@ -29,7 +29,12 @@ spec:
       TZ: "${TIMEZONE}"
     service:
       main:
-        enable: false
+        type: LoadBalancer
+        externalIPs: ["${METALLB_JELLYFIN_ADDR}"]
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 8096
     ingress:
       main:
         enabled: true
