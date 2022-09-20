@@ -21,15 +21,15 @@ spec:
   upgrade:
     remediation:
       retries: 5
-    service:
-      main:
-        enable: false
   values:
     image:
       repository: ghcr.io/onedr0p/jellyfin
       tag: 10.8.4
     env:
       TZ: "${TIMEZONE}"
+    service:
+      main:
+        enable: false
     ingress:
       main:
         enabled: true
