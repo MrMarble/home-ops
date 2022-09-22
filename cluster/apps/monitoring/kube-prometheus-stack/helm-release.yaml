@@ -97,6 +97,7 @@ spec:
     kubelet:
       enabled: true
       serviceMonitor:
+        https: true
         metricRelabelings:
           - action: replace
             sourceLabels:
