@@ -69,9 +69,10 @@ spec:
                 requests:
                   storage: 5Gi
     kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-      collectors:
-        - verticalpodautoscalers
+      metricLabelsAllowlist:
+        - "persistentvolumeclaims=[*]"
+        - "pods=[*]"
+        - "deployments=[*]"
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -106,11 +107,11 @@ spec:
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: false # can't connect without port
+      enabled: true # can't connect without port
       endpoints:
         - 192.168.1.29
     kubeScheduler:
-      enabled: false # can't connect without port
+      enabled: true # can't connect without port
       endpoints:
         - 192.168.1.29
     kubeProxy:
