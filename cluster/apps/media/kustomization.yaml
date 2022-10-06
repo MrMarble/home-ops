@@ -6,7 +6,7 @@ resources:
   - prowlarr
   - radarr
   - filebrowser
-  - unpackerr
+  # - unpackerr
   - readarr
   - sonarr
   - jellyfin
