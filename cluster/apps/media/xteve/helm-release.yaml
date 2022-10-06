@@ -31,16 +31,7 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
     service:
       xteve:
-        enabled: true
-        type: LoadBalancer
-        loadBalancerIP: "${METALLB_XTEVE_ADDR}"
-        externalTrafficPolicy: Local
-        ports:
-          http-xteve:
-            enabled: true
-            port: 34400
-            targetPort: 34400
-            protocol: HTTP
+        enabled: false
     ingress:
       main:
         enabled: true
@@ -48,7 +39,8 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
-          hajimari.io/icon: "xteve"
+          hajimari.io/icon: "arcticons:iptv-smarters"
+          hajimari.io/url: "https://xteve.${SECRET_DOMAIN}/web"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: &host "xteve.${SECRET_DOMAIN}"

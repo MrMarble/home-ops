@@ -31,41 +31,7 @@ spec:
       namespaceSelector:
         any: true
       name: "Alvaro"
-      groups:
-        - name: Communicate
-          links:
-            - name: Gmail
-              url: "https://gmail.com"
-            - name: Outlook
-              url: "https://outlook.live.com/owa/"
-        - name: Cloud
-          links:
-            - name: Drive
-              url: "https://drive.google.com"
-        - name: Dev
-          links:
-            - name: Codepen
-              url: "https://codepen.io/"
-            - name: Devdocs
-              url: "https://devdocs.io"
-            - name: Devhints
-              url: "https://devhints.io"
-        - name: Media
-          links:
-            - name: Spotify
-              url: "http://browse.spotify.com"
-            - name: YouTube
-              url: "https://youtube.com/feed/subscriptions"
-        - name: Reading
-          links:
-            - name: Medium
-              url: "http://medium.com"
-            - name: Reddit
-              url: "http://reddit.com"
-        - name: Tech
-          links:
-            - name: Hacker News
-              url: "https://news.ycombinator.com/"
+      showAppUrl: false
     ingress:
       main:
         enabled: true
