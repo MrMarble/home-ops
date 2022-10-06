@@ -5,11 +5,9 @@ resources:
   - qbittorrent
   - prowlarr
   - radarr
-  #- overseerr
-  #- plex
   - filebrowser
   - unpackerr
   - readarr
   - sonarr
   - jellyfin
- # - xteve
+  - xteve
