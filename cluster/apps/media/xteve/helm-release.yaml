@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/elraro/xteve
-      tag: latest
+      repository: ghcr.io/mrmarble/xteve
+      tag: v2.3.0
       pullPolicy: Always
     env:
       TZ: "${TIMEZONE}"
