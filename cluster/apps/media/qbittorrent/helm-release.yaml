@@ -85,6 +85,12 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent-config-v1
+      downloads:
+        enabled: true
+        type: nfs
+        server: "192.168.1.11"
+        path: "/mnt/Data/Media"
+        mountPath: /downloads
       media:
         enabled: true
         type: custom
@@ -93,6 +99,9 @@ spec:
             type: DirectoryOrCreate
             path: /mnt/media
         mountPath: /media
+      incomplete:
+        enabled: true
+        type: emptyDir
     resources:
       requests:
         memory: 250Mi
