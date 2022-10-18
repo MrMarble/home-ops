@@ -27,6 +27,7 @@ spec:
       tag: 4.3.0.6671
     env:
       TZ: "${TIMEZONE}"
+      RADARR__PORT: &port 80
     ingress:
       main:
         enabled: true
@@ -45,6 +46,11 @@ spec:
           - hosts:
               - *host
             secretName: "radarr-tls"
+    services:
+      main:
+        ports:
+          http:
+            port: *port
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
