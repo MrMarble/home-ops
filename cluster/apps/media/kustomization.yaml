@@ -6,6 +6,5 @@ resources:
   - filebrowser
   # - unpackerr
   - readarr
-  - sonarr
   - jellyfin
   - xteve
