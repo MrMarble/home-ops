@@ -46,7 +46,7 @@ spec:
           - hosts:
               - *host
             secretName: "radarr-tls"
-    services:
+    service:
       main:
         ports:
           http:
