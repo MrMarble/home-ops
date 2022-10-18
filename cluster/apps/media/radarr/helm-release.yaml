@@ -2,25 +2,29 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: &app radarr
   namespace: media
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: radarr
-      version: 16.3.2
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/radarr-develop
-      tag: v4.3.0.6671
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.3.0.6671
     env:
       TZ: "${TIMEZONE}"
     ingress:
@@ -42,33 +46,22 @@ spec:
               - *host
             secretName: "radarr-tls"
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 1000
-    metrics:
-      enabled: false
-      serviceMonitor:
-        interval: 3m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: false
+        - 100
     persistence:
       config:
         enabled: true
         existingClaim: radarr-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          hostPath:
-            type: DirectoryOrCreate
-            path: /mnt/media
+        type: nfs
+        server: "192.168.1.11"
+        path: /mnt/Data/Media
         mountPath: /media
-      backup:
-        enabled: false
     resources:
       requests:
         memory: 250Mi
