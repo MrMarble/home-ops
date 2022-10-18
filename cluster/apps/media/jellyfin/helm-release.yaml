@@ -68,11 +68,9 @@ spec:
         existingClaim: jellyfin-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          hostPath:
-            type: DirectoryOrCreate
-            path: /mnt/media
+        type: nfs
+        server: "192.168.1.11"
+        path: "/mnt/Data/Media"
         mountPath: /media
       transcode:
         enabled: false
