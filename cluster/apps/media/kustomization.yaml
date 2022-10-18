@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - qbittorrent
   - prowlarr
-  - radarr
   - filebrowser
   # - unpackerr
   - readarr

@@ -11,3 +11,4 @@ resources:
   - media.yaml
   - longhorn-system.yaml
   - kube-system.yaml
+  - media-automation.yaml
