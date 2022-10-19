@@ -61,6 +61,13 @@ spec:
       - "--providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDR}"
       - "--providers.kubernetesingress.allowexternalnameservices=true"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
+      # Add plugin/dynamic file provider for theme-park
+      - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body"
+      - "--experimental.plugins.rewritebody.version=v0.5.1"
+      - "--providers.file.directory=/config"
+    experimental:
+      plugins:
+        enabled: true
     ports:
       traefik:
         expose: true
@@ -79,11 +86,6 @@ spec:
         minVersion: VersionTLS11
         maxVersion: VersionTLS13
         sniStrict: true
-    pilot:
-      enabled: false
-    experimental:
-      plugins:
-        enabled: false
     resources:
       requests:
         memory: 100Mi

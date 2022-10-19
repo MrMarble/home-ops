@@ -1,0 +1,18 @@
+{{ $theme := "nord" }}
+http:
+  middlewares:
+    #  Add any suppported base apps you would like to include in your auto generated middle set.
+    {{ range $index, $app := list "sonarr" "radarr" "prowlarr" "qbittorrent" }}
+    {{ $app }}-theme-css:
+      plugin:
+        rewritebody:
+          rewrites:
+            - regex: </head>
+              replacement: <link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/{{ $app }}/{{ $theme }}.css"></head>
+    # Wrap CSS and theme headers in single middleware for ease of use
+    {{ $app }}-theme:
+      chain:
+        middlewares:
+          - networking-theme-headers@kubernetescrd
+          - {{ $app }}-theme-css
+    {{ end }}

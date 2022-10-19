@@ -36,6 +36,7 @@ spec:
           hajimari.io/icon: "television-box" # Hajimari dashboard custom icon
           hajimari.io/enable: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
+          traefik.ingress.kubernetes.io/router.middlewares: sonarr-theme@file
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
         hosts:
           - host: &host "sonarr.${SECRET_DOMAIN}"
