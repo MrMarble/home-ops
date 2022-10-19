@@ -5,3 +5,5 @@ resources:
   - helm-release.yaml
   - dashboard
   - addons
+configurations:
+  - kustomizeconfig.yaml

@@ -68,6 +68,10 @@ spec:
     experimental:
       plugins:
         enabled: true
+    volumes:
+      - name: traefik-middleware
+        type: configMap
+        mountPath: /config
     ports:
       traefik:
         expose: true
