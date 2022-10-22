@@ -85,7 +85,7 @@ data "http" "ipv4" {
 resource "cloudflare_record" "ipv4" {
   name    = "ipv4"
   zone_id = sensitive(lookup(data.cloudflare_zones.domain.zones[0], "id"))
-  value   = sensitive(chomp(data.http.ipv4.body))
+  value   = sensitive(chomp(data.http.ipv4.response_body))
   proxied = true
   type    = "A"
   ttl     = 1
