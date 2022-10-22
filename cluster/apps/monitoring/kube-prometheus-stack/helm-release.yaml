@@ -73,7 +73,8 @@ spec:
         - "persistentvolumeclaims=[*]"
         - "pods=[*]"
         - "deployments=[*]"
-        -
+      collectors:
+        verticalpodautoscalers: true
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
