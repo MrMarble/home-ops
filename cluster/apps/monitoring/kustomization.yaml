@@ -8,4 +8,4 @@ resources:
   - karma
   - mikrotik
   - vpa
-#  - goldilocks
+  - goldilocks
