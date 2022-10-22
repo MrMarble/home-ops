@@ -13,7 +13,8 @@
     "github>MrMarble/home-ops//.github/renovate/labels",
     "github>MrMarble/home-ops//.github/renovate/semanticCommits",
     "github>MrMarble/home-ops//.github/renovate/commitMessage",
-    "github>MrMarble/home-ops//.github/renovate/groups"
+    "github>MrMarble/home-ops//.github/renovate/groups",
+    "github>MrMarble/home-ops//.github/renovate/disabledDatasources"
   ],
   "configMigration": true,
   "platform": "github",
