@@ -24,7 +24,6 @@ spec:
   values:
     dashboard:
       replicaCount: 0
-
     controller:
       resources:
         requests:
