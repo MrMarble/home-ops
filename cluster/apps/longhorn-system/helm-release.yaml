@@ -45,6 +45,7 @@ spec:
       tlsSecret: "longhorn-tls"
       annotations:
         hajimari.io/enable: "true"
-        hajimari.io/icon: "database" # Hajimari dashboard custom icon
+        hajimari.io/appName: Longhorn
+        hajimari.io/icon: "game-icons:bull-horns" # Hajimari dashboard custom icon
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
         cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate

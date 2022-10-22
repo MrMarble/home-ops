@@ -51,6 +51,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           hajimari.io/enable: "true"
+          hajimari.io/appName: "Code"
           hajimari.io/icon: "microsoft-visual-studio-code"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"

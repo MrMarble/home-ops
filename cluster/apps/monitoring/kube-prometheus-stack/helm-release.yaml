@@ -47,19 +47,7 @@ spec:
               severity: "warning"
             equal: ["alertname", "namespace"]
       ingress:
-        enabled: true
-        pathType: Prefix
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "alert"
-        hosts:
-          - &host "alert-manager.${SECRET_DOMAIN}"
-        tls:
-          - hosts:
-              - *host
-            secretName: "alert-manager-tls"
+        enabled: false
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
@@ -147,6 +135,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
+          hajimari.io/appName: Prometheus
           hajimari.io/icon: "torch"
         hosts:
           - &host "prometheus.${SECRET_DOMAIN}"
