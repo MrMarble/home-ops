@@ -24,7 +24,7 @@ resources:
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
   - traefik-charts.yaml
-  - weaveworks-kured-charts.yaml
+  - kured-charts.yaml
   - longhorn-charts.yaml
   - fairwinds-charts.yaml
   - emqx-charts.yaml
