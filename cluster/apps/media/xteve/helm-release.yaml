@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/mrmarble/xteve
-      tag: v2.3.0
+      tag: v2.3.1
     env:
       TZ: "${TIMEZONE}"
     podSecurityContext:
