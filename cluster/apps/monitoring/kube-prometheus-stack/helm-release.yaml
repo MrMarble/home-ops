@@ -74,7 +74,7 @@ spec:
         - "pods=[*]"
         - "deployments=[*]"
       collectors:
-        verticalpodautoscalers: true
+        - verticalpodautoscalers
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
