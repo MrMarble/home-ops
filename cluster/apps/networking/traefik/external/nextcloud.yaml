@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-ip
+  namespace: networking
+spec:
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 8283
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: external-ip
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: "192.168.1.11"
+    ports:
+      - port: 8283
+        protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextcloud
+  namespace: networking
+  annotations:
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "simple-icons:nextcloud"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    external-dns/is-public: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - &host "nc.${SECRET_DOMAIN}"
+      secretName: "nc-tls"
+  rules:
+    - host: *host
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: external-ip
+                port:
+                  number: 443
