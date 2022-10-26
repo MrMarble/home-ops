@@ -25,7 +25,6 @@ spec:
   values:
     fullnameOverride: prometheus
     alertmanager:
-      enabled: false
       config:
         receivers:
           - name: "null"
@@ -50,7 +49,7 @@ spec:
       ingress:
         enabled: false
       alertmanagerSpec:
-        replicas: 0
+        replicas: 1
         storage:
           volumeClaimTemplate:
             spec:
