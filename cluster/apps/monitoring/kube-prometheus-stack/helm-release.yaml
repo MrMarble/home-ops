@@ -25,6 +25,7 @@ spec:
   values:
     fullnameOverride: prometheus
     alertmanager:
+      enabled: false
       config:
         receivers:
           - name: "null"
@@ -49,6 +50,7 @@ spec:
       ingress:
         enabled: false
       alertmanagerSpec:
+        replicas: 0
         storage:
           volumeClaimTemplate:
             spec:
@@ -176,10 +178,17 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "local-path"
+              storageClassName: "longhorn"
               resources:
                 requests:
                   storage: 5Gi
         thanos:
           image: quay.io/thanos/thanos:v0.28.1
           version: v0.25.1
+        resources:
+          requests:
+            cpu: 10m
+            memory: 2000Mi
+          limits:
+            memory: 2500Mi
+            cpu: 20m

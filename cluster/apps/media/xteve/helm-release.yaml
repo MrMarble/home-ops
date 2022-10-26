@@ -65,3 +65,10 @@ spec:
             type: DirectoryOrCreate
             path: /mnt/media/xteve
         mountPath: /data
+    resources:
+      requests:
+        memory: 1Gib
+        cpu: 20m
+      limits:
+        memory: 1Gib
+        cpu: 20m

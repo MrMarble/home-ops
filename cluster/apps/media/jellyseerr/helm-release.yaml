@@ -66,3 +66,10 @@ spec:
         enabled: true
         existingClaim: jellyseerr-config-v1
         mountPath: /app/config
+    resources:
+      requests:
+        memory: 210Mi
+        cpu: 20m
+      limits:
+        memory: 210Mi
+        cpu: 20m

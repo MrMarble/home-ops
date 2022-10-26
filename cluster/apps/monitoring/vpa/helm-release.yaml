@@ -26,7 +26,6 @@ spec:
       enabled: false
     admissionController:
       enabled: false
-
     recommender:
       enabled: true
       extraArgs:
@@ -35,8 +34,8 @@ spec:
           http://prometheus-prometheus:9090
       resources:
         requests:
-          cpu: 15m
+          cpu: 100m
           memory: 145M
         limits:
           memory: 174M
-          cpu: 15m
+          cpu: 150m
