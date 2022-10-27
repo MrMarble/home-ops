@@ -155,7 +155,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 6h
+        retention: 3d
+        retentionSize: 5GB
         enableAdminAPI: true
         walCompression: true
         additionalScrapeConfigs:
@@ -180,7 +181,7 @@ spec:
               storageClassName: "longhorn"
               resources:
                 requests:
-                  storage: 5Gi
+                  storage: 10Gi
         thanos:
           image: quay.io/thanos/thanos:v0.28.1
           version: v0.25.1
@@ -189,5 +190,4 @@ spec:
             cpu: 10m
             memory: 2000Mi
           limits:
-            memory: 2500Mi
-            cpu: 20m
+            memory: 3500Mi
