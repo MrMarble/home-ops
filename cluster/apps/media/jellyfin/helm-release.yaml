@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/jellyfin
-      tag: 10.8.6
+      tag: 10.8.7
     env:
       TZ: "${TIMEZONE}"
     service:
