@@ -86,7 +86,11 @@ spec:
         mountPath: /media
       incomplete:
         enabled: true
-        type: emptyDir
+        type: custom
+        volumeSpec:
+          hostPath:
+            type: DirectoryOrCreate
+            path: /mnt/media/qbittorrent
     resources:
       requests:
         memory: 250Mi
