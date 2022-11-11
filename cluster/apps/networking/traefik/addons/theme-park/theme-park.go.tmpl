@@ -8,7 +8,7 @@ http:
         rewritebody:
           rewrites:
             - regex: </head>
-              replacement: <link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/{{ $app }}/{{ $theme }}.css"></head>
+              replacement: <link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/{{ $app }}/{{ $theme }}.css"></head>
     # Wrap CSS and theme headers in single middleware for ease of use
     {{ $app }}-theme:
       chain:
