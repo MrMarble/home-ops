@@ -12,3 +12,4 @@ resources:
   - longhorn-system.yaml
   - kube-system.yaml
   - media-automation.yaml
+  - web-tools.yaml
