@@ -6,3 +6,5 @@ resources:
   - code-server-ssh.sops.yaml
   - home-assistant.pvc.yaml
   - helm-release.yaml
+patchesStrategicMerge:
+  - patches/code.yml
