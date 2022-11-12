@@ -104,9 +104,11 @@ spec:
         cpu: 200m
         memory: 1000Mi
     affinity:
-      podAffinity:
+      nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
-          - topologyKey: kubernetes.io/hostname
-            labelSelector:
-              matchLabels:
-                node: elite
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - "elite"
