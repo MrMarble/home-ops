@@ -25,14 +25,15 @@ spec:
   values:
     enablePSP: false
     csi:
-      attacherReplicaCount: 1
-      provisionerReplicaCount: 1
+      attacherReplicaCount: 2
+      provisionerReplicaCount: 2
       resizerReplicaCount: 1
       snapshotterReplicaCount: 1
     persistence:
-      defaultClassReplicaCount: 1
+      defaultClassReplicaCount: 2
       defaultFsType: ext4
     defaultSettings:
+      backupTarget: nfs://192.168.1.11:/mnt/Data/Longhorn
       defaultLonghornStaticStorageClass: longhorn
       defaultDataPath: /mnt/storage
       defaultReplicaCount: 1
