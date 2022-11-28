@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - home-assistant
   #- zigbee2mqtt
-  - emqx
+  #- emqx
