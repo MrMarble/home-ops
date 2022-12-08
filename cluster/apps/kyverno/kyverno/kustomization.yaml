@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: kyverno
 resources:
   - app
-  - policies
+  #- policies
