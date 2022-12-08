@@ -13,6 +13,5 @@ resources:
   - kube-system.yaml
   - media-automation.yaml
   - web-tools.yaml
-  - security.yaml
   - databases.yaml
   - kyverno.yaml
