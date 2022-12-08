@@ -16,19 +16,7 @@ spec:
         namespace: flux-system
       interval: 30m
   values:
+    installCRDs: false
     replicaCount: 1
-
-    updateStrategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 1
-
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-
-    resources:
-      requests:
-        cpu: 247m
-        memory: 443M
-      limits:
-        memory: 1336M
+    serviceMonitor:
+      enabled: true
