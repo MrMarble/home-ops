@@ -23,7 +23,6 @@ spec:
           - resources:
               namespaces:
                 - calico-system
-                - monero
                 - tigera-operator
           - resources:
               kinds: ["Pod"]

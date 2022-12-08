@@ -7,4 +7,3 @@ resources:
   - reloader
   - node-feature-discovery
   - descheduler
-  - kyverno
