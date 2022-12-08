@@ -79,7 +79,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          hajimari.io/enable: true
+          hajimari.io/enable: "true"
           hajimari.io/icon: "form-textbox-password"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
