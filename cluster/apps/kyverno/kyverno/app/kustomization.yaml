@@ -5,3 +5,13 @@ namespace: kyverno
 resources:
   - helm-release.yaml
   - rbac.yaml
+configMapGenerator:
+  - name: kyverno-dashboard
+    files:
+      - kyverno-dashboard.json=https://raw.githubusercontent.com/kyverno/grafana-dashboard/master/grafana/dashboard.json
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+  labels:
+    grafana_dashboard: "true"
