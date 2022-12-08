@@ -30,3 +30,4 @@ resources:
   - emqx-charts.yaml
   - bjw-s-charts.yaml
   - cloudnative-pg-charts.yaml
+  - dysnix-charts
