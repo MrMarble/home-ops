@@ -53,6 +53,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: vaultwarden
+                namespace: databases
                 key: VAULTWARDEN_POSTGRES_USERNAME
           - name: POSTGRES_PASS
             valueFrom:
