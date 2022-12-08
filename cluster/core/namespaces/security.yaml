@@ -3,3 +3,5 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: security
+  labels:
+    secret.home.arpa/postgres-superuser: "true"
