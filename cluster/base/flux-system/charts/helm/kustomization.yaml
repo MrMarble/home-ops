@@ -29,3 +29,4 @@ resources:
   - fairwinds-charts.yaml
   - emqx-charts.yaml
   - bjw-s-charts.yaml
+  - cloudnative-pg-charts.yaml
