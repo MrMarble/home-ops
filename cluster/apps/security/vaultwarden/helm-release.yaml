@@ -47,13 +47,11 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: postgres-superuser
-                namespace: databases
                 key: password
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
                 name: vaultwarden
-                namespace: databases
                 key: VAULTWARDEN_POSTGRES_USERNAME
           - name: POSTGRES_PASS
             valueFrom:
