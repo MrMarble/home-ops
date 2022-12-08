@@ -104,6 +104,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: "vaultwarden-tls"
     persistence:
       config:
         enabled: true
