@@ -10,6 +10,6 @@ spec:
 
   resources:
     requests:
-      storage: 5Gb
+      storage: 5Gi
 
   storageClassName: longhorn
