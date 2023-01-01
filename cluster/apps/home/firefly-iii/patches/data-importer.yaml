@@ -42,7 +42,6 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "foundation:page-export-csv"
-          traefik.ingress.kubernetes.io/router.entrypoints: "web"
         hosts:
           - host: &host "fidi.${SECRET_DOMAIN}"
             paths:
