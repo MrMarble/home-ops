@@ -5,7 +5,7 @@ resources:
   - helm-release.yaml
   - firefly.pvc.yaml
   - secrets.sops.yaml
-  - patches/data-importer.yml
+  - patches/data-importer.yaml
 commonLabels:
   app.kubernetes.io/name: firefly-iii
   app.kubernetes.io/instance: firefly-iii
