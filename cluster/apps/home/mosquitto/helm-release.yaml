@@ -51,7 +51,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIps:
+        externalIPs:
           - "${METALLB_MOSQUITTO_ADDR}"
         externalTrafficPolicy: Local
         ports:
