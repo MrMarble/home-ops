@@ -12,7 +12,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrmarble/home-ops/Schedule%20-%20Renovate?label=Renovate&logo=renovatebot)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?label=Renovate&logo=renovatebot)
 ![Lines](https://img.shields.io/tokei/lines/github/mrmarble/home-ops?color=success&label=Lines%20of%20code&logo=codefactor&logoColor=white)
 [![k3s](https://img.shields.io/badge/k3s-v1.25.0-success.svg?style=flat)]()
 
