@@ -60,6 +60,7 @@ spec:
       - secretRef:
           name: firefly-iii-secrets
     env:
+      TRUSTED_PROXIES: "**"
       FIREFLY_III_URL: "https://firefly.${SECRET_DOMAIN}"
       VANITY_URL: "https://firefly.${SECRET_DOMAIN}"
       FIREFLY_III_ACCESS_TOKEN:
