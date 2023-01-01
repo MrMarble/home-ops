@@ -72,12 +72,12 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: firefly-iii-secret
+                name: firefly-iii-secrets
                 key: FIREFLY_POSTGRES_USERNAME
           - name: POSTGRES_PASS
             valueFrom:
               secretKeyRef:
-                name: firefly-iii-secret
+                name: firefly-iii-secrets
                 key: FIREFLY_POSTGRES_PASSWORD
     persistence:
       data:
@@ -86,7 +86,7 @@ spec:
         mountPath: /var/www/html/firefly-iii/storage/upload
     envFrom:
       - secretRef:
-          name: firefly-iii-secret
+          name: firefly-iii-secrets
     env:
       APP_URL: "firefly.${SECRET_DOMAIN}"
       TRUSTED_PROXIES: "**" #TODO: Change this
@@ -97,12 +97,12 @@ spec:
       DB_USERNAME:
         valueFrom:
           secretKeyRef:
-            name: firefly-iii-secret
+            name: firefly-iii-secrets
             key: FIREFLY_POSTGRES_USERNAME
       DB_PASSWORD:
         valueFrom:
           secretKeyRef:
-            name: firefly-iii-secret
+            name: firefly-iii-secrets
             key: FIREFLY_POSTGRES_PASSWORD
     resources:
       requests:
