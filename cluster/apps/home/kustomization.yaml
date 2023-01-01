@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - home-assistant
   - mosquitto
+  - firefly-iii
