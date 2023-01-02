@@ -67,7 +67,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: firefly-iii-secrets
-            key: APP_KEY
+            key: DATA_IMPORTER_TOKEN
     resources:
       requests:
         cpu: 15m
