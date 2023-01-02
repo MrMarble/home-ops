@@ -68,6 +68,16 @@ spec:
           secretKeyRef:
             name: firefly-iii-secrets
             key: DATA_IMPORTER_TOKEN
+      NORDIGEN_ID:
+        valueFrom:
+          secretKeyRef:
+            name: firefly-iii-secrets
+            key: NORDIGEN_SECRET_ID
+      NORDIGEN_KEY:
+        valueFrom:
+          secretKeyRef:
+            name: firefly-iii-secrets
+            key: NORDIGEN_SECRET_KEY
     resources:
       requests:
         cpu: 15m
