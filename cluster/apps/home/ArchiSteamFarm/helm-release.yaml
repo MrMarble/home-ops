@@ -57,7 +57,7 @@ spec:
             secretName: "archi-steam-farm-tls" # Kubernetes secret where SSL cert will be stored
         annotations:
           hajimari.io/icon: "bi:steam"
-          Hajimari.io/name: Archi
+          hajimari.io/name: Archi
           hajimari.io/enable: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
