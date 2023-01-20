@@ -93,8 +93,7 @@ spec:
             path: /mnt/media/qbittorrent
     resources:
       requests:
-        memory: 250Mi
+        memory: 450Mi
         cpu: 200m
       limits:
-        cpu: 500m
-        memory: 500Mi
+        memory: 800Mi
