@@ -39,7 +39,7 @@ spec:
     args: ["sync"]
     envFrom:
       - secretRef:
-          name: recylarr-secret
+          name: recyclarr-secret
     service:
       main:
         enabled: false
