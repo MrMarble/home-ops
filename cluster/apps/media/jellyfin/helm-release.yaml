@@ -74,6 +74,8 @@ spec:
         mountPath: /media
       transcode:
         enabled: false
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 100m
