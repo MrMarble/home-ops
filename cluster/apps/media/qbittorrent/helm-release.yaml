@@ -92,6 +92,8 @@ spec:
           hostPath:
             type: DirectoryOrCreate
             path: /mnt/media/qbittorrent
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         memory: 450Mi
