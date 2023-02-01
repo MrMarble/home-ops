@@ -43,7 +43,10 @@ spec:
     envFrom:
       - secretRef:
           name: cross-seed-secret
+    command: /bin/bash
     args:
+      - -c
+      - cross-seed
       - search
       - --torznab
       - $TORZNAB_HOSTS
