@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: media
 resources:
   - helm-release.yaml
+  - secrets.sops.yaml
 configMapGenerator:
   - name: cross-seed-configmap
     files:
@@ -12,13 +13,3 @@ generatorOptions:
   disableNameSuffixHash: true
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
-replacements:
-  - source:
-      kind: Secret
-      name: cross-seed-secret
-    targets:
-      - select:
-          name: cross-seed
-          kind: HelmRelease
-        fieldPaths:
-          - "spec.values.command"
