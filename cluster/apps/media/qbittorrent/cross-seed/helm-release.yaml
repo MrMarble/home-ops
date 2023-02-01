@@ -42,7 +42,7 @@ spec:
         enabled: false
     envFrom:
       - secretRef:
-        name: cross-seed-secret
+          name: cross-seed-secret
     command: "search --torznab $TORZNAB_HOSTS"
     persistence:
       config:
