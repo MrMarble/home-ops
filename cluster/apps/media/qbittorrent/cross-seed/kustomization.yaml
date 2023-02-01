@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: media
 resources:
   - helm-release.yaml
-  - secrets.sops.yaml
 configMapGenerator:
   - name: cross-seed-configmap
     files:
@@ -17,7 +16,6 @@ replacements:
   - source:
       kind: Secret
       name: cross-seed-secret
-      fieldPath: stringData.command
     targets:
       - select:
           name: cross-seed
