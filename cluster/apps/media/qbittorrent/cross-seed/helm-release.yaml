@@ -46,10 +46,7 @@ spec:
     command: /bin/bash
     args:
       - -c
-      - cross-seed
-      - search
-      - --torznab
-      - $TORZNAB_HOSTS
+      - "cross-seed search --torznab $TORZNAB_HOSTS"
     persistence:
       config:
         enabled: true
