@@ -1,0 +1,48 @@
+commands:
+  dry_run: False # don't change anything
+  tag_nohardlinks: True # Tag with noHL if the torrent doesn't have a hard-link associated (sonnar/radarr)
+  tag_tracker_error: True # Tag with 'tracker_error_tag' torrents without working tracker
+  tag_update: True # Update tags
+  recheck: True # check if paused torrents are completed and resume them
+  cross_seed: False
+  cat_update: False
+  rem_unregistered: False
+  rem_orphaned: False
+  skip_cleanup: False
+
+qbt:
+  host: "qbittorrent.media.svc.cluster.local"
+
+settings:
+  force_auto_tmm: False # Force automatic torrent management
+  tracker_error_tag: issue
+  ignoreTags_OnUpdate:
+    - noHL
+    - issue
+    - cross-seed
+
+directory:
+  root_dir: "/media/Downloads/qbittorrent/complete"
+
+cat:
+  prowlarr: "/media/Downloads/qbittorrent/complete/prowlarr"
+  radarr: "/media/Downloads/qbittorrent/complete/radarr"
+  readarr: "/media/Downloads/qbittorrent/complete/readarr"
+  tv-sonarr: "/media/Downloads/qbittorrent/complete/sonarr"
+  whoops: "/media/Downloads/qbittorrent/complete/downloads"
+
+tracker:
+  torrentland.li:
+    tag: TorrentLand
+  xbt.puntotorrent.com:
+    tag: PuntoTorrent
+  redbits.xyz:
+    tag: RedBits
+
+nohardlinks:
+  radarr:
+    cleanup: False
+  tv-sonarr:
+    cleanup: False
+  whoops:
+    cleanup: False

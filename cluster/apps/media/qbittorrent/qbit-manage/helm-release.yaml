@@ -1,0 +1,72 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbit-manage
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: qbittorrent
+  values:
+    controller:
+      type: cronjob
+      cronjob:
+        concurrencyPolicy: Forbid
+        schedule: "@hourly"
+    restartPolicy: OnFailure
+    image:
+      repository: docker.io/bobokun/qbit_manage
+      tag: v3.4.2
+    service:
+      main:
+        enabled: false
+    env:
+      QBT_RUN: true # run and exit
+    initContainers: # cant mount configMap as read/write
+      init-config:
+        image: busybox
+        command:
+          - cp
+          - /config-file/config.yml
+          - /config/config.yml
+        volumeMounts:
+          - name: config-file
+            mountPath: /config-file
+          - name: config
+            mountPath: /config
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbit-manage-config-v1
+      config-file:
+        enabled: true
+        type: configMap
+        name: qbit-manage-configmap
+        mountPath: /config-file/config.yml
+        subPath: config.yml
+      media:
+        enabled: true
+        type: nfs
+        server: "192.168.1.11"
+        path: "/mnt/Data/Media"
+        mountPath: /media
