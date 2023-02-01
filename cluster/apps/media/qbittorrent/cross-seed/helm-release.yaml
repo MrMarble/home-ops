@@ -32,7 +32,7 @@ spec:
       type: cronjob
       cronjob:
         concurrencyPolicy: Forbid
-        schedule: "@hourly"
+        schedule: "@daily"
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/cross-seed/cross-seed
