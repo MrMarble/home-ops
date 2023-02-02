@@ -9,3 +9,7 @@ configMapGenerator:
     files:
       # Create header middleware dynamically using traefik go templates, instead of many CRDs
       - theme-park.yml=theme-park.go.tmpl
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
