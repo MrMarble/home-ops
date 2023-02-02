@@ -38,6 +38,8 @@ tracker:
     tag: PuntoTorrent
   redbits.xyz:
     tag: RedBits
+  hd-olimpo.club:
+    tag: HD-Olimpo
 
 nohardlinks:
   radarr:
