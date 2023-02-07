@@ -40,6 +40,8 @@ tracker:
     tag: RedBits
   hd-olimpo.club:
     tag: HD-Olimpo
+  xbytesv2.li:
+    tag: XBytesV2
 
 nohardlinks:
   radarr:
