@@ -36,7 +36,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: docker.io/bobokun/qbit_manage
-      tag: v3.4.3
+      tag: v3.4.4
     service:
       main:
         enabled: false
