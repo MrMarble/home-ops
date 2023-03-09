@@ -13,4 +13,3 @@ resources:
   - longhorn-system
   - media-automation
   - web-tools
-  - kyverno
