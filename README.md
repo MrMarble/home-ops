@@ -12,9 +12,16 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?label=Renovate&logo=renovatebot)
-![Lines](https://img.shields.io/tokei/lines/github/mrmarble/home-ops?color=success&label=Lines%20of%20code&logo=codefactor&logoColor=white)
-[![k3s](https://img.shields.io/badge/k3s-v1.25.0-success.svg?style=flat)]()
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=&color=blue)
+[![k3s](https://img.shields.io/badge/k3s-v1.24.4-success.svg?style=for-the-badge&logo=kubernetes&label=&color=blue&logoColor=white)](https://k3s.io/)
+
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877647-43f7de17c4661915fdcc503c?label=Home%20Internet&logo=googlehome&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877616-990da6b85bc8e4fc22832384?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793878305-d450c4e357daeea77a8eb9f2?label=grafana&logo=grafana&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
+
+[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=2&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="nodes" />]()
+[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=3&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="pods" />]()
+[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=5&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="allocable pods" />]()
 
 </div>
 
