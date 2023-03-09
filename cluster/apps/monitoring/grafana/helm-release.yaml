@@ -106,6 +106,13 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+    imageRenderer:
+      enabled: true
+      replicas: 1
+      networkPolicy:
+        limitIngress: false
+      serviceMonitor:
+        enabled: true
     ingress:
       enabled: true
       ingressClassName: "traefik"
