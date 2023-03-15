@@ -44,6 +44,9 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "simple-icons:jellyfin"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns/is-public: "true" # Access Outside LAN
+          external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}" # Create a CNAME registry
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true" # Proxify DNS
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
