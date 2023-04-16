@@ -9,7 +9,7 @@ spec:
   url: https://github.com/traefik/traefik-helm-chart.git
   ref:
     # renovate: registryUrl=https://helm.traefik.io/traefik chart=traefik
-    tag: 21.2.0
+    tag: v21.2.0
   ignore: |
     # exclude all
     /*
@@ -22,7 +22,7 @@ metadata:
   name: traefik-crds
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 15m
   prune: false
   sourceRef:
     kind: GitRepository
