@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - qbittorrent
   - jellyfin
-  - xteve
   - jellyseerr
