@@ -5,22 +5,30 @@ metadata:
   name: &app jellyseerr
   namespace: media
 spec:
+  dependsOn:
+    - name: traefik
+      namespace: networking
+    - name: jellyfin
+      namespace: media
   interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 0.2.2
+      version: 1.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
   install:
-    createNamespace: true
+    timeout: 15m
     remediation:
       retries: 5
   upgrade:
+    timeout: 15m
     remediation:
       retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
   values:
     image:
       repository: docker.io/fallenbagel/jellyseerr
