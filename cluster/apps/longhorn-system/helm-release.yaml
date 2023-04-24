@@ -23,6 +23,12 @@ spec:
     remediation:
       retries: 3
   values:
+    enablePSP: false
+    csi:
+      attacherReplicaCount: 2
+      provisionerReplicaCount: 2
+      resizerReplicaCount: 2
+      snapshotterReplicaCount: 2
     persistence:
       defaultClassReplicaCount: 2
       defaultFsType: ext4
