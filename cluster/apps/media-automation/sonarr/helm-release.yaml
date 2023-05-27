@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.506@sha256:d3b3386f53cc420b568518907aef172347e9ff6e7c641684bebb3b24d7642556
+      tag: 4.0.0.526@sha256:17165e5cd2d35d6855bde1e1b8f11e339e85f296a38eb659cf53f94be5ce41f2
     env:
       TZ: "${TIMEZONE}"
       SONARR__PORT: &port 80
