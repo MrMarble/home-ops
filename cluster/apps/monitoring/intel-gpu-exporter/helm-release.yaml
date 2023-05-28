@@ -51,7 +51,7 @@ spec:
     securityContext:
       privileged: true
     nodeSelector:
-      intel.feature.node.kubernetes.io/gpu: "true"
+      feature.node.kubernetes.io/custom-intel-gpu: "true"
     resources:
       requests:
         gpu.intel.com/i915: 1
