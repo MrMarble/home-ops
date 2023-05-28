@@ -52,6 +52,13 @@ spec:
               - vendor
               - device
           custom:
+            # lspci -nn | grep VGA
+            - name: "intel-gpu"
+              matchOn:
+                - pciId:
+                    class: ["0300"]
+                    vendor: ["8086"]
+                    device: ["5916", "1912"]
             - name: zigbee
               # deprecated
               matchOn:
