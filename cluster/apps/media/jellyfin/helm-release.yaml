@@ -76,7 +76,14 @@ spec:
         path: "/mnt/Data/Media"
         mountPath: /media
       transcode:
-        enabled: false
+        enabled: true
+        type: emptyDir
+        mountPath: /transcode
+      dri:
+        enabled: true
+        type: hostPath
+        mountPath: /dev/dri
+        hostPath: /dev/dri
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
