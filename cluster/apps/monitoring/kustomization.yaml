@@ -9,3 +9,4 @@ resources:
   - mikrotik
   - vpa
   - goldilocks
+  - intel-gpu-exporter
