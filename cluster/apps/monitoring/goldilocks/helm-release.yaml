@@ -31,9 +31,6 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: memory
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          external-dns/is-public: "false" # Access Outside LAN
-          external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}" # Create a CNAME registry
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true" # Proxify DNS
         hosts:
           - host: &host "goldilocks.${SECRET_DOMAIN}"
             paths:
@@ -42,7 +39,7 @@ spec:
         tls:
           - hosts:
               - *host
-
+            secretName: "goldilocks-tls" # Kubernetes secret where SSL cert will be stored
     controller:
       resources:
         requests:
