@@ -54,7 +54,7 @@ spec:
             secretName: "wizarr-tls" # Kubernetes secret where SSL cert will be stored
         annotations:
           hajimari.io/icon: "mdi:wizard-hat" # Hajimari dashboard custom icon
-          hajimari.io/enable: true
+          hajimari.io/enable: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
           external-dns/is-public: "true" # Access Outside LAN
