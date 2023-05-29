@@ -29,7 +29,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.2
+      tag: 4.5.3
     env:
       TZ: "${TIMEZONE}"
       QBITTORRENT__PORT: &port 80
