@@ -24,11 +24,13 @@ spec:
   values:
     image:
       repository: owasp/modsecurity-crs
-      tag: 3.3.4-apache-202304160904
+      tag: 3.3.4-apache-alpine-202304160904
     env:
       PARANOIA: 1
       ANOMALY_INBOUND: 10
       ANOMALY_OUTBOUND: 5
+      USER: 568
+      GROUP: 568
     controller:
       replicas: 1
       strategy: RollingUpdate
