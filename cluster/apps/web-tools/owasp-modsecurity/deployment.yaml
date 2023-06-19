@@ -51,4 +51,4 @@ spec:
           image: traefik/whoami
           env:
             - name: WHOAMI_PORT_NUMBER
-              value: 8080
+              value: "8080"
