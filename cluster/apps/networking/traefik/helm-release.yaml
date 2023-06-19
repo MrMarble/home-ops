@@ -63,7 +63,7 @@ spec:
       - "--providers.kubernetesingress.allowexternalnameservices=true"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
       - "--experimental.plugins.modsecurity.modulename=github.com/acouvreur/traefik-modsecurity-plugin"
-      - "--experimental.plugins.rewritebody.version=v1.3.0"
+      - "--experimental.plugins.modsecurity.version=v1.3.0"
       # Add plugin/dynamic file provider for theme-park
       - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body"
       #renovate: registryUrl=github.com/packruler/rewrite-body
