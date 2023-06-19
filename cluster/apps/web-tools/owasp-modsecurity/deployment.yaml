@@ -30,7 +30,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - name: &port http
-              containerPort: 8080
+              containerPort: 80
               protocol: TCP
           env:
             - name: PARANOIA
