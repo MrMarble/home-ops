@@ -33,6 +33,8 @@ spec:
               containerPort: 80
               protocol: TCP
           env:
+            - name: PORT
+              value: 80
             - name: PARANOIA
               value: "1"
             - name: ANOMALY_INBOUND
