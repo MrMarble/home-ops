@@ -42,10 +42,13 @@ spec:
             - name: ANOMALY_OUTBOUND
               value: "5"
             - name: BACKEND
-              value: http://dummy
+              value: http://dummy;8080
           resources:
             limits:
               memory: 100Mi
               cpu: 5m
         - name: dummy
           image: containous/whoami
+          env:
+            - name: WHOAMI_PORT_NUMBER
+              value: 8080
