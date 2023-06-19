@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &app owasp-modsecurity
+  namespace: web-tools
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *app
+      app.kubernetes.io/instance: *app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: *app
+        app.kubernetes.io/instance: *app
+    spec:
+      containers:
+        - name: waf
+          image: owasp/modsecurity-crs:3.3.4-apache-alpine-202304160904
+          imagePullPolicy: Always
+          env:
+            - name: PARANOIA
+              value: "1"
+            - name: ANOMALY_INBOUND
+              value: "10"
+            - name: ANOMALY_OUTBOUND
+              value: "5"
+          resources:
+            limits:
+              memory: 100Mi
+              cpu: 5m
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
