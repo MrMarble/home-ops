@@ -41,7 +41,11 @@ spec:
               value: "10"
             - name: ANOMALY_OUTBOUND
               value: "5"
+            - name: BACKEND
+              value: http://dummy
           resources:
             limits:
               memory: 100Mi
               cpu: 5m
+        - name: dummy
+          image: containous/whoami
