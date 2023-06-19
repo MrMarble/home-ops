@@ -25,9 +25,13 @@ spec:
         app.kubernetes.io/instance: *app
     spec:
       containers:
-        - name: waf
+        - name: *app
           image: owasp/modsecurity-crs:3.3.4-apache-alpine-202304160904
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: &port http
+              containerPort: 8080
+              protocol: TCP
           env:
             - name: PARANOIA
               value: "1"
@@ -39,5 +43,3 @@ spec:
             limits:
               memory: 100Mi
               cpu: 5m
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 60

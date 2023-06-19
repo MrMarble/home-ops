@@ -13,6 +13,6 @@ spec:
     app.kubernetes.io/instance: *app
   ports:
     - protocol: TCP
-      name: owasp-modsecurity
+      name: http
       port: 80
-      targetPort: 80
+      targetPort: http
