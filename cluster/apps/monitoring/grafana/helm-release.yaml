@@ -133,6 +133,7 @@ spec:
         hajimari.io/icon: "chart-areaspline"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         external-dns/is-public: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd
         external-dns.alpha.kubernetes.io/target: ${SECRET_DOMAIN}
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     serviceAccount:

@@ -63,6 +63,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd
           external-dns/is-public: "true"
         hosts:
           - host: &host "hass.${SECRET_DOMAIN}"
