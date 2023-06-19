@@ -62,6 +62,8 @@ spec:
       - "--providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDR}"
       - "--providers.kubernetesingress.allowexternalnameservices=true"
       - "--providers.kubernetescrd.allowexternalnameservices=true"
+      - "--experimental.plugins.modsecurity.modulename=github.com/acouvreur/traefik-modsecurity-plugin"
+      - "--experimental.plugins.rewritebody.version=v1.3.0"
       # Add plugin/dynamic file provider for theme-park
       - "--experimental.plugins.rewritebody.modulename=github.com/packruler/rewrite-body"
       #renovate: registryUrl=github.com/packruler/rewrite-body
@@ -70,9 +72,6 @@ spec:
     experimental:
       plugins:
         enabled: true
-        traefik-modsecurity-plugin:
-          moduleName: "github.com/acouvreur/traefik-modsecurity-plugin"
-          version: "v1.3.0"
     volumes:
       - name: traefik-middleware
         type: configMap
