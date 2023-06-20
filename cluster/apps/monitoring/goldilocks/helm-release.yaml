@@ -40,11 +40,18 @@ spec:
           - hosts:
               - *host
             secretName: "goldilocks-tls" # Kubernetes secret where SSL cert will be stored
+      resources:
+        requests:
+          cpu: 11m
+          memory: 53M
+        limits:
+          cpu: 11m
+          memory: 53M
     controller:
       resources:
         requests:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 35m
+          memory: 164M
         limits:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 35m
+          memory: 164M

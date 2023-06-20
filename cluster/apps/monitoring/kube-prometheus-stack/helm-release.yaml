@@ -123,11 +123,11 @@ spec:
       prometheusConfigReloader:
         resources:
           requests:
-            cpu: 100m
-            memory: 50Mi
+            cpu: 11m
+            memory: 24M
           limits:
-            cpu: 200m
-            memory: 100Mi
+            cpu: 11m
+            memory: 24M
     prometheus:
       ingress:
         enabled: true
@@ -187,7 +187,8 @@ spec:
           version: v0.25.1
         resources:
           requests:
-            cpu: 10m
-            memory: 2000Mi
+            cpu: 224m
+            memory: 3862M
           limits:
-            memory: 3500Mi
+            memory: 3862M
+            cpu: 224m
