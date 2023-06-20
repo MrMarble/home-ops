@@ -50,8 +50,8 @@ spec:
     controller:
       resources:
         requests:
-          cpu: 35m
+          cpu: 49m
           memory: 164M
         limits:
-          cpu: 35m
+          cpu: 49m
           memory: 164M

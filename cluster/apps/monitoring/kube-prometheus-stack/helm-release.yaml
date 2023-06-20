@@ -187,8 +187,8 @@ spec:
           version: v0.25.1
         resources:
           requests:
-            cpu: 224m
+            cpu: 271m
             memory: 3862M
           limits:
             memory: 3862M
-            cpu: 224m
+            cpu: 271m
