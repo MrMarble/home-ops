@@ -38,9 +38,9 @@ spec:
             - name: PARANOIA
               value: "1"
             - name: ANOMALY_INBOUND
-              value: "100"
+              value: "1000"
             - name: ANOMALY_OUTBOUND
-              value: "100"
+              value: "1000"
             - name: ALLOWED_METHODS
               value: "GET HEAD POST OPTIONS PROPFIND"
             - name: BACKEND
@@ -48,7 +48,7 @@ spec:
           resources:
             limits:
               memory: 200M
-              cpu: 50m
+              cpu: 100m
         - name: dummy
           image: traefik/whoami
           env:
