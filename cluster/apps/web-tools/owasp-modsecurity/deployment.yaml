@@ -24,6 +24,10 @@ spec:
         app.kubernetes.io/name: *app
         app.kubernetes.io/instance: *app
     spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: modsecurity-config
       containers:
         - name: *app
           image: owasp/modsecurity-crs:3.3.4-apache-alpine-202304160904
@@ -45,6 +49,9 @@ spec:
               value: "GET HEAD POST OPTIONS PROPFIND"
             - name: BACKEND
               value: http://localhost:8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/modsecurity.d/owasp-crs/rules
           resources:
             limits:
               memory: 200M

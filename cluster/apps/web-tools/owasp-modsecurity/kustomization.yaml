@@ -4,3 +4,9 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+configMapGenerator:
+  - name: modsecurity-config
+    files:
+      - config/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
+generatorOptions:
+  disableNameSuffixHash: true
