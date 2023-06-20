@@ -7,5 +7,7 @@ resources:
   - addons
   - external
   - middlewares
+  - service-monitor.yaml
+  - prometheus-rule.yaml
 configurations:
   - kustomizeconfig.yaml
