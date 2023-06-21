@@ -190,5 +190,5 @@ spec:
             cpu: 323m
             memory: 3862M
           limits:
-            memroy: 3862M
+            memory: 3862M
             cpu: 323m
