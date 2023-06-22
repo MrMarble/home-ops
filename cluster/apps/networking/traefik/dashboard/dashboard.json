@@ -22,7 +22,7 @@
     ]
   },
   "description": "Traefik dashboard",
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 11462,
   "graphTooltip": 0,
@@ -1353,7 +1353,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": true,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -1364,7 +1364,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "traefik",
           "value": "traefik"
         },
@@ -1375,7 +1375,7 @@
         "definition": "",
         "hide": 0,
         "includeAll": false,
-        "label": "Job:",
+        "label": "Job",
         "multi": false,
         "name": "job",
         "options": [],
@@ -1409,7 +1409,7 @@
         "definition": "label_values(traefik_service_requests_total, protocol)",
         "hide": 0,
         "includeAll": true,
-        "label": "",
+        "label": "Protocol",
         "multi": true,
         "name": "protocol",
         "options": [],
@@ -1428,7 +1428,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "monitoring-grafana-80@kubernetes",
             "home-home-assistant-8123@kubernetes"
@@ -1438,20 +1438,25 @@
             "home-home-assistant-8123@kubernetes"
           ]
         },
-        "definition": "label_values(traefik_service_requests_total{job=~\"[[job]]\"},exported_service)",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(traefik_service_requests_total,exported_service)",
         "hide": 0,
         "includeAll": true,
+        "label": "Service",
         "multi": true,
         "name": "service",
         "options": [],
         "query": {
-          "query": "label_values(traefik_service_requests_total{job=~\"[[job]]\"},exported_service)",
+          "query": "label_values(traefik_service_requests_total,exported_service)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "type": "query"
       },
       {
@@ -1466,8 +1471,39 @@
         "hide": 0,
         "label": "Interval",
         "name": "interval",
-        "options": [],
-        "query": "",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval_interval"
+          },
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          }
+        ],
+        "query": "1m,10m,1h,1d,7d",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
