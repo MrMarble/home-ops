@@ -31,4 +31,4 @@ resources:
   - bjw-s-charts.yaml
   - cloudnative-pg-charts.yaml
   - dysnix-charts.yaml
-  - kyverno-charts.yaml
+  - kyverno.yaml
