@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: kyverno
 resources:
   - helm-release.yaml
-  #- remove-cpu-limit.yaml
+  - remove-cpu-limit.yaml
