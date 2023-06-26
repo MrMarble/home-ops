@@ -8,16 +8,7 @@
       "automergeType": "branch",
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["digest"],
-      "matchPackagePattern": ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p"]
-    },
-    {
-      "description": "Auto merge containers",
-      "matchDatasources": ["docker"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["ghcr.io/onedr0p/prowlarr-nightly"]
+      "matchPackagePattern": ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p","ghcr.io/bjw-s"]
     },
     {
       "description": "Auto merge GitHub Actions",
@@ -25,11 +16,7 @@
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
-        "lycheeverse/lychee-action",
-        "renovatebot/github-action"
-      ]
+      "matchUpdateTypes": ["minor", "patch"]
     }
   ]
 }
