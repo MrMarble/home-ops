@@ -1,0 +1,35 @@
+[book]
+authors = ["Alvaro Tinoco Marmol"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Home Ops"
+
+[build]
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/mrmarble/home-ops"
+git-repository-icon = "fa-github"
+no-section-label = true
+git-branch = "main"
+open-on-text = "[Edit this page on GitHub]"
+additional-css = ["./mdbook-admonish.css"]
+
+[preprocessor]
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "2.0.1" # do not edit: managed by `mdbook-admonish install`
+
+
+[preprocessor.emojicodes]
+after = [ "links" ]
+
+[preprocessor.regex]
+after = [ "links" ]
+patterns = "replace-patterns.json"

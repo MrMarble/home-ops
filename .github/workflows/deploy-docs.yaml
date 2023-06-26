@@ -1,0 +1,45 @@
+---
+name: "Docs: Release to GitHub pages"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy-docs.yaml"
+      - "docs/**"
+
+jobs:
+  release-docs:
+    name: Release documentation
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          fetch-depth: 0
+
+      - name: Build docs
+        uses: docker://ghcr.io/bjw-s/mdbook:0.4.30@sha256:410fe4cee249abcd9c725580462752aa722a0dbc370957b167da2303f597b01b
+        with:
+          args: bash -c "cd docs && mdbook build"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ steps.generate-token.outputs.token }}
+          publish_dir: ./docs/book/html
+          comment-author: "${{ env.BOT_USERNAME }}"
+          user_email: 'pepinillo-bot <101514388+pepinillo-bot[bot]@users.noreply.github.com>'
