@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "redhat.vscode-yaml",
+    "oderwat.indent-rainbow",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "signageos.signageos-vscode-sops",
+    "vivaxy.vscode-conventional-commits"
+  ]
+}

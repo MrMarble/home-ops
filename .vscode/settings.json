@@ -1,0 +1,29 @@
+{
+  "symbols.folders.associations": {
+    "cluster": "folder-blue",
+    "apps": "folder-app",
+    "crds": "folder-assets",
+    "provision": "folder-green",
+    "scripts": "folder-red-code"
+  },
+  "prettier.configPath": ".github/linters/.prettierrc.yaml",
+  "prettier.ignorePath": ".github/linters/.prettierignore",
+  "yaml.schemas": {
+    "Kubernetes": "cluster/**/*.yaml"
+  },
+  "yaml.schemaStore.enable": true,
+  "conventionalCommits.scopes": [
+    "vscode",
+    "ci",
+    "infra",
+    "home",
+    "docs",
+    "kyverno",
+    "media",
+    "monitoring",
+    "networking",
+    "system-upgrade",
+    "web-tools",
+    "cluste"
+  ]
+}
