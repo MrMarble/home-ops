@@ -19,143 +19,36 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877616-990da6b85bc8e4fc22832384?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793878305-d450c4e357daeea77a8eb9f2?label=grafana&logo=grafana&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
 
-[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=2&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="nodes" />]()
-[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=3&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="pods" />]()
-[<img src="https://grafana.atsbhome.xyz/render/d-solo/YFbfW4-4k/github-readme?orgId=1&panelId=5&width=200&height=100&tz=Europe%2FMadrid" width="200px" alt="allocable pods" />]()
-
 </div>
 
 ---
 
-## 📖 Overview
-
-This is a mono repository for my home infraestructure and Kubernetes cluster. Infrastructure as Code and GitOps all the way.
-Work in progress indefinitely.
-
----
-
-## ☸ Kubernetes
-
-I've used the [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s) highly opionated template for deploying a k3s cluster with Ansible and Terraform backed by Flux and SOPS.
-
-### :octocat: GitOps
-
-In order to follow GitOps, all operations are made through Github.
-
-```mermaid
-flowchart LR
-    a["👦\nme"]-->|edit|code-->|commit|g[Github]
-
-    classDef git fill:#171515;
-    class g git
-
-```
-
-On Github my cat (Pepinillo) is making sure [every dependency is up to date](https://github.com/MrMarble/home-ops/issues/5).
-
-```mermaid
-flowchart LR
-    h["🤖 Renovate workflow"]-->|update dependencies\non a schedule|g[Source]
-
-    classDef reno fill:#21409a;
-
-    class h reno
-```
-
-Fluxcd is then in charge of updating my cluster through automatic reconciliation.
-
-```mermaid
-flowchart RL
-    c[Source Controller]-->|sync|a[Github]
-    d[Kustomize Controler]--->c
-    e["☸ Kubernetes API"]<-->c
-    e<-->d
-    f[Helm Controller]-->c
-    f-->|Apply|b
-    d-->|Apply|b
-    subgraph b[Cluster]
-    h[Namespaces]
-    i["CRDs"]
-    z[Helm Releases]
-    end
-
-    classDef default fill:#326ce5;
-    classDef git fill:#171515;
-    classDef cluster fill:none,stroke-dasharray:5 10,stroke:#fdfdfd;
-
-    class a git
-    class b cluster
-```
-
-### Directories
-
-The Git repository contains the following directories under cluster and are orderer below by how Flux will apply them.
-
-- **base**: Flux entrypoint
-- **crsd**: Custom resource definitions (CRDs) that need to exist globally
-- **core**: Important applications that should never be pruned by flux
-- **apps**: Common applications grouped by namespaces. Flux will prune resources here if not tracked by Git anymore.
-
-### Networking
-
-| Name                         | CIDR                |
-|------------------------------|---------------------|
-| Kubernetes Nodes             | `192.168.1.0/24`    |
-| Kubernetes external services | `192.168.1.220-230` |
-| Kubernetes pods              | `10.42.18.0/24`     |
-| Kubernetes services          | `10.43.0.0/16`      |
-
-### Persistent Volume
-
-Currently the only storage option is locally on each node with longhorn.
-
----
-
-## 🌐 DNS
-
-```mermaid
-flowchart TB
-    a(Service\nTraefik\n192.168.1.220)-->b[/Ingress\napp.domain.tld\]
-    b-->d(["internal dns\n(no annotation)"])
-    b-->|is-public=true|e(["external dns\n(annotation filter)"])
-
-    %%external
-    e-->f("Cloudflare DNS")
-    f-.->g[/"A  record\nipv4.domain.tld"/]
-    h{"CronJob\nUpdate WAN IP"}--->g
-    f-->i[/"CNAME Record\napp.domain.tld"/]
-    i-->g
-
-    %%internal
-    d-->j[(etcd)]
-```
-
----
+👋 Welcome to my Home Operations repository. This is a mono repository for my home infrastructure and Kubernetes cluster implementing Infrastructure as Code (IaC) and GitOps practices using tools like [Kubernetes](https://kubernetes.io/), [Flux](https://github.com/fluxcd/flux2), [Renovate](https://github.com/renovatebot/renovate) and [GitHub Actions](https://github.com/features/actions).
 
 ## 🔧 Hardware
 
 | Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System | Purpose           |
-|--------------------------|-------|--------------|----------------|-------|------------------|-------------------|
-| MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.2     | Router            |
+| ------------------------ | ----- | ------------ | -------------- | ----- | ---------------- | ----------------- |
+| MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.10    | Router            |
 | HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | Ubuntu 22        | k3s Master/Worker |
 | HP 260 G3 DM             | 1     | 540GB NvmE   | N/A            | 12GB  | Ubuntu 22        | k3s Worker        |
 | Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 1GB   | Raspbian         | Pi-hole           |
 | Pi Zero 2 W              | 1     | 32GB SDCard  | N/A            | 512MB | Raspbian         | Pi-hole backup    |
-| NAS**                    | 1     | 120GB SSD    | 8TB ZRAID0     | 16GB  | TrueNas Core     | NFS/BACKUP        |
+| NAS                      | 1     | 120GB SSD    | 8TB ZRAID0     | 16GB  | TrueNas Core     | NFS/BACKUP        |
 
 <details>
-  <summary>NAS**</summary>
-  
-  Type|Item
-:----|:----|
-**CPU** | Intel Core i5-6500 3.2 GHz Quad-Core Processor|
-**CPU Cooler** | Intel Stock|
-**Motherboard** | MSI H110M PRO-VH Micro ATX LGA1151|
-**Memory** | Crucial Ballistix Sport LT 16 GB (2 x 8 GB) DDR4-3200 CL16 |
-**Storage (Boot)** | Kingston A400 120 GB 2.5" SSD | 
-**Storage (Data)** | Seagate IronWolf NAS 4 TB 3.5" 5400 RPM Internal Hard Drive x 3|
-**Storage Controller** | 10Gtek® Internal SAS/SATA Raid Controller PCI Express Host Bus Adapter for LSI 9211-8I, LSI SAS2008 Chip, 8-Port 6Gb/s|
-**Case** | Fractal Design Node 804 MicroATX Mid Tower Case |
-**Power Supply** | Corsair CV550 550 W 80+ Bronze Certified ATX Power Supply|
+  <summary>NAS (Detailed)</summary>
+
+| Type                   | Item                                                                                                                   |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **CPU**                | Intel Core i5-6500 3.2 GHz Quad-Core Processor                                                                         |
+| **CPU Cooler**         | Intel Stock                                                                                                            |
+| **Motherboard**        | MSI H110M PRO-VH Micro ATX LGA1151                                                                                     |
+| **Memory**             | Crucial Ballistix Sport LT 16 GB (2 x 8 GB) DDR4-3200 CL16                                                             |
+| **Storage (Boot)**     | Kingston A400 120 GB 2.5" SSD                                                                                          |
+| **Storage (Data)**     | Seagate IronWolf NAS 4 TB 3.5" 5400 RPM Internal Hard Drive x 3                                                        |
+| **Storage Controller** | 10Gtek® Internal SAS/SATA Raid Controller PCI Express Host Bus Adapter for LSI 9211-8I, LSI SAS2008 Chip, 8-Port 6Gb/s |
+| **Case**               | Fractal Design Node 804 MicroATX Mid Tower Case                                                                        |
+| **Power Supply**       | Corsair CV550 550 W 80+ Bronze Certified ATX Power Supply                                                              |
 
 </details>
