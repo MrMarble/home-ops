@@ -8,8 +8,6 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 </div>
 
-<br/>
-
 <div align="center">
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=&color=blue)
@@ -17,6 +15,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 </div>
 <div align="center">
+<br/>
 <br/>
 
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877647-43f7de17c4661915fdcc503c?label=Home%20Internet&logo=googlehome&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
