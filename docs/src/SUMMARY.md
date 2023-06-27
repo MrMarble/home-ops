@@ -7,4 +7,12 @@
 # Overview
 
 - [🔧 Hardware](overview/hardware.md)
+- [🌐 Network](overview/network.md)
 - [☁️ Cloud services](overview/cloud-services.md)
+
+# Home Ops
+
+- [⛵ Kubernetes](kubernetes/index.md)
+  - [GitOps](kubernetes/gitops.md)
+  - [Storage](kubernetes/storage.md)
+  - [Backups](kubernetes/backups.md)

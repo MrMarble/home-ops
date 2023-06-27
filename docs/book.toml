@@ -9,12 +9,27 @@ title = "Home Ops"
 create-missing = false
 
 [output.html]
+default-theme = "latte"
+preferred-dark-theme = "macchiato"
 git-repository-url = "https://github.com/mrmarble/home-ops"
 git-repository-icon = "fa-github"
 no-section-label = true
 git-branch = "main"
+cname="mrmarble.dev"
 open-on-text = "[Edit this page on GitHub]"
-additional-css = ["./mdbook-admonish.css"]
+additional-css = ["./theme/mdbook-admonish.css", "./theme/catppuccin.css", "./theme/catppuccin-highlight.css"]
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.playground]
+copyable = false
+
+[output.html.search]
+limit-results = 15
+
+[output.linkcheck]
 
 [preprocessor]
 
@@ -33,3 +48,6 @@ after = [ "links" ]
 [preprocessor.regex]
 after = [ "links" ]
 patterns = "replace-patterns.json"
+
+[preprocessor.catppuccin]
+assets_version = "0.2.0" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
