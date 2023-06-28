@@ -49,5 +49,5 @@ after = [ "links" ]
 after = [ "links" ]
 patterns = "replace-patterns.json"
 
-[preprocessor.catppuccin]
-assets_version = "0.2.0" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
+# [preprocessor.catppuccin]
+# assets_version = "0.2.0" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
