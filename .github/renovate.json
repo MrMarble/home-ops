@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     "docker:enableMajor",
     ":disableRateLimiting",
     ":dependencyDashboard",
@@ -19,25 +19,49 @@
   "configMigration": true,
   "platform": "github",
   "username": "pepinillo-bot[bot]",
-  "repositories": ["MrMarble/home-ops"],
+  "repositories": [
+    "MrMarble/home-ops"
+  ],
   "onboarding": false,
   "requireConfig": "optional",
   "gitAuthor": "pepinillo-bot <101514388+pepinillo-bot[bot]@users.noreply.github.com>",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prIgnoreNotification"],
+  "suppressNotifications": [
+    "prIgnoreNotification"
+  ],
   "rebaseWhen": "conflicted",
   "commitBodyTable": true,
   "docker-compose": {
-    "fileMatch": ["ansible/.+/docker-compose.*\\.ya?ml(\\.j2)?$"]
+    "fileMatch": [
+      "ansible/.+/docker-compose.*\\.ya?ml(\\.j2)?$"
+    ]
   },
-  "flux": { "fileMatch": ["cluster/.+\\.ya?ml$"] },
-  "helm-values": { "fileMatch": ["cluster/.+\\.ya?ml$"] },
-  "helmv3": { "fileMatch": ["charts/.+/Chart\\.ya?ml$"] },
-  "kubernetes": { "fileMatch": ["cluster/.+\\.ya?ml$"] },
+  "flux": {
+    "fileMatch": [
+      "cluster/.+\\.ya?ml$"
+    ]
+  },
+  "helm-values": {
+    "fileMatch": [
+      "cluster/.+\\.ya?ml$"
+    ]
+  },
+  "helmv3": {
+    "fileMatch": [
+      "charts/.+/Chart\\.ya?ml$"
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "cluster/.+\\.ya?ml$"
+    ]
+  },
   "regexManagers": [
     {
       "description": "Process CRD dependencies",
-      "fileMatch": ["cluster/.+\\.ya?ml$"],
+      "fileMatch": [
+        "cluster/.+\\.ya?ml$"
+      ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
         "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n"
@@ -46,7 +70,10 @@
     },
     {
       "description": "Process various dependencies",
-      "fileMatch": ["ansible/.+\\.ya?ml$", "cluster/.+\\.ya?ml$"],
+      "fileMatch": [
+        "ansible/.+\\.ya?ml$",
+        "cluster/.+\\.ya?ml$"
+      ],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
       ],
@@ -55,7 +82,9 @@
     },
     {
       "description": "Process raw GitHub URLs",
-      "fileMatch": ["cluster/.+\\.ya?ml$"],
+      "fileMatch": [
+        "cluster/.+\\.ya?ml$"
+      ],
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ],
@@ -64,23 +93,41 @@
     }
   ],
   "packageRules": [
-    { "matchDatasources": ["helm"], "ignoreDeprecated": true },
     {
-      "matchDatasources": ["docker"],
+      "matchDatasources": [
+        "helm"
+      ],
+      "ignoreDeprecated": true
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
       "commitMessageExtra": "to {{newVersion}}"
     },
     {
-      "matchDatasources": ["docker"],
+      "matchDatasources": [
+        "docker"
+      ],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "matchPackageNames": ["docker.io/blakeblackshear/frigate"]
+      "matchPackageNames": [
+        "docker.io/blakeblackshear/frigate"
+      ]
     },
     {
-      "matchDatasources": ["docker"],
+      "matchDatasources": [
+        "docker"
+      ],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
-      "matchPackageNames": ["quay.io/minio/minio"]
+      "matchPackageNames": [
+        "quay.io/minio/minio"
+      ]
     },
     {
-      "matchDatasources": ["docker", "github-releases"],
+      "matchDatasources": [
+        "docker",
+        "github-releases"
+      ],
       "versioning": "loose",
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/plex",
