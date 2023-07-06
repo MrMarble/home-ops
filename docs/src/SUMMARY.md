@@ -16,3 +16,4 @@
   - [GitOps](kubernetes/gitops.md)
   - [Storage](kubernetes/storage.md)
   - [Backups](kubernetes/backups.md)
+- [💪🏼 Helper Apps](apps/index.md)
