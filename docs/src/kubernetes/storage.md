@@ -5,7 +5,7 @@ The in-cluster storage is provided by a [longhorn](https://github.com/longhorn/l
 
 ## Longhorn storage
 
-The bulk of my cluster storage relies on [longhorn](https://github.com/mrmarble/home-ops/tree/main/cluster/apps/longhorn-system/helm-release.yaml]). This ensures that my data is replicated across my storage nodes.
+The bulk of my cluster storage relies on [longhorn](https://github.com/mrmarble/home-ops/tree/main/cluster/apps/longhorn-system/helm-release.yaml). This ensures that my data is replicated across my storage nodes.
 
 ## NFS storage
 
