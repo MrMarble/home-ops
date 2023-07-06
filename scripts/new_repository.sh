@@ -2,7 +2,7 @@
 
 # Repository declaration
 echo "---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: $1
