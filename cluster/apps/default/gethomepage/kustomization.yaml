@@ -12,5 +12,6 @@ configMapGenerator:
       - config/widgets.yaml
       - config/bookmarks.yaml
       - config/services.yaml
+      - config/docker.yaml
 generatorOptions:
   disableNameSuffixHash: true
