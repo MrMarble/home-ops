@@ -1,0 +1,6 @@
+---
+- kubernetes:
+    cluster:
+      show: true
+      cpu: true
+      memory: true

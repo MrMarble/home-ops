@@ -1,4 +1,0 @@
----
-- op: replace
-  path: /spec/schedule
-  value: "*/30 12-21 * * *"
