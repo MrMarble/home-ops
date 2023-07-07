@@ -5,6 +5,7 @@ resources:
   - helm-release.yaml
 configMapGenerator:
   - name: homepage
+    namespace: default
     files:
       - config/kubernetes.yaml
       - config/settings.yaml
