@@ -46,7 +46,7 @@ tasks:
     cmds:
       - kubectl apply --kustomize {{.CLUSTER_DIR}}/bootstrap/
       - cat {{.SOPS_AGE_KEY_FILE}} | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
-      - kubectl apply --kustomize {{.CLUSTER_DIR}}/flux/flux-system/
+      - kubectl apply --kustomize {{.CLUSTER_DIR}}/base/flux-system/
       - task: reconcile
     preconditions:
       - sh: test -f {{.SOPS_AGE_KEY_FILE}}
@@ -58,8 +58,8 @@ tasks:
   reconcile:
     desc: Force update Flux to pull in changes from your Git repository
     cmds:
-      - flux reconcile -n flux-system source git flux-cluster
-      - flux reconcile -n flux-system kustomization flux-cluster
+      - flux reconcile -n flux-system source git flux-system
+      - flux reconcile -n flux-system kustomization flux-system
 
   nodes:
     desc: List all the nodes in your cluster
