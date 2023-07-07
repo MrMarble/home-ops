@@ -2,11 +2,6 @@
 name: "Terraform"
 
 on: # yamllint disable-line rule:truthy
-  push:
-    branches:
-      - main
-    paths:
-      - "provision/terraform/**"
   pull_request:
     paths:
       - "provision/terraform/**"
@@ -28,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: "${{ secrets.TERRAFORM_TOKEN }}"
 
       - name: Terraform fmt
         id: fmt
@@ -90,7 +87,3 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        run: terraform apply -auto-approve --input=false
