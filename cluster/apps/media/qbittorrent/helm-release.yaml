@@ -63,6 +63,8 @@ spec:
           gethomepage.dev/name: "qBittorrent"
           gethomepage.dev/group: "Downloaders"
           gethomepage.dev/icon: "qbittorrent"
+          gethomepage.dev/widget.type: "qbittorrent"
+          gethomepage.dev/widget.url: "http://qbittorrent.media.svc.cluster.local"
         hosts:
           - host: &host "qb.${SECRET_DOMAIN}"
             paths:
