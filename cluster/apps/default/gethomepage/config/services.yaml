@@ -1,1 +1,9 @@
 ---
+- Storage:
+    - TrueNAS:
+        icon: truenas.png
+        href: http://truenas.local
+- Observability:
+    - Pi-hole:
+        icon: pihole.png
+        href: http://pi.hole/admin/

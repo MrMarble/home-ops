@@ -48,6 +48,11 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}" # Create a CNAME registry
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true" # Proxify DNS
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Jellyfin"
+          gethomepage.dev/group: "Media Management"
+          gethomepage.dev/icon: "jellyfin"
+          gethomepage.dev/description: "Jellyfin enables you to collect, manage, and stream your media."
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:

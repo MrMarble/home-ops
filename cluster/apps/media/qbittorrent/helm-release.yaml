@@ -61,6 +61,11 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: networking-qbittorrent-headers@kubernetescrd,qbittorrent-theme@file
           hajimari.io/enable: "true"
           hajimari.io/icon: "download"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "qBittorrent"
+          gethomepage.dev/group: "Downloaders"
+          gethomepage.dev/icon: "qbittorrent"
+          gethomepage.dev/description: "Torrent client with web UI."
         hosts:
           - host: &host "qb.${SECRET_DOMAIN}"
             paths:

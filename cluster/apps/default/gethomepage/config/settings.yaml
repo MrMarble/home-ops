@@ -2,5 +2,22 @@
 title: Dashboard
 favicon: https://kubernetes.io/images/favicon.png
 theme: dark
-color: stone
+color: slate
 language: es
+target: _self
+layout:
+  Media Management:
+    style: row
+    columns: 4
+  Observability:
+    style: column
+    columns: 1
+  Media Automation:
+    style: column
+    columns: 1
+  Downloaders:
+    style: row
+    columns: 2
+  Storage:
+    style: row
+    columns: 2
