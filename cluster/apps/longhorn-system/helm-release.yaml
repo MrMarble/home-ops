@@ -23,7 +23,6 @@ spec:
     remediation:
       retries: 3
   values:
-    enablePSP: false
     csi:
       attacherReplicaCount: 1
       provisionerReplicaCount: 1
