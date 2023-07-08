@@ -14,14 +14,22 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+  maxHistory: 2
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
       tag: 4.0.0.552@sha256:1ae6cfc2a7fcf7e5f8b35f0462e42a7639d3015b025554d0dae9838846ab5fc6
@@ -29,12 +37,26 @@ spec:
       TZ: "${TIMEZONE}"
       SONARR__PORT: &port 80
       SONARR__API_KEY: ${SECRET_SONARR_APIKEY}
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /ping
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           traefik.ingress.kubernetes.io/router.middlewares: sonarr-theme@file
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
           gethomepage.dev/enabled: "true"
