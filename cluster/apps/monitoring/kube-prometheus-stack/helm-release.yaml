@@ -135,9 +135,6 @@ spec:
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/appName: Prometheus
-          hajimari.io/icon: "torch"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Prometheus"
           gethomepage.dev/group: "Observability"

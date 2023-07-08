@@ -28,8 +28,6 @@ spec:
         enabled: true
         ingressClassName: traefik
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: memory
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Goldilocks"
           gethomepage.dev/group: "Observability"

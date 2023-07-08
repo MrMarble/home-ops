@@ -59,8 +59,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: networking-qbittorrent-headers@kubernetescrd,qbittorrent-theme@file
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "download"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "qBittorrent"
           gethomepage.dev/group: "Downloaders"

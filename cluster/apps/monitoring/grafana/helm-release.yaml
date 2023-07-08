@@ -124,8 +124,6 @@ spec:
           secretName: "grafana-tls"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
-        hajimari.io/enable: "true"
-        hajimari.io/icon: "chart-areaspline"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         external-dns/is-public: "true"
         traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd

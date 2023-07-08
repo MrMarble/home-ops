@@ -41,8 +41,6 @@ spec:
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "simple-icons:jellyfin"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns/is-public: "true" # Access Outside LAN
           traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd

@@ -28,8 +28,6 @@ metadata:
   name: nextcloud
   namespace: networking
   annotations:
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "simple-icons:nextcloud"
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"

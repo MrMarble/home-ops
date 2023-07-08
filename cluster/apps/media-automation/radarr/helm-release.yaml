@@ -37,8 +37,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: radarr-theme@file
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "filmstrip"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Radarr"
           gethomepage.dev/group: "Media Automation"

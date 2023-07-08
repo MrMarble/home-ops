@@ -9,8 +9,6 @@ metadata:
     app.kubernetes.io/instance: *app
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "alert-decagram-outline"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: "Karma"
     gethomepage.dev/group: "Observability"
