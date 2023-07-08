@@ -43,7 +43,6 @@ spec:
           gethomepage.dev/name: "Sonarr"
           gethomepage.dev/group: "Media Automation"
           gethomepage.dev/icon: "sonarr"
-          gethomepage.dev/description: "Smart PVR for newsgroup and bittorrent users."
           gethomepage.dev/widget.type: "sonarr"
           gethomepage.dev/widget.url: "http://sonarr.media-automation.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_SONARR_APIKEY}"

@@ -31,6 +31,10 @@ spec:
             hajimari.io/icon: "microsoft-visual-studio-code"
             cert-manager.io/cluster-issuer: "letsencrypt-production"
             traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/name: "HASS Config"
+            gethomepage.dev/group: "Collaboration"
+            gethomepage.dev/icon: "code"
           hosts:
             - host: &host "hass-config.${SECRET_DOMAIN}"
               paths:

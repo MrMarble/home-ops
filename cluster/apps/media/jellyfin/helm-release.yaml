@@ -52,7 +52,6 @@ spec:
           gethomepage.dev/name: "Jellyfin"
           gethomepage.dev/group: "Media Management"
           gethomepage.dev/icon: "jellyfin"
-          gethomepage.dev/description: "Jellyfin enables you to collect, manage, and stream your media."
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:

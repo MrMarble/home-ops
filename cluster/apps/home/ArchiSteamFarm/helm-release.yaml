@@ -59,6 +59,10 @@ spec:
           hajimari.io/icon: "bi:steam"
           hajimari.io/name: Archi
           hajimari.io/enable: "true"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Archi"
+          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/512px-Steam_icon_logo.svg.png"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
 

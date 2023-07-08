@@ -65,6 +65,10 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd
           external-dns/is-public: "true"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Home Assistant"
+          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/icon: "home-assistant"
         hosts:
           - host: &host "hass.${SECRET_DOMAIN}"
             paths:

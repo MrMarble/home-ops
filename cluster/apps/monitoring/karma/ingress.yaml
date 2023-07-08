@@ -14,8 +14,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: "Karma"
     gethomepage.dev/group: "Observability"
-    gethomepage.dev/icon: "alertmanager"
-    gethomepage.dev/description: "Karma handles alerts sent by client applications."
+    gethomepage.dev/icon: "mdi-alert-decagram-outline"
 spec:
   ingressClassName: traefik
   rules:

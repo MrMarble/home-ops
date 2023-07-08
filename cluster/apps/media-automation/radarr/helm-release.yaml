@@ -43,7 +43,6 @@ spec:
           gethomepage.dev/name: "Radarr"
           gethomepage.dev/group: "Media Automation"
           gethomepage.dev/icon: "radarr"
-          gethomepage.dev/description: "A fork of Sonarr to work with movies à la Couchpotato."
           gethomepage.dev/widget.type: "radarr"
           gethomepage.dev/widget.url: "http://radarr.media-automation.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_RADARR_APIKEY}"

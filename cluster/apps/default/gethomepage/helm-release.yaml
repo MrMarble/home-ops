@@ -42,7 +42,6 @@ spec:
               - *host
             secretName: "home-tls" # Kubernetes secret where SSL cert will be stored
         annotations:
-          hajimari.io/icon: "chart-areaspline" # Hajimari dashboard custom icon
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
           cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
     config:

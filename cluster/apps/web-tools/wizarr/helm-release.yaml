@@ -61,6 +61,10 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: networking-modsecurity@kubernetescrd
           external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}" # Create a CNAME registry
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true" # Proxify DNS
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Wizarr"
+          gethomepage.dev/group: "Media Management"
+          gethomepage.dev/icon: "wizarr"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568

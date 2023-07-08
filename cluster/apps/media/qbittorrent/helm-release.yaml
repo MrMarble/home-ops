@@ -65,7 +65,6 @@ spec:
           gethomepage.dev/name: "qBittorrent"
           gethomepage.dev/group: "Downloaders"
           gethomepage.dev/icon: "qbittorrent"
-          gethomepage.dev/description: "Torrent client with web UI."
         hosts:
           - host: &host "qb.${SECRET_DOMAIN}"
             paths:

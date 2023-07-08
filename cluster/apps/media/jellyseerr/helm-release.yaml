@@ -63,7 +63,6 @@ spec:
           gethomepage.dev/name: "Jellyseerr"
           gethomepage.dev/group: "Media Management"
           gethomepage.dev/icon: "jellyseerr"
-          gethomepage.dev/description: "Request management and media discovery tool."
     service:
       main:
         ports:

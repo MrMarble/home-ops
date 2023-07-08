@@ -50,3 +50,7 @@ spec:
         hajimari.io/icon: "game-icons:bull-horns" # Hajimari dashboard custom icon
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
         cert-manager.io/cluster-issuer: "letsencrypt-production" # Request SSL Certificate
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Longhorn"
+        gethomepage.dev/group: "Storage"
+        gethomepage.dev/icon: "longhorn"

@@ -43,7 +43,6 @@ spec:
           gethomepage.dev/name: "Prowlarr"
           gethomepage.dev/group: "Media Automation"
           gethomepage.dev/icon: "prowlarr"
-          gethomepage.dev/description: "An indexer manager/proxy to integrate with your various PVR apps."
           gethomepage.dev/widget.type: "prowlarr"
           gethomepage.dev/widget.url: "http://prowlarr.media-automation.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_PROWLARR_APIKEY}"

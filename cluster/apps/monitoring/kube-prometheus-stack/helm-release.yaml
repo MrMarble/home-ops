@@ -142,7 +142,6 @@ spec:
           gethomepage.dev/name: "Prometheus"
           gethomepage.dev/group: "Observability"
           gethomepage.dev/icon: "prometheus"
-          gethomepage.dev/description: "The Prometheus monitoring system and time series database."
         hosts:
           - &host "prometheus.${SECRET_DOMAIN}"
         tls:

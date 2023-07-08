@@ -135,7 +135,6 @@ spec:
         gethomepage.dev/name: "Grafana"
         gethomepage.dev/group: "Observability"
         gethomepage.dev/icon: "grafana"
-        gethomepage.dev/description: "The open-source platform for monitoring and observability."
     serviceAccount:
       create: true
       autoMount: true
