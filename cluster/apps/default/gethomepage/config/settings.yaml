@@ -24,3 +24,6 @@ layout:
   Storage:
     style: row
     columns: 2
+  Networking:
+    style: row
+    columns: 2

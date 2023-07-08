@@ -12,8 +12,8 @@ metadata:
     hajimari.io/icon: "arrow-decision"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: "Traefik"
-    gethomepage.dev/group: "Observability"
-    gethomepage.dev/icon: "longhorn"
+    gethomepage.dev/group: "Networking"
+    gethomepage.dev/icon: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
   ingressClassName: "traefik"

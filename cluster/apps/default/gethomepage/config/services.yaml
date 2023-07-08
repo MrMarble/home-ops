@@ -3,7 +3,7 @@
     - TrueNAS:
         icon: truenas
         href: http://truenas.local
-- Observability:
+- Networking:
     - Pi-hole:
         icon: pi-hole
         href: http://pi.hole/admin/
