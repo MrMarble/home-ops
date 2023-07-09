@@ -20,6 +20,9 @@ spec:
     remediation:
       retries: 3
   upgrade:
+    timeout: 15m
+    crds: CreateReplace
+    cleanupOnFail: true
     remediation:
       retries: 3
   values:
