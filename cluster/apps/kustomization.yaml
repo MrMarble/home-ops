@@ -10,7 +10,7 @@ resources:
   - home
   - flux-system
   - media
-  - longhorn-system
+  #- longhorn-system
   - media-automation
   - web-tools
   - kyverno
