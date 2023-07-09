@@ -24,7 +24,9 @@ spec:
   upgrade:
     remediation:
       retries: 3
-
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
   values:
     podAnnotations:
       configmap.reloader.stakater.com/reload: mosquitto-config
