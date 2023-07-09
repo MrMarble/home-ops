@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  - qbit-manage
+  #- qbit-manage
   - cross-seed
