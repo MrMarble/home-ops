@@ -1,96 +1,86 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: cilium
   namespace: kube-system
 spec:
-  interval: 30m
+  interval: 5m
   chart:
     spec:
       chart: cilium
-      version: 1.14.0-rc.0
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: cilium
+        name: cilium-chart
         namespace: flux-system
-  maxHistory: 2
+      # The HelmRelease version of Cilium MUST match the version installed via Talos to avoid collisions on cluster rebuilds
+      version: 1.13.4
   install:
+    timeout: 10m
+    replace: true
+    crds: CreateReplace
     createNamespace: true
     remediation:
       retries: 3
   upgrade:
-    cleanupOnFail: true
     remediation:
+      remediateLastFailure: true
       retries: 3
+      strategy: rollback
+    cleanupOnFail: true
+    crds: CreateReplace
+  test:
+    enable: true
+  rollback:
+    recreate: true
+    force: true
+    cleanupOnFail: true
   uninstall:
     keepHistory: false
+  maxHistory: 3
+  valuesFrom:
+    - kind: ConfigMap
+      name: cilium-values
+  # Required: Using Kustomize helmChart can't pass the Helm chart validation because of the serviceMonitor CRDs, therefore these are disabled in the values.yaml however, re-enabled via the HelmRelease
+  # The values are merged in the order given, with the later values overwriting earlier, and then spec.values overwriting those
   values:
-    autoDirectNodeRoutes: true
-    bpf:
-      masquerade: true
-    bgp:
-      enabled: false
-    endpointRoutes:
-      enabled: true
     hubble:
-      enabled: true
       metrics:
-        enabled:
-          - dns:query
-          - drop
-          - tcp
-          - flow
-          - port-distribution
-          - icmp
-          - http
         serviceMonitor:
           enabled: false
       relay:
-        enabled: true
-        rollOutPods: true
         prometheus:
           serviceMonitor:
             enabled: false
-      ui:
-        enabled: true
-        rollOutPods: true
-        ingress:
-          enabled: true
-          className: nginx
-          hosts:
-            - &host hubble.${SECRET_DOMAIN}
-          tls:
-            - hosts:
-                - *host
-    ipam:
-      mode: kubernetes
-    ipv4NativeRoutingCIDR: 10.32.0.0/16
-    k8sServiceHost: 192.168.1.10
-    k8sServicePort: 6443
-    kubeProxyReplacement: strict
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-    l2announcements:
-      enabled: true
-      leaseDuration: 120s
-      leaseRenewDeadline: 60s
-      leaseRetryPeriod: 1s
-    loadBalancer:
-      algorithm: maglev
-      mode: dsr
-    localRedirectPolicy: true
-    operator:
-      rollOutPods: true
-      prometheus:
-        enabled: true
-        serviceMonitor:
-          enabled: false
     prometheus:
-      enabled: true
       serviceMonitor:
         enabled: false
-    rollOutCiliumPods: true
-    securityContext:
-      privileged: true
-    tunnel: disabled
+    operator:
+      prometheus:
+        serviceMonitor:
+          enabled: false
+    # Enable Gateway API here as the CRDs may not be deployed at the time the CNI is installed via Talos.
+    gatewayAPI:
+      enabled: true
+  # TODO: Investigate why this is required
+  # ERROR: ✗ failed to diff release against cluster resources: [ServiceMonitor/kube-system/cilium-agent dry-run failed, reason: Invalid, error: ServiceMonitor.monitoring.coreos.com "cilium-agent" is invalid: spec.endpoints[0].relabelings[0].replacement: Invalid value: "null": spec.endpoints[0].relabelings[0].replacement in body must be of type string: "null", ServiceMonitor/kube-system/hubble dry-run failed, reason: Invalid, error: ServiceMonitor.monitoring.coreos.com "hubble" is invalid: spec.endpoints[0].relabelings[0].replacement: Invalid value: "null": spec.endpoints[0].relabelings[0].replacement in body must be of type string: "null"]
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: v1
+              kind: ServiceMonitor
+              name: cilium-agent
+            patch: |
+              - op: add
+                path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
+                value: disabled
+          - target:
+              version: v1
+              kind: ServiceMonitor
+              name: cilium-operator
+            patch: |
+              - op: add
+                path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
+                value: disabled
