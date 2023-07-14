@@ -31,12 +31,10 @@ spec:
         namespace: monitoring
         labelValue: "1"
         annotations: {}
-
       relay:
         prometheus:
           serviceMonitor:
             enabled: true
-
       ui:
         ingress:
           enabled: true
@@ -46,11 +44,14 @@ spec:
           tls:
             - hosts:
                 - *host
-
+    l2announcements:
+      enabled: true
+      leaseDuration: 120s
+      leaseRenewDeadline: 60s
+      leaseRetryPeriod: 1s
     prometheus:
       serviceMonitor:
         enabled: true
-
     operator:
       prometheus:
         serviceMonitor:
