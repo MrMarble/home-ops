@@ -63,7 +63,7 @@ spec:
             any: true
 
       extraArgs:
-        default-ssl-certificate: "network/home-dev-tls"
+        default-ssl-certificate: "networking/home-dev-tls"
 
       topologySpreadConstraints:
         - maxSkew: 2
