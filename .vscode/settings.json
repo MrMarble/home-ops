@@ -9,7 +9,8 @@
   "prettier.configPath": ".github/linters/.prettierrc.yaml",
   "prettier.ignorePath": ".github/linters/.prettierignore",
   "yaml.schemas": {
-    "https://json.schemastore.org/kustomization.json": "cluster/**/kustomization.yaml"
+    "https://json.schemastore.org/kustomization.json": "kubernetes/**/kustomization.yaml",
+    "kubernetes://schema/v1@namespace": "kubernetes/**/namespace.yaml"
   },
   "yaml.schemaStore.enable": true,
   "conventionalCommits.scopes": [
