@@ -42,5 +42,5 @@ jobs:
           github_token: ${{ steps.generate-token.outputs.token }}
           publish_dir: ./docs/book/html
           user_name: "pepinillo-bot[bot]"
-          user_email: '101514388+pepinillo-bot[bot]@users.noreply.github.com'
+          user_email: "101514388+pepinillo-bot[bot]@users.noreply.github.com"
           commit_message: ${{ github.event.head_commit.message }}
