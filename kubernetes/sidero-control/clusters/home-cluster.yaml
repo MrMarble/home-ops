@@ -1,11 +1,9 @@
----
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: home-cluster
   namespace: default
 spec:
-  paused: false
   clusterNetwork:
     pods:
       cidrBlocks:
@@ -29,7 +27,7 @@ metadata:
   namespace: default
 spec:
   controlPlaneEndpoint:
-    host: 192.168.1.10
+    host: 192.168.1.20
     port: 6443
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
@@ -43,7 +41,7 @@ spec:
       serverClassRef:
         apiVersion: metal.sidero.dev/v1alpha1
         kind: ServerClass
-        name: any
+        name: controlplane
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
 kind: TalosControlPlane
@@ -54,21 +52,12 @@ spec:
   controlPlaneConfig:
     controlplane:
       generateType: controlplane
-      talosVersion: v1.4
-      configPatches:
-        - op: add
-          path: /machine/network
-          value:
-            interfaces:
-              - interface: eth0
-                dhcp: true
-                vip:
-                  ip: 192.168.1.20
+      talosVersion: v1.4.6
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MetalMachineTemplate
     name: home-cluster-cp
-  replicas: 1
+  replicas: 3
   version: v1.27.3
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
@@ -80,14 +69,7 @@ spec:
   template:
     spec:
       generateType: join
-      talosVersion: v1.4
-      configPatches:
-        - op: replace
-          path: /cluster/network/cni
-          value:
-            name: custom
-            urls:
-              - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/cilium/cilium.yaml
+      talosVersion: v1.4.6
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
@@ -96,7 +78,7 @@ metadata:
   namespace: default
 spec:
   clusterName: home-cluster
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels: null
   template:
@@ -124,4 +106,4 @@ spec:
       serverClassRef:
         apiVersion: metal.sidero.dev/v1alpha1
         kind: ServerClass
-        name: any
+        name: nodes

@@ -1,7 +1,7 @@
 apiVersion: metal.sidero.dev/v1alpha1
 kind: Server
 metadata:
-  name: 4c4c4544-0056-3110-8046-c4c04f4a5732
+  name: 4c4c4544-0036-3410-804e-b8c04f485432
   labels:
     controlplane: "true"
 spec:
@@ -9,7 +9,7 @@ spec:
   cpu:
     manufacturer: Intel
     version: Intel(R) Atom(TM) x5-Z8350 CPU @ 1.44GHz
-  hostname: 192.168.1.12
+  hostname: 192.168.1.14
   pxeBootAlways: true
   environmentRef:
     namespace: sidero-system
@@ -35,5 +35,5 @@ spec:
     manufacturer: Wyse
     productName: Dell Inc.
     serialNumber: 07C1
-    skuNumber: DV1FJW2
+    skuNumber: 864NHT2
     version: Wyse 3040 Thin Client
