@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js latte">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Home Ops</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./theme/mdbook-admonish.css">
+        <link rel="stylesheet" href="./theme/catppuccin.css">
+        <link rel="stylesheet" href="./theme/catppuccin-highlight.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "macchiato" : "latte";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('latte')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Welcome</li><li class="chapter-item expanded "><a href="introduction.html">👋 Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Overview</li><li class="chapter-item expanded "><a href="overview/hardware.html">🔧 Hardware</a></li><li class="chapter-item expanded "><a href="overview/network.html">🌐 Network</a></li><li class="chapter-item expanded "><a href="overview/cloud-services.html">☁️ Cloud services</a></li><li class="chapter-item expanded affix "><li class="part-title">Home Ops</li><li class="chapter-item expanded "><a href="kubernetes/index.html">⛵ Kubernetes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="kubernetes/gitops.html">GitOps</a></li><li class="chapter-item "><a href="kubernetes/storage.html">Storage</a></li><li class="chapter-item "><a href="kubernetes/backups.html">Backups</a></li></ol></li><li class="chapter-item expanded "><a href="apps/index.html">💪🏼 Helper Apps</a></li><li class="chapter-item expanded affix "><li class="part-title">Provision</li><li class="chapter-item expanded "><a href="provision/sidero.html">🤘🏼 Sidero Metal</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Home Ops</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/mrmarble/home-ops" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="introduction.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>These docs contain information that relates to my setup.
+They may or may not work for you.</p>
+</div>
+</div>
+<hr />
+<br />
+<div align="center">
+<img src="https://gitlab.com/uploads/-/system/project/avatar/35246547/homelab.png" align="left" width="144px" height="144px"/>
+<h2 id="my-home-operations-repository"><a class="header" href="#my-home-operations-repository">My home operations repository</a></h2>
+<p><em>... managed with Flux, Renovate and GitHub Actions</em> 🐱</p>
+</div>
+<div align="center">
+<p><img src="https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&amp;logo=renovatebot&amp;style=for-the-badge&amp;label=&amp;color=blue" alt="GitHub Workflow Status" />
+<a href="https://k3s.io/"><img src="https://img.shields.io/badge/k3s-v1.26.3-success.svg?style=for-the-badge&amp;logo=kubernetes&amp;label=&amp;color=blue&amp;logoColor=white" alt="k3s" /></a></p>
+</div>
+<div align="center">
+<br/>
+<br/>
+<p><a href="https://uptimerobot.com/"><img src="https://img.shields.io/uptimerobot/status/m793877647-43f7de17c4661915fdcc503c?label=Home%20Internet&amp;logo=googlehome&amp;logoColor=white&amp;style=for-the-badge" alt="Uptime Robot status" /></a>
+<a href="https://uptimerobot.com/"><img src="https://img.shields.io/uptimerobot/status/m793877616-990da6b85bc8e4fc22832384?label=Home%20Assistant&amp;logo=homeassistant&amp;logoColor=white&amp;style=for-the-badge" alt="Uptime Robot status" /></a>
+<a href="https://uptimerobot.com/"><img src="https://img.shields.io/uptimerobot/status/m793878305-d450c4e357daeea77a8eb9f2?label=grafana&amp;logo=grafana&amp;logoColor=white&amp;style=for-the-badge" alt="Uptime Robot status" /></a></p>
+<br/>
+</div>
+<p>👋 Welcome to my Home Operations repository. This is a mono repository for my home infrastructure and Kubernetes cluster implementing Infrastructure as Code (IaC) and GitOps practices using tools like <a href="https://kubernetes.io/">Kubernetes</a>, <a href="https://github.com/fluxcd/flux2">Flux</a>, <a href="https://github.com/renovatebot/renovate">Renovate</a> and <a href="https://github.com/features/actions">GitHub Actions</a>.</p>
+<hr />
+<h3 id="-thanks"><a class="header" href="#-thanks">🤝 Thanks</a></h3>
+<p>Thanks to all the people who donate their time to the <a href="https://discord.gg/k8s-at-home">Kubernetes @Home</a> Discord community. A lot of inspiration for my cluster comes from the people that have shared their clusters using the <a href="https://github.com/topics/k8s-at-home">k8s-at-home</a> GitHub topic. Be sure to check out the <a href="https://nanne.dev/k8s-at-home-search/">Kubernetes @Home search</a> for ideas on how to deploy applications or get ideas on what you can deploy.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-hardware"><a class="header" href="#-hardware">🔧 Hardware</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Device</th><th>Count</th><th>OS Disk Size</th><th>Data Disk Size</th><th>RAM</th><th>Operating System</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>MikroTik RB5009UG+S+IN</td><td>1</td><td>--</td><td>1GB NAND</td><td>1GB</td><td>RouterOS 7.10</td><td>Router</td></tr>
+<tr><td>HP EliteDesk 800 G2 mini</td><td>1</td><td>240GB NVMe</td><td>256GB SSD</td><td>16GB</td><td>Talos</td><td>k3s Master/Worker</td></tr>
+<tr><td>HP 260 G3 DM</td><td>1</td><td>256GB SSD</td><td>540GB NvmE</td><td>16GB</td><td>Talos</td><td>k3s Worker</td></tr>
+<tr><td>Raspberry Pi 3B</td><td>1</td><td>32GB SDCard</td><td>N/A</td><td>1GB</td><td>Raspbian</td><td>Pi-hole</td></tr>
+<tr><td>Pi Zero 2 W</td><td>1</td><td>32GB SDCard</td><td>N/A</td><td>512MB</td><td>Raspbian</td><td>Pi-hole backup</td></tr>
+<tr><td>NAS</td><td>1</td><td>120GB SSD</td><td>8TB ZRAID0</td><td>16GB</td><td>TrueNas Core</td><td>NFS/BACKUP</td></tr>
+</tbody></table>
+</div>
+<hr />
+<details>
+  <summary>NAS (Detailed)</summary>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Type</th><th style="text-align: left">Item</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>CPU</strong></td><td style="text-align: left">Intel Core i5-6500 3.2 GHz Quad-Core Processor</td></tr>
+<tr><td style="text-align: left"><strong>CPU Cooler</strong></td><td style="text-align: left">Intel Stock</td></tr>
+<tr><td style="text-align: left"><strong>Motherboard</strong></td><td style="text-align: left">MSI H110M PRO-VH Micro ATX LGA1151</td></tr>
+<tr><td style="text-align: left"><strong>Memory</strong></td><td style="text-align: left">Crucial Ballistix Sport LT 16 GB (2 x 8 GB) DDR4-3200 CL16</td></tr>
+<tr><td style="text-align: left"><strong>Storage (Boot)</strong></td><td style="text-align: left">Kingston A400 120 GB 2.5&quot; SSD</td></tr>
+<tr><td style="text-align: left"><strong>Storage (Data)</strong></td><td style="text-align: left">Seagate IronWolf NAS 4 TB 3.5&quot; 5400 RPM Internal Hard Drive x 3</td></tr>
+<tr><td style="text-align: left"><strong>Storage Controller</strong></td><td style="text-align: left">10Gtek® Internal SAS/SATA Raid Controller PCI Express Host Bus Adapter for LSI 9211-8I, LSI SAS2008 Chip, 8-Port 6Gb/s</td></tr>
+<tr><td style="text-align: left"><strong>Case</strong></td><td style="text-align: left">Fractal Design Node 804 MicroATX Mid Tower Case</td></tr>
+<tr><td style="text-align: left"><strong>Power Supply</strong></td><td style="text-align: left">Corsair CV550 550 W 80+ Bronze Certified ATX Power Supply</td></tr>
+</tbody></table>
+</div></details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
+<p>My DNS setup may seem a bit complicated at first, but it allows for completely automatic management of DNS entries for Services and Ingress objects.</p>
+<h2 id="components"><a class="header" href="#components">Components</a></h2>
+<h3 id="traefik"><a class="header" href="#traefik">Traefik</a></h3>
+<p><a href="https://github.com/traefik/traefik">Traefik</a> is my cluster Ingress controller. It is set to a LoadbalancerIP provided by <a href="https://github.com/metallb/metallb">Metallb</a> so I can access the services directly</p>
+<h3 id="external-dns"><a class="header" href="#external-dns">external-dns</a></h3>
+<p><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a> runs in my cluster and is connected to my domain DNS server. It automatically manages records for all my Ingresses taht have the <code>external-dns/is-public: true</code> annotation set.</p>
+<h3 id="dynamic-dns"><a class="header" href="#dynamic-dns">Dynamic DNS</a></h3>
+<p>In order to keep my WAN IP address up to date on my DNS provier I have deployed a <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps/networking/cloudflare-ddns/cron-job.yaml">CronJob</a> in my cluster that periodically checks and updates those records.</p>
+<h3 id="how-it-all-works-together"><a class="header" href="#how-it-all-works-together">How it all works together</a></h3>
+<p>When I am connected to my home network, my DNS server is set to <a href="https://github.com/pi-hole/pi-hole">pi-hole</a> that is running on my network. I have configured it forward all requests pointing to my domain to the <a href="https://github.com/metallb/metallb">Metallb</a> address providing internal DNS resolution.</p>
+<pre><code># /etc/dnsmasq.d/99-k8s-gateway-forward.conf
+server=/${SECRET_DOMAIN}/${METALLB_K8S_GATEWAY_ADDR}
+</code></pre>
+<p>When I am outside my home network, and request an address for one of my domains, it will query my domains DNS server and will respond with the DNS record that was set by <a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-cloud-services"><a class="header" href="#-cloud-services">☁️ Cloud services</a></h1>
+<p>While most of my infrastructure and workloads are selfhosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about two things. (1) Dealing with chicken/egg scenarios and (2) services I critically need whether my cluster is online or not.</p>
+<p>The alternative solution to these two problems would be to host a Kubernetes cluster in the cloud and deploy applications like <a href="https://www.vaultproject.io/">HCVault</a>, <a href="https://github.com/dani-garcia/vaultwarden">Vaultwarden</a>, <a href="https://ntfy.sh/">ntfy</a>, and <a href="https://goauthentik.io/">Authentik</a>. However, maintaining another cluster and monitoring another group of workloads is a lot more time and effort than I am willing to put in.</p>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Use</th><th>Cost</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/">GitHub</a></td><td>Hosting this repository and continuous integration/deployments</td><td>Free</td></tr>
+<tr><td><a href="https://www.cloudflare.com/">Cloudflare</a></td><td>Domain, DNS and proxy management</td><td>Free</td></tr>
+<tr><td><a href="https://www.backblaze.com/b2/cloud-storage.html">B2 Storage</a></td><td>Offsite application backups</td><td>Free</td></tr>
+<tr><td><a href="https://www.terraform.io">Terraform Cloud</a></td><td>Store Terraform state online</td><td>Free</td></tr>
+<tr><td></td><td></td><td>Total: ~$0/m</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
+<p>My cluster is Ubuntu provisioned on bare-metal using Ansible.</p>
+<p>This is a semi hyper-converged cluster, workloads and block storage are sharing the same available resources on my nodes while I have a separate server for (NFS) file storage.</p>
+<h2 id="core-components"><a class="header" href="#core-components">Core Components</a></h2>
+<ul>
+<li><a href="https://github.com/metallb/metallb">metallb</a>: A network load-balancer implementation using standard routing protocols</li>
+<li><a href="https://github.com/kube-vip/kube-vip">kube-vip</a>: Provides static virtual IPs for services</li>
+<li><a href="https://github.com/cert-manager/cert-manager">cert-manager</a>: Creates SSL certificates for services in my Kubernetes cluster.</li>
+<li><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>: Automatically manages DNS records from my cluster in a cloud DNS provider.</li>
+<li><a href="https://github.com/longhorn/longhorn">longhorn</a>: Distributed storage for persistent storage</li>
+<li><a href="https://github.com/traefik/traefik">traefik</a>: Ingress controller to expose HTTP traffic to pods over DNS</li>
+<li><a href="https://toolkit.fluxcd.io/guides/mozilla-sops/">sops</a>: Managed secrets for Kubernetes, Ansible and Terraform which are commited to Git.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gitops"><a class="header" href="#gitops">GitOps</a></h1>
+<p><a href="https://github.com/fluxcd/flux2">Flux</a> watches my <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/">cluster</a> folder (see <a href="kubernetes/gitops.html#directory-structure">Directory structure</a>) and makes the changes to my cluster based on the YAML manifests.</p>
+<p>The way Flux works for me here is it will recursively search the <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps">cluster/apps</a> folder until it finds the most top level <code>kustomization.yaml</code> per directory and then apply all the resources listed in it. That aforementioned <code>kustomization.yaml</code> will generally only have a namespace resource and one or many Flux kustomizations. Those Flux kustomizations will generally have a <code>HelmRelease</code> or other resources related to the application underneath it which will be applied.</p>
+<p><a href="https://github.com/renovatebot/renovate">Renovate</a> watches my <strong>entire</strong> repository looking for dependency updates, when they are found a PR is automatically created. When PRs are merged <a href="https://github.com/fluxcd/flux2">Flux</a> applies the changes to my cluster.</p>
+<h2 id="directory-structure"><a class="header" href="#directory-structure">Directory structure</a></h2>
+<p>My home-ops repository contains the following directories under <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/">cluster</a>.</p>
+<pre><code class="language-sh">📁 cluster  # My main kubernetes cluster
+├──📁 apps  # Apps deployed into my cluster grouped by namespace (see below)
+├──📁 base  # Flux entrypoint
+├──📁 core  # Important applications that should never be pruned by flux
+└──📁 crds  # Custom resource definitions (CRDs) that need to exist globally
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="storage"><a class="header" href="#storage">Storage</a></h1>
+<p>Storage in my cluster is handled in a number of ways.
+The in-cluster storage is provided by a <a href="https://github.com/longhorn/longhorn">longhorn</a> cluster that is running on a number of my nodes.</p>
+<h2 id="longhorn-storage"><a class="header" href="#longhorn-storage">Longhorn storage</a></h2>
+<p>The bulk of my cluster storage relies on <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps/longhorn-system/helm-release.yaml">longhorn</a>. This ensures that my data is replicated across my storage nodes.</p>
+<h2 id="nfs-storage"><a class="header" href="#nfs-storage">NFS storage</a></h2>
+<p>Finally, I have my NAS that exposes several exports over NFS. Given how NFS is a very bad idea for storing application data (see for example <a href="https://github.com/Sonarr/Sonarr/issues/1886">this Github issue</a>) I only use it to store data at rest, such as my personal media files, Linux ISO's, backups, etc.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="backups"><a class="header" href="#backups">Backups</a></h1>
+<p>Longhorn creates a backup daily of each PVC to my NAS. I have configured <a href="https://www.truenas.com/download-truenas-core/">TrueNAS</a> to upload backups daily to <a href="https://www.backblaze.com/b2/cloud-storage.html">B2 Cloud</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="helper-apps"><a class="header" href="#helper-apps">Helper Apps</a></h1>
+<p>Outside of the core of Kubernetes I run some apps that help to maintain de state of the cluster</p>
+<h2 id="kyverno"><a class="header" href="#kyverno"><a href="https://kyverno.io">kyverno</a></a></h2>
+<p>Kyverno is a policy engine for kubernetes, policies can validate, mutate, generate and cleanup Kubernetes resources</p>
+<p>These are the policies I'm currently running on my cluster.</p>
+<ul>
+<li><a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps/kyverno/kyverno/remove-cpu-limit.yaml">remove-cpu-limits</a>: This policy removes CPU limits from all Pods.</li>
+</ul>
+<h2 id="reloader"><a class="header" href="#reloader"><a href="https://github.com/stakater/Reloader">reloader</a></a></h2>
+<p>A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig.</p>
+<p>Apply changes to Pods after modifing a ConfigMap/Secret without having to restart it manually, uses an annotation to enable</p>
+<h2 id="descheduler"><a class="header" href="#descheduler"><a href="https://github.com/kubernetes-sigs/descheduler">descheduler</a></a></h2>
+<p>Kubernetes scheduler decisions are influenced by its view of a Kubernetes cluster at that point of time when a new pod appears for scheduling. As Kubernetes clusters are very dynamic and their state changes over time, there may be desire to move already running pods to some other nodes for various reasons:</p>
+<ul>
+<li>Some nodes are under or over utilized.</li>
+<li>The original scheduling decision does not hold true any more, as taints or labels are added to or removed from nodes, pod/node affinity requirements are not satisfied any more.</li>
+<li>Some nodes failed and their pods moved to other nodes.</li>
+<li>New nodes are added to clusters.</li>
+</ul>
+<h2 id="node-feature-discovery"><a class="header" href="#node-feature-discovery"><a href="https://github.com/kubernetes-sigs/node-feature-discovery">node-feature-discovery</a></a></h2>
+<p>Kubernetes add-on for detecting hardware features and system configuration!</p>
+<p>My main usage is to detect the USB Bluetooth adapter.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sidero-metal"><a class="header" href="#sidero-metal">Sidero Metal</a></h1>
+<p><a href="https://sidero.dev">Sidero</a> uses Cluster API to automate bare metal server provisioning and lifecycle management.</p>
+<p>Instead of managing my servers with ansible I use Sidero and network boot (PXE) to provision my servers automatically with <a href="https://talos.dev">Talos</a> and Kubernetes.</p>
+<p>Appart from Sidero itself I use the DHCP server on my router to supply the network boot parameters to my servers. For RouterOS this is the config:</p>
+<pre><code class="language-sh">/ip/dhcp-server/network/set 0 next-server=&lt;SIDERO_CONTROL_PLANE_IP&gt;
+# https://www.sidero.dev/v0.5/getting-started/prereq-dhcp/
+/ip/dhcp-server/network/set 0 boot-file-name=&quot;&lt;BOOT_FILE&gt;&quot;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
