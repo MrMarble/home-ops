@@ -7,3 +7,4 @@ resources:
   - bjw-s.yaml
   - cilium.yaml
   - metallb.yaml
+  - postfinance.yaml
