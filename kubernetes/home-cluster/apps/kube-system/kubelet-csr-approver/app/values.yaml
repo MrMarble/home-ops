@@ -1,0 +1,5 @@
+---
+providerRegex: |
+  ^(kmaster1|kworker1)$
+
+bypassDnsResolution: true
