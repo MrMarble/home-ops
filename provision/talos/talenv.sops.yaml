@@ -1,0 +1,27 @@
+clusterName: ENC[AES256_GCM,data:zVRjN8rMxw9bFzvz,iv:IvEYmATIRwQNsA0aCHZlMAm/JC1+rYSGJMHFFn8zPgk=,tag:YM0RVMsUUB2yvJ3/gr5/zg==,type:str]
+clusterEndpointIP: ENC[AES256_GCM,data:X4h3sNdXyg1Y6cic,iv:Qkp9nWVSKUD2+8fWL+JIuDBiG2EMlJPE8VdtMJ1NG+w=,tag:+JFR4i5mr0HwL8nZLiee3Q==,type:str]
+controlPlanePort: ENC[AES256_GCM,data:z0vpVg==,iv:O6CSrGMj+X6aghPzWvS78B6ZWaVJmJu+CE8jvX3fNXg=,tag:rD72XYFXKzBq4M7vcmhZJA==,type:int]
+controlPlaneServerClass: ENC[AES256_GCM,data:LgEe822qP4SgVjMm,iv:5zZ5rO/g/R2QvYp4Y7eAJ5iS9zwY0RYjgXIDgUE6aOg=,tag:xYUfHvulig+wHCoZiMtaDg==,type:str]
+workerServerClass: ENC[AES256_GCM,data:ZaAKdlI=,iv:DMGP/YiaJ/1SAY3/gD53WkvJw6NHB4c92NZsSueOPt8=,tag:WMQN62s+iyI448tSr2maaw==,type:str]
+kubernetesVersion: ENC[AES256_GCM,data:7ZPlKRrTDg==,iv:LJcNlRT0G4bvBG5aQfnDnGgIqIGu+BAwuiThzoFIL6s=,tag:4iCRK96tJP1yb0MCGOBPnA==,type:str]
+talosVersion: ENC[AES256_GCM,data:MEoTDTW5,iv:Yvj3skJPi7TDesbNCRvjlkJzRpO4zkpZsX43itJjswI=,tag:j2yTBftgshQ3Dw6RYJuleQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age16x9emguyj2j2d9uvf5r2uahrczxd9agjesuekfcdyvyedkm4j3gqp6umt8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0dFBQRGFxcHdYMnZhbFZY
+            Qmc0R2JyTHMzWit5aTYzcDVUSE56ZHEycDBvCktXcCtiMGFIRXk5THRtU1FWbkpG
+            YSswcnl4cWplWFpCblFaeTF3Vk51Yk0KLS0tIGFMNXZVd3d2RDNQalhjUmRaSXBt
+            ZkxDd09pZVRVMnBQdXhaZUcrcVFhM3MKgdEEk58j9AuaZovKCfQOwEb6xAiZ3FlT
+            Qu4OC4PW64hsqXdtG+IORw6N6HFxSMY5gzqjrwiyme0ufTJWT4DXIw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-07-16T19:48:11Z"
+    mac: ENC[AES256_GCM,data:/wSyh35UJhf/NECKFoFxvezbel4xyGq0Impy9RWvySgFgka4t9MMv1+qJmPRULG0MJO/6J0kxZxu2mqA1ncZowHr0gcO3A1lEa93Chs4HNeH8aIaPVnizpNvTLpTLlw35YbFCn8IjQIt+adF4sjq+XY55lSw0OCRk/ro8VQjopE=,iv:GIp55++eJBCmTPZHZtPWiWdgN7twty36r8UIUyejRBA=,tag:xaP1p2iY5wtyjO56RKN8nA==,type:str]
+    pgp: []
+    unencrypted_regex: ^(kind)$
+    version: 3.7.3
