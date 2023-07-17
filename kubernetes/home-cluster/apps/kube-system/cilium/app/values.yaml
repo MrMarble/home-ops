@@ -21,6 +21,8 @@ loadBalancer:
 rollOutCiliumPods: true
 localRedirectPolicy: true
 autoDirectNodeRoutes: true
+tunnel: "disabled"
+ipv4NativeRoutingCIDR: 10.244.0.0/16
 endpointRoutes:
   enabled: true
 securityContext:
