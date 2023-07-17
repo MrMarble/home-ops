@@ -7,3 +7,5 @@ resources:
   - bjw-s.yaml
   - cilium.yaml
   - postfinance.yaml
+  - descheduler.yaml
+  - stakater.yaml
