@@ -11,7 +11,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 <div align="center">
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=&color=blue)
-[![k3s](https://img.shields.io/badge/k3s-v1.26.3-success.svg?style=for-the-badge&logo=kubernetes&label=&color=blue&logoColor=white)](https://k3s.io/)
+[![k3s](https://img.shields.io/badge/k8s-v1.27.4-success.svg?style=for-the-badge&logo=kubernetes&label=&color=blue&logoColor=white)](https://kubernetes.io/)
 
 </div>
 <div align="center">
