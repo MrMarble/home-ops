@@ -9,3 +9,4 @@ resources:
   - postfinance.yaml
   - descheduler.yaml
   - stakater.yaml
+  - external-dns.yaml
