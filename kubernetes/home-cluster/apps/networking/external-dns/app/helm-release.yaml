@@ -32,6 +32,7 @@ spec:
             key: CLOUDFLARE_APIKEY
     extra-args:
       - --cloudflare-proxied
+      - --crd-source-kind=DNSEndpoint
       - --annotation-filter=external-dns/is-public in (true)
     policy: sync
     sources:
