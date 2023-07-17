@@ -5,7 +5,11 @@ cluster:
 
 ipam:
   mode: kubernetes
-
+bgp:
+  enabled: false
+  announce:
+    loadbalancerIP: true
+    podCIDR: false
 kubeProxyReplacement: strict
 k8sServiceHost: 192.168.1.20
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
@@ -100,3 +104,15 @@ cgroup:
   autoMount:
     enabled: false
   hostRoot: /sys/fs/cgroup
+hubble:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+  ui:
+    enabled: true
+    ingress:
+      enabled: false
+    rollOutPods: true
+  relay:
+    enabled: true
+    rollOutPods: true

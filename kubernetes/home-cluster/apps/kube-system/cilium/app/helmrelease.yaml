@@ -60,6 +60,15 @@ spec:
       prometheus:
         serviceMonitor:
           enabled: false
+      ui:
+        ingress:
+          enabled: true
+          className: "nginx"
+          hosts:
+            - &host hubble.${SECRET_DOMAIN}
+          tls:
+            - hosts:
+                - *host
     # Enable Gateway API here as the CRDs may not be deployed at the time the CNI is installed via Talos.
     gatewayAPI:
       enabled: true
