@@ -20,8 +20,8 @@ sops --decrypt ./bootstrap/age-key.sops.yaml | kubectl apply -f -
 ### Apply Cluster Configuration
 
 ```sh
-kubecetl apply -f ./flux/vars/cluster-settings.yaml
-sops --decrypt ./flux/vars/cluster-secrets.yaml | kubectl apply -f -
+kubectl apply -f ./flux/vars/cluster-settings.yaml
+sops --decrypt ./flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
 
 ```
 
