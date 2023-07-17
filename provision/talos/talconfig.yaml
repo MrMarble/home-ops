@@ -1,8 +1,9 @@
 clusterName: ${clusterName}
 
-talosVersion: ${talosVersion}
-kubernetesVersion: ${kubernetesVersion}
+talosVersion: v1.4.6
+kubernetesVersion: v1.27.3
 endpoint: https://${clusterEndpointIP}:${controlPlanePort}
+allowSchedulingOnMasters: true
 
 cniConfig:
   name: none
@@ -17,47 +18,62 @@ additionalMachineCertSans:
 nodes:
   - hostname: kmaster1
     disableSearchDomain: true
-    ipAddress: 192.168.1.12
-    installDisk: /dev/mmcblk0
-    controlPlane: true
-    networkInterfaces:
-      - interface: eno0
-        dhcp: true
-        vip:
-          ip: ${clusterEndpointIP}
-  - hostname: kmaster2
-    disableSearchDomain: true
-    ipAddress: 192.168.1.13
-    installDisk: /dev/mmcblk0
-    controlPlane: true
-    networkInterfaces:
-      - interface: eno0
-        dhcp: true
-        vip:
-          ip: ${clusterEndpointIP}
-  - hostname: kmaster3
-    disableSearchDomain: true
-    ipAddress: 192.168.1.14
-    installDisk: /dev/mmcblk0
-    controlPlane: true
-    networkInterfaces:
-      - interface: eno0
-        dhcp: true
-        vip:
-          ip: ${clusterEndpointIP}
-  - hostname: kworker1
-    disableSearchDomain: true
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
-    controlPlane: false
-  - hostname: kworker2
+    controlPlane: true
+    networkInterfaces:
+      - interface: eth0
+        dhcp: true
+        vip:
+          ip: ${clusterEndpointIP}
+
+  - hostname: kworker1
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
     controlPlane: false
 
-
 controlPlane:
+  patches:
+    - |-
+      machine:
+        files:
+          - op: create
+            path: /etc/cri/conf.d/20-customization.part
+            content: |
+              [plugins]
+                [plugins."io.containerd.grpc.v1.cri"]
+                  enable_unprivileged_ports = true
+                  enable_unprivileged_icmp = true
+        kubelet:
+          extraArgs:
+            feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
+            rotate-server-certificates: "true"
+          extraConfig:
+            maxPods: 150
+        network:
+            extraHostEntries:
+              - ip: ${clusterEndpointIP}
+                aliases:
+                  - ${clusterName}.local
+        install:
+          extensions:
+            - image: ghcr.io/siderolabs/i915-ucode:20230310
+            - image: ghcr.io/siderolabs/intel-ucode:20230512
+
+    - |-
+      cluster:
+        proxy:
+          disabled: true
+        extraManifests:
+          - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/cilium/cilium.yaml
+          - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
+
+    - |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl
+
+worker:
   patches:
     - |-
       machine:
@@ -65,12 +81,7 @@ controlPlane:
           extraArgs:
             feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
             rotate-server-certificates: "true"
-          extraConfig:
-            maxPods: 150
-    - |-
-      cluster:
-        allowSchedulingOnMasters: true
-        proxy:
-          disabled: true
-        extraManifests:
-          - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/cilium/cilium.yaml
+        install:
+          extensions:
+            - image: ghcr.io/siderolabs/i915-ucode:20230310
+            - image: ghcr.io/siderolabs/intel-ucode:20230512
