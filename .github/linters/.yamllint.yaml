@@ -2,7 +2,6 @@
 ignore: |
   *.sops.*
   gotk-components.yaml
-  xanmanning.k3s/**
 extends: default
 rules:
   truthy:

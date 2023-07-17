@@ -9,6 +9,7 @@ on:
     paths:
       - ".github/workflows/deploy-docs.yaml"
       - "docs/**"
+      - "README.md"
 
 jobs:
   release-docs:

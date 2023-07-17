@@ -1,3 +1,2 @@
 *.sops.*
 gotk-components.yaml
-**/xanmanning.k3s/**
