@@ -6,5 +6,4 @@ resources:
   - ingress-nginx.yaml
   - bjw-s.yaml
   - cilium.yaml
-  - metallb.yaml
   - postfinance.yaml

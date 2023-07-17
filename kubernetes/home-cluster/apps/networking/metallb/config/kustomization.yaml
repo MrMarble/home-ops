@@ -1,6 +1,0 @@
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-resources:
-  - ./ipaddresspool.yaml
-  - ./l2advertisement.yaml
