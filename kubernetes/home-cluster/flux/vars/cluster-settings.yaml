@@ -7,4 +7,3 @@ metadata:
 data:
   CLUSTER_NAME: home-cluster
   TIMEZONE: "Europe/Madrid"
-  METALLB_LB_RANGE: 192.168.1.50-192.168.1.100
