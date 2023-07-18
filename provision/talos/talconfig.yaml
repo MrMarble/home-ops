@@ -73,7 +73,7 @@ controlPlane:
     - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
-    - "@./patches/mayastor.yaml"
+
 worker:
   patches:
     - |-
@@ -86,9 +86,8 @@ worker:
           extensions:
             - image: ghcr.io/siderolabs/i915-ucode:20230310
             - image: ghcr.io/siderolabs/intel-ucode:20230512
-    - "@./patches/mayastor.yaml"
     - |-
       - op: add
         path: /machine/nodeLabels
         value:
-          node-role.kubernetes.io/worker: worker
+          node-role.kubernetes.io/worker: "true"
