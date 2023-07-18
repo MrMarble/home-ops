@@ -47,6 +47,9 @@ spec:
       bdev_async_discard = true
       osd_class_update_on_start = false
     cephClusterSpec:
+      mon:
+        count: 1
+        allowMultiplePerNode: true
       network:
         provider: host
         connections:
