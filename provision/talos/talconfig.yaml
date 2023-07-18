@@ -1,3 +1,4 @@
+---
 clusterName: ${clusterName}
 
 talosVersion: v1.4.6
@@ -26,6 +27,10 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
+    machineDisks:
+      - device: /dev/nvme0n1
+        partitions:
+          - mountpoint: /var/mnt/data
 
   - hostname: kworker1
     disableSearchDomain: true
@@ -72,7 +77,7 @@ controlPlane:
     - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
-
+    - "@./patches/mayastor.yaml"
 worker:
   patches:
     - |-
@@ -85,3 +90,4 @@ worker:
           extensions:
             - image: ghcr.io/siderolabs/i915-ucode:20230310
             - image: ghcr.io/siderolabs/intel-ucode:20230512
+    - "@./patches/mayastor.yaml"
