@@ -7,3 +7,12 @@ metadata:
 spec:
   node: kmaster1
   disks: ["/dev/nvme0n1"]
+---
+apiVersion: openebs.io/v1alpha1
+kind: DiskPool
+metadata:
+  name: pool-on-node-2
+  namespace: storage
+spec:
+  node: kworker1
+  disks: ["/dev/nvme0n1"]

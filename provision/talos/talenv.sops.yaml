@@ -1,6 +1,6 @@
 clusterName: ENC[AES256_GCM,data:zVRjN8rMxw9bFzvz,iv:IvEYmATIRwQNsA0aCHZlMAm/JC1+rYSGJMHFFn8zPgk=,tag:YM0RVMsUUB2yvJ3/gr5/zg==,type:str]
-clusterEndpointIP: ENC[AES256_GCM,data:X4h3sNdXyg1Y6cic,iv:Qkp9nWVSKUD2+8fWL+JIuDBiG2EMlJPE8VdtMJ1NG+w=,tag:+JFR4i5mr0HwL8nZLiee3Q==,type:str]
-controlPlanePort: ENC[AES256_GCM,data:z0vpVg==,iv:O6CSrGMj+X6aghPzWvS78B6ZWaVJmJu+CE8jvX3fNXg=,tag:rD72XYFXKzBq4M7vcmhZJA==,type:int]
+clusterEndpoint: ENC[AES256_GCM,data:RpMWtAITECigHrPsAWeZdeuJafL+dTgJkg==,iv:PqUqpEmQPw4Ytyb8pCMsU3oUMKkqnNOmk8WN9DTaQvY=,tag:epO1oiaKMinxa3W/V6lCfw==,type:str]
+clusterEndpointIP: ENC[AES256_GCM,data:Ev+b9yTud8RhjsQT,iv:UGEI8w3KfkE9/+vRmcmi5XODAShntXS9S1raZ8OvQuw=,tag:ZsFzXSI2opIl8T+3vGEbEg==,type:str]
 controlPlaneServerClass: ENC[AES256_GCM,data:LgEe822qP4SgVjMm,iv:5zZ5rO/g/R2QvYp4Y7eAJ5iS9zwY0RYjgXIDgUE6aOg=,tag:xYUfHvulig+wHCoZiMtaDg==,type:str]
 workerServerClass: ENC[AES256_GCM,data:ZaAKdlI=,iv:DMGP/YiaJ/1SAY3/gD53WkvJw6NHB4c92NZsSueOPt8=,tag:WMQN62s+iyI448tSr2maaw==,type:str]
 kubernetesVersion: ENC[AES256_GCM,data:7ZPlKRrTDg==,iv:LJcNlRT0G4bvBG5aQfnDnGgIqIGu+BAwuiThzoFIL6s=,tag:4iCRK96tJP1yb0MCGOBPnA==,type:str]
@@ -20,8 +20,8 @@ sops:
             ZkxDd09pZVRVMnBQdXhaZUcrcVFhM3MKgdEEk58j9AuaZovKCfQOwEb6xAiZ3FlT
             Qu4OC4PW64hsqXdtG+IORw6N6HFxSMY5gzqjrwiyme0ufTJWT4DXIw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-16T22:43:25Z"
-    mac: ENC[AES256_GCM,data:Dr8UYwG4xawCJm2dp3405GKTukQ6haM/YgsJ5df3bt3dcajnX6jrOq3XQEa+kJC2QVP7HiZM8BsaoT0OxivxcWtcZVusSWsh6IQgWa99aKnbuVMiESbfFVPjD0ATKDHhMZF98P1ea65lwdsLw+vEqQjKLyMzfFvwBvzZEwCrNn8=,iv:igJ6gpLrm4Rd+keZyL8TTOItfPhLUPkRPjYBlE2UW8M=,tag:d56ytsa2ERtt7w/kfsggmA==,type:str]
+    lastmodified: "2023-07-18T16:23:55Z"
+    mac: ENC[AES256_GCM,data:A/wUDSB6hDDIzKrbAJUnR839pM2SdbkulMwWB+Ec7vpe5vGxY2KIL/OcMPB7+tEYKKP8z1L4wHVaz7ZSDQj1Oyb6W4HYy6LibidgZU2ywwCCVIrKyOrARg48iDPGj5Ekv7GJur5WLZkiMtQF9SXuHPoJpZuO9PIZC92fwxCUkx8=,iv:k2qDgQAfJgo6yw/5oRypzc5avEfmAMPf7WIL7eiQsz8=,tag:CmK1qzJEh27qSpxkQ8cEuw==,type:str]
     pgp: []
     unencrypted_regex: ^(kind)$
     version: 3.7.3
