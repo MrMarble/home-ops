@@ -7,3 +7,4 @@ resources:
   - ./kubelet-csr-approver/ks.yaml
   - ./reloader/ks.yaml
   - ./descheduler/ks.yaml
+  - ./priorityclass.yaml
