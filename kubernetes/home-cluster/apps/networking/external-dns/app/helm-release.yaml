@@ -35,7 +35,7 @@ spec:
     extra-args:
       - --cloudflare-proxied
       - --crd-source-kind=DNSEndpoint
-      - --annotation-filter=external-dns/is-public in (true)
+      - --annotation-filter=external-dns.alpha.kubernetes.io/target
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
     policy: sync
     sources:
