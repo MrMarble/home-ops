@@ -29,6 +29,10 @@ spec:
     - name: mayastor
       namespace: storage
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2023.7.2@sha256:d6627e982c70dc963b4e15f223f56efb33d4b353c6ad9927b6f5be0c45f94a3b
