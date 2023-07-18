@@ -2,6 +2,16 @@
 version: "3"
 
 tasks:
+  setup:
+    desc: Setup flux
+    cmds:
+      - flux check --pre
+      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/home-cluster/bootstrap
+      - sops --decrypt {{.CLUSTER_DIR}}/home-cluster/bootstrap/age-key.sops.yaml | kubectl apply -f -
+      - kubectl apply -f {{.CLUSTER_DIR}}/home-cluster/flux/vars/cluster-settings.yaml
+      - sops --decrypt {{.CLUSTER_DIR}}/home-cluster/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
+      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/home-cluster/flux/config
+    silent: true
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:

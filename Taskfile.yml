@@ -4,15 +4,13 @@ version: "3"
 vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-  ANSIBLE_DIR: "{{.PROJECT_DIR}}/provision/ansible"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes/"
   TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
 
 env:
   KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
 
 includes:
-  ansible: .taskfiles/ansible.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
@@ -33,3 +31,22 @@ tasks:
       K3S_PRIMARY_MASTER_NODE_USERNAME: "mrmarble"
       K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.1.29"
       K3S_LB_ADDR: "192.168.1.231"
+
+  namespace:
+    desc: Create namespace
+    vars:
+      NAMESPACE: '{{(split " " .CLI_ARGS)._0}}'
+    cmds:
+      - mkdir -p ./kubernetes/home-cluster/apps/{{.NAMESPACE}}
+      - kubectl create namespace {{.NAMESPACE}} --dry-run=client -o yaml > ./kubernetes/home-cluster/apps/{{.NAMESPACE}}/namespace.yaml
+      - cd ./kubernetes/home-cluster/apps/{{.NAMESPACE}} && kustomize create --resources ./namespace.yaml
+
+  app:
+    desc: Create application
+    vars:
+      NAMESPACE: '{{(split " " .CLI_ARGS)._0}}'
+      APP_NAME: '{{(split " " .CLI_ARGS)._1}}'
+    cmds:
+      - mkdir -p ./kubernetes/home-cluster/apps/{{.NAMESPACE}}/{{.APP_NAME}}/app
+      - touch ./kubernetes/home-cluster/apps/{{.NAMESPACE}}/{{.APP_NAME}}/ks.yaml
+      - yq -i ".resources += \"./{{.APP_NAME}}/ks.yaml\"" ./kubernetes/home-cluster/apps/{{.NAMESPACE}}/kustomization.yaml
