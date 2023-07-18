@@ -26,8 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: mayastor
-      namespace: storage
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     controller:
       type: statefulset
@@ -77,7 +77,7 @@ spec:
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 5Gi
-        storageClass: mayastor-single-replica
+        storageClass: ceph-block
     resources:
       requests:
         cpu: 10m
