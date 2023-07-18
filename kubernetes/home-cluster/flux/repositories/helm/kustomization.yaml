@@ -10,4 +10,4 @@ resources:
   - descheduler.yaml
   - stakater.yaml
   - external-dns.yaml
-  - mayastor.yaml
+  - rook-ceph.yaml
