@@ -48,7 +48,7 @@ spec:
       osd_class_update_on_start = false
     cephClusterSpec:
       mon:
-        count: 1
+        count: 2
         allowMultiplePerNode: true
       network:
         provider: host
