@@ -39,6 +39,8 @@ spec:
     keepHistory: false
   maxHistory: 3
   values:
+    jaeger:
+      enabled: false
     loki-stack:
       enabled: false
     obs:
