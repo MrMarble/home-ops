@@ -33,7 +33,6 @@ spec:
       type: statefulset
       annotations:
         configmap.reloader.stakater.com/reload: qbittorrent-scripts
-        secret.reloader.stakater.com/reload: cross-seed-secret
     image:
       repository: ghcr.io/onedr0p/qbittorrent
       tag: 4.5.4@sha256:f0a74313d750bc437ba2ad34f3412de5ab9a978f3f5b74227a1bda69271fef3e
@@ -47,8 +46,6 @@ spec:
         ports:
           http:
             port: *port
-          cross-seed:
-            port: 2468
       bittorrent:
         enabled: true
         type: LoadBalancer
@@ -66,12 +63,16 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: qBittorrent
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/icon: qbittorrent.png
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_hide_header "x-webkit-csp";
             proxy_hide_header "content-security-policy";
             proxy_hide_header "X-Frame-Options";
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}.dev/css/base/qbittorrent/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/qbittorrent/nord.css"></head>';
             sub_filter_once on;
         hosts:
           - host: &host qb.${SECRET_DOMAIN}
