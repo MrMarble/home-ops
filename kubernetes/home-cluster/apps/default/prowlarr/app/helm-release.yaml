@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app prowlarr
+  namespace: media-automation
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: ghcr.io/onedr0p/prowlarr-nightly
+      tag: 1.7.1.3671@sha256:447719b7a3815509b96fbecd32325feaf7d891ff4c28fbf9eeb1342848fca7a5
+    env:
+      TZ: Europe/Madrid
+      PROWLARR__PORT: &port 80
+      PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/prowlarr/nord.css"></head>';
+            sub_filter_once on;
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Prowlarr"
+          gethomepage.dev/group: "Media Automation"
+          gethomepage.dev/icon: "prowlarr"
+          gethomepage.dev/widget.type: "prowlarr"
+          gethomepage.dev/widget.url: "http://prowlarr.default.svc.cluster.local"
+          gethomepage.dev/widget.key: "${SECRET_PROWLARR_APIKEY}"
+        hosts:
+          - host: &host "prowlarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    persistence:
+      config:
+        enabled: true
+        type: emptyDir
+    resources:
+      requests:
+        memory: 411M
+        cpu: 15m
+      limits:
+        memory: 420M
