@@ -39,9 +39,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    mon:
-      count: 2
-      allowMultiplePerNode: false
     toolbox:
       enabled: false
     monitoring:
@@ -52,6 +49,9 @@ spec:
       bdev_enable_discard = true
       bdev_async_discard = true
     cephClusterSpec:
+      mon:
+        count: 2
+        allowMultiplePerNode: false
       dataDirHostPath: /var/lib/rook
       network:
         provider: host
