@@ -12,3 +12,4 @@ resources:
   - external-dns.yaml
   - rook-ceph.yaml
   - jameswynn.yaml
+  - backube.yaml
