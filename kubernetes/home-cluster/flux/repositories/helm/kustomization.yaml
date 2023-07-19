@@ -13,3 +13,4 @@ resources:
   - rook-ceph.yaml
   - jameswynn.yaml
   - backube.yaml
+  - piraeus.yaml
