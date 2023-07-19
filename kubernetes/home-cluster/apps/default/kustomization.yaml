@@ -8,3 +8,4 @@ resources:
   - ./nextcloud/ks.yaml
   #- ./qbittorrent/ks.yaml
   - ./homepage/ks.yaml
+  - ./theme-park/ks.yaml
