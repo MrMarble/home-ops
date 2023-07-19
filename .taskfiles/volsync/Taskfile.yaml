@@ -1,0 +1,52 @@
+---
+version: "3"
+
+x-task-vars: &task-vars
+  rsrc: "{{.rsrc}}"
+  controller: "{{.controller}}"
+  namespace: "{{.namespace}}"
+  claim: "{{.claim}}"
+  ts: "{{.ts}}"
+  kustomization: "{{.kustomization}}"
+
+vars:
+  destinationTemplate: "ReplicationDestination.tmpl.yaml"
+  wipeJobTemplate: "WipeJob.tmpl.yaml"
+  waitForJobScript: "../_scripts/wait-for-k8s-job.sh"
+  listJobTemplate: "ListJob.tmpl.yaml"
+  unlockJobTemplate: "UnlockJob.tmpl.yaml"
+  ts: '{{now | date "150405"}}'
+
+tasks:
+  list:
+    desc: List all snapshots taken by restic for a given ReplicationSource (ex. task volsync:list rsrc=plex [namespace=default])
+    silent: true
+    cmds:
+      - envsubst < <(cat {{.listJobTemplate}}) | kubectl apply -f -
+      - bash {{.waitForJobScript}} list-{{.rsrc}}-{{.ts}} {{.namespace}}
+      - kubectl -n {{.namespace}} wait job/list-{{.rsrc}}-{{.ts}} --for condition=complete --timeout=1m
+      - kubectl -n {{.namespace}} logs job/list-{{.rsrc}}-{{.ts}} --container list
+      - kubectl -n {{.namespace}} delete job list-{{.rsrc}}-{{.ts}}
+    vars:
+      rsrc: '{{ or .rsrc (fail "ReplicationSource `rsrc` is required") }}'
+      namespace: '{{.namespace | default "default"}}'
+    env: *task-vars
+    preconditions:
+      - sh: test -f {{.waitForJobScript}}
+      - sh: test -f {{.listJobTemplate}}
+  snapshot:
+    desc: Trigger a Restic ReplicationSource snapshot (ex. task volsync:snapshot rsrc=plex [namespace=default])
+    cmds:
+      - kubectl -n {{.namespace}} patch replicationsources {{.rsrc}} --type merge -p '{"spec":{"trigger":{"manual":"{{.ts}}"}}}'
+      - bash {{.waitForJobScript}} volsync-src-{{.rsrc}} {{.namespace}}
+      - kubectl -n {{.namespace}} wait job/volsync-src-{{.rsrc}} --for condition=complete --timeout=120m
+      # TODO: Error from server (NotFound): jobs.batch "volsync-src-zzztest" not found
+      # - kubectl -n {{.namespace}} logs job/volsync-src-{{.rsrc}}
+    vars:
+      rsrc: '{{ or .rsrc (fail "ReplicationSource `rsrc` is required") }}'
+      namespace: '{{.namespace | default "default"}}'
+    env: *task-vars
+    preconditions:
+      - sh: test -f {{.waitForJobScript}}
+      - sh: kubectl -n {{.namespace}} get replicationsources {{.rsrc}}
+        msg: "ReplicationSource '{{.rsrc}}' not found in namespace '{{.namespace}}'"

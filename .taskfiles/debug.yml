@@ -2,6 +2,12 @@
 version: "3"
 
 tasks:
+  finalizers:
+    vars:
+      namespace: "{{.namespace}}"
+    cmds:
+      - kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n {{.namespace}}
+
   network:
     desc: Create a netshoot container for debugging
     cmds:
