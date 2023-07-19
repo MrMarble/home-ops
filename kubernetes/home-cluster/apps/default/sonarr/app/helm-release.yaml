@@ -69,7 +69,7 @@ spec:
           gethomepage.dev/group: "Media Automation"
           gethomepage.dev/icon: "sonarr"
           gethomepage.dev/widget.type: "sonarr"
-          gethomepage.dev/widget.url: "http://sonarr.media-automation.svc.cluster.local"
+          gethomepage.dev/widget.url: "http://sonarr.default.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_SONARR_APIKEY}"
         hosts:
           - host: &host "sonarr.${SECRET_DOMAIN}"
