@@ -98,7 +98,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "192.168.1.11"
+        server: "192.168.1.25"
         path: /mnt/Data/Media
         mountPath: /media
     resources:
