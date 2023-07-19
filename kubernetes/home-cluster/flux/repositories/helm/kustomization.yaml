@@ -11,3 +11,4 @@ resources:
   - stakater.yaml
   - external-dns.yaml
   - rook-ceph.yaml
+  - jameswynn.yaml
