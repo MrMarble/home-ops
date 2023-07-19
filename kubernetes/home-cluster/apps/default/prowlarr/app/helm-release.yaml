@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.7.1.3671@sha256:447719b7a3815509b96fbecd32325feaf7d891ff4c28fbf9eeb1342848fca7a5
+      tag: 1.7.3.3741@sha256:c90306996f3617c65e1ac1fdb61527ce5ede4f8deb53c3564354de8cf4f3e79b
     env:
       TZ: Europe/Madrid
       PROWLARR__PORT: &port 80
