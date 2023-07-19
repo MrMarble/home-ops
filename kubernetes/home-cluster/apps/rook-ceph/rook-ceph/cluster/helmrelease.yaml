@@ -39,6 +39,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    mon:
+      count: 2
+      allowMultiplePerNode: false
     toolbox:
       enabled: false
     monitoring:
