@@ -63,13 +63,13 @@ spec:
             cpu: "125m"
             memory: "549M"
           limits:
-            memory: "2G"
+            memory: "1500M"
         mon:
           requests:
             cpu: "49m"
             memory: "477M"
           limits:
-            memory: "2G"
+            memory: "1500M"
         osd:
           requests:
             cpu: "442m"
