@@ -69,7 +69,7 @@ spec:
             cpu: "49m"
             memory: "477M"
           limits:
-            memory: "1059M"
+            memory: "1500M"
         osd:
           requests:
             cpu: "442m"
