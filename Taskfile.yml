@@ -19,7 +19,9 @@ includes:
   kubectl: .taskfiles/kubectl.yml
   cluster: .taskfiles/cluster.yml
   debug: .taskfiles/debug.yml
-
+  volsync:
+    taskfile: ".taskfiles/volsync"
+    dir: .taskfiles/volsync
 tasks:
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
@@ -35,20 +37,20 @@ tasks:
   namespace:
     desc: Create namespace
     vars:
-      namespace: '{{.MY_VAR | default "default"}}'
+      namespace: '{{.namespace | default "default"}}'
     cmds:
-      - mkdir -p ./kubernetes/home-cluster/apps/{{.NAMESPACE}}
+      - mkdir -p ./kubernetes/home-cluster/apps/{{.namespace}}
       - |
-        cat << EOF >> ./kubernetes/home-cluster/apps/{{.NAMESPACE}}/namespace.yaml
+        cat << EOF >> ./kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
         apiVersion: v1
         kind: Namespace
         metadata:
-          name: {{.NAMESPACE}}
+          name: {{.namespace}}
           labels:
             kustomize.toolkit.fluxcd.io/prune: disabled
 
         EOF
-      - cd ./kubernetes/home-cluster/apps/{{.NAMESPACE}} && kustomize create --resources ./namespace.yaml
+      - cd ./kubernetes/home-cluster/apps/{{.namespace}} && kustomize create --resources ./namespace.yaml
 
   app:
     desc: Create application
