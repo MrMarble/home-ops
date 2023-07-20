@@ -1,0 +1,94 @@
+{
+  "embedded": false,
+  "robot": {
+    "implementation": "CecotecCongaRobot",
+    "implementationSpecificConfig": {
+      "ip": "127.0.0.1"
+    }
+  },
+  "webserver": {
+    "port": 80,
+    "basicAuth": {
+      "enabled": false,
+      "username": "valetudo",
+      "password": "valetudo"
+    },
+    "blockExternalAccess": true
+  },
+  "mqtt": {
+    "enabled": false,
+    "connection": {
+      "host": "192.168.1.221",
+      "port": 1883,
+      "tls": {
+        "enabled": false,
+        "ca": "",
+        "ignoreCertificateErrors": false
+      },
+      "authentication": {
+        "credentials": {
+          "enabled": true,
+          "username": "valetudo_mqtt",
+          "password": "valetudo_mqtt"
+        },
+        "clientCertificate": {
+          "enabled": false,
+          "certificate": "",
+          "key": ""
+        }
+      }
+    },
+    "identity": {
+      "identifier": "conga-3490"
+    },
+    "interfaces": {
+      "homie": {
+        "enabled": false,
+        "addICBINVMapProperty": false,
+        "cleanAttributesOnShutdown": false
+      },
+      "homeassistant": {
+        "enabled": true,
+        "cleanAutoconfOnShutdown": false
+      }
+    },
+    "customizations": {
+      "topicPrefix": "valetudo",
+      "provideMapData": true
+    },
+    "optionalExposedCapabilities": []
+  },
+  "ntpClient": {
+    "enabled": true,
+    "server": "pool.ntp.org",
+    "port": 123,
+    "interval": 28800000,
+    "timeout": 10000
+  },
+  "timers": {},
+  "logLevel": "info",
+  "debug": {
+    "debugHassAnchors": false,
+    "storeRawFDSUploads": false,
+    "systemStatInterval": false,
+    "storeRawUploadedMaps": false
+  },
+  "networkAdvertisement": {
+    "enabled": true
+  },
+  "updater": {
+    "enabled": false,
+    "updateProvider": {
+      "type": "github",
+      "implementationSpecificConfig": {}
+    }
+  },
+  "oobe": {
+    "welcomeDialogDismissed": true
+  },
+  "valetudo": {
+    "customizations": {
+      "friendlyName": ""
+    }
+  }
+}
