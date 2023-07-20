@@ -9,3 +9,4 @@ resources:
   - ./descheduler/ks.yaml
   - ./priorityclass.yaml
   - ./snapshot-controller/ks.yaml
+  - ./node-feature-discovery/ks.yaml

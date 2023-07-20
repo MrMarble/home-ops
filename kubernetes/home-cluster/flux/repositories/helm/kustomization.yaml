@@ -14,3 +14,4 @@ resources:
   - jameswynn.yaml
   - backube.yaml
   - piraeus.yaml
+  - kubernetes-sigs-nfd.yaml
