@@ -42,9 +42,7 @@ spec:
         ports:
           http:
             enabled: true
-            port: 8080
-            targetPort: 8080
-            protocol: HTTP
+            port: 80
     ingress:
       main:
         enabled: true
