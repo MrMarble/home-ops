@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-ingel-device-plugin
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/kube-system/ingel-device-plugin/app
+  path: ./kubernetes/home-cluster/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
     kind: GitRepository
