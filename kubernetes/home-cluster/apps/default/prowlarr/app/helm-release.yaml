@@ -25,6 +25,10 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
       tag: 1.7.3.3741@sha256:c90306996f3617c65e1ac1fdb61527ce5ede4f8deb53c3564354de8cf4f3e79b
