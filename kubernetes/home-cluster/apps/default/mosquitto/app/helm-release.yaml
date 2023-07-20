@@ -1,0 +1,93 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app mosquitto
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+
+  upgrade:
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: eclipse-mosquitto
+      tag: 2.0.15
+
+    initContainers:
+      copy-config:
+        image: eclipse-mosquitto:2.0.15
+        command:
+          - "/bin/sh"
+          - -c
+        args:
+          - cp /data/mosquitto_secrets/* /data/external_config/ && mosquitto_passwd -U /data/external_config/mosquitto_pwd
+        volumeMounts:
+          - name: mosquitto-secrets
+            mountPath: /data/mosquitto_secrets
+          - name: external-config
+            mountPath: /data/external_config
+
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.10
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            enabled: false
+          mqtt:
+            enabled: true
+            port: 1883
+    volumeClaimTemplates:
+      - name: data
+        mountPath: /mosquitto/data
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
+    persistence:
+      mosquitto-config:
+        enabled: true
+        type: configMap
+        name: mosquitto-config
+        mountPath: /mosquitto/config/mosquitto.conf
+        subPath: mosquitto.conf
+      mosquitto-secrets:
+        enabled: true
+        type: secret
+        name: mosquitto-secrets
+        mountPath: "-"
+      external-config:
+        enabled: true
+        type: emptyDir
+        mountPath: /mosquitto/external_config
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 124M
