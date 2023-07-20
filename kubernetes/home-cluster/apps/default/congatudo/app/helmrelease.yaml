@@ -65,7 +65,6 @@ spec:
         type: configMap
         name: congatudo-config
         mountPath: /etc/valetudo/config.json
-        subPath: mosquitto.conf
     resources:
       requests:
         cpu: 100m
