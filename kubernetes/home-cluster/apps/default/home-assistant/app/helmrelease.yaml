@@ -52,6 +52,7 @@ spec:
         ingressClassName: nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
+          gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Home Assistant"
           gethomepage.dev/group: "Collaboration"
           gethomepage.dev/icon: "home-assistant"

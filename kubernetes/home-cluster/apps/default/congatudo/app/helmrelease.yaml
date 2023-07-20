@@ -1,0 +1,67 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app congatudo
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      type: statefulset
+    image:
+      repository: ghcr.io/congatudo/congatudo
+      tag: alpine-amd64-2023.05@sha256:1a8eedc4f575fc702ded8d114ec84137f09a2075fbe7bcdca2a7dc126945d5e7
+    env:
+      TZ: Europe/Madrid
+    service:
+      main:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.100
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            enabled: true
+            port: 8080
+            targetPort: 8080
+            protocol: HTTP
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Congatudo"
+          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/icon: "valetudo"
+        hosts:
+          - host: &host "congatudo.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        memory: 450Mi
