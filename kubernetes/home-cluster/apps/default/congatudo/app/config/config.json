@@ -1,92 +1,92 @@
 {
   "embedded": false,
   "robot": {
-      "implementation": "CecotecCongaRobot",
-      "implementationSpecificConfig": {
-          "ip": "127.0.0.1"
-      }
+    "implementation": "CecotecCongaRobot",
+    "implementationSpecificConfig": {
+      "ip": "127.0.0.1"
+    }
   },
   "webserver": {
-      "port": 80,
-      "basicAuth": {
-          "enabled": false,
-          "username": "valetudo",
-          "password": "valetudo"
-      },
-      "blockExternalAccess": true
+    "port": 80,
+    "basicAuth": {
+      "enabled": false,
+      "username": "valetudo",
+      "password": "valetudo"
+    },
+    "blockExternalAccess": true
   },
   "mqtt": {
-      "enabled": true,
-      "connection": {
-          "host": "192.168.10.100",
-          "port": 1883,
-          "tls": {
-              "enabled": false,
-              "ca": "",
-              "ignoreCertificateErrors": false
-          },
-          "authentication": {
-              "credentials": {
-                  "enabled": true,
-                  "username": "congatudo_mqtt",
-                  "password": "congatudo_mqtt"
-              },
-              "clientCertificate": {
-                  "enabled": false,
-                  "certificate": "",
-                  "key": ""
-              }
-          }
+    "enabled": true,
+    "connection": {
+      "host": "192.168.10.100",
+      "port": 1883,
+      "tls": {
+        "enabled": false,
+        "ca": "",
+        "ignoreCertificateErrors": false
       },
-      "identity": {
-          "identifier": "conga-3490"
+      "authentication": {
+        "credentials": {
+          "enabled": true,
+          "username": "congatudo_mqtt",
+          "password": "congatudo_mqtt"
+        },
+        "clientCertificate": {
+          "enabled": false,
+          "certificate": "",
+          "key": ""
+        }
+      }
+    },
+    "identity": {
+      "identifier": "conga-3490"
+    },
+    "interfaces": {
+      "homie": {
+        "enabled": false,
+        "addICBINVMapProperty": false,
+        "cleanAttributesOnShutdown": false
       },
-      "interfaces": {
-          "homie": {
-              "enabled": false,
-              "addICBINVMapProperty": false,
-              "cleanAttributesOnShutdown": false
-          },
-          "homeassistant": {
-              "enabled": true,
-              "cleanAutoconfOnShutdown": false
-          }
-      },
-      "customizations": {
-          "topicPrefix": "congatudo",
-          "provideMapData": true
-      },
-      "optionalExposedCapabilities": []
+      "homeassistant": {
+        "enabled": true,
+        "cleanAutoconfOnShutdown": false
+      }
+    },
+    "customizations": {
+      "topicPrefix": "congatudo",
+      "provideMapData": true
+    },
+    "optionalExposedCapabilities": []
   },
   "ntpClient": {
-      "enabled": true,
-      "server": "pool.ntp.org",
-      "port": 123,
-      "interval": 28800000,
-      "timeout": 10000
+    "enabled": true,
+    "server": "pool.ntp.org",
+    "port": 123,
+    "interval": 28800000,
+    "timeout": 10000
   },
   "timers": {},
   "logLevel": "info",
   "debug": {
-      "debugHassAnchors": false,
-      "storeRawFDSUploads": false
+    "debugHassAnchors": false,
+    "storeRawFDSUploads": false
   },
   "networkAdvertisement": {
-      "enabled": true
+    "enabled": true
   },
   "updater": {
-      "enabled": true,
-      "updateProvider": {
-          "type": "github",
-          "implementationSpecificConfig": {}
-      }
+    "enabled": true,
+    "updateProvider": {
+      "type": "github",
+      "implementationSpecificConfig": {}
+    }
   },
   "oobe": {
-      "welcomeDialogDismissed": false
+    "welcomeDialogDismissed": false
   },
   "valetudo": {
-      "customizations": {
-          "friendlyName": ""
-      }
+    "customizations": {
+      "friendlyName": ""
+    }
   }
 }
