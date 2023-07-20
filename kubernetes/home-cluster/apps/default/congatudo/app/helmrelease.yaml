@@ -65,6 +65,7 @@ spec:
         type: configMap
         name: congatudo-config
         mountPath: /etc/valetudo/config.json
+        subPath: config.json
     resources:
       requests:
         cpu: 100m

@@ -7,6 +7,6 @@ configMapGenerator:
   - name: congatudo-config
     namespace: default
     files:
-      - config/valetudo.json
+      - config/config.json
 generatorOptions:
   disableNameSuffixHash: true
