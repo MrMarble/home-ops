@@ -21,6 +21,9 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
@@ -63,10 +66,12 @@ spec:
         ports:
           http:
             port: *port
-    persistence:
-      config:
-        enabled: true
-        type: emptyDir
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
     resources:
       requests:
         memory: 411M

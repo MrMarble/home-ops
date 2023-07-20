@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: default
 resources:
-  - helm-release.yaml
-  - ./backups
+  - secrets.sops.yaml
+  - replicationsource.yaml
