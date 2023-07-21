@@ -8,7 +8,7 @@ spec:
   rules:
     - name: electrolama.zigbee
       labels:
-        aeotec.feature.node.kubernetes.io/zigbee: "true"
+        electrolama.feature.node.kubernetes.io/zigbee: "true"
       matchFeatures:
         - feature: usb.device
           matchExpressions:
