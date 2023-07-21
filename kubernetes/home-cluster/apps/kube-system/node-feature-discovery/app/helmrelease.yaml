@@ -21,13 +21,6 @@ spec:
     crds: CreateReplace
   values:
     master:
-      config:
-        core:
-          sources: ["custom", "pci", "usb"]
-        sources:
-          usb:
-            deviceClassWhitelist: ["02", "03", "0e", "ef", "fe", "ff"]
-            deviceLabelFields: ["class", "vendor", "device"]
       resources:
         requests:
           cpu: 21m
@@ -38,11 +31,14 @@ spec:
     worker:
       config:
         core:
-          sources: ["custom", "pci", "usb"]
+          labelSources: ["custom", "pci", "usb"]
         sources:
           usb:
             deviceClassWhitelist: ["02", "03", "0e", "ef", "fe", "ff"]
             deviceLabelFields: ["class", "vendor", "device"]
+          pci:
+            deviceLabelFields: ["class", "vendor", "device"]
+            deviceClassWhitelist: ["02", "03", "0e", "ff"]
       resources:
         requests:
           cpu: 5m
