@@ -10,4 +10,4 @@ resources:
   - ./priorityclass.yaml
   - ./snapshot-controller/ks.yaml
   - ./node-feature-discovery/ks.yaml
-  - ./ingel-device-plugin/ks.yaml
+  - ./intel-device-plugin/ks.yaml
