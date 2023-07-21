@@ -71,17 +71,45 @@ spec:
         enabled: false
       startup:
         enabled: false
+    hostNetwork: true
+    securityContext:
+      privileged: true
+      # TODO: change to 568 once D-Bus is supported
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
+    dnsPolicy: ClusterFirstWithHostNet
     volumeClaimTemplates:
       - name: config
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 5Gi
         storageClass: ceph-block
+    persistence:
+      dbus:
+        enabled: true
+        type: custom
+        mountPath: /run/dbus
+        readOnly: true
+        volumeSpec:
+          hostPath:
+            type: Directory
+            path: /run/dbus
+      zha:
+        enabled: true
+        type: custom
+        mountPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+        readOnly: true
+        volumeSpec:
+          hostPath:
+            type: Directory
+            path: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+    nodeSelector:
+      electrolama.feature.node.kubernetes.io/zigbee: true
     resources:
       requests:
         cpu: 10m
