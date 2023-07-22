@@ -59,13 +59,6 @@ spec:
         ports:
           http:
             port: *port
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
     volumeClaimTemplates:
       - name: config
         mountPath: /app/config
