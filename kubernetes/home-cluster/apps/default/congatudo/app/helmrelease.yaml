@@ -44,18 +44,18 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.10.100
         externalTrafficPolicy: Local
         ports:
-          http:
-            enabled: true
-            port: 80
           conga:
             enabled: true
             port: 4010
+            targetPort: 4010
           conga-2:
             enabled: true
             port: 4030
+            targetPort: 4030
           conga-3:
             enabled: true
             port: 4050
+            targetPort: 4050
     ingress:
       main:
         enabled: true
