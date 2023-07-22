@@ -72,10 +72,10 @@
     "storeRawFDSUploads": false
   },
   "networkAdvertisement": {
-    "enabled": true
+    "enabled": false
   },
   "updater": {
-    "enabled": true,
+    "enabled": false,
     "updateProvider": {
       "type": "github",
       "implementationSpecificConfig": {}
