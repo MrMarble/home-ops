@@ -16,7 +16,7 @@
     "blockExternalAccess": true
   },
   "mqtt": {
-    "enabled": true,
+    "enabled": false,
     "connection": {
       "host": "192.168.10.10",
       "port": 1883,
