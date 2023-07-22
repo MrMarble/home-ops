@@ -47,6 +47,9 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            sub_filter '</body>' '<script plugin="Jellyscrub" version="1.1.1.0" src="/Trickplay/ClientScript"></script></body>';
+            sub_filter_once on;
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Jellyfin"
           gethomepage.dev/group: "Media Management"
