@@ -34,10 +34,6 @@ spec:
       VALETUDO_CONFIG_PATH: /congatudo/external_config/config.json
     service:
       main:
-        ports:
-          http:
-            port: 80
-      cloud:
         enabled: true
         type: LoadBalancer
         annotations:
@@ -47,15 +43,12 @@ spec:
           conga:
             enabled: true
             port: 4010
-            targetPort: 4010
           conga-2:
             enabled: true
             port: 4030
-            targetPort: 4030
           conga-3:
             enabled: true
             port: 4050
-            targetPort: 4050
     ingress:
       main:
         enabled: true
