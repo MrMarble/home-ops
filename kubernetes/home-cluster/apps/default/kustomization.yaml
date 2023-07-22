@@ -16,3 +16,4 @@ resources:
   - ./mosquitto/ks.yaml
   - ./esphome/ks.yaml
   - ./jellyfin/ks.yaml
+  - ./recyclarr/ks.yaml
