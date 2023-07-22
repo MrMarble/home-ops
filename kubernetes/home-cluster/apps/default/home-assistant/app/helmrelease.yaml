@@ -78,6 +78,7 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups:
         - 100
+    hostNetwork: true
     volumeClaimTemplates:
       - name: config
         mountPath: /config
