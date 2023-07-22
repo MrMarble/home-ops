@@ -14,3 +14,4 @@ resources:
   - ./radarr/ks.yaml
   - ./congatudo/ks.yaml
   - ./mosquitto/ks.yaml
+  - ./esphome/ks.yaml
