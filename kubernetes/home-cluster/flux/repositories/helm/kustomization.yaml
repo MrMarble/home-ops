@@ -16,3 +16,4 @@ resources:
   - piraeus.yaml
   - kubernetes-sigs-nfd.yaml
   - intel.yaml
+  - kubernetes-sigs-metrics-server.yaml
