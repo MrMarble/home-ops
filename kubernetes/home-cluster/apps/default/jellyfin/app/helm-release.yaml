@@ -48,6 +48,9 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
           nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/jellyfin/nord.css"></head>';
+            sub_filter_once on;
             sub_filter '</head>' '<script defer plugin="Jellyscrub" version="1.1.1.0" src="/Trickplay/ClientScript"></script></head>';
             sub_filter_once on;
           gethomepage.dev/enabled: "true"
