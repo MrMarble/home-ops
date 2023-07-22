@@ -66,7 +66,7 @@
     "timeout": 10000
   },
   "timers": {},
-  "logLevel": "info",
+  "logLevel": "debug",
   "debug": {
     "debugHassAnchors": false,
     "storeRawFDSUploads": false
@@ -86,7 +86,7 @@
   },
   "valetudo": {
     "customizations": {
-      "friendlyName": ""
+      "friendlyName": "Congatudo"
     }
   }
 }
