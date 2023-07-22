@@ -71,14 +71,16 @@ spec:
         enabled: false
       startup:
         enabled: false
+    securityContext:
+      # Privileged securityContext may be required if USB devices are accessed directly through the host machine
+      privileged: true
     podSecurityContext:
       runAsUser: 0
       runAsGroup: 0
       fsGroup: 0
-      fsGroupChangePolicy: OnRootMismatch
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
-    hostNetwork: true
     volumeClaimTemplates:
       - name: config
         mountPath: /config
