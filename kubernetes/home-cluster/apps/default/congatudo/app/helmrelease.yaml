@@ -36,7 +36,7 @@ spec:
     env:
       TZ: Europe/Madrid
       VALETUDO_CONFIG_PATH: /congatudo/external_config/config.json
-      DEBGUG: "*"
+      DEBUG: "*"
     service:
       main:
         enabled: true
