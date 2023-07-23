@@ -17,3 +17,4 @@ resources:
   - kubernetes-sigs-nfd.yaml
   - intel.yaml
   - kubernetes-sigs-metrics-server.yaml
+  - kyverno.yaml
