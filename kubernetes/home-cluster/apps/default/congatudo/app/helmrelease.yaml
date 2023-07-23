@@ -36,7 +36,6 @@ spec:
     env:
       TZ: Europe/Madrid
       VALETUDO_CONFIG_PATH: /congatudo/external_config/config.json
-      DEBUG: "agnoc:*"
     service:
       main:
         enabled: true
