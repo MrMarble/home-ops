@@ -30,6 +30,10 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: NextCloud
+    gethomepage.dev/group: Collaboration
+    gethomepage.dev/icon: nextcloud.png
 spec:
   ingressClassName: nginx
   tls:
