@@ -32,7 +32,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: docker.io/mrmarble/congatudo
-      tag: iter-4
+      tag: iter-5
     env:
       TZ: Europe/Madrid
       VALETUDO_CONFIG_PATH: /congatudo/external_config/config.json
