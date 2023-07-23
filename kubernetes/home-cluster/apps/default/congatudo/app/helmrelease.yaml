@@ -31,8 +31,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/congatudo/congatudo
-      tag: alpine-amd64-2023.05@sha256:1a8eedc4f575fc702ded8d114ec84137f09a2075fbe7bcdca2a7dc126945d5e7
+      repository: docker.io/mrmarble/congatudo
+      tag: latest
     env:
       TZ: Europe/Madrid
       VALETUDO_CONFIG_PATH: /congatudo/external_config/config.json
