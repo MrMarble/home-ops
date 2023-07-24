@@ -52,8 +52,11 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Jellyseerr"
-          gethomepage.dev/group: "Media Management"
+          gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "jellyseerr"
+          gethomepage.dev/widget.type: "jellyseerr"
+          gethomepage.dev/widget.url: "http://jellyseerr.default.svc.cluster.local"
+          gethomepage.dev/widget.key: ${SECRET_JELLYSEERR_APIKEY}
     service:
       main:
         ports:

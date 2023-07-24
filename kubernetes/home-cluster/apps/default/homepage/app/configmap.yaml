@@ -15,7 +15,7 @@ data:
         - TrueNAS:
             icon: truenas
             href: http://truenas.${SECRET_DOMAIN}
-    - Networking:
+    - Collaboration:
         - Pi-hole:
             icon: pi-hole
             href: http://pi.hole/admin/
@@ -25,9 +25,6 @@ data:
         provider: [google]
         focus: false
         target: _blank
-    - greeting:
-        text_size: xl
-        text: "Howdy!"
     - kubernetes:
         cluster:
           show: true
@@ -50,27 +47,21 @@ data:
     title: Dashboard
     favicon: https://kubernetes.io/images/favicon.png
     theme: dark
-    color: stone
+    color: slate
     target: _self
     layout:
-      Media Management:
+      Media:
         style: row
         columns: 4
+      Downloaders:
+        style: column
+        columns: 2
       Collaboration:
         style: row
-        columns: 2
+        columns: 3
       Observability:
         style: column
         columns: 1
-      Media Automation:
-        style: column
-        columns: 1
-      Security:
-        style: row
-        columns: 2
-      Downloaders:
-        style: row
-        columns: 2
       Storage:
         style: row
         columns: 2

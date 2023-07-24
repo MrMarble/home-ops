@@ -50,7 +50,7 @@ spec:
             sub_filter_once on;
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Radarr"
-          gethomepage.dev/group: "Media Automation"
+          gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "radarr"
           gethomepage.dev/widget.type: "radarr"
           gethomepage.dev/widget.url: "http://radarr.default.svc.cluster.local"

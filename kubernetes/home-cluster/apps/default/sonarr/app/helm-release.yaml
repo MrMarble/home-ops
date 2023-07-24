@@ -66,7 +66,7 @@ spec:
             sub_filter_once on;
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Sonarr"
-          gethomepage.dev/group: "Media Automation"
+          gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "sonarr"
           gethomepage.dev/widget.type: "sonarr"
           gethomepage.dev/widget.url: "http://sonarr.default.svc.cluster.local"

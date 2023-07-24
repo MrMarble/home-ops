@@ -54,8 +54,11 @@ spec:
             sub_filter_once on;
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Jellyfin"
-          gethomepage.dev/group: "Media Management"
+          gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "jellyfin"
+          gethomepage.dev/widget.type: "jellyfin"
+          gethomepage.dev/widget.url: "http://jellyfin.default.svc.cluster.local:8096"
+          gethomepage.dev/widget.key: ${SECRET_JELLYFIN_APIKEY}
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
