@@ -11,8 +11,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 <div align="center">
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=&color=blue)
-[![k3s](https://img.shields.io/badge/k8s-v1.27.4-success.svg?style=for-the-badge&logo=kubernetes&label=&color=blue&logoColor=white)](https://kubernetes.io/)
-
+[![k8s](https://img.shields.io/badge/k8s-v1.27.4-success.svg?style=for-the-badge&logo=kubernetes&label=&color=blue&logoColor=white)](https://kubernetes.io/)
 </div>
 <div align="center">
 <br/>
@@ -20,7 +19,6 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877647-43f7de17c4661915fdcc503c?label=Home%20Internet&logo=googlehome&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877616-990da6b85bc8e4fc22832384?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
-[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793878305-d450c4e357daeea77a8eb9f2?label=grafana&logo=grafana&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
 
 <br/>
 </div>
