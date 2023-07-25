@@ -1,6 +1,6 @@
 # Kubernetes
 
-My cluster is Ubuntu provisioned on bare-metal using Ansible.
+My cluster is Ubuntu provisioned on bare-metal using Talos.
 
 This is a semi hyper-converged cluster, workloads and block storage are sharing the same available resources on my nodes while I have a separate server for (NFS) file storage.
 
@@ -12,4 +12,4 @@ This is a semi hyper-converged cluster, workloads and block storage are sharing 
 - [external-dns](https://github.com/kubernetes-sigs/external-dns): Automatically manages DNS records from my cluster in a cloud DNS provider.
 - [longhorn](https://github.com/longhorn/longhorn): Distributed storage for persistent storage
 - [traefik](https://github.com/traefik/traefik): Ingress controller to expose HTTP traffic to pods over DNS
-- [sops](https://toolkit.fluxcd.io/guides/mozilla-sops/): Managed secrets for Kubernetes, Ansible and Terraform which are commited to Git.
+- [sops](https://toolkit.fluxcd.io/guides/mozilla-sops/): Managed secrets for Kubernetes, Talos and Terraform which are commited to Git.

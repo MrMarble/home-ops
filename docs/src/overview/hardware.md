@@ -1,13 +1,13 @@
 # 🔧 Hardware
 
-| Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System | Purpose           |
-|--------------------------|-------|--------------|----------------|-------|------------------|-------------------|
-| MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.10    | Router            |
-| HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | Talos            | k3s Master/Worker |
-| HP 260 G3 DM             | 1     | 256GB SSD    | 540GB NvmE     | 16GB  | Talos            | k3s Worker        |
-| Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 1GB   | Raspbian         | Pi-hole           |
-| Pi Zero 2 W              | 1     | 32GB SDCard  | N/A            | 512MB | Raspbian         | Pi-hole backup    |
-| NAS                      | 1     | 120GB SSD    | 8TB ZRAID0     | 16GB  | TrueNas Core     | NFS/BACKUP        |
+| Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System                | Purpose           |
+|--------------------------|-------|--------------|----------------|-------|---------------------------------|-------------------|
+| MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.10                   | Router            |
+| HP ProCurve 1810G-24     | 1     | --           | --             | 512MB | --                              | Switch            |
+| HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | [Talos](https://talos.dev) 1.14 | k8s Master/Worker |
+| HP 260 G3 DM             | 1     | 256GB SSD    | 540GB NvmE     | 16GB  | [Talos](https://talos.dev) 1.14 | k8s Worker        |
+| Raspberry Pi 3B          | 1     | 32GB SDCard  | N/A            | 1GB   | Raspbian                        | Pi-hole           |
+| NAS                      | 1     | 120GB SSD    | 8TB ZRAID0     | 16GB  | TrueNas Core                    | NFS/BACKUP        |
 
 ---
 
