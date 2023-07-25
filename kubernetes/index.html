@@ -146,7 +146,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
-<p>My cluster is Ubuntu provisioned on bare-metal using Ansible.</p>
+<p>My cluster is Ubuntu provisioned on bare-metal using Talos.</p>
 <p>This is a semi hyper-converged cluster, workloads and block storage are sharing the same available resources on my nodes while I have a separate server for (NFS) file storage.</p>
 <h2 id="core-components"><a class="header" href="#core-components">Core Components</a></h2>
 <ul>
@@ -156,7 +156,7 @@
 <li><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>: Automatically manages DNS records from my cluster in a cloud DNS provider.</li>
 <li><a href="https://github.com/longhorn/longhorn">longhorn</a>: Distributed storage for persistent storage</li>
 <li><a href="https://github.com/traefik/traefik">traefik</a>: Ingress controller to expose HTTP traffic to pods over DNS</li>
-<li><a href="https://toolkit.fluxcd.io/guides/mozilla-sops/">sops</a>: Managed secrets for Kubernetes, Ansible and Terraform which are commited to Git.</li>
+<li><a href="https://toolkit.fluxcd.io/guides/mozilla-sops/">sops</a>: Managed secrets for Kubernetes, Talos and Terraform which are commited to Git.</li>
 </ul>
 
                     </main>

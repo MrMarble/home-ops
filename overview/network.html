@@ -148,18 +148,18 @@
                         <h1 id="network"><a class="header" href="#network">Network</a></h1>
 <p>My DNS setup may seem a bit complicated at first, but it allows for completely automatic management of DNS entries for Services and Ingress objects.</p>
 <h2 id="components"><a class="header" href="#components">Components</a></h2>
-<h3 id="traefik"><a class="header" href="#traefik">Traefik</a></h3>
-<p><a href="https://github.com/traefik/traefik">Traefik</a> is my cluster Ingress controller. It is set to a LoadbalancerIP provided by <a href="https://github.com/metallb/metallb">Metallb</a> so I can access the services directly</p>
+<h3 id="nginx"><a class="header" href="#nginx">NGINX</a></h3>
+<p><a href="https://github.com/kubernetes/ingress-nginx/">NGINX</a> is my cluster Ingress controller. It is set to a LoadbalancerIP provided by <a href="https://github.com/cilium/cilium">Cilium</a> so I can access the services directly</p>
 <h3 id="external-dns"><a class="header" href="#external-dns">external-dns</a></h3>
 <p><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a> runs in my cluster and is connected to my domain DNS server. It automatically manages records for all my Ingresses taht have the <code>external-dns/is-public: true</code> annotation set.</p>
-<h3 id="dynamic-dns"><a class="header" href="#dynamic-dns">Dynamic DNS</a></h3>
-<p>In order to keep my WAN IP address up to date on my DNS provier I have deployed a <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps/networking/cloudflare-ddns/cron-job.yaml">CronJob</a> in my cluster that periodically checks and updates those records.</p>
+<h3 id="cloudflared"><a class="header" href="#cloudflared">Cloudflared</a></h3>
+<p>In order to expose my services to the outside world, I have a Cloudflare tunnel directly to my cluster using <a href="https://github.com/cloudflare/cloudflared">Cloudflared</a>, that way I don't need to open ports on my router</p>
 <h3 id="how-it-all-works-together"><a class="header" href="#how-it-all-works-together">How it all works together</a></h3>
-<p>When I am connected to my home network, my DNS server is set to <a href="https://github.com/pi-hole/pi-hole">pi-hole</a> that is running on my network. I have configured it forward all requests pointing to my domain to the <a href="https://github.com/metallb/metallb">Metallb</a> address providing internal DNS resolution.</p>
+<p>When I am connected to my home network, my DNS server is set to <a href="https://github.com/pi-hole/pi-hole">pi-hole</a> that is running on my network. I have configured it forward all requests pointing to my domain to the <a href="https://github.com/cilium/cilium">Cilium</a> address providing internal DNS resolution.</p>
 <pre><code># /etc/dnsmasq.d/99-k8s-gateway-forward.conf
-server=/${SECRET_DOMAIN}/${METALLB_K8S_GATEWAY_ADDR}
+server=/${SECRET_DOMAIN}/${CILIUM_K8S_GATEWAY_ADDR}
 </code></pre>
-<p>When I am outside my home network, and request an address for one of my domains, it will query my domains DNS server and will respond with the DNS record that was set by <a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>.</p>
+<p>When I am outside my home network, and request an address for one of my domains, it will query my domains DNS server and will respond with the DNS record that was set by <a href="https://github.com/cloudflare/cloudflared">cloudflared</a>.</p>
 
                     </main>
 

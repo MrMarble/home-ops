@@ -182,10 +182,10 @@ They may or may not work for you.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-hardware"><a class="header" href="#-hardware">🔧 Hardware</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>Device</th><th>Count</th><th>OS Disk Size</th><th>Data Disk Size</th><th>RAM</th><th>Operating System</th><th>Purpose</th></tr></thead><tbody>
 <tr><td>MikroTik RB5009UG+S+IN</td><td>1</td><td>--</td><td>1GB NAND</td><td>1GB</td><td>RouterOS 7.10</td><td>Router</td></tr>
-<tr><td>HP EliteDesk 800 G2 mini</td><td>1</td><td>240GB NVMe</td><td>256GB SSD</td><td>16GB</td><td>Talos</td><td>k3s Master/Worker</td></tr>
-<tr><td>HP 260 G3 DM</td><td>1</td><td>256GB SSD</td><td>540GB NvmE</td><td>16GB</td><td>Talos</td><td>k3s Worker</td></tr>
+<tr><td>HP ProCurve 1810G-24</td><td>1</td><td>--</td><td>--</td><td>512MB</td><td>--</td><td>Switch</td></tr>
+<tr><td>HP EliteDesk 800 G2 mini</td><td>1</td><td>240GB NVMe</td><td>256GB SSD</td><td>16GB</td><td><a href="https://talos.dev">Talos</a> 1.14</td><td>k8s Master/Worker</td></tr>
+<tr><td>HP 260 G3 DM</td><td>1</td><td>256GB SSD</td><td>540GB NvmE</td><td>16GB</td><td><a href="https://talos.dev">Talos</a> 1.14</td><td>k8s Worker</td></tr>
 <tr><td>Raspberry Pi 3B</td><td>1</td><td>32GB SDCard</td><td>N/A</td><td>1GB</td><td>Raspbian</td><td>Pi-hole</td></tr>
-<tr><td>Pi Zero 2 W</td><td>1</td><td>32GB SDCard</td><td>N/A</td><td>512MB</td><td>Raspbian</td><td>Pi-hole backup</td></tr>
 <tr><td>NAS</td><td>1</td><td>120GB SSD</td><td>8TB ZRAID0</td><td>16GB</td><td>TrueNas Core</td><td>NFS/BACKUP</td></tr>
 </tbody></table>
 </div>
@@ -207,18 +207,18 @@ They may or may not work for you.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
 <p>My DNS setup may seem a bit complicated at first, but it allows for completely automatic management of DNS entries for Services and Ingress objects.</p>
 <h2 id="components"><a class="header" href="#components">Components</a></h2>
-<h3 id="traefik"><a class="header" href="#traefik">Traefik</a></h3>
-<p><a href="https://github.com/traefik/traefik">Traefik</a> is my cluster Ingress controller. It is set to a LoadbalancerIP provided by <a href="https://github.com/metallb/metallb">Metallb</a> so I can access the services directly</p>
+<h3 id="nginx"><a class="header" href="#nginx">NGINX</a></h3>
+<p><a href="https://github.com/kubernetes/ingress-nginx/">NGINX</a> is my cluster Ingress controller. It is set to a LoadbalancerIP provided by <a href="https://github.com/cilium/cilium">Cilium</a> so I can access the services directly</p>
 <h3 id="external-dns"><a class="header" href="#external-dns">external-dns</a></h3>
 <p><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a> runs in my cluster and is connected to my domain DNS server. It automatically manages records for all my Ingresses taht have the <code>external-dns/is-public: true</code> annotation set.</p>
-<h3 id="dynamic-dns"><a class="header" href="#dynamic-dns">Dynamic DNS</a></h3>
-<p>In order to keep my WAN IP address up to date on my DNS provier I have deployed a <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/apps/networking/cloudflare-ddns/cron-job.yaml">CronJob</a> in my cluster that periodically checks and updates those records.</p>
+<h3 id="cloudflared"><a class="header" href="#cloudflared">Cloudflared</a></h3>
+<p>In order to expose my services to the outside world, I have a Cloudflare tunnel directly to my cluster using <a href="https://github.com/cloudflare/cloudflared">Cloudflared</a>, that way I don't need to open ports on my router</p>
 <h3 id="how-it-all-works-together"><a class="header" href="#how-it-all-works-together">How it all works together</a></h3>
-<p>When I am connected to my home network, my DNS server is set to <a href="https://github.com/pi-hole/pi-hole">pi-hole</a> that is running on my network. I have configured it forward all requests pointing to my domain to the <a href="https://github.com/metallb/metallb">Metallb</a> address providing internal DNS resolution.</p>
+<p>When I am connected to my home network, my DNS server is set to <a href="https://github.com/pi-hole/pi-hole">pi-hole</a> that is running on my network. I have configured it forward all requests pointing to my domain to the <a href="https://github.com/cilium/cilium">Cilium</a> address providing internal DNS resolution.</p>
 <pre><code># /etc/dnsmasq.d/99-k8s-gateway-forward.conf
-server=/${SECRET_DOMAIN}/${METALLB_K8S_GATEWAY_ADDR}
+server=/${SECRET_DOMAIN}/${CILIUM_K8S_GATEWAY_ADDR}
 </code></pre>
-<p>When I am outside my home network, and request an address for one of my domains, it will query my domains DNS server and will respond with the DNS record that was set by <a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>.</p>
+<p>When I am outside my home network, and request an address for one of my domains, it will query my domains DNS server and will respond with the DNS record that was set by <a href="https://github.com/cloudflare/cloudflared">cloudflared</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-cloud-services"><a class="header" href="#-cloud-services">☁️ Cloud services</a></h1>
 <p>While most of my infrastructure and workloads are selfhosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about two things. (1) Dealing with chicken/egg scenarios and (2) services I critically need whether my cluster is online or not.</p>
 <p>The alternative solution to these two problems would be to host a Kubernetes cluster in the cloud and deploy applications like <a href="https://www.vaultproject.io/">HCVault</a>, <a href="https://github.com/dani-garcia/vaultwarden">Vaultwarden</a>, <a href="https://ntfy.sh/">ntfy</a>, and <a href="https://goauthentik.io/">Authentik</a>. However, maintaining another cluster and monitoring another group of workloads is a lot more time and effort than I am willing to put in.</p>
@@ -230,7 +230,7 @@ server=/${SECRET_DOMAIN}/${METALLB_K8S_GATEWAY_ADDR}
 <tr><td></td><td></td><td>Total: ~$0/m</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
-<p>My cluster is Ubuntu provisioned on bare-metal using Ansible.</p>
+<p>My cluster is Ubuntu provisioned on bare-metal using Talos.</p>
 <p>This is a semi hyper-converged cluster, workloads and block storage are sharing the same available resources on my nodes while I have a separate server for (NFS) file storage.</p>
 <h2 id="core-components"><a class="header" href="#core-components">Core Components</a></h2>
 <ul>
@@ -240,7 +240,7 @@ server=/${SECRET_DOMAIN}/${METALLB_K8S_GATEWAY_ADDR}
 <li><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a>: Automatically manages DNS records from my cluster in a cloud DNS provider.</li>
 <li><a href="https://github.com/longhorn/longhorn">longhorn</a>: Distributed storage for persistent storage</li>
 <li><a href="https://github.com/traefik/traefik">traefik</a>: Ingress controller to expose HTTP traffic to pods over DNS</li>
-<li><a href="https://toolkit.fluxcd.io/guides/mozilla-sops/">sops</a>: Managed secrets for Kubernetes, Ansible and Terraform which are commited to Git.</li>
+<li><a href="https://toolkit.fluxcd.io/guides/mozilla-sops/">sops</a>: Managed secrets for Kubernetes, Talos and Terraform which are commited to Git.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gitops"><a class="header" href="#gitops">GitOps</a></h1>
 <p><a href="https://github.com/fluxcd/flux2">Flux</a> watches my <a href="https://github.com/mrmarble/home-ops/tree/main/cluster/">cluster</a> folder (see <a href="kubernetes/gitops.html#directory-structure">Directory structure</a>) and makes the changes to my cluster based on the YAML manifests.</p>
