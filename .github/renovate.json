@@ -41,11 +41,6 @@
       "kubernetes/.+\\.ya?ml$"
     ]
   },
-  "helmv3": {
-    "fileMatch": [
-      "charts/.+/Chart\\.ya?ml$"
-    ]
-  },
   "kubernetes": {
     "fileMatch": [
       "kubernetes/.+\\.ya?ml$"
