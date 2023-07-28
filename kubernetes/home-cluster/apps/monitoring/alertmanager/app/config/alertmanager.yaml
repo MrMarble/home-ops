@@ -1,0 +1,56 @@
+---
+global:
+  # ResolveTimeout is the default value used by alertmanager if the alert does
+  # not include EndsAt, after this time passes it can declare the alert as resolved if it has not been updated.
+  resolve_timeout: 5m
+receivers:
+  - name: "null"
+  - name: "telegram"
+    telegram_configs:
+      bot_token: ${TELEGRAM_BOT_TOKEN}
+      chat_id: ${TELEGRAM_CHAT_ID}
+      parse_mode: "HTML"
+      message: |-
+        {{- range .Alerts }}
+          {{- if ne .Labels.severity "" }}
+            <b>Severity:</b> <i>{{ .Labels.severity }}</i>
+          {{- else }}
+            <b>Severity:</b> <i>N/A</i>
+          {{- end }}
+          {{- if ne .Annotations.description "" }}
+            <b>Description:</b> <i>{{ .Annotations.description }}</i>
+          {{- else if ne .Annotations.summary "" }}
+            <b>Summary:</b> <i>{{ .Annotations.summary }}</i>
+          {{- else if ne .Annotations.message "" }}
+            <b>Message:</b> <i>{{ .Annotations.message }}</i>
+          {{- else }}
+            <b>Description:</b> <i>N/A</i>
+          {{- end }}
+          {{- if gt (len .Labels.SortedPairs) 0 }}
+            <b>Details:</b>
+            {{- range .Labels.SortedPairs }}
+              • <b>{{ .Name }}:</b> <i>{{ .Value }}</i>
+            {{- end }}
+          {{- end }}
+        {{- end }}
+route:
+  group_by: ["alertname", "job"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 6h
+  receiver: "telegram"
+  routes:
+    - receiver: "null"
+      matchers:
+        - alertname =~ "InfoInhibitor|Watchdog"
+    - receiver: "telegram"
+      matchers:
+        - severity = critical
+      continue: true
+
+inhibit_rules:
+  - source_matchers:
+      - severity = "critical"
+    target_matchers:
+      - severity = "warning"
+    equal: ["alertname", "namespace"]
