@@ -74,7 +74,10 @@ spec:
     prometheus:
       serviceMonitor:
         enabled: true
-
+    dashboards:
+      enabled: true
+      annotations:
+        grafana_folder: Cilium
     operator:
       prometheus:
         serviceMonitor:

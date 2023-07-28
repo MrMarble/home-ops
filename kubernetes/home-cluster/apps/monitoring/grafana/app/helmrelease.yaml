@@ -49,6 +49,50 @@ spec:
             url: http://kube-prometheus-stack-prometheus:9090/
             isDefault: true
 
+    dashboards:
+      default:
+        cloudflared:
+          gnetId: 17457 # https://grafana.com/grafana/dashboards/17457?tab=revisions
+          revision: 6
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+        external-dns:
+          gnetId: 15038 # https://grafana.com/grafana/dashboards/15038?tab=revisions
+          revision: 1
+          datasource: Prometheus
+        cert-manager:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+      ceph:
+        ceph-cluster:
+          gnetId: 2842 # https://grafana.com/grafana/dashboards/2842?tab=revisions
+          revision: 17
+          datasource: Prometheus
+        ceph-osd:
+          gnetId: 5336 # https://grafana.com/grafana/dashboards/5336?tab=revisions
+          revision: 9
+          datasource: Prometheus
+        ceph-pools:
+          gnetId: 5342 # https://grafana.com/grafana/dashboards/5342?tab=revisions
+          revision: 9
+          datasource: Prometheus
+      flux:
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+          datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
+          datasource: Prometheus
+      nginx:
+        nginx:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
+          datasource: Prometheus
+        nginx-request-handling-performance:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
+          datasource: Prometheus
     deploymentStrategy:
       type: Recreate
 
