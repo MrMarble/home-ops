@@ -61,7 +61,7 @@ spec:
       metrics:
         enabled: true
         serviceMonitor:
-          enabled: false
+          enabled: true
 
       extraArgs:
         default-ssl-certificate: "networking/home-dev-tls"

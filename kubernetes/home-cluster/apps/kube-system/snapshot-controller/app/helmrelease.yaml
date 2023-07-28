@@ -32,7 +32,7 @@ spec:
           csi.storage.k8s.io/snapshotter-secret-namespace: rook-ceph
         deletionPolicy: Delete
     serviceMonitor:
-      create: false
+      create: true
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease

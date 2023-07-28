@@ -47,10 +47,10 @@ spec:
   values:
     hubble:
       serviceMonitor:
-        enabled: false
+        enabled: true
 
       dashboards:
-        enabled: false
+        enabled: true
         label: grafana_dashboard
         namespace: monitoring
         labelValue: "1"
@@ -59,7 +59,7 @@ spec:
       relay:
         prometheus:
           serviceMonitor:
-            enabled: false
+            enabled: true
 
       ui:
         ingress:
@@ -73,9 +73,9 @@ spec:
 
     prometheus:
       serviceMonitor:
-        enabled: false
+        enabled: true
 
     operator:
       prometheus:
         serviceMonitor:
-          enabled: false
+          enabled: true
