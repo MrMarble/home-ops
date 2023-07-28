@@ -63,11 +63,13 @@ spec:
         apiVersion: 1
         # list of datasources that should be deleted from the database
         deleteDatasources:
-          - name: Loki
-            orgId: 1
+          - { name: Alertmanager, orgId: 1 }
+          - { name: Loki, orgId: 1 }
+          - { name: Prometheus, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
+            uid: prometheus
             access: proxy
             url: http://kube-prometheus-stack-prometheus:9090/
             isDefault: true
