@@ -19,3 +19,4 @@ resources:
   - kubernetes-sigs-metrics-server.yaml
   - kyverno.yaml
   - prometheus-community.yaml
+  - grafana.yaml

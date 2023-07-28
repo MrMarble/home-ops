@@ -127,6 +127,11 @@ spec:
         enabled: true
         ingressClassName: nginx
         pathType: Prefix
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Prometheus"
+          gethomepage.dev/group: "Observability"
+          gethomepage.dev/icon: "prometheus"
         hosts:
           - &host_prometheus prometheus.${SECRET_DOMAIN}
         tls:

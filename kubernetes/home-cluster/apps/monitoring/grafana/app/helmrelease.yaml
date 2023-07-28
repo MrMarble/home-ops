@@ -1,0 +1,146 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: grafana
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 6.58.6
+  interval: 30m
+  timeout: 20m
+  values:
+    replicas: 1
+
+    admin:
+      existingSecret: grafana-secrets
+
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: default
+            disableDeletion: false
+            editable: true
+            folder: ""
+            options:
+              path: /var/lib/grafana/dashboards/default
+            orgId: 1
+            type: file
+
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        # list of datasources that should be deleted from the database
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            access: proxy
+            url: http://prometheus-prometheus:9090/
+            isDefault: true
+
+    deploymentStrategy:
+      type: Recreate
+
+    grafana.ini:
+      analytics:
+        check_for_updates: false
+        check_for_plugin_updates: false
+        reporting_enabled: false
+      server:
+        root_url: "https://grafana.${SECRET_DOMAIN}"
+      paths:
+        data: /var/lib/grafana/data
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+      log:
+        mode: console
+      grafana_net:
+        url: https://grafana.net
+      auth.basic:
+        disable_login_form: false
+      dashboards:
+        #default_home_dashboard_path: /tmp/dashboards/home.json
+      date_formats:
+        use_browser_locale: true
+      explore:
+        enabled: true
+      news:
+        news_feed_enabled: false
+      panels:
+        disable_sanitize_html: true
+      security:
+        allow_embedding: true
+        cookie_samesite: grafana
+
+    imageRenderer:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      hosts:
+        - &host "grafana.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - *host
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Grafana"
+        gethomepage.dev/group: "Observability"
+        gethomepage.dev/icon: "grafana"
+
+    persistence:
+      enabled: false
+
+    plugins:
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - grafana-piechart-panel
+      - vonage-status-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: grafana
+      secret.reloader.stakater.com/reload: grafana-secrets
+
+    rbac:
+      pspEnabled: false
+
+    resources:
+      limits:
+        memory: 219M
+      requests:
+        cpu: 23m
+        memory: 127M
+
+    serviceMonitor:
+      enabled: true
+
+    sidecar:
+      dashboards:
+        enabled: true
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
+        searchNamespace: ALL
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
+      datasources:
+        enabled: true
+        labelValue: ""
+        searchNamespace: ALL
+      logLevel: INFO
