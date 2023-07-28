@@ -18,3 +18,4 @@ resources:
   - intel.yaml
   - kubernetes-sigs-metrics-server.yaml
   - kyverno.yaml
+  - prometheus-community.yaml
