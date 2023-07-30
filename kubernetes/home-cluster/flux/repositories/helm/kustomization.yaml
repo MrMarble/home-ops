@@ -20,3 +20,4 @@ resources:
   - kyverno.yaml
   - prometheus-community.yaml
   - grafana.yaml
+  - k8s-gateway.yaml
