@@ -158,7 +158,7 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "internal"
       hosts:
         - &host "grafana.${SECRET_DOMAIN}"
       tls:
