@@ -70,8 +70,15 @@ spec:
                 - *host
 
     prometheus:
+      enabled: true
       serviceMonitor:
         enabled: true
+
+      relay:
+        enabled: true
+        prometheus:
+          serviceMonitor:
+            enabled: true
 
     operator:
       prometheus:

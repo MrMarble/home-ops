@@ -65,7 +65,7 @@ hubble:
 
   metrics:
     enabled:
-      - dns:query;ignoreAAAA
+      - dns:query
       - drop
       - tcp
       - flow
