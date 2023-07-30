@@ -69,6 +69,13 @@ spec:
       extraArgs:
         default-ssl-certificate: "networking/home-dev-tls"
 
+      admissionWebhooks:
+        objectSelector:
+          matchExpressions:
+            - key: ingress-class
+              operator: In
+              values: ["external"]
+
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
