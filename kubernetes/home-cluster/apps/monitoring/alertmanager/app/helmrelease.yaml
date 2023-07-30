@@ -37,7 +37,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - host: &host alertmanager.${SECRET_DOMAIN}
             paths:

@@ -47,7 +47,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "external"
         hosts:
           - host: &host "wizarr.${SECRET_DOMAIN}"
             paths:

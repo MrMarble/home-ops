@@ -39,7 +39,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "external"
         hosts:
           - host: &host "jellyseerr.${SECRET_DOMAIN}"
             paths:

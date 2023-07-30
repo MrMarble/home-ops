@@ -35,7 +35,7 @@ metadata:
     gethomepage.dev/group: Collaboration
     gethomepage.dev/icon: nextcloud.png
 spec:
-  ingressClassName: nginx
+  ingressClassName: internal
   tls:
     - hosts:
         - &host "nc.${SECRET_DOMAIN}"

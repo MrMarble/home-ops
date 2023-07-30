@@ -125,7 +125,7 @@ spec:
     prometheus:
       ingress:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         pathType: Prefix
         annotations:
           gethomepage.dev/enabled: "true"

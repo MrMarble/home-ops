@@ -124,7 +124,7 @@ spec:
             devices:
               - name: "/dev/disk/by-id/nvme-SAMSUNG_MZVLB512HBJQ-000H7_S4GMNF0N908288"
     ingress:
-      ingressClassName: "nginx"
+      ingressClassName: "internal"
       dashboard:
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
