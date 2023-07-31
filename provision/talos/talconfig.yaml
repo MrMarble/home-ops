@@ -27,12 +27,33 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
+    patches:
+      - &extensions |-
+        machine:
+          install:
+            extensions:
+              - image: ghcr.io/siderolabs/i915-ucode:20230310
+              - image: ghcr.io/siderolabs/intel-ucode:20230512
 
   - hostname: kworker1
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
     controlPlane: false
+    patches:
+      - *extensions
+
+  - hostname: kworker2
+    disableSearchDomain: true
+    ipAddress: 192.168.1.12
+    installDisk: /dev/sda
+    controlPlane: false
+    patches:
+      - |-
+        machine:
+          install:
+            extraKernelArgs:
+              - nomodeset
 
 controlPlane:
   patches:
@@ -57,10 +78,6 @@ controlPlane:
               - ip: ${clusterEndpointIP}
                 aliases:
                   - ${clusterEndpoint}
-        install:
-          extensions:
-            - image: ghcr.io/siderolabs/i915-ucode:20230310
-            - image: ghcr.io/siderolabs/intel-ucode:20230512
 
     - |-
       cluster:
@@ -90,10 +107,6 @@ worker:
                 [plugins."io.containerd.grpc.v1.cri"]
                   enable_unprivileged_ports = true
                   enable_unprivileged_icmp = true
-        install:
-          extensions:
-            - image: ghcr.io/siderolabs/i915-ucode:20230310
-            - image: ghcr.io/siderolabs/intel-ucode:20230512
     - |-
       - op: add
         path: /machine/nodeLabels
