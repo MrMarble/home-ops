@@ -74,5 +74,5 @@ spec:
         mountOptions:
           - nolock
       cache:
-        eanbled: true
+        enabled: true
         type: emptyDir
