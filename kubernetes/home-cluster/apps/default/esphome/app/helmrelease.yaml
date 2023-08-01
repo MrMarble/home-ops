@@ -73,3 +73,6 @@ spec:
         mountPath: /config
         mountOptions:
           - nolock
+      cache:
+        eanbled: true
+        type: emptyDir
