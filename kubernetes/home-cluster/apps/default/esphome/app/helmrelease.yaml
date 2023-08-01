@@ -64,12 +64,19 @@ spec:
         tls:
           - hosts:
               - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true
         type: nfs
         server: "192.168.1.25"
-        path: /mnt/Data/PXE
+        path: /mnt/Data/esphome
         mountPath: /config
         mountOptions:
           - nolock
