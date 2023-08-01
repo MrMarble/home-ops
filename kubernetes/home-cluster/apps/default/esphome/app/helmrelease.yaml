@@ -64,3 +64,12 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      config:
+        enabled: true
+        type: nfs
+        server: "192.168.1.25"
+        path: /mnt/Data/PXE
+        mountPath: /config
+        mountOptions:
+          - nolock
