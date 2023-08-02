@@ -62,7 +62,7 @@ spec:
       ui:
         ingress:
           enabled: true
-          className: "nginx"
+          className: "internal"
           hosts:
             - &host hubble.${SECRET_DOMAIN}
           tls:
