@@ -49,7 +49,6 @@ spec:
       serviceMonitor:
         enabled: true
       metrics:
-        enabled: true
         dashboards:
           enabled: true
           annotations:
