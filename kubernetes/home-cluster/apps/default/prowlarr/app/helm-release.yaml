@@ -31,7 +31,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.8.1.3816@sha256:c323364c4c9978c987f92660189296a2b444dc37de340e3287f8f1e3bb857738
+      tag: 1.8.1.3818@sha256:fae68ede783de4f3c53901cdc19146dbbb9a27517c1b643c7a97cfb98d86416a
     env:
       TZ: Europe/Madrid
       PROWLARR__PORT: &port 80
