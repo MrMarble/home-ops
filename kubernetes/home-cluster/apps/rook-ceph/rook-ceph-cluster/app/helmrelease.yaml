@@ -135,11 +135,9 @@ spec:
           gethomepage.dev/name: Rook-Ceph
           gethomepage.dev/group: Storage
           gethomepage.dev/icon: rook.png
-        hosts:
-          - host: &host "rook.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
+        host:
+          name: &host rook.${SECRET_DOMAIN}
+          path: "/"
         tls:
           - hosts:
               - *host
