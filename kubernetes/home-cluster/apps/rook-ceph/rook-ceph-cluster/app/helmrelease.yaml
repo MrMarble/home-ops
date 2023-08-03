@@ -214,7 +214,8 @@ spec:
               size: 2
           dataPool:
             failureDomain: host
-            replicated: 2
+            replicated:
+              size: 2
           preservePoolsOnDelete: true
           gateway:
             port: 80
