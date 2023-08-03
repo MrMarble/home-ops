@@ -21,3 +21,4 @@ resources:
   - prometheus-community.yaml
   - grafana.yaml
   - k8s-gateway.yaml
+  - democratic-csi.yaml
