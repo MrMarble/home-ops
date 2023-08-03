@@ -124,8 +124,8 @@ spec:
             devices:
               - name: "/dev/disk/by-id/nvme-SAMSUNG_MZVLB512HBJQ-000H7_S4GMNF0N908288"
     ingress:
-      ingressClassName: "internal"
       dashboard:
+        ingressClassName: "internal"
         annotations:
           kubernetes.io/tls-acme: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -225,9 +225,6 @@ spec:
               limits:
                 memory: 2Gi
             instances: 1
-          healthCheck:
-            bucket:
-              interval: 60s
         storageClass:
           enabled: true
           name: ceph-bucket
