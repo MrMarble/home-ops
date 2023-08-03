@@ -12,30 +12,9 @@ sonarr:
     quality_profiles:
       - name: WEB-DL (1080p)
         reset_unmatched_scores: true
-        qualities:
-          - name: Bluray-2160p Remux
-            enabled: false
-          - name: Bluray-2160p
-            enabled: false
-          - name: WEBDL-2160p
-            enabled: false
-          - name: WEBDL-1080p
-            enabled: true
-        min_format_score: 0
-        quality_sort: top
-        upgrades_allowed:
-          until_quality: WEBDL-1080p
-          until_score: 10000
       - name: WEB-DL (2160p)
         reset_unmatched_scores: true
-        qualities:
-          - name: WEBDL-2160p
-            enabled: true
-        min_format_score: 0
-        quality_sort: top
-        upgrades_allowed:
-          until_quality: WEBDL-2160p
-          until_score: 10000
+
     custom_formats:
       # Unwanted
       - trash_ids:
@@ -205,31 +184,9 @@ radarr:
     quality_profiles:
       - name: HD Bluray + WEB
         reset_unmatched_scores: true
-        qualities:
-          - name: Bluray-1080p
-            enabled: true
-          - name: WEBDL-1080p
-            enabled: true
-          - name: Bluray-720p
-            enabled: true
-        min_format_score: 0
-        quality_sort: top
-        upgrades_allowed:
-          until_quality: Bluray-1080p
-          until_score: 10000
 
       - name: UHD Bluray + WEB
         reset_unmatched_scores: true
-        qualities:
-          - name: Bluray-2160p
-            enabled: true
-          - name: WEBDL-2160p
-            enabled: true
-        min_format_score: 0
-        quality_sort: top
-        upgrades_allowed:
-          until_quality: Bluray-2160p
-          until_score: 10000
 
     custom_formats:
       # Unwanted
