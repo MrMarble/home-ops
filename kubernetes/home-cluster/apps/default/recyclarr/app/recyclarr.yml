@@ -6,7 +6,6 @@ sonarr:
     base_url: http://sonarr.default.svc.cluster.local
     api_key: !env_var SONARR__API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
     quality_definition:
       type: series
     quality_profiles:
@@ -17,24 +16,24 @@ sonarr:
             enabled: false
           - name: Bluray-2160p
             enabled: false
-          - name: WEB 2160p
+          - name: WEBDL-2160p
             enabled: false
-          - name: WEB 1080p
+          - name: WEBDL-1080p
             enabled: true
         min_format_score: 0
         quality_sort: top
         upgrades_allowed:
-          until_quality: WEB 1080p
+          until_quality: WEBDL-1080p
           until_score: 10000
       - name: WEB-DL (2160p)
         reset_unmatched_scores: true
         qualities:
-          - name: WEB 2160p
+          - name: WEBDL-2160p
             enabled: true
         min_format_score: 0
         quality_sort: top
         upgrades_allowed:
-          until_quality: WEB 2160p
+          until_quality: WEBDL-2160p
           until_score: 10000
     custom_formats:
       # Unwanted
@@ -199,7 +198,6 @@ radarr:
     base_url: http://radarr.default.svc.cluster.local
     api_key: !env_var RADARR__API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
     quality_definition:
       type: movie
     quality_profiles:
@@ -208,7 +206,7 @@ radarr:
         qualities:
           - name: Bluray-1080p
             enabled: true
-          - name: WEB-1080p
+          - name: WEBDL-1080p
             enabled: true
           - name: Bluray-720p
             enabled: true
@@ -223,7 +221,7 @@ radarr:
         qualities:
           - name: Bluray-2160p
             enabled: true
-          - name: WEB-2160p
+          - name: WEBDL-2160p
             enabled: true
         min_format_score: 0
         quality_sort: top
