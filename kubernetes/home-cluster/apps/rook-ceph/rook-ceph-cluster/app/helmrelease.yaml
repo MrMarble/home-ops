@@ -231,3 +231,5 @@ spec:
           enabled: true
           name: ceph-bucket
           reclaimPolicy: Delete
+          parameters:
+            region: eu-west-1
