@@ -1,0 +1,49 @@
+---
+version: "3"
+
+x-task-vars: &task-vars
+  namespace: "{{.namespace}}"
+  name: "{{.name}}"
+
+vars:
+  helmreleaseTemplate: "helmrelease.tmpl.yaml"
+  namespaceTemplate: "namespace.tmpl.yaml"
+  kustomizeTemplate: "ks.tmpl.yaml"
+tasks:
+  namespace:
+    desc: Create namespace
+    silent: true
+    env: *task-vars
+    vars:
+      namespace: '{{.namespace | default "default"}}'
+    cmds:
+      - mkdir -p ../../kubernetes/home-cluster/apps/{{.namespace}}
+      - envsubst < <(cat {{.namespaceTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
+      - cd ../../kubernetes/home-cluster/apps/{{.namespace}} && kustomize create --resources ./namespace.yaml
+    preconditions:
+      - sh: test -f {{.namespaceTemplate}}
+    status:
+      - test -d ../../kubernetes/home-cluster/apps/{{.namespace}}
+      - test -f ../../kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
+      - test -f ../../kubernetes/home-cluster/apps/{{.namespace}}/kustomization.yaml
+
+  app:
+    desc: Create a helmrelease
+    silent: true
+    env: *task-vars
+    vars:
+      namespace: '{{.namespace | default "default"}}'
+      name: '{{ or .name (fail "name is required") }}'
+    cmds:
+      - mkdir -p ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app
+      - envsubst < <(cat {{.kustomizeTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/ks.yaml
+      - envsubst '${namespace} ${name}' < <(cat {{.helmreleaseTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app/helmrelease.yaml
+      - cd ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app && kustomize create --resources ./helmrelease.yaml
+      - yq -i ".resources += \"./{{.name}}/ks.yaml\"" ../../kubernetes/home-cluster/apps/{{.namespace}}/kustomization.yaml
+    deps:
+      - namespace
+    preconditions:
+      - sh: test -f {{.helmreleaseTemplate}}
+      - sh: test -f {{.kustomizeTemplate}}
+    status:
+      - test -d ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}

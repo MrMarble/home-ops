@@ -17,11 +17,14 @@ includes:
   pre-commit: .taskfiles/pre-commit.yml
   terraform: .taskfiles/terraform.yml
   kubectl: .taskfiles/kubectl.yml
-  cluster: .taskfiles/cluster.yml
   debug: .taskfiles/debug.yml
   volsync:
     taskfile: ".taskfiles/volsync"
     dir: .taskfiles/volsync
+  cluster:
+    taskfile: ".taskfiles/cluster"
+    dir: .taskfiles/cluster
+
 tasks:
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
@@ -33,51 +36,3 @@ tasks:
       K3S_PRIMARY_MASTER_NODE_USERNAME: "mrmarble"
       K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.1.29"
       K3S_LB_ADDR: "192.168.1.231"
-
-  namespace:
-    desc: Create namespace
-    vars:
-      namespace: '{{.namespace | default "default"}}'
-    cmds:
-      - mkdir -p ./kubernetes/home-cluster/apps/{{.namespace}}
-      - |
-        cat << EOF >> ./kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
-        apiVersion: v1
-        kind: Namespace
-        metadata:
-          name: {{.namespace}}
-          labels:
-            kustomize.toolkit.fluxcd.io/prune: disabled
-
-        EOF
-      - cd ./kubernetes/home-cluster/apps/{{.namespace}} && kustomize create --resources ./namespace.yaml
-
-  app:
-    desc: Create application
-    vars:
-      namespace: '{{.namespace | default "default"}}'
-      app: "{{.app}}"
-    silent: true
-    cmds:
-      - mkdir -p ./kubernetes/home-cluster/apps/{{.namespace}}/{{.app}}/app
-      - |
-        cat << EOF >> ./kubernetes/home-cluster/apps/{{.namespace}}/{{.app}}/ks.yaml
-        ---
-        apiVersion: kustomize.toolkit.fluxcd.io/v1
-        kind: Kustomization
-        metadata:
-          name: cluster-apps-{{.app}}
-          namespace: flux-system
-        spec:
-          path: ./kubernetes/home-cluster/apps/{{.namespace}}/{{.app}}/app
-          prune: true
-          sourceRef:
-            kind: GitRepository
-            name: home-ops-kubernetes
-          wait: false
-          interval: 30m
-          retryInterval: 1m
-          timeout: 5m
-
-        EOF
-      - yq -i ".resources += \"./{{.app}}/ks.yaml\"" ./kubernetes/home-cluster/apps/{{.namespace}}/kustomization.yaml
