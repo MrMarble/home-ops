@@ -59,3 +59,20 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      config:
+        enabled: true
+        type: emptyDir
+      config-file:
+        enabled: true
+        type: configMap
+        name: autobrr-configmap
+        subPath: config.toml
+        mountPath: /config/config.toml
+        readOnly: true
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 10m
+      limits:
+        memory: 500Mi
