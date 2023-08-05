@@ -38,6 +38,11 @@ spec:
     ingress:
       enabled: true
       className: internal
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Weave Gitops"
+        gethomepage.dev/group: "Observability"
+        gethomepage.dev/icon: "flux-cd"
       hosts:
         - host: &host "gitops.${SECRET_DOMAIN}"
           paths:
