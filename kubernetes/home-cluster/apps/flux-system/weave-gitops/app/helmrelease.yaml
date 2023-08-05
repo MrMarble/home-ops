@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: weave-gitops
+  namespace: flux-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: weave-gitops
+      version: 4.0.27
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: weave-gitops
+  values:
+    podAnnotations:
+      secret.reloader.stakater.com/reload: weave-gitops-secrets
+
+    logLevel: info
+
+    adminUser:
+      create: true
+      username: &admin_user admin
+
+    networkPolicy:
+      create: false
+
+    metrics:
+      enabled: true
+
+    rbac:
+      create: true
+      impersonationResourceNames:
+        - *admin_user
+
+    ingress:
+      enabled: true
+      className: internal
+      hosts:
+        - host: &host "gitops.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+
+  valuesFrom:
+    - kind: Secret
+      name: weave-gitops-secrets
+      valuesKey: adminPassword
+      targetPath: adminUser.passwordHash

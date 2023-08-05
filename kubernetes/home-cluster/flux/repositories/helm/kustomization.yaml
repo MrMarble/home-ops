@@ -22,3 +22,4 @@ resources:
   - grafana.yaml
   - k8s-gateway.yaml
   - democratic-csi.yaml
+  - weave-gitops.yaml
