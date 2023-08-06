@@ -6,19 +6,34 @@ tasks:
     desc: Setup flux
     cmds:
       - flux check --pre
-      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/home-cluster/bootstrap
-      - sops --decrypt {{.CLUSTER_DIR}}/home-cluster/bootstrap/age-key.sops.yaml | kubectl apply -f -
-      - kubectl apply -f {{.CLUSTER_DIR}}/home-cluster/flux/vars/cluster-settings.yaml
-      - sops --decrypt {{.CLUSTER_DIR}}/home-cluster/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
-      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/home-cluster/flux/config
+      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap
+      - sops --decrypt {{.CLUSTER_DIR}}/bootstrap/age-key.sops.yaml | kubectl apply -f -
+      - kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings.yaml
+      - sops --decrypt {{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
+      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/flux/config
     silent: true
+
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:
       - flux reconcile source git flux-system
     silent: true
+
   kustomizations:
     desc: Get flux kustomizations
     cmds:
       - flux get kustomizations
     silent: true
+
+  apply:
+    desc: Apply a resource path that contains Flux substitution variables
+    dotenv: ["{{.CLUSTER_SETTINGS_FILE}}"]
+    vars:
+      ks: '{{ or .ks (fail "Missing path (`ks` var)") }}'
+    cmd: |
+      sops exec-env {{.CLUSTER_SECRETS_FILE}} \
+        "kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}} | \
+          envsubst | kubectl apply --server-side --field-manager=kustomize-controller -f -"
+    preconditions:
+      - sh: test -f {{.CLUSTER_SECRETS_FILE}}
+      - sh: test -f {{.CLUSTER_SETTINGS_FILE}}

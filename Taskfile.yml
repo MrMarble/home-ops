@@ -4,19 +4,17 @@ version: "3"
 vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes/"
-  TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes/home-cluster"
+  CLUSTER_SECRETS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.env"
+  CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
 
-env:
-  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
+dotenv:
+  - .envrc
 
 includes:
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
-  pre-commit: .taskfiles/pre-commit.yml
-  terraform: .taskfiles/terraform.yml
-  kubectl: .taskfiles/kubectl.yml
   debug: .taskfiles/debug.yml
   volsync:
     taskfile: ".taskfiles/volsync"
@@ -26,13 +24,6 @@ includes:
     dir: .taskfiles/cluster
 
 tasks:
-  kubeconfig:
-    desc: Remotely fetch kubeconfig from Kubernetes
-    cmds:
-      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/kubeconfig"
-      - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.ANSIBLE_DIR}}/kubeconfig"
-      - chmod go-r "{{.ANSIBLE_DIR}}/kubeconfig"
-    vars:
-      K3S_PRIMARY_MASTER_NODE_USERNAME: "mrmarble"
-      K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.1.29"
-      K3S_LB_ADDR: "192.168.1.231"
+  default:
+    silent: true
+    cmd: task -l

@@ -3,12 +3,12 @@
 /.taskfiles/
 /.vscode/
 /provision/
-/scripts/
 /.envrc
 /.gitattributes
 /.gitignore
-/.pre-commit-config.yaml
 /.sops.yaml
 /LICENSE
 /README.md
 /Taskfile.yaml
+/.lefthook
+/.editorconfig
