@@ -2,7 +2,6 @@
 
 Home cluster
 
-
 # How to bootstrap
 
 ### Install

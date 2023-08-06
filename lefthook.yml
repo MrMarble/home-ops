@@ -1,0 +1,14 @@
+---
+pre-commit:
+  parallel: true
+  commands:
+    yamllint:
+      glob: "*.{yaml,yml}"
+      run: yamllint -c .github/linters/.yamllint.yaml {staged_files}
+    gitleaks:
+      run: gitleaks protect --verbose --redact --staged
+    format:
+      run: task format:all
+  scripts:
+    forbid-plain-secrets:
+      runner: bash

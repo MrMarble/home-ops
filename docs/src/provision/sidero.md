@@ -4,7 +4,6 @@
 
 Instead of managing my servers with ansible I use Sidero and network boot (PXE) to provision my servers automatically with [Talos](https://talos.dev) and Kubernetes.
 
-
 Appart from Sidero itself I use the DHCP server on my router to supply the network boot parameters to my servers. For RouterOS this is the config:
 
 ```sh
