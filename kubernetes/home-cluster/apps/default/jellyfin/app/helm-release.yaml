@@ -89,7 +89,6 @@ spec:
         path: "/mnt/Data/Media"
         mountPath: /media
     nodeSelector:
-      node-role.kubernetes.io/worker: "true"
       intel.feature.node.kubernetes.io/gpu: "true"
     resources:
       requests:
