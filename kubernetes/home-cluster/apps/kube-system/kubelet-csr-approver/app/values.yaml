@@ -1,5 +1,5 @@
 ---
 providerRegex: |
-  ^(kmaster1|kworker1)$
+  ^(kmaster1|kworker1|kworker2)$
 
 bypassDnsResolution: true
