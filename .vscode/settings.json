@@ -10,7 +10,11 @@
   "prettier.ignorePath": ".github/linters/.prettierignore",
   "yaml.schemas": {
     "https://json.schemastore.org/kustomization.json": "kubernetes/**/kustomization.yaml",
-    "kubernetes://schema/v1@namespace": "kubernetes/**/namespace.yaml"
+    "kubernetes://schema/v1@namespace": "kubernetes/**/namespace.yaml",
+    "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/source.toolkit.fluxcd.io/helmrepository_v1beta2.json": "kubernetes/home-cluster/flux/repositories/helm/*.yaml",
+    "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kustomize.toolkit.fluxcd.io/kustomization_v1.json": "kubernetes/**/ks.yaml",
+    "https://raw.githubusercontent.com/aerleon/aerleon/main/schemas/aerleon-policies.schema.json": "file:///home/mrmarble/repos/home-ops/kubernetes/home-cluster/apps/kyverno/kyverno/policies/remove-cpu-limit.yaml",
+    "https://taskfile.dev/schema.json": "**/Taskfile.yaml"
   },
   "yaml.schemaStore.enable": true,
   "conventionalCommits.scopes": [
