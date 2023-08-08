@@ -22,11 +22,7 @@ nodes:
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
     controlPlane: true
-    networkInterfaces:
-      - interface: eth0
-        dhcp: true
-        vip:
-          ip: ${clusterEndpointIP}
+    inlinePatches:
     patches:
       - &extensions |-
         machine:
@@ -34,21 +30,31 @@ nodes:
             extensions:
               - image: ghcr.io/siderolabs/i915-ucode:20230310
               - image: ghcr.io/siderolabs/intel-ucode:20230512
+      - &network |-
+        machine:
+          network:
+            interfaces:
+              - interface: eth0
+                dhcp: true
+                vip:
+                  ip: ${clusterEndpointIP}
 
   - hostname: kworker1
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
-    controlPlane: false
+    controlPlane: true
     patches:
       - *extensions
+      - *network
 
   - hostname: kworker2
     disableSearchDomain: true
     ipAddress: 192.168.1.12
     installDisk: /dev/sda
-    controlPlane: false
+    controlPlane: true
     patches:
+      - *network
       - |-
         machine:
           install:
