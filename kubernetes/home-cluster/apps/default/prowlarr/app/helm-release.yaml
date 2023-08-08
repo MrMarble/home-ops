@@ -70,12 +70,12 @@ spec:
         ports:
           http:
             port: *port
-    # volumeClaimTemplates:
-    #   - name: config
-    #     mountPath: /config
-    #     accessMode: ReadWriteOnce
-    #     size: 1Gi
-    #     storageClass: zfs-block
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: zfs-block
     resources:
       requests:
         memory: 411M
