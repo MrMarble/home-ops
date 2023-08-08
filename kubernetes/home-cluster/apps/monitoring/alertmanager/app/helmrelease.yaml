@@ -61,10 +61,3 @@ spec:
         memory: 50M
       limits:
         memory: 99M
-
-    volumeClaimTemplates:
-      - name: storage
-        mountPath: /alertmanager
-        accessMode: ReadWriteOnce
-        size: 50Mi
-        storageClass: zfs-block
