@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnly
   resources:
     requests:
       storage: 1Gi
