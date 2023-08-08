@@ -1,8 +1,8 @@
 ---
 clusterName: ${clusterName}
 
-talosVersion: v1.4.6
-kubernetesVersion: v1.27.3
+talosVersion: v1.4.7
+kubernetesVersion: v1.27.4
 endpoint: https://${clusterEndpoint}:6443
 allowSchedulingOnMasters: true
 
@@ -21,8 +21,13 @@ nodes:
     disableSearchDomain: true
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
+    machineDisks:
+      - device: /dev/disk/by-id/nvme-Force_MP510_2136824800012917531B
+        partitions:
+          - mountpoint: /var/mnt/sata
     controlPlane: true
-    inlinePatches:
+    nodeLabels:
+      ssd: "true"
     patches:
       - &extensions |-
         machine:
@@ -43,6 +48,12 @@ nodes:
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
+    nodeLabels:
+      ssd: "true"
+    machineDisks:
+      - device: /dev/disk/by-id/nvme-SAMSUNG_MZVLB512HBJQ-000H7_S4GMNF0N908288
+        partitions:
+          - mountpoint: /var/mnt/sata
     controlPlane: true
     patches:
       - *extensions
