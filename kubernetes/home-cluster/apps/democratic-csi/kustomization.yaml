@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./local-hostpath/ks.yaml
+  - ./freenas-iscsi/ks.yaml

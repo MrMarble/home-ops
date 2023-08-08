@@ -1,0 +1,92 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: freenas-iscsi
+  namespace: system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: democratic-csi
+      version: 0.14.1
+      sourceRef:
+        name: democratic-csi
+        kind: HelmRepository
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    csiDriver:
+      # should be globally unique for a given cluster
+      name: "org.democratic-csi.iscsi"
+
+    # https://github.com/democratic-csi/democratic-csi#talos
+    node:
+      hostPID: true
+      driver:
+        image: ghcr.io/democratic-csi/democratic-csi:v1.8.3
+        extraEnv:
+          - name: ISCSIADM_HOST_STRATEGY
+            value: nsenter
+          - name: ISCSIADM_HOST_PATH
+            value: /usr/local/sbin/iscsiadm
+        iscsiDirHostPath: /usr/local/etc/iscsi
+        iscsiDirHostPathType: ""
+      driverRegistrar:
+        image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
+
+    controller:
+      driver:
+        image: ghcr.io/democratic-csi/democratic-csi:v1.8.3
+
+      externalAttacher:
+        image: registry.k8s.io/sig-storage/csi-attacher:v4.3.0
+
+      externalProvisioner:
+        image: registry.k8s.io/sig-storage/csi-provisioner:v3.5.0
+
+      externalResizer:
+        image: registry.k8s.io/sig-storage/csi-resizer:v1.8.0
+
+      externalSnapshotter:
+        image: registry.k8s.io/sig-storage/csi-snapshotter:v6.2.1
+
+      podAnnotations:
+        secret.reloader.stakater.com/reload: zfs-iscsi-secret
+
+    # add note here about volume expansion requirements
+    storageClasses:
+      - name: zfs-block
+        defaultClass: false
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        parameters:
+          # for block-based storage can be ext3, ext4, xfs
+          fsType: ext4
+        mountOptions: []
+        secrets:
+          provisioner-secret:
+          controller-publish-secret:
+          node-stage-secret:
+          node-publish-secret:
+          controller-expand-secret:
+
+    volumeSnapshotClasses:
+      - name: zfs-block
+        deletionPolicy: Retain
+        parameters: {}
+
+    driver:
+      existingConfigSecret: zfs-iscsi-secret
+      config:
+        driver: freenas-iscsi
