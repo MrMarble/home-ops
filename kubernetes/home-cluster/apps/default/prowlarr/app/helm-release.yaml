@@ -22,8 +22,8 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: freenas-iscsi
+      namespace: democratic-csi
   values:
     controller:
       type: statefulset
@@ -75,7 +75,7 @@ spec:
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 1Gi
-        storageClass: ceph-block
+        storageClass: zfs-block
     resources:
       requests:
         memory: 411M
