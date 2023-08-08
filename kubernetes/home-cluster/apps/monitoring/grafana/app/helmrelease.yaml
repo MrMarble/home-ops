@@ -34,14 +34,6 @@ spec:
               path: /var/lib/grafana/dashboards/default
             orgId: 1
             type: file
-          - name: ceph
-            orgId: 1
-            folder: Ceph
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/ceph
           - name: flux
             orgId: 1
             folder: Flux
@@ -86,19 +78,6 @@ spec:
           datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
-          datasource: Prometheus
-      ceph:
-        ceph-cluster:
-          gnetId: 2842 # https://grafana.com/grafana/dashboards/2842?tab=revisions
-          revision: 17
-          datasource: Prometheus
-        ceph-osd:
-          gnetId: 5336 # https://grafana.com/grafana/dashboards/5336?tab=revisions
-          revision: 9
-          datasource: Prometheus
-        ceph-pools:
-          gnetId: 5342 # https://grafana.com/grafana/dashboards/5342?tab=revisions
-          revision: 9
           datasource: Prometheus
       flux:
         flux-cluster:
