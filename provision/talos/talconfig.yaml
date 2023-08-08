@@ -95,6 +95,9 @@ controlPlane:
               - ip: ${clusterEndpointIP}
                 aliases:
                   - ${clusterEndpoint}
+        install:
+          extensions:
+            - image: ghcr.io/siderolabs/iscsi-tools:v0.1.4
 
     - |-
       cluster:
@@ -107,25 +110,3 @@ controlPlane:
     - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
-
-worker:
-  patches:
-    - |-
-      machine:
-        kubelet:
-          extraArgs:
-            feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
-            rotate-server-certificates: "true"
-        files:
-          - op: create
-            path: /etc/cri/conf.d/20-customization.part
-            content: |
-              [plugins]
-                [plugins."io.containerd.grpc.v1.cri"]
-                  enable_unprivileged_ports = true
-                  enable_unprivileged_icmp = true
-    - |-
-      - op: add
-        path: /machine/nodeLabels
-        value:
-          node-role.kubernetes.io/worker: "true"
