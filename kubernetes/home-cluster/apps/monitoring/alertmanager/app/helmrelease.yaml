@@ -67,4 +67,4 @@ spec:
         mountPath: /alertmanager
         accessMode: ReadWriteOnce
         size: 50Mi
-        storageClass: ceph-block
+        storageClass: zfs-block

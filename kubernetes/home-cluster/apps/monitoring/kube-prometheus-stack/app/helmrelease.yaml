@@ -165,7 +165,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: ceph-block
+              storageClassName: zfs-block
               resources:
                 requests:
                   storage: 10Gi

@@ -25,8 +25,8 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: freenas-iscsi
+      namespace: democratic-csi
   values:
     controller:
       type: statefulset
@@ -67,7 +67,7 @@ spec:
         mountPath: /mosquitto/data
         accessMode: ReadWriteOnce
         size: 1Gi
-        storageClass: ceph-block
+        storageClass: zfs-block
     persistence:
       mosquitto-config:
         enabled: true

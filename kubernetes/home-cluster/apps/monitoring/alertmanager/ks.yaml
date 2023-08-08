@@ -15,4 +15,4 @@ spec:
   retryInterval: 1m
   timeout: 5m
   dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
+    - name: cluster-apps-freenas-iscsi

@@ -15,8 +15,8 @@ spec:
     retain:
       daily: 14
       within: 3d
-    volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: ceph-block
+    volumeSnapshotClassName: zfs-block
+    storageClassName: zfs-block
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568

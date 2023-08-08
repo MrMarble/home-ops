@@ -22,8 +22,8 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: freenas-iscsi
+      namespace: democratic-csi
   values:
     controller:
       type: statefulset
@@ -79,8 +79,8 @@ spec:
       - name: config
         mountPath: /config
         accessMode: ReadWriteOnce
-        size: 100Gi
-        storageClass: ceph-block
+        size: 5Gi
+        storageClass: zfs-block
     persistence:
       media:
         enabled: true
@@ -88,6 +88,10 @@ spec:
         server: "192.168.1.25"
         path: "/mnt/Data/Media"
         mountPath: /media
+      transcode:
+        enabled: true
+        type: emptyDir
+        mountPath: /transcode
     nodeSelector:
       intel.feature.node.kubernetes.io/gpu: "true"
     resources:

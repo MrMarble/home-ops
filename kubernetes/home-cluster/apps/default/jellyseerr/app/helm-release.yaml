@@ -27,8 +27,8 @@ spec:
   dependsOn:
     - name: jellyfin
       namespace: default
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: freenas-iscsi
+      namespace: democratic-csi
   values:
     image:
       repository: docker.io/fallenbagel/jellyseerr

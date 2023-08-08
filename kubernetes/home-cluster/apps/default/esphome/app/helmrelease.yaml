@@ -27,8 +27,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: freenas-iscsi
+      namespace: democratic-csi
   values:
     image:
       repository: ghcr.io/esphome/esphome
@@ -46,7 +46,7 @@ spec:
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 5Gi
-        storageClass: ceph-block
+        storageClass: zfs-block
     ingress:
       main:
         enabled: true
