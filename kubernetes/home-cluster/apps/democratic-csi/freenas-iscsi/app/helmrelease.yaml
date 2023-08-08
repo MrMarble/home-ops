@@ -84,7 +84,8 @@ spec:
     volumeSnapshotClasses:
       - name: zfs-block
         deletionPolicy: Retain
-        parameters: {}
+        parameters:
+          dummy: {}
 
     driver:
       existingConfigSecret: zfs-iscsi-secret
