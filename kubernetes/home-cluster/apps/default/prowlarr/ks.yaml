@@ -16,4 +16,3 @@ spec:
   timeout: 5m
   dependsOn:
     - name: cluster-apps-freenas-iscsi
-      namespace: democratic-csi
