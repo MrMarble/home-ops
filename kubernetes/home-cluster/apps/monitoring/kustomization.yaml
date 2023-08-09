@@ -6,3 +6,4 @@ resources:
   - ./grafana/ks.yaml
   - ./alertmanager/ks.yaml
   - ./node-exporter/ks.yaml
+  - ./qbittorrent-exporter/ks.yaml
