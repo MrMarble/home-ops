@@ -26,10 +26,13 @@ spec:
     cleanupOnFail: true
   dependsOn:
     - name: jellyfin
-      namespace: default
+    - name: radarr
+    - name: sonarr
     - name: freenas-iscsi
       namespace: democratic-csi
   values:
+    controller:
+      type: statefulset
     image:
       repository: docker.io/fallenbagel/jellyseerr
       tag: 1.6.0@sha256:2ff7157b28b4161c3a21f5664b3e6e946ea329745795db288ce83702f80db47d
