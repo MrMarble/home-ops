@@ -63,11 +63,12 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
-    persistence:
-      config:
-        enabled: true
-        existingClaim: wizarr-config-v2
+    volumeClaimTemplates:
+      - name: config
         mountPath: /data/database
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: zfs-block
     resources:
       requests:
         cpu: 10m
