@@ -23,3 +23,4 @@ resources:
   - k8s-gateway.yaml
   - democratic-csi.yaml
   - weave-gitops.yaml
+  - k8tz.yaml
