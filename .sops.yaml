@@ -11,3 +11,7 @@ creation_rules:
   - path_regex: .*\.sops\.ya?ml
     age: >-
       age16x9emguyj2j2d9uvf5r2uahrczxd9agjesuekfcdyvyedkm4j3gqp6umt8
+  - path_regex: kubernetes/.*\.sops\.(env|ini|json|toml)
+    key_groups:
+      - age:
+          - age16x9emguyj2j2d9uvf5r2uahrczxd9agjesuekfcdyvyedkm4j3gqp6umt8
