@@ -9,6 +9,8 @@ vars:
   helmreleaseTemplate: "helmrelease.tmpl.yaml"
   namespaceTemplate: "namespace.tmpl.yaml"
   kustomizeTemplate: "ks.tmpl.yaml"
+  helmrepoTemplate: "helmrepository.templ.yaml"
+
 tasks:
   namespace:
     desc: Create namespace
@@ -47,3 +49,28 @@ tasks:
       - sh: test -f {{.kustomizeTemplate}}
     status:
       - test -d ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}
+
+  repo:
+    desc: Create a helm repository
+    silent: true
+    vars:
+      name: '{{ or .name (fail "name is required") }}'
+      url: '{{ or .url (fail "url is required") }}'
+    env:
+      name: "{{.name}}"
+      url: "{{.url}}"
+    cmds:
+      - envsubst < <(cat {{.helmrepoTemplate}}) >> ../../kubernetes/home-cluster/flux/repositories/helm/{{.name}}.yaml
+      - yq -i ".resources += \"{{.name}}.yaml\"" ../../kubernetes/home-cluster/flux/repositories/helm/kustomization.yaml
+    preconditions:
+      - sh: test -f {{.helmrepoTemplate}}
+    status:
+      - test -f ../../kubernetes/home-cluster/flux/repositories/helm/{{.name}}.yaml
+
+  clean:
+    desc: Remove failed or completed pods
+    silent: true
+    vars:
+      namespace: '{{.namespace | default "default"}}'
+    cmds:
+      - kubectl delete pods --field-selector status.phase=Failed,status.phase=Succeeded
