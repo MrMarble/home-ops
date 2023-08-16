@@ -1,4 +1,15 @@
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: qbittorrent-volsync
+  namespace: default
+stringData:
+  RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}/qbittorrent
+  RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+  AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:

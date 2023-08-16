@@ -5,6 +5,6 @@ namespace: default
 resources:
   - helmrelease.yaml
   - secrets.sops.yaml
-  - ./backups
+  - volsync.yaml
 patchesStrategicMerge:
   - ./patches/addons.yaml

@@ -5,4 +5,4 @@ namespace: default
 resources:
   - ./helmrelease.yaml
   - ./qbittools-tagging
-  - ./backups
+  - volsync.yaml
