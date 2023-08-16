@@ -4,3 +4,4 @@ resources:
   - ./namespace.yaml
   - ./local-hostpath/ks.yaml
   - ./freenas-iscsi/ks.yaml
+  - ./snapshot-controller/ks.yaml
