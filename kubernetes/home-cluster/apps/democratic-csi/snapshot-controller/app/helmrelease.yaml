@@ -21,12 +21,6 @@ spec:
     crds: CreateReplace
   values:
     replicaCount: 1
-    volumeSnapshotClasses:
-      - name: zfs-block
-        driver: org.democratic-csi.iscsi
-        annotations:
-          snapshot.storage.kubernetes.io/is-default-class: "true"
-        deletionPolicy: Delete
     serviceMonitor:
       create: true
 ---
