@@ -23,7 +23,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-postgres
-  path: ./kubernetes/apps/database/postgres/cluster
+  path: ./kubernetes/home-cluster/apps/database/postgres/cluster
   prune: true
   sourceRef:
     kind: GitRepository
