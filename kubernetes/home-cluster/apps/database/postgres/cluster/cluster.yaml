@@ -1,0 +1,26 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: database
+  annotations:
+    kyverno.io/ignore: "true"
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.9-3
+  inheritedMetadata:
+    labels:
+      kube-image-keeper.enix.io/image-caching-policy: ignore
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 20Gi
+    storageClass: local-path
+  superuserSecret:
+    name: postgres-superuser
+  postgresql:
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
+  monitoring:
+    enablePodMonitor: true

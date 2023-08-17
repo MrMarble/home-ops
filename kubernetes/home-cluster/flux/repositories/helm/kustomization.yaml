@@ -25,3 +25,4 @@ resources:
   - weave-gitops.yaml
   - k8tz.yaml
   - bitnami.yaml
+  - cloudnative-pg.yaml
