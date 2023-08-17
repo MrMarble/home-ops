@@ -8,3 +8,4 @@ resources:
   - ./server
   - ./web
   - ./microservices
+  - ./machine-learning
