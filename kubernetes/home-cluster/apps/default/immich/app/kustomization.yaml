@@ -6,4 +6,4 @@ resources:
   - configmap.yaml
   - ./typesense
   - ./server
-  - /.web
+  - ./web
