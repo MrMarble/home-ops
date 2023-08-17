@@ -53,13 +53,13 @@ spec:
         enabled: true
         ingressClassName: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SeCRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
           nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-          - host: &host photos.${SeCRET_DOMAIN}
+          - host: &host photos.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
