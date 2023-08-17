@@ -24,3 +24,4 @@ resources:
   - democratic-csi.yaml
   - weave-gitops.yaml
   - k8tz.yaml
+  - bitnami.yaml
