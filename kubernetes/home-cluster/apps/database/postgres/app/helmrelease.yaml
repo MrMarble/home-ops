@@ -26,7 +26,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: local-path-provisioner
-      namespace: kube-system
+      namespace: democratic-csi
   values:
     crds:
       create: true
