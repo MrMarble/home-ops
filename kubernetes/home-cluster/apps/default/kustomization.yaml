@@ -19,4 +19,3 @@ resources:
   - ./recyclarr/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./wizarr/ks.yaml
-  - ./immich/ks.yaml
