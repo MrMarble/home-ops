@@ -52,3 +52,12 @@ tasks:
     preconditions:
       - sh: test -f {{.CLUSTER_SECRETS_FILE}}
       - sh: test -f {{.CLUSTER_SETTINGS_FILE}}
+
+  fix:
+    desc: Restart a helm release
+    vars:
+      hr: '{{ or .hr (fail "Missing path (`hr` var)") }}'
+      namespace: '{{.namespace | default "default"}}'
+    cmds:
+      - flux suspend hr -n {{.namespace}} {{.hr}}
+      - flux resume hr -n {{.namespace}} {{.hr}}
