@@ -33,12 +33,12 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: eclipse-mosquitto
-      tag: 2.0.16
+      repository: public.ecr.aws/docker/library/eclipse-mosquitto:2.0.15
+      tag: 2.0.15
 
     initContainers:
       copy-config:
-        image: eclipse-mosquitto:2.0.16
+        image: public.ecr.aws/docker/library/eclipse-mosquitto:2.0.15
         command:
           - "/bin/sh"
           - -c
