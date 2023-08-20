@@ -1,8 +1,8 @@
 ---
 clusterName: ${clusterName}
 
-talosVersion: v1.5.0
-kubernetesVersion: v1.28.0
+talosVersion: v1.4.7
+kubernetesVersion: v1.27.4
 endpoint: https://${clusterEndpoint}:6443
 allowSchedulingOnMasters: true
 
