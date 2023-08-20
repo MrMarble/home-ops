@@ -73,7 +73,7 @@ spec:
         enabled: false
     securityContext:
       # Privileged securityContext may be required if USB devices are accessed directly through the host machine
-      privileged: true
+      privileged: false
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
