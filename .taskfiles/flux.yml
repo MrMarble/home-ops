@@ -12,8 +12,7 @@ tasks:
       - flux check --pre
       - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap
       - sops --decrypt {{.CLUSTER_DIR}}/bootstrap/age-key.sops.yaml | kubectl apply -f -
-      - kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings.yaml
-      - sops --decrypt {{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
+      - kubectl apply -k kubernetes/home-cluster/flux/vars
       - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/flux/config
     silent: true
 

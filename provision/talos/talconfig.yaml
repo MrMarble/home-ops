@@ -1,20 +1,13 @@
 ---
-clusterName: ${clusterName}
+clusterName: home-cluster
 
-talosVersion: v1.4.7
-kubernetesVersion: v1.27.4
-endpoint: https://${clusterEndpoint}:6443
+talosVersion: v1.5.0
+kubernetesVersion: v1.28.0
+endpoint: https://192.168.1.20:6443
 allowSchedulingOnMasters: true
 
 cniConfig:
   name: none
-
-additionalApiServerCertSans:
-  - ${clusterEndpointIP}
-
-additionalMachineCertSans:
-  - ${clusterEndpointIP}
-  - ${clusterEndpoint}
 
 nodes:
   - hostname: caos
@@ -39,10 +32,10 @@ nodes:
         machine:
           network:
             interfaces:
-              - interface: eth0
+              - interface: eno1
                 dhcp: true
                 vip:
-                  ip: ${clusterEndpointIP}
+                  ip: 192.168.1.20
       - &udev |-
         machine:
           udev:
@@ -97,9 +90,7 @@ controlPlane:
             maxPods: 150
         network:
             extraHostEntries:
-              - ip: ${clusterEndpointIP}
-                aliases:
-                  - ${clusterEndpoint}
+              - ip: 192.168.1.20
         install:
           extensions:
             - image: ghcr.io/siderolabs/iscsi-tools:v0.1.4
