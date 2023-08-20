@@ -7,8 +7,8 @@ receivers:
   - name: "null"
   - name: "telegram"
     telegram_configs:
-      - bot_token: "${TELEGRAM_BOT_TOKEN}"
-        chat_id: "${TELEGRAM_CHAT_ID}"
+      - bot_token: ${TELEGRAM_BOT_TOKEN}
+        chat_id: ${TELEGRAM_CHAT_ID}
         parse_mode: "HTML"
         message: |-
           {{- range .Alerts }}
