@@ -87,13 +87,20 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         storageClass: zfs-block
+    persistence:
+      zha:
+        enabled: true
+        type: CharDevice
+        mountPath: /dev/ttyUSB0
+        readOnly: true
+        volumeSpec:
+          hostPath:
+            path: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
     nodeSelector:
       electrolama.feature.node.kubernetes.io/zigbee: "true"
     resources:
       requests:
-        smarter-devices/ttyUSB0: 1
         cpu: 10m
         memory: 100Mi
       limits:
-        smarter-devices/ttyUSB0: 1
         memory: 750Mi
