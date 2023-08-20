@@ -18,7 +18,7 @@ spec:
   values:
     namespace: kube-system
 
-    replicaCount: 1
+    replicaCount: 3
 
     timezone: Europe/Madrid
     cronJobTimeZone: true

@@ -28,3 +28,5 @@ spec:
     kind: GitRepository
     name: home-ops-kubernetes
   wait: true
+  dependsOn:
+    - name: cluster-apps-kube-prometheus-stack
