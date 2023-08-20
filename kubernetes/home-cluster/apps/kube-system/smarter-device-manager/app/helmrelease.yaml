@@ -25,6 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    controller:
+      type: daemonset
     image:
       repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
       tag: latest@sha256:4c0c8fadffe4d567cdc8df22029e14aa65a2f7e8497e4d4df10be50d2ddbb1f5
