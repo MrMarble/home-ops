@@ -1,5 +1,5 @@
 ---
 providerRegex: |
-  ^(kmaster1|kworker1|kworker2)$
+  ^(caos|geia|tartaro)$
 
 bypassDnsResolution: true

@@ -1,8 +1,8 @@
 ---
 clusterName: ${clusterName}
 
-talosVersion: v1.4.7
-kubernetesVersion: v1.27.4
+talosVersion: v1.5.0
+kubernetesVersion: v1.28.0
 endpoint: https://${clusterEndpoint}:6443
 allowSchedulingOnMasters: true
 
@@ -17,7 +17,7 @@ additionalMachineCertSans:
   - ${clusterEndpoint}
 
 nodes:
-  - hostname: kmaster1
+  - hostname: caos
     disableSearchDomain: true
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
@@ -43,8 +43,13 @@ nodes:
                 dhcp: true
                 vip:
                   ip: ${clusterEndpointIP}
+      - &udev |-
+        machine:
+          udev:
+            rules:
+              - SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="568", OWNER="568"
 
-  - hostname: kworker1
+  - hostname: gaia
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
@@ -59,7 +64,7 @@ nodes:
       - *extensions
       - *network
 
-  - hostname: kworker2
+  - hostname: tartaro
     disableSearchDomain: true
     ipAddress: 192.168.1.12
     installDisk: /dev/sda
