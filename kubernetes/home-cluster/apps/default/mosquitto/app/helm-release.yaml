@@ -43,7 +43,9 @@ spec:
           - "/bin/sh"
           - -c
         args:
-          - cp /data/mosquitto_secrets/* /data/external_config/ && mosquitto_passwd -U /data/external_config/mosquitto_pwd
+          - cp /data/mosquitto_secrets/* /data/external_config/;
+            chmod 600 /data/external_config/mosquitto_pwd;
+            mosquitto_passwd -U /data/external_config/mosquitto_pwd
         volumeMounts:
           - name: mosquitto-secrets
             mountPath: /data/mosquitto_secrets
