@@ -95,7 +95,8 @@ spec:
         readOnly: true
         volumeSpec:
           hostPath:
-            path: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+            #path: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+            path: /dev/ttyUSB0
     nodeSelector:
       electrolama.feature.node.kubernetes.io/zigbee: "true"
     resources:
