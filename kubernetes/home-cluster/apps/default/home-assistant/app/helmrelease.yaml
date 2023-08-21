@@ -90,10 +90,12 @@ spec:
     persistence:
       zha:
         enabled: true
-        type: hostPath
+        type: custom
         mountPath: /dev/ttyUSB0
-        hostPathType: CharDevice
-        hostPath: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+        readOnly: true
+        volumeSpec:
+          hostPath:
+            path: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
     nodeSelector:
       electrolama.feature.node.kubernetes.io/zigbee: "true"
     resources:
