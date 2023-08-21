@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: ghcr.io/esphome/esphome
-      tag: 2023.8@sha256:f3956e2a4f5ef2516d2986d29840272e24f367e23ffb4b2aa81eee036defd31d
+      tag: 2023.8@sha256:3e8223aad830dffacf6cc1468dff19c045a871f5b6c16bf9ff5c0c3bbc843d2c
     env:
       TZ: Europe/Madrid
       ESPHOME_DASHBOARD_USE_PING: true
