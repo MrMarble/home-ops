@@ -2,12 +2,12 @@ module.exports = {
   delay: 20,
   qbittorrentUrl: "http://localhost",
   torznab: [
-    "http://prowlarr.default.svc.cluster.local/1/api?apikey=${SECRET_PROWLARR_APIKEY}",  // fl
-    "http://prowlarr.default.svc.cluster.local/2/api?apikey=${SECRET_PROWLARR_APIKEY}",  // avz
-    "http://prowlarr.default.svc.cluster.local/3/api?apikey=${SECRET_PROWLARR_APIKEY}",  // st
-    "http://prowlarr.default.svc.cluster.local/4/api?apikey=${SECRET_PROWLARR_APIKEY}",  // ptp
-    "http://prowlarr.default.svc.cluster.local/5/api?apikey=${SECRET_PROWLARR_APIKEY}", // btn
-    "http://prowlarr.default.svc.cluster.local/6/api?apikey=${SECRET_PROWLARR_APIKEY}", // tl
+    "http://prowlarr.default.svc.cluster.local/1/api?apikey=${SECRET_PROWLARR_APIKEY}",  // pt
+    "http://prowlarr.default.svc.cluster.local/2/api?apikey=${SECRET_PROWLARR_APIKEY}",  // hdo
+    "http://prowlarr.default.svc.cluster.local/3/api?apikey=${SECRET_PROWLARR_APIKEY}",  // rb
+    "http://prowlarr.default.svc.cluster.local/4/api?apikey=${SECRET_PROWLARR_APIKEY}",  // tl
+    "http://prowlarr.default.svc.cluster.local/5/api?apikey=${SECRET_PROWLARR_APIKEY}", // xb
+    "http://prowlarr.default.svc.cluster.local/6/api?apikey=${SECRET_PROWLARR_APIKEY}", // dt
   ],
   action: "inject",
   includeEpisodes: true,
@@ -24,4 +24,7 @@ module.exports = {
   ],
   outputDir: "/config/xseeds",
   torrentDir: "/config/qBittorrent/BT_backup",
+  rssCadence: "10 minutes",
+  searchCadence: "1 week",
+  excludeRecentSearch: "26 weeks",
 };
