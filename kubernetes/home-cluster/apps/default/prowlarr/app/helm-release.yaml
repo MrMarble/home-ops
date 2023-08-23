@@ -28,7 +28,7 @@ spec:
     controller:
       type: statefulset
       annotations:
-        reloader.stakater.com/auto: "true"
+        configmap.reloader.stakater.com/reload: cross-seed-config
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
       tag: 1.8.4.3883@sha256:d7c66df633c3716f49f1df4dc974a39e8c3de2d1b0d1e8f8cf45bb1c45562888
