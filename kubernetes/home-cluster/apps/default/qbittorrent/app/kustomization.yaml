@@ -9,5 +9,9 @@ secretGenerator:
   - name: cross-seed-secret
     files:
       - ./config/config.js
+configMapGenerator:
+  - name: cross-seed-config
+    files:
+      - ./config/config.js
 generatorOptions:
   disableNameSuffixHash: true
