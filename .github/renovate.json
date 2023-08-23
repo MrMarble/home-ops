@@ -48,6 +48,7 @@
   },
   "regexManagers": [
     {
+      "customType": "regex",
       "description": "Process CRD dependencies",
       "fileMatch": [
         "kubernetes/.+\\.ya?ml$"
@@ -59,6 +60,7 @@
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}helm{{/if}}"
     },
     {
+      "customType": "regex",
       "description": "Process various dependencies",
       "fileMatch": [
         "kubernetes/.+\\.ya?ml$"
@@ -70,6 +72,7 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
     {
+      "customType": "regex",
       "description": "Process raw GitHub URLs",
       "fileMatch": [
         "kubernetes/.+\\.ya?ml$"
