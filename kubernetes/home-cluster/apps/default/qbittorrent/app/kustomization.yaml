@@ -4,5 +4,10 @@ kind: Kustomization
 namespace: default
 resources:
   - ./helmrelease.yaml
-  - ./qbittools-tagging
   - volsync.yaml
+secretGenerator:
+  - name: cross-seed-secret
+    files:
+      - ./config/config.js
+generatorOptions:
+  disableNameSuffixHash: true

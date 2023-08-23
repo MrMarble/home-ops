@@ -108,6 +108,13 @@ spec:
       incomplete:
         enabled: true
         type: emptyDir
+      cross-seed-config:
+        enabled: true
+        type: secret
+        name: cross-seed-secret
+        mountPath: /config/config.js
+        subPath: config.js
+        readOnly: true
     resources:
       requests:
         cpu: 10m
@@ -115,7 +122,16 @@ spec:
       limits:
         memory: 8Gi
     sidecars:
-      reannounce:
-        image: ghcr.io/buroa/qbittools:v0.1.1
+      cross-seed:
+        image: ghcr.io/cross-seed/cross-seed:5.4.0
         imagePullPolicy: IfNotPresent
-        args: ["reannounce", "-s", "localhost", "-p", "80"]
+        args: ["daemon"]
+        volumeMounts:
+          - { name: config, mountPath: /config }
+          - {
+              name: cross-seed-config,
+              mountPath: /config/config.js,
+              subPath: config.js,
+              readOnly: true,
+            }
+          - { name: media, mountPath: /media }
