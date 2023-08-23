@@ -21,7 +21,7 @@ metadata:
   name: cluster-apps-qbittorrent-tools
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/default/qbittorrent/app
+  path: ./kubernetes/home-cluster/apps/default/qbittorrent/tools
   prune: true
   sourceRef:
     kind: GitRepository
