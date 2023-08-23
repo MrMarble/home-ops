@@ -110,8 +110,8 @@ spec:
         type: emptyDir
       cross-seed-config:
         enabled: true
-        type: secret
-        name: cross-seed-secret
+        type: configMap
+        name: cross-seed-config
         mountPath: /config/config.js
         subPath: config.js
         readOnly: true

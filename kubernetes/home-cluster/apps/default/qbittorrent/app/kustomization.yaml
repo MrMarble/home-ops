@@ -5,10 +5,6 @@ namespace: default
 resources:
   - ./helmrelease.yaml
   - volsync.yaml
-secretGenerator:
-  - name: cross-seed-secret
-    files:
-      - ./config/config.js
 configMapGenerator:
   - name: cross-seed-config
     files:
