@@ -39,7 +39,6 @@ spec:
       - orphaned
       - --ignore-pattern
       - "*/manual/*"
-      - --confirm
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p

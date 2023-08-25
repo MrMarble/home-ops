@@ -36,17 +36,18 @@ spec:
       repository: ghcr.io/buroa/qbittools
       tag: v0.8.0
     args:
-      - tagging
-      - --not-working
-      - --unregistered
-      - --added-on
-      - --last-activity
-      - --tracker-down
-      - --duplicates
-      - -s
-      - qbittorrent.default.svc.cluster.local
-      - -p
-      - "80"
+      [
+        "tagging",
+        "--added-on",
+        "--expired",
+        "--last-activity",
+        "--sites",
+        "--unregistered",
+        "-s",
+        "qbittorrent.default.svc.cluster.local",
+        "-p",
+        "80",
+      ]
     service:
       main:
         enabled: false
