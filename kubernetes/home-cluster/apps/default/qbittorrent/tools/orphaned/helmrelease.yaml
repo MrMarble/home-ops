@@ -36,13 +36,18 @@ spec:
       repository: ghcr.io/buroa/qbittools
       tag: v0.8.2
     args:
-      - orphaned
-      - --ignore-pattern
-      - "*/manual/*"
-      - -s
-      - qbittorrent.default.svc.cluster.local
-      - -p
-      - "80"
+      [
+        "orphaned",
+        "--exclude-pattern",
+        "*/manual/*",
+        "--exclude-pattern",
+        "*_unpackerred",
+        "--dry-run",
+        "-s",
+        "qbittorrent.default.svc.cluster.local",
+        "-p",
+        "80",
+      ]
     service:
       main:
         enabled: false
