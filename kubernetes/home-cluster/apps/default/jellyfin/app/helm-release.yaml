@@ -31,16 +31,35 @@ spec:
       repository: ghcr.io/onedr0p/jellyfin
       tag: 10.8.10
     env:
+      DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
+      JELLYFIN_FFmpeg__probesize: 50000000
+      JELLYFIN_FFmpeg__analyzeduration: 50000000
+      JELLYFIN_PublishedServerUrl: &loadBalancerIP 192.168.10.55
       TZ: Europe/Madrid
     service:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
-          io.cilium/lb-ipam-ips: 192.168.10.55
+          io.cilium/lb-ipam-ips: *loadBalancerIP
         ports:
           http:
-            port: 8096
+            port: &port 8096
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /health
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
     ingress:
       main:
         enabled: true
@@ -84,10 +103,7 @@ spec:
     persistence:
       media:
         enabled: true
-        type: nfs
-        server: "192.168.1.25"
-        path: "/mnt/Data/Media"
-        mountPath: /media
+        existingClaim: media
       transcode:
         enabled: true
         type: emptyDir
