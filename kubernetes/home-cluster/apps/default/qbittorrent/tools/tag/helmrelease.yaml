@@ -40,7 +40,6 @@ spec:
         "tagging",
         "--added-on",
         "--expired",
-        "--last-activity",
         "--sites",
         "--unregistered",
         "-s",
