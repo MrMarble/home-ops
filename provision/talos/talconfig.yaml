@@ -14,6 +14,9 @@ nodes:
     disableSearchDomain: true
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
     machineDisks:
       - device: /dev/disk/by-id/nvme-Force_MP510_2136824800012917531B
         partitions:
@@ -46,6 +49,9 @@ nodes:
     disableSearchDomain: true
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
     nodeLabels:
       ssd: "true"
     machineDisks:
@@ -62,6 +68,9 @@ nodes:
     ipAddress: 192.168.1.12
     installDisk: /dev/sda
     controlPlane: true
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
     patches:
       - *network
       - |-
