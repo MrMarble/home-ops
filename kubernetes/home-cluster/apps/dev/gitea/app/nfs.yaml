@@ -5,7 +5,7 @@ metadata:
 spec:
   storageClassName: gitea-storageclass
   capacity:
-    storage: 1TB
+    storage: 1T
   accessModes:
     - ReadWriteMany
   mountOptions:
