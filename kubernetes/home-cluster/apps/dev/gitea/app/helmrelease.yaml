@@ -54,31 +54,31 @@ spec:
         tls:
           - hosts:
               - *host
-  # https://gitea.com/gitea/helm-chart/
-  redis-cluster:
-    enabled: false
-  postgresql:
-    enabled: false
-  postgresql-ha:
-    enabled: false
+    # https://gitea.com/gitea/helm-chart/
+    redis-cluster:
+      enabled: false
+    postgresql:
+      enabled: false
+    postgresql-ha:
+      enabled: false
 
-  persistence:
-    enabled: true
-    claimName: nfs-gitea
+    persistence:
+      enabled: true
+      claimName: nfs-gitea
 
-  gitea:
-    admin:
-      existingSecret: gitea-secret
-    config:
-      APP_NAME: "Gitea for ${SECRET_DOMAIN}: Git with a cup of tea"
-      server:
-        SSH_PORT: 2222
-        SSH_LISTEN_PORT: 2222
-      database:
-        DB_TYPE: sqlite3
-      session:
-        PROVIDER: memory
-      cache:
-        ADAPTER: memory
-      queue:
-        TYPE: level
+    gitea:
+      admin:
+        existingSecret: gitea-secret
+      config:
+        APP_NAME: "Gitea for ${SECRET_DOMAIN}: Git with a cup of tea"
+        server:
+          SSH_PORT: 2222
+          SSH_LISTEN_PORT: 2222
+        database:
+          DB_TYPE: sqlite3
+        session:
+          PROVIDER: memory
+        cache:
+          ADAPTER: memory
+        queue:
+          TYPE: level
