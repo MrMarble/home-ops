@@ -26,3 +26,4 @@ resources:
   - k8tz.yaml
   - bitnami.yaml
   - cloudnative-pg.yaml
+  - gitea.yaml

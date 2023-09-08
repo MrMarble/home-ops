@@ -1,0 +1,84 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitea
+  namespace: dev
+spec:
+  interval: 30m
+  chart:
+    spec:
+      # renovate: registryUrl=https://dl.gitea.io/charts/
+      chart: gitea
+      version: 9.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: gitea
+        namespace: flux-system
+      interval: 5m
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    image:
+      repository: gitea/gitea
+      tag: 1.20.3
+      pullPolicy: IfNotPresent
+    service:
+      ssh:
+        type: LoadBalancer
+        port: 2222
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.50
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Gitea"
+          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/icon: "gitea"
+        hosts:
+          - host: &host "git.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+  # https://gitea.com/gitea/helm-chart/
+  redis-cluster:
+    enabled: false
+  postgresql:
+    enabled: false
+  postgresql-ha:
+    enabled: false
+
+  persistence:
+    enabled: true
+    claimName: nfs-gitea
+
+  gitea:
+    admin:
+      existingSecret: gitea-secret
+    config:
+      APP_NAME: "Gitea for ${SECRET_DOMAIN}: Git with a cup of tea"
+      server:
+        SSH_PORT: 2222
+        SSH_LISTEN_PORT: 2222
+      database:
+        DB_TYPE: sqlite3
+      session:
+        PROVIDER: memory
+      cache:
+        ADAPTER: memory
+      queue:
+        TYPE: level
