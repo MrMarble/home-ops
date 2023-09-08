@@ -63,6 +63,7 @@ spec:
 
     persistence:
       enabled: true
+      create: false
       claimName: nfs-gitea
 
     gitea:
