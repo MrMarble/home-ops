@@ -121,7 +121,7 @@ spec:
         memory: 8Gi
     sidecars:
       cross-seed:
-        image: ghcr.io/cross-seed/cross-seed:5.4.2
+        image: ghcr.io/cross-seed/cross-seed:5.4.3
         imagePullPolicy: IfNotPresent
         args: ["daemon"]
         volumeMounts:
