@@ -82,6 +82,11 @@ spec:
         qbittorrent:
           url: https://raw.githubusercontent.com/esanchezm/prometheus-qbittorrent-exporter/master/grafana/dashboard.json
           datasource: Prometheus
+        node-exporter:
+          gnetId: 1860 #https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+          revision: 32
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json

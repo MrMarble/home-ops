@@ -37,8 +37,11 @@ spec:
     prometheus:
       monitor:
         enabled: true
-        jobLabel: app.kubernetes.io/instance
-
+        jobLabel: jobLabel
+        metricRelabelings:
+          - action: drop
+            sourceLabels: ["mountpoint"]
+            regex: /var/lib/kubelet/pods.+
     resources:
       requests:
         cpu: 23m
