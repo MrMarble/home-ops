@@ -35,7 +35,7 @@ spec:
       type: statefulset
     image:
       repository: docker.io/fallenbagel/jellyseerr
-      tag: 1.6.0@sha256:2ff7157b28b4161c3a21f5664b3e6e946ea329745795db288ce83702f80db47d
+      tag: 1.7.0@sha256:d6aec40a75672dca505ddfd9ea8ad20627e79cd0cada92c6e629ae2a0181a6d5
     env:
       TZ: Europe/Madrid
       PORT: &port 80
