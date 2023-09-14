@@ -1,8 +1,8 @@
 ---
 clusterName: home-cluster
 
-talosVersion: v1.5.0
-kubernetesVersion: v1.28.0
+talosVersion: v1.5.2
+kubernetesVersion: v1.28.1
 endpoint: https://192.168.1.20:6443
 allowSchedulingOnMasters: true
 
@@ -24,13 +24,10 @@ nodes:
     controlPlane: true
     nodeLabels:
       ssd: "true"
+    extensions: &extensions
+      - image: ghcr.io/siderolabs/i915-ucode:20230804
+      - image: ghcr.io/siderolabs/intel-ucode:20230808
     patches:
-      - &extensions |-
-        machine:
-          install:
-            extensions:
-              - image: ghcr.io/siderolabs/i915-ucode:20230310
-              - image: ghcr.io/siderolabs/intel-ucode:20230512
       - &network |-
         machine:
           network:
@@ -59,8 +56,8 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     controlPlane: true
+    extensions: *extensions
     patches:
-      - *extensions
       - *network
 
   - hostname: tartaro
