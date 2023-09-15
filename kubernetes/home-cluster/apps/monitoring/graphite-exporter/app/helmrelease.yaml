@@ -34,15 +34,15 @@ spec:
       [
         /bin/graphite_exporter,
         "--graphite.listen-address=:2003",
-        --graphite.mapping-config=/config/graphite_mapping.yml,
+        --graphite.mapping-config=/config/graphite_mapping.yaml,
       ]
     persistence:
       config:
         enabled: true
         type: configMap
         name: graphite-exporter-configmap
-        subPath: graphite_mapping.yml
-        mountPath: /config/graphite_mapping.yml
+        subPath: graphite_mapping.yaml
+        mountPath: /config/graphite_mapping.yaml
         readOnly: true
     service:
       main:
