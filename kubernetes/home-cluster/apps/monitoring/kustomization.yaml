@@ -7,3 +7,4 @@ resources:
   - ./alertmanager/ks.yaml
   - ./node-exporter/ks.yaml
   - ./qbittorrent-exporter/ks.yaml
+  - ./graphite-exporter/ks.yaml

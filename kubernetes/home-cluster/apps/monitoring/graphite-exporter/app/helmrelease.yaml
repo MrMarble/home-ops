@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: graphite-exporter
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      fullnameOverride: graphite-exporter
+    image:
+      repository: quay.io/prometheus/graphite-exporter
+      tag: v0.14.0
+    command:
+      [
+        /bin/graphite_exporter,
+        "--graphite.listen-address=:2003",
+        --graphite.mapping-config=/config/graphite_mapping.yml,
+      ]
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: graphite-exporter-configmap
+        subPath: graphite_mapping.yml
+        mountPath: /config/graphite_mapping.yml
+        readOnly: true
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.30
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            enabled: false
+          metrics:
+            port: 9108
+          graphite:
+            port: 2003
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 2m
+            scrapeTimeout: 30s
