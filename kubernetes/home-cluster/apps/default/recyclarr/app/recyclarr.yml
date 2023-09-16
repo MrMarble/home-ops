@@ -11,9 +11,11 @@ sonarr:
       type: series
     quality_profiles:
       - name: WEB-DL (1080p)
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
       - name: WEB-DL (2160p)
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
 
     custom_formats:
       # Unwanted
@@ -183,10 +185,12 @@ radarr:
       type: movie
     quality_profiles:
       - name: HD Bluray + WEB
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
 
       - name: UHD Bluray + WEB
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
 
     custom_formats:
       # Unwanted
