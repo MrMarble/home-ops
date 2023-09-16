@@ -1422,7 +1422,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "cpu_idle{type=\"aggregation-cpu-average\"}",
+          "expr": "gauge_idle{type=\"aggregation-cpu-average\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -1471,8 +1471,8 @@
             "uid": "prometheus"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "cpu_interrupt{type=\"aggregation-cpu-average\"} + cpu_system{type=\"aggregation-cpu-average\"} + cpu_nice{type=\"aggregation-cpu-average\"}",
+          "editorMode": "code",
+          "expr": "gauge_interrupt{type=\"aggregation-cpu-average\"} + gauge_system{type=\"aggregation-cpu-average\"} + gauge_nice{type=\"aggregation-cpu-average\"} + gauge_user{type=\"aggregation-cpu-average\"}",
           "fullMetaSearch": false,
           "groupBy": [
             {
@@ -2080,6 +2080,6 @@
   "timezone": "",
   "title": "TrueNAS dashboard",
   "uid": "ruU9VdNMk",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
