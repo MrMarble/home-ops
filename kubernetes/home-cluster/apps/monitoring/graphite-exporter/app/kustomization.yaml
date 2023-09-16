@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./helmrelease.yaml
+  - ./dashboard
 configMapGenerator:
   - name: graphite-exporter-configmap
     files:
