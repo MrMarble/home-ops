@@ -1,9 +1,0 @@
----
-- Storage:
-    - TrueNAS:
-        icon: truenas
-        href: http://truenas.local
-- Networking:
-    - Pi-hole:
-        icon: pi-hole
-        href: http://pi.hole/admin/
