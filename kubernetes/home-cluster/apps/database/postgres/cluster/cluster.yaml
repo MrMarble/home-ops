@@ -18,9 +18,44 @@ spec:
     storageClass: local-hostpath
   superuserSecret:
     name: postgres-superuser
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres-v3
   postgresql:
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
   monitoring:
     enablePodMonitor: true
+  backup:
+    retentionPolicy: 30d
+    barmanObjectStore:
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      destinationPath: s3://postgres/
+      endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+      serverName: &currentCluster postgres-v4
+      s3Credentials:
+        accessKeyId:
+          name: postgres-superuser
+          key: aws-access-key-id
+        secretAccessKey:
+          name: postgres-superuser
+          key: aws-secret-access-key
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://postgres/
+        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+            name: postgres-superuser
+            key: aws-access-key-id
+          secretAccessKey:
+            name: postgres-superuser
+            key: aws-secret-access-key
