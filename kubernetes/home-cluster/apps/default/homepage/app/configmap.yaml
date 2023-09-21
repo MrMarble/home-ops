@@ -34,7 +34,7 @@ data:
             icon: uptime-kuma.png
             href: http://192.168.1.140:3001
             widget:
-              type: uptimakuma
+              type: uptimekuma
               url: http://192.168.1.140:3001
               slug: homepage
     - Links:
