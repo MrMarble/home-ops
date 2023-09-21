@@ -18,7 +18,7 @@ data:
             href: http://truenas.${SECRET_DOMAIN}
             widget:
               type: truenas
-              url: http://truenas.${SECRET_DOMAIN}
+              url: http://192.168.1.25
               username: {{HOMEPAGE_VAR_TRUENAS_USER}}
               password: {{HOEMPAGE_VAR_TRUENAS_PASS}}
     - Collaboration:
@@ -27,7 +27,7 @@ data:
             href: http://pi.hole/admin/
             widget:
                 type: pihole
-                url: http://pi.hole/
+                url: http://192.168.1.140
                 key: {{HOMEPAGE_VAR_PIHOLE_KEY}}
   widgets.yaml: |
     - kubernetes:
