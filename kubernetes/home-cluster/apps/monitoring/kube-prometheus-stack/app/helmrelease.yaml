@@ -130,7 +130,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Prometheus"
-          gethomepage.dev/group: "Observability"
+          gethomepage.dev/group: "Links"
           gethomepage.dev/icon: "prometheus"
         hosts:
           - &host_prometheus prometheus.${SECRET_DOMAIN}

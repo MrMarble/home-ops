@@ -54,7 +54,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "ESPHome"
-          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/group: "Links"
           gethomepage.dev/icon: "esphome"
         hosts:
           - host: &host "esphome.${SECRET_DOMAIN}"

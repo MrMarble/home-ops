@@ -41,7 +41,7 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Weave Gitops"
-        gethomepage.dev/group: "Observability"
+        gethomepage.dev/group: "Links"
         gethomepage.dev/icon: "flux-cd"
       hosts:
         - host: &host "gitops.${SECRET_DOMAIN}"

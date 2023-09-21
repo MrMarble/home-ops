@@ -60,7 +60,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Immich"
-          gethomepage.dev/group: "Collaboration"
+          gethomepage.dev/group: "Widgets"
           gethomepage.dev/icon: "immich"
           gethomepage.dev/widget.type: "immich"
           gethomepage.dev/widget.url: "http://immich-web.default.svc.cluster.local:3000"

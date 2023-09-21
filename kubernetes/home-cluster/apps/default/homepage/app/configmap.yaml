@@ -55,19 +55,11 @@ data:
         header: false
         style: row
         columns: 4
-      Downloads:
+      Widgets:
         header: false
         style: column
-        columns: 2
-      Collaboration:
-        header: false
-        style: row
         columns: 3
-      Observability:
-        header: false
-        style: column
-        columns: 1
-      Storage:
+      Links:
         header: false
         style: row
         columns: 2

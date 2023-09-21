@@ -153,7 +153,7 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Grafana"
-        gethomepage.dev/group: "Observability"
+        gethomepage.dev/group: "Links"
         gethomepage.dev/icon: "grafana"
 
     persistence:
