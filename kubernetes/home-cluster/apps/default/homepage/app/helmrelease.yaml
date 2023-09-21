@@ -28,7 +28,7 @@ spec:
     controller:
       type: statefulset
       annotations:
-      configmap.reloader.stakater.com/reload: &config homepage
+        configmap.reloader.stakater.com/reload: &config homepage
     image:
       repository: ghcr.io/benphelps/homepage
       tag: v0.6.35@sha256:41a65a1f472ef1f325703e166bd1106873b72c449f6b75e38f813811c46b0024
