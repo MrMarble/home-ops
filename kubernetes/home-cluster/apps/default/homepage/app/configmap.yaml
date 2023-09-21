@@ -16,10 +16,19 @@ data:
         - TrueNAS:
             icon: truenas
             href: http://truenas.${SECRET_DOMAIN}
+            widget:
+              type: truenas
+              url: http://truenas.${SECRET_DOMAIN}
+              username: {{HOMEPAGE_VAR_TRUENAS_USER}}
+              password: {{HOEMPAGE_VAR_TRUENAS_PASS}}
     - Collaboration:
         - Pi-hole:
             icon: pi-hole
             href: http://pi.hole/admin/
+            widget:
+                type: pihole
+                url: http://pi.hole/
+                key: {{HOMEPAGE_VAR_PIHOLE_KEY}}
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -46,7 +55,7 @@ data:
         header: false
         style: row
         columns: 4
-      Downloaders:
+      Downloads:
         header: false
         style: column
         columns: 2

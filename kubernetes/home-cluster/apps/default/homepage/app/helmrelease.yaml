@@ -29,6 +29,7 @@ spec:
       type: statefulset
       annotations:
         configmap.reloader.stakater.com/reload: &config homepage
+        secret.reloader.stakater.com/reload: homepage-secret
     image:
       repository: ghcr.io/benphelps/homepage
       tag: v0.6.35@sha256:41a65a1f472ef1f325703e166bd1106873b72c449f6b75e38f813811c46b0024
@@ -71,6 +72,9 @@ spec:
             mountPath: /app/config/settings.yaml
           - path: widgets.yaml
             mountPath: /app/config/widgets.yaml
+    envFrom:
+      - secretRef:
+          name: homepage-secret
     resources:
       requests:
         cpu: 15m
