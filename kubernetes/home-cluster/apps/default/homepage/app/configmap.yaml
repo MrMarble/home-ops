@@ -9,8 +9,6 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
-  custom.css: ""
-  custom.js: ""
   bookmarks.yaml: ""
   docker.yaml: ""
   services.yaml: |

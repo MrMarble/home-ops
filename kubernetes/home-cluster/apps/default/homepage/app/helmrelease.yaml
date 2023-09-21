@@ -60,10 +60,22 @@ spec:
       config:
         enabled: true
         type: custom
-        mountPath: "/app/config"
         volumeSpec:
           configMap:
             name: *config
+        subPath:
+          - path: bookmarks.yaml
+            mountPath: /app/config/bookmarks.yaml
+          - path: docker.yaml
+            mountPath: /app/config/docker.yaml
+          - path: kubernetes.yaml
+            mountPath: /app/config/kubernetes.yaml
+          - path: services.yaml
+            mountPath: /app/config/services.yaml
+          - path: settings.yaml
+            mountPath: /app/config/settings.yaml
+          - path: widgets.yaml
+            mountPath: /app/config/widgets.yaml
     resources:
       requests:
         cpu: 15m
