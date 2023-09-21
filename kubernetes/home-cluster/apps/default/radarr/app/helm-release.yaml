@@ -55,6 +55,7 @@ spec:
           gethomepage.dev/widget.type: "radarr"
           gethomepage.dev/widget.url: "http://radarr.default.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_RADARR_APIKEY}"
+          gethomepage.dev/widget.fields: ["wanted", "movies"]
         hosts:
           - host: &host "radarr.${SECRET_DOMAIN}"
             paths:

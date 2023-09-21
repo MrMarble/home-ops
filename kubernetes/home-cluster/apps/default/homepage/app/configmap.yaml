@@ -20,6 +20,7 @@ data:
                 type: pihole
                 url: http://192.168.1.140
                 key: {{HOMEPAGE_VAR_PIHOLE_KEY}}
+                fields: ["queries", "blocked_percent"]
         - NextCloud:
             icon: nextcloud.png
             href: https://nc.${SECRET_DOMAIN}
@@ -28,11 +29,12 @@ data:
               url: https://192.168.1.25:8283
               username: {{HOMEPAGE_VAR_NEXTCLOUD_USER}}
               password: {{HOMEPAGE_VAR_NEXTCLOUD_PASS}}
+              fields: ["freespace", "numfiles"]
     - Links:
         - TrueNAS:
             icon: truenas
             href: http://truenas.${SECRET_DOMAIN}
-        - Repo:
+        - GitHub:
             icon: github
             href: https://gihub.com/mrmarble/home-ops
   widgets.yaml: |
@@ -48,13 +50,17 @@ data:
           cpu: true
           memory: true
           showLabel: true
+    - openmeteo:
+      label: Current
   settings.yaml: |
     title: Dashboard
-    headerStyle: boxedWidgets
-    favicon: https://kubernetes.io/images/favicon.png
-    background: https://images.unsplash.com/photo-1663592430990-fff50646acd7?auto=format&fit=crop&w=1920&q=80
-    cardBlur: sm
+    headerStyle: clean
+    background:
+      image: https://cdnb.artstation.com/p/assets/images/images/065/778/947/large/alena-aenami-serenity-1k.jpg
+      opacity: 60
+    cardBlur: xl
     theme: dark
+    color: slate
     target: _self
     layout:
       Media:

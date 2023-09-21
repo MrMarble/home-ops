@@ -52,6 +52,7 @@ spec:
           gethomepage.dev/widget.type: "prowlarr"
           gethomepage.dev/widget.url: "http://prowlarr.default.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_PROWLARR_APIKEY}"
+          gethomepage.dev/widget.fields: ["numberOfGrabs", "numberOfQueries"]
         hosts:
           - host: &host "prowlarr.${SECRET_DOMAIN}"
             paths:

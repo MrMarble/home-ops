@@ -71,6 +71,7 @@ spec:
           gethomepage.dev/widget.type: "sonarr"
           gethomepage.dev/widget.url: "http://sonarr.default.svc.cluster.local"
           gethomepage.dev/widget.key: "${SECRET_SONARR_APIKEY}"
+          gethomepage.dev/widget.fields: ["wanted", "series"]
         hosts:
           - host: &host "sonarr.${SECRET_DOMAIN}"
             paths:
