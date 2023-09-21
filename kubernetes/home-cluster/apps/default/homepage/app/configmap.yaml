@@ -12,7 +12,7 @@ data:
   bookmarks.yaml: ""
   docker.yaml: ""
   services.yaml: |
-    - Storage:
+    - Widgets:
         - TrueNAS:
             icon: truenas
             href: http://truenas.${SECRET_DOMAIN}
@@ -21,7 +21,6 @@ data:
               url: http://192.168.1.25
               username: {{HOMEPAGE_VAR_TRUENAS_USER}}
               password: {{HOEMPAGE_VAR_TRUENAS_PASS}}
-    - Collaboration:
         - Pi-hole:
             icon: pi-hole
             href: http://pi.hole/admin/
