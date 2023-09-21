@@ -13,14 +13,6 @@ data:
   docker.yaml: ""
   services.yaml: |
     - Widgets:
-        - TrueNAS:
-            icon: truenas
-            href: http://truenas.${SECRET_DOMAIN}
-            widget:
-              type: truenas
-              url: http://192.168.1.25
-              username: {{HOMEPAGE_VAR_TRUENAS_USER}}
-              password: {{HOEMPAGE_VAR_TRUENAS_PASS}}
         - Pi-hole:
             icon: pi-hole
             href: http://pi.hole/admin/
@@ -28,6 +20,18 @@ data:
                 type: pihole
                 url: http://192.168.1.140
                 key: {{HOMEPAGE_VAR_PIHOLE_KEY}}
+        - NextCloud:
+            icon: nextcloud.png
+            href: https://nc.${SECRET_DOMAIN}
+            widget:
+              type: nextcloud
+              url: http://192.168.1.25:8283
+              username: {{HOMEPAGE_VAR_NEXTCLOUD_USER}}
+              password: {{HOMEPAGE_VAR_NEXTCLOUD_PASS}}
+    - Links:
+        - TrueNAS:
+            icon: truenas
+            href: http://truenas.${SECRET_DOMAIN}
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -56,7 +60,7 @@ data:
         columns: 4
       Widgets:
         header: false
-        style: column
+        style: row
         columns: 3
       Links:
         header: false
