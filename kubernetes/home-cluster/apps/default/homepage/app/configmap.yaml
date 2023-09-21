@@ -21,10 +21,6 @@ data:
             icon: pi-hole
             href: http://pi.hole/admin/
   widgets.yaml: |
-    - search:
-        provider: [google]
-        focus: false
-        target: _blank
     - kubernetes:
         cluster:
           show: true
@@ -39,23 +35,30 @@ data:
           showLabel: true
   settings.yaml: |
     title: Dashboard
+    headerStyle: boxedWidgets
     favicon: https://kubernetes.io/images/favicon.png
+    background: https://images.unsplash.com/photo-1663592430990-fff50646acd7?auto=format&fit=crop&w=1920&q=80
+    cardBlur: sm
     theme: dark
-    color: slate
     target: _self
     layout:
       Media:
+        header: false
         style: row
         columns: 4
       Downloaders:
+        header: false
         style: column
         columns: 2
       Collaboration:
+        header: false
         style: row
         columns: 3
       Observability:
+        header: false
         style: column
         columns: 1
       Storage:
+        header: false
         style: row
         columns: 2
