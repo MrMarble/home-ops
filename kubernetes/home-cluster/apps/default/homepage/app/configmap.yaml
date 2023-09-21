@@ -7,10 +7,13 @@ metadata:
   annotations:
     reloader.stakater.com/match: "true"
 data:
-  bookmarks.yaml: |
-    ---
+  kubernetes.yaml: |
+    mode: cluster
+  custom.css: ""
+  custom.js: ""
+  bookmarks.yaml: ""
+  docker.yaml: ""
   services.yaml: |
-    ---
     - Storage:
         - TrueNAS:
             icon: truenas
@@ -20,7 +23,6 @@ data:
             icon: pi-hole
             href: http://pi.hole/admin/
   widgets.yaml: |
-    ---
     - search:
         provider: [google]
         focus: false
@@ -37,13 +39,7 @@ data:
           cpu: true
           memory: true
           showLabel: true
-  kubernetes.yaml: |
-    ---
-    mode: cluster
-  docker.yaml: |
-    ---
   settings.yaml: |
-    ---
     title: Dashboard
     favicon: https://kubernetes.io/images/favicon.png
     theme: dark

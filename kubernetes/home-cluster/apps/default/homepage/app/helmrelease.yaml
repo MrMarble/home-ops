@@ -5,33 +5,47 @@ metadata:
   name: &app homepage
   namespace: default
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
-      chart: homepage
-      version: 1.2.1
+      chart: app-template
+      version: 1.5.1
       sourceRef:
         kind: HelmRepository
-        name: jameswynn
+        name: bjw-s
         namespace: flux-system
+  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    controller:
+      type: statefulset
+      annotations:
+      configmap.reloader.stakater.com/reload: &config homepage-config
     image:
       repository: ghcr.io/benphelps/homepage
-      tag: v0.6.35
-    enableRbac: true
-    env:
-      TZ: Europe/Madrid
+      tag: v0.6.35@sha256:41a65a1f472ef1f325703e166bd1106873b72c449f6b75e38f813811c46b0024
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+    service:
+      main:
+        ports:
+          http:
+            port: 3000
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal"
+        ingressClassName: internal
         hosts:
           - host: &host "home.${SECRET_DOMAIN}"
             paths:
@@ -40,10 +54,16 @@ spec:
         tls:
           - hosts:
               - *host
-    config:
-      useExistingConfigMap: *app
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: *app
+    serviceAccount:
+      create: true
+    persistence:
+      config:
+        enabled: true
+        type: custom
+        mountPath: "/app/config"
+        volumeSpec:
+          configMap:
+            name: *config
     resources:
       requests:
         cpu: 15m
