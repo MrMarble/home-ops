@@ -25,13 +25,16 @@ data:
             href: https://nc.${SECRET_DOMAIN}
             widget:
               type: nextcloud
-              url: http://192.168.1.25:8283
+              url: https://192.168.1.25:8283
               username: {{HOMEPAGE_VAR_NEXTCLOUD_USER}}
               password: {{HOMEPAGE_VAR_NEXTCLOUD_PASS}}
     - Links:
         - TrueNAS:
             icon: truenas
             href: http://truenas.${SECRET_DOMAIN}
+        - Repo:
+            icon: github
+            href: https://gihub.com/mrmarble/home-ops
   widgets.yaml: |
     - kubernetes:
         cluster:
