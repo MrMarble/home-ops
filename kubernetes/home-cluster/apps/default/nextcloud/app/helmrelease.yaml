@@ -68,7 +68,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: emptyDir
+        storageClass: local-hostpath
         mountPath: /var/www/html
     resources:
       requests:
