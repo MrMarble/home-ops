@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app nextcloud
+  namespace: default
+spec:
+  interval: 15m
+  maxHistory: 2
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    timeout: 15m
+    remediation:
+      retries: 5
+    cleanupOnFail: true
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: database
+  values:
+    controller:
+      type: statefulset
+    image:
+      repository: nextcloud
+      tag: 27.1.1-apache
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    probes:
+      startup:
+        spec:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        hosts:
+          - host: &host "nc.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: &secret nextcloud-secret
+    envFrom: *envFrom
+    persistence:
+      config:
+        enabled: true
+        type: emptyDir
+        mountPath: /var/www/html
+    resources:
+      requests:
+        cpu: 200m
+        memory: 500Mi
+      limits:
+        cpu: 4000m
+        memory: 4000Mi
