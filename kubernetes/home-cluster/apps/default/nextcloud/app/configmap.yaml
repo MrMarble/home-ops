@@ -6,6 +6,7 @@ data:
   redis-cluster.config.php: |-
     <?php
     $CONFIG = [
+      'filelocking.enabled' => true,
       'memcache.distributed' => '\\OC\\Memcache\\Redis',
       'memcache.locking' => '\\OC\\Memcache\\Redis',
       'redis.cluster' => [

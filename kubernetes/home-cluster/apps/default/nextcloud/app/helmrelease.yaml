@@ -64,7 +64,7 @@ spec:
               name: *secret
       02-init-config:
         image: busybox
-        command: ["/bin/sh", "-c", "cp /data/configmaps/* /data/config/"]
+        command: ["/bin/sh", "-c", "cp /data/configmaps/* /data/config/config"]
         volumeMounts:
           - name: config
             mountPath: /data/config
