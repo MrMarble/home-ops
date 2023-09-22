@@ -32,6 +32,7 @@ spec:
       type: statefulset
       annotations:
         secret.reloader.stakater.com/reload: &secret nextcloud-secret
+        configmap.reloader.stakater.com/reload: &configmap nextcloud-config
     image:
       repository: nextcloud
       tag: 27.1.1-apache
@@ -61,6 +62,14 @@ spec:
         envFrom: &envFrom
           - secretRef:
               name: *secret
+      02-init-config:
+        image: busybox
+        command: ["/bin/sh", "-c", "cp /data/configmaps/* /data/config/"]
+        volumeMounts:
+          - name: config
+            mountPath: /data/config
+          - name: configmaps
+            mountPath: /data/configmaps
     env:
       APACHE_DISABLE_REWRITE_IP: 1
       TRUSTED_PROXIES: 10.244.0.0/16
@@ -72,6 +81,10 @@ spec:
         enabled: true
         storageClass: local-hostpath
         mountPath: /var/www/html
+      configmaps:
+        enabled: true
+        type: configMap
+        name: *configmap
     resources:
       requests:
         cpu: 200m
