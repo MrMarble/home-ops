@@ -69,7 +69,6 @@ spec:
           gethomepage.dev/icon: qbittorrent.png
           gethomepage.dev/widget.type: qbittorrent
           gethomepage.dev/widget.url: "http://qbittorrent.default.svc.cluster.local"
-          gethomepage.dev/widget.fields: ["download", "upload"]
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_hide_header "x-webkit-csp";
             proxy_hide_header "content-security-policy";

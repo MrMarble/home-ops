@@ -60,7 +60,6 @@ spec:
           gethomepage.dev/widget.type: "jellyseerr"
           gethomepage.dev/widget.url: "http://jellyseerr.default.svc.cluster.local"
           gethomepage.dev/widget.key: ${SECRET_JELLYSEERR_APIKEY}
-          gethomepage.dev/widget.fields: ["pending", "available"]
     service:
       main:
         ports:
