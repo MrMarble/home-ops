@@ -59,6 +59,11 @@ spec:
         envFrom: &envFrom
           - secretRef:
               name: &secret nextcloud-secret
+    env:
+      APACHE_DISABLE_REWRITE_IP: 1
+      TRUSTED_PROXIES: 10.244.0.0/16
+      OVERWRITEPROTOCOL: "https"
+      OVERWRITEHOST: *host
     envFrom: *envFrom
     persistence:
       config:
