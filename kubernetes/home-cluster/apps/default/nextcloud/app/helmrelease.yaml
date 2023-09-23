@@ -67,11 +67,17 @@ spec:
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
           proxy_hide_header X-Powered-By;
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
       path: /
       pathType: Prefix
       tls:
         - hosts:
             - *host
+    persistence:
+      enabled: true
+      storageClass: local-hostpath
+      size: 8Gi
   valuesFrom:
     - targetPath: externalDatabase.user
       kind: Secret
