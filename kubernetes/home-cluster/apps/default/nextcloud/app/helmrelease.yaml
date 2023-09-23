@@ -44,7 +44,6 @@ spec:
       host: postgres-rw.database.svc.cluster.local:5432
       database: nextcloud
     nextcloud:
-      datadir: /var/www/data
       host: &host files.${SECRET_DOMAIN}
       extraEnv:
         - name: REDIS_HOST
