@@ -8,7 +8,6 @@ spec:
   ports:
     - protocol: TCP
       port: nextcloud
-      name: https
       targetPort: 8283
 ---
 apiVersion: v1
