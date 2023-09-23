@@ -73,14 +73,12 @@ spec:
       enabled: true
       className: "internal"
       annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
-        nginx.ingress.kubernetes.io/proxy-buffering: "off"
-        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
           proxy_hide_header X-Powered-By;
-        nginx.ingress.kubernetes.io/enable-cors: "true"
-        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
       path: /
       pathType: Prefix
       tls:
@@ -90,6 +88,10 @@ spec:
       enabled: true
       storageClass: local-hostpath
       size: 8Gi
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
   valuesFrom:
     - targetPath: externalDatabase.user
       kind: Secret
