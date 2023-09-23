@@ -5,107 +5,151 @@ metadata:
   name: &app nextcloud
   namespace: default
 spec:
-  interval: 15m
-  maxHistory: 2
+  interval: 60m
   chart:
     spec:
-      chart: app-template
-      version: 1.5.1
+      chart: *app
+      version: 4.3.1
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: nextcloud
         namespace: flux-system
+      interval: 60m
+  timeout: 30m
+  maxHistory: 2
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
-    timeout: 15m
-    remediation:
-      retries: 5
     cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   dependsOn:
     - name: cloudnative-pg
       namespace: database
-    - name: redis
-      namespace: database
+  # Values link: https://github.com/nextcloud/helm/blob/master/charts/nextcloud/values.yaml
   values:
-    controller:
-      type: statefulset
-      annotations:
-        secret.reloader.stakater.com/reload: &secret nextcloud-secret
     image:
       repository: nextcloud
       tag: 27.1.1-apache
-    probes:
-      startup:
-        spec:
-          initialDelaySeconds: 30
-          periodSeconds: 30
+    podAnnotations:
+      secret.reloader.stakater.com/reload: &secret nextcloud-secret
+
     ingress:
-      main:
-        enabled: true
-        ingressClassName: internal
-        annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: "4G"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            server_tokens off;
-            proxy_hide_header X-Powered-By;
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          location ^~ /.well-known {
+              # The rules in this block are an adaptation of the rules
+              # in `.htaccess` that concern `/.well-known`.
 
-            location ^~ /.well-known {
-                # The rules in this block are an adaptation of the rules
-                # in `.htaccess` that concern `/.well-known`.
+              location = /.well-known/carddav { return 301 /remote.php/dav/; }
+              location = /.well-known/caldav  { return 301 /remote.php/dav/; }
 
-                location = /.well-known/carddav { return 301 /remote.php/dav/; }
-                location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+              location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+              location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
 
-                location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
-                location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+              # Let Nextcloud's API for `/.well-known` URIs handle all other
+              # requests by passing them to the front-end controller.
+              return 301 /index.php$request_uri;
+          }
+      path: /
+      pathType: Prefix
+      tls:
+        - hosts:
+            - &host "files.${SECRET_DOMAIN}"
 
-                # Let Nextcloud's API for `/.well-known` URIs handle all other
-                # requests by passing them to the front-end controller.
-                return 301 /index.php$request_uri;
-            }
-        hosts:
-          - host: &host "files.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
     service:
-      main:
-        ports:
-          http:
-            port: 80
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: *secret
-    env:
-      APACHE_DISABLE_REWRITE_IP: 1
-      APACHE_BODY_LIMIT: 0
-      TRUSTED_PROXIES: 10.244.0.0/16
-      NEXTCLOUD_DATA_DIR: /var/www/data
-      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud files.${SECRET_DOMAIN}"
-    envFrom: *envFrom
+      type: ClusterIP
+      port: 8080
+      loadBalancerIP: nil
+      nodePort: nil
+
+    nextcloud:
+      host: *host
+      datadir: /var/www/data
+      existingSecret:
+        enabled: true
+        secretName: *secret
+      configs:
+        custom.config.php: |-
+          <?php
+          $CONFIG = array (
+            'overwriteprotocol' => 'https',
+            'overwrite.cli.url' => 'https://files.${SECRET_DOMAIN}',
+            'filelocking.enabled' => 'true',
+            'loglevel' => '2',
+            'enable_previews' => true,
+            'trusted_domains' =>
+              [
+                'nextcloud',
+                'files.${SECRET_DOMAIN}'
+              ],
+            'trusted_proxies' =>
+              [
+                '10.244.0.0/16'
+              ],
+            'forwarded_for_headers' =>
+              [
+                0 => 'X-Forwarded-For',
+                1 => 'HTTP_X_FORWARDED_FOR',
+              ],
+            'default_phone_region' => 'ES',
+            'memcache.distributed' => '\OC\Memcache\Memcached',
+            'memcache.locking' => '\OC\Memcache\Memcached'
+          );
+
+      extraInitContainers:
+        - name: 01-init-db
+          image: ghcr.io/onedr0p/postgres-init:14.9
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: *secret
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      host: postgres-rw.database.svc.cluster.local
+      database: nextcloud
+      existingSecret:
+        enabled: true
+        secretName: *secret
+        usernameKey: INIT_POSTGRES_USER
+        passwordKey: INIT_POSTGRES_PASS
+
+    internalDatabase:
+      enabled: false
+    mariadb:
+      enabled: false
+    postgresql:
+      enabled: false
+    redis:
+      enabled: false
+    cronjob:
+      enabled: true
+      resources:
+        limits:
+          memory: 512M
+        requests:
+          cpu: 10m
+          memory: 50M
+
     persistence:
-      config:
+      enabled: true
+      size: 8Gi
+      storageClass: zfs-block
+
+      nextcloudData:
         enabled: true
-        storageClass: zfs-block
-        mountPath: /var/www/html
-      data:
-        enabled: true
-        existingClaim: nextcloud-nfs
-        mountPath: /var/www/data
+        existingClaim: "nextcloud-nfs"
+
     resources:
-      requests:
-        cpu: 200m
-        memory: 500Mi
       limits:
-        cpu: 4000m
-        memory: 4000Mi
+        memory: 512M
+      requests:
+        cpu: 10m
+        memory: 334M
