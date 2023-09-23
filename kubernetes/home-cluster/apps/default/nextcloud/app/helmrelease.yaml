@@ -101,7 +101,8 @@ spec:
               ],
             'default_phone_region' => 'ES',
             'memcache.distributed' => '\OC\Memcache\Memcached',
-            'memcache.locking' => '\OC\Memcache\Memcached'
+            'memcache.locking' => '\OC\Memcache\Memcached',
+            check_data_directory_permissions => false
           );
 
       extraInitContainers:
