@@ -54,6 +54,11 @@ spec:
         tls:
           - hosts:
               - *host
+    service:
+      main:
+        ports:
+          http:
+            port: 80
     initContainers:
       01-init-db:
         image: ghcr.io/onedr0p/postgres-init:14.9
