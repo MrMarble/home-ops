@@ -70,6 +70,7 @@ spec:
       APACHE_DISABLE_REWRITE_IP: 1
       APACHE_BODY_LIMIT: 0
       TRUSTED_PROXIES: 10.244.0.0/16
+      NEXTCLOUD_DATA_DIR: /var/www/data
     envFrom: *envFrom
     persistence:
       config:
@@ -79,7 +80,7 @@ spec:
       data:
         enabled: true
         existingClaim: nextcloud-nfs
-        mountPath: /var/www/html/data
+        mountPath: /var/www/data
     resources:
       requests:
         cpu: 200m
