@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: database
+    - name: redis
+      namespace: database
   values:
     controller:
       type: statefulset
@@ -49,8 +51,15 @@ spec:
       main:
         enabled: true
         ingressClassName: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+          nginx.ingress.kubernetes.io/proxy-buffering: "off"
+          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+          nginx.ingress.kubernetes.io/server-snippet: |-
+            server_tokens off;
+            proxy_hide_header X-Powered-By;
         hosts:
-          - host: &host "nc.${SECRET_DOMAIN}"
+          - host: &host "files.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -66,8 +75,7 @@ spec:
       TRUSTED_PROXIES: 10.244.0.0/16
       OVERWRITEPROTOCOL: "https"
       OVERWRITEHOST: *host
-      REDIS_HOST: redis-headless.database.svc.cluster.local
-      REDIST_PORT: 26379
+      REDIS_HOST: redis.database.svc.cluster.local
     envFrom: *envFrom
     persistence:
       config:
