@@ -70,8 +70,6 @@ spec:
       APACHE_DISABLE_REWRITE_IP: 1
       APACHE_BODY_LIMIT: 0
       TRUSTED_PROXIES: 10.244.0.0/16
-      REDIS_HOST: redis.database.svc.cluster.local
-      REDIS_HOST_PORT: "6379"
     envFrom: *envFrom
     persistence:
       config:
