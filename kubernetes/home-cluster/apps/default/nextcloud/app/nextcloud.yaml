@@ -7,7 +7,8 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 443
+      port: nextcloud
+      name: https
       targetPort: 8283
 ---
 apiVersion: v1
