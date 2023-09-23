@@ -63,6 +63,12 @@ spec:
         - hosts:
             - &host "files.${SECRET_DOMAIN}"
 
+    service:
+      type: ClusterIP
+      port: 8080
+      loadBalancerIP: nil
+      nodePort: nil
+
     nextcloud:
       host: *host
       existingSecret:
@@ -133,7 +139,7 @@ spec:
     persistence:
       enabled: true
       size: 8Gi
-      storageClass: zfs-block
+      storageClass: local-hostpath
 
       nextcloudData:
         enabled: true
