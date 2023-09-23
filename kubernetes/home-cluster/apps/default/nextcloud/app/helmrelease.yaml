@@ -57,6 +57,19 @@ spec:
           envFrom: &envFrom
             - secretRef:
                 name: *secret
+      configs:
+        proxy.config.php: |-
+          <?php
+          $CONFIG = array (
+            'trusted_proxies' =>
+            array(
+               0 => '10.244.0.0/16',
+            ),
+            'forwarded_for_headers' =>
+            array (
+              0 => 'HTTP_X_FORWARDED_FOR',
+            ),
+          );
     ingress:
       enabled: true
       className: "internal"
