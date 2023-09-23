@@ -68,7 +68,6 @@ spec:
       existingSecret:
         enabled: true
         secretName: *secret
-      datadir: /var/www/data
       configs:
         custom.config.php: |-
           <?php
