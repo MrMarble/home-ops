@@ -55,7 +55,6 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "10G"
           nginx.ingress.kubernetes.io/proxy-buffering: "off"
           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
           - host: &host "files.${SECRET_DOMAIN}"
             paths:
