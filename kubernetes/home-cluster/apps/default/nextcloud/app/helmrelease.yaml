@@ -43,21 +43,6 @@ spec:
       type: postgresql
       host: postgres-rw.database.svc.cluster.local:5432
       database: nextcloud
-    ingress:
-      enabled: true
-      className: "internal"
-      annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
-        nginx.ingress.kubernetes.io/proxy-buffering: "off"
-        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        nginx.ingress.kubernetes.io/server-snippet: |-
-          server_tokens off;
-          proxy_hide_header X-Powered-By;
-      path: /
-      pathType: Prefix
-      tls:
-        - hosts:
-            - *host
     nextcloud:
       datadir: /var/www/data
       host: &host files.${SECRET_DOMAIN}
@@ -73,6 +58,21 @@ spec:
           envFrom: &envFrom
             - secretRef:
                 name: *secret
+    ingress:
+      enabled: true
+      className: "internal"
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+        nginx.ingress.kubernetes.io/proxy-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+      path: /
+      pathType: Prefix
+      tls:
+        - hosts:
+            - *host
   valuesFrom:
     - targetPath: externalDatabase.user
       kind: Secret
