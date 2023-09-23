@@ -33,9 +33,8 @@ spec:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret nextcloud-secret
     image:
-      flavor: fpm
-    nginx:
-      enabled: true
+      repository: docker.io/library/nextcloud
+      tag: 27.1.1@sha256:c6d3aa23265c972419f79133ee55272bbf0b347353e1431d6277076ccd6c74de
     internalDatabase:
       enabled: false
     externalDatabase:
