@@ -89,4 +89,4 @@ spec:
     - targetPath: nextcloud.password
       kind: Secret
       name: nextcloud-secret
-      valuesKey: NEXTCLOUD_ADMIN_PASS
+      valuesKey: NEXTCLOUD_ADMIN_PASSWORD
