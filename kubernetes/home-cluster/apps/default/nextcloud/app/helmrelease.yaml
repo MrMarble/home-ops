@@ -67,6 +67,7 @@ spec:
       OVERWRITEPROTOCOL: "https"
       OVERWRITEHOST: *host
       REDIS_HOST: redis-headless.database.svc.cluster.local
+      REDIST_PORT: 26379
     envFrom: *envFrom
     persistence:
       config:
