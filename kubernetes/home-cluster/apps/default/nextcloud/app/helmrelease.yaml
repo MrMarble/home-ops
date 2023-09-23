@@ -66,11 +66,6 @@ spec:
         envFrom: &envFrom
           - secretRef:
               name: *secret
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
     env:
       APACHE_DISABLE_REWRITE_IP: 1
       APACHE_BODY_LIMIT: 0
