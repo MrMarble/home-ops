@@ -148,6 +148,11 @@ spec:
         enabled: true
         existingClaim: "nextcloud-nfs"
 
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
+
     resources:
       limits:
         memory: 512M
