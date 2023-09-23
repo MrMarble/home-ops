@@ -107,7 +107,11 @@ spec:
           envFrom:
             - secretRef:
                 name: *secret
-
+      securityContext: {}
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        readOnlyRootFilesystem: false
     externalDatabase:
       enabled: true
       type: postgresql
