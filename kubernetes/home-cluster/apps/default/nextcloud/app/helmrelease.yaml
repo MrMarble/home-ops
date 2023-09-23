@@ -46,6 +46,26 @@ spec:
       main:
         enabled: true
         ingressClassName: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "4G"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            server_tokens off;
+            proxy_hide_header X-Powered-By;
+
+            location ^~ /.well-known {
+                # The rules in this block are an adaptation of the rules
+                # in `.htaccess` that concern `/.well-known`.
+
+                location = /.well-known/carddav { return 301 /remote.php/dav/; }
+                location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+
+                location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+                location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+
+                # Let Nextcloud's API for `/.well-known` URIs handle all other
+                # requests by passing them to the front-end controller.
+                return 301 /index.php$request_uri;
+            }
         hosts:
           - host: &host "files.${SECRET_DOMAIN}"
             paths:
@@ -71,6 +91,7 @@ spec:
       APACHE_BODY_LIMIT: 0
       TRUSTED_PROXIES: 10.244.0.0/16
       NEXTCLOUD_DATA_DIR: /var/www/data
+      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud files.${SECRET_DOMAIN}"
     envFrom: *envFrom
     persistence:
       config:
