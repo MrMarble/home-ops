@@ -9,11 +9,11 @@ spec:
   maxHistory: 2
   chart:
     spec:
-      chart: app-template
-      version: 1.5.1
+      chart: nextcloud
+      version: 4.3.1
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: nextcloud
         namespace: flux-system
   install:
     createNamespace: true
@@ -30,62 +30,63 @@ spec:
     - name: redis
       namespace: database
   values:
-    controller:
-      type: statefulset
-      annotations:
-        secret.reloader.stakater.com/reload: &secret nextcloud-secret
+    deploymentAnnotations:
+      secret.reloader.stakater.com/reload: &secret nextcloud-secret
     image:
-      repository: nextcloud
-      tag: 27.1.1-apache
-    service:
-      main:
-        ports:
-          http:
-            port: 80
-    probes:
-      startup:
-        spec:
-          initialDelaySeconds: 30
-          periodSeconds: 30
+      flavor: fpm
+    nginx:
+      enabled: true
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      host: postgres-rw.database.svc.cluster.local:5432
+      database: nextcloud
     ingress:
-      main:
-        enabled: true
-        ingressClassName: internal
-        annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: "10G"
-          nginx.ingress.kubernetes.io/proxy-buffering: "off"
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        hosts:
-          - host: &host "files.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: *secret
-    env:
-      APACHE_DISABLE_REWRITE_IP: 1
-      TRUSTED_PROXIES: 10.244.0.0/16
-      OVERWRITEPROTOCOL: "https"
-      OVERWRITEHOST: *host
-      REDIS_HOST: redis.database.svc.cluster.local
-    envFrom: *envFrom
-    persistence:
-      config:
-        enabled: true
-        storageClass: local-hostpath
-        mountPath: /var/www/html
-    resources:
-      requests:
-        cpu: 200m
-        memory: 500Mi
-      limits:
-        cpu: 4000m
-        memory: 4000Mi
+      enabled: true
+      className: "internal"
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+        nginx.ingress.kubernetes.io/proxy-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+      path: /
+      pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+    nextcloud:
+      datadir: /var/www/data
+      host: &host files.${SECRET_DOMAIN}
+      extraEnv:
+        - name: REDIS_HOST
+          value: redis.database.svc.cluster.local
+        - name: REDIS_HOST_PORT
+          value: "6379"
+      extraInitContainers:
+        - name: 01-init-db
+          image: ghcr.io/onedr0p/postgres-init:14.9
+          imagePullPolicy: IfNotPresent
+          envFrom: &envFrom
+            - secretRef:
+                name: *secret
+  valuesFrom:
+    - targetPath: externalDatabase.user
+      kind: Secret
+      name: nextcloud-secret
+      valuesKey: POSTGRES_USER
+    - targetPath: externalDatabase.password
+      kind: Secret
+      name: nextcloud-secret
+      valuesKey: POSTGRES_PASSWORD
+    - targetPath: nextcloud.username
+      kind: Secret
+      name: nextcloud-secret
+      valuesKey: NEXTCLOUD_ADMIN_USER
+    - targetPath: nextcloud.password
+      kind: Secret
+      name: nextcloud-secret
+      valuesKey: NEXTCLOUD_ADMIN_PASS
