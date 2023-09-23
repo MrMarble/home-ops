@@ -31,7 +31,7 @@ spec:
         configmap.reloader.stakater.com/reload: cross-seed-config
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.9.1.3977@sha256:8be2e0d0e5ee7621a478a67083b382229272c06487c505c9991da4107f13f82f
+      tag: 1.9.1.3981@sha256:9775ef4dfb014e8d13e7af8e5f45d034116fbc912b4322314dc6f2f79968da7a
     env:
       TZ: Europe/Madrid
       PROWLARR__PORT: &port 80
