@@ -46,7 +46,7 @@
       "kubernetes/home-cluster/.+\\.ya?ml$"
     ]
   },
-  "regexManagers": [
+  "customManagers": [
     {
       "customType": "regex",
       "description": "Process CRD dependencies",
