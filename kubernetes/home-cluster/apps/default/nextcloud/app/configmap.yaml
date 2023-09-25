@@ -10,7 +10,7 @@ data:
       'overwriteprotocol' => 'https',
       'overwrite.cli.url' => 'https://files.${SECRET_DOMAIN}',
       'loglevel' => '2',
-      'enable_previews' => false,
+      'enable_previews' => true,
       'trusted_domains' =>
         [
           'nextcloud',
