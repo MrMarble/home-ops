@@ -112,11 +112,12 @@ spec:
         path: "/mnt/Data/cluster/nextcloud"
         mountPath: /data
         mountOptions:
-          - nfsvers=4
-          - tcp
+          - nfsvers=4.2
+          - nconnect=8
           - hard
           - noatime
-          - nodiratime
+          - rsize=131072
+          - wsize=131072
       custom-config:
         enabled: true
         type: configMap
