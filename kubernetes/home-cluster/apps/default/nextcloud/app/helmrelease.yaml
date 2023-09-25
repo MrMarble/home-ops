@@ -95,6 +95,13 @@ spec:
             mountPath: /data/custom-config
           - name: config
             mountPath: /data/config
+      03-fix-permissions:
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c", "chown 568:568 /data/data"]
+        volumeMounts:
+          - name: data
+            mountPath: /data/data
     podSecurityContext:
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
