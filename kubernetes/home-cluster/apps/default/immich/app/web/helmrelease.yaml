@@ -63,7 +63,7 @@ spec:
           gethomepage.dev/group: "Widgets"
           gethomepage.dev/icon: "immich"
           gethomepage.dev/widget.type: "immich"
-          gethomepage.dev/widget.url: "http://immich-server.default.svc.cluster.local:3001"
+          gethomepage.dev/widget.url: "https://photos.${SECRET_DOMAIN}"
           gethomepage.dev/widget.key: ${SECRET_IMMICH_APIKEY}
         hosts:
           - host: &host photos.${SECRET_DOMAIN}
