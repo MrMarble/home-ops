@@ -84,7 +84,12 @@ spec:
       02-copy-config:
         image: busybox
         imagePullPolicy: IfNotPresent
-        command: ["/bin/sh", "-c", "cp /data/custom-config/* /data/config/"]
+        command:
+          [
+            "/bin/sh",
+            "-c",
+            "mkdir -p /data/config/www/nextcloud/config && cp /data/custom-config/* /data/config/www/nextcloud/config",
+          ]
         volumeMounts:
           - name: custom-config
             mountPath: /data/custom-config
