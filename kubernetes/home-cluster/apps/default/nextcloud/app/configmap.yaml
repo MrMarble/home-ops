@@ -9,9 +9,8 @@ data:
     $CONFIG = array (
       'overwriteprotocol' => 'https',
       'overwrite.cli.url' => 'https://files.${SECRET_DOMAIN}',
-      'filelocking.enabled' => 'true',
       'loglevel' => '2',
-      'enable_previews' => true,
+      'enable_previews' => false,
       'trusted_domains' =>
         [
           'nextcloud',
@@ -27,7 +26,5 @@ data:
           1 => 'HTTP_X_FORWARDED_FOR',
         ],
       'default_phone_region' => 'ES',
-      'memcache.distributed' => '\OC\Memcache\Memcached',
-      'memcache.locking' => '\OC\Memcache\Memcached',
       'check_data_directory_permissions' => false
     );
