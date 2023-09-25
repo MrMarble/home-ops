@@ -23,10 +23,10 @@ data:
                 fields: ["queries", "blocked_percent"]
         - NextCloud:
             icon: nextcloud.png
-            href: https://nc.${SECRET_DOMAIN}
+            href: https://files.${SECRET_DOMAIN}
             widget:
               type: nextcloud
-              url: https://192.168.1.25:8283
+              url: https://nextcloud:443
               username: {{HOMEPAGE_VAR_NEXTCLOUD_USER}}
               password: {{HOMEPAGE_VAR_NEXTCLOUD_PASS}}
               fields: ["freespace", "numfiles"]
