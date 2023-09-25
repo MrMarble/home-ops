@@ -47,7 +47,7 @@ spec:
         name: external
         default: false
         controllerValue: k8s.io/external
-
+      allowSnippetAnnotations: true
       config:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
