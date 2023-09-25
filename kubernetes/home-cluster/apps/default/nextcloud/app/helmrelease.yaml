@@ -2,23 +2,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app nextcloud
+  name: nextcloud
   namespace: default
 spec:
-  interval: 60m
+  interval: 30m
   chart:
     spec:
-      chart: *app
-      version: 4.3.1
+      chart: app-template
+      version: 1.5.1
       sourceRef:
         kind: HelmRepository
-        name: nextcloud
+        name: bjw-s
         namespace: flux-system
-      interval: 60m
-  timeout: 30m
   maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -30,130 +27,98 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: database
-  # Values link: https://github.com/nextcloud/helm/blob/master/charts/nextcloud/values.yaml
   values:
     image:
-      repository: nextcloud
-      tag: 27.1.1-apache
-    podAnnotations:
-      secret.reloader.stakater.com/reload: &secret nextcloud-secret
-
-    ingress:
-      enabled: true
-      className: internal
+      repository: linuxserver/nextcloud
+      tag: 27.1.1
+    controller:
+      type: statefulset
       annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: 4G
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          location ^~ /.well-known {
-              # The rules in this block are an adaptation of the rules
-              # in `.htaccess` that concern `/.well-known`.
+      secret.reloader.stakater.com/reload: &secret nextcloud-secret
+      configmap.reloader.stakater.com/reload: &config nextcloud-config
+    env:
+      PGID: 568
+      PUID: 568
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            location ^~ /.well-known {
+                # The rules in this block are an adaptation of the rules
+                # in `.htaccess` that concern `/.well-known`.
 
-              location = /.well-known/carddav { return 301 /remote.php/dav/; }
-              location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+                location = /.well-known/carddav { return 301 /remote.php/dav/; }
+                location = /.well-known/caldav  { return 301 /remote.php/dav/; }
 
-              location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
-              location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+                location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+                location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
 
-              # Let Nextcloud's API for `/.well-known` URIs handle all other
-              # requests by passing them to the front-end controller.
-              return 301 /index.php$request_uri;
-          }
-      path: /
-      pathType: Prefix
-      tls:
-        - hosts:
-            - &host "files.${SECRET_DOMAIN}"
-
+                # Let Nextcloud's API for `/.well-known` URIs handle all other
+                # requests by passing them to the front-end controller.
+                return 301 /index.php$request_uri;
+            }
+        hosts:
+          - host: &host "files.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
     service:
-      type: ClusterIP
-      port: 8080
-      loadBalancerIP: nil
-      nodePort: nil
+      main:
+        ports:
+          http:
+            port: 443
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: *secret
+      02-copy-config:
+        image: busybox
+        command:
+          ["/bin/sh", "-c", "cp /data/custom-config/* /data/external_config/"]
+        volumes:
+          - name: custom-config
+            configMap:
+              name: *config
+        volumeMounts:
+          - name: custom-config
+            mountPath: /data/custom-config
+          - name: config
+            mountPath: /data/config
 
-    nextcloud:
-      host: *host
-      datadir: /var/www/data
-      existingSecret:
-        enabled: true
-        secretName: *secret
-      configs:
-        custom.config.php: |-
-          <?php
-          $CONFIG = array (
-            'overwriteprotocol' => 'https',
-            'overwrite.cli.url' => 'https://files.${SECRET_DOMAIN}',
-            'filelocking.enabled' => 'true',
-            'loglevel' => '2',
-            'enable_previews' => true,
-            'trusted_domains' =>
-              [
-                'nextcloud',
-                'files.${SECRET_DOMAIN}'
-              ],
-            'trusted_proxies' =>
-              [
-                '10.244.0.0/16'
-              ],
-            'forwarded_for_headers' =>
-              [
-                0 => 'X-Forwarded-For',
-                1 => 'HTTP_X_FORWARDED_FOR',
-              ],
-            'default_phone_region' => 'ES',
-            'memcache.distributed' => '\OC\Memcache\Memcached',
-            'memcache.locking' => '\OC\Memcache\Memcached',
-            'check_data_directory_permissions' => false
-          );
-
-      extraInitContainers:
-        - name: 01-init-db
-          image: ghcr.io/onedr0p/postgres-init:14.9
-          imagePullPolicy: IfNotPresent
-          envFrom:
-            - secretRef:
-                name: *secret
-    externalDatabase:
-      enabled: true
-      type: postgresql
-      host: postgres-rw.database.svc.cluster.local
-      database: nextcloud
-      existingSecret:
-        enabled: true
-        secretName: *secret
-        usernameKey: INIT_POSTGRES_USER
-        passwordKey: INIT_POSTGRES_PASS
-
-    internalDatabase:
-      enabled: false
-    mariadb:
-      enabled: false
-    postgresql:
-      enabled: false
-    redis:
-      enabled: false
-    cronjob:
-      enabled: true
-      resources:
-        limits:
-          memory: 512M
-        requests:
-          cpu: 10m
-          memory: 50M
-
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 8Gi
+        storageClass: zfs-block
     persistence:
-      enabled: true
-      size: 8Gi
-      storageClass: zfs-block
-
-      nextcloudData:
+      data:
         enabled: true
-        existingClaim: "nextcloud-nfs"
-
-    livenessProbe:
-      enabled: false
-    readinessProbe:
-      enabled: false
-
+        type: nfs
+        server: "192.168.1.25"
+        path: "/mnt/Data/cluster/nextcloud"
+        mountPath: /data
+        mountOptions:
+          - nfsvers=4
+          - tcp
+          - hard
+          - noatime
+          - nodiratime
     resources:
       limits:
         memory: 512M

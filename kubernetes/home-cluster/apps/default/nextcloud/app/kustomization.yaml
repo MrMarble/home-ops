@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: default
 resources:
   - secrets.sops.yaml
-  - nfs-pvc.yaml
+  - configmap.yaml
   - helmrelease.yaml

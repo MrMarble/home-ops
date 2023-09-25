@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextcloud-config
+  namespace: default
+data:
+  custom.config.php: |
+    <?php
+    $CONFIG = array (
+      'overwriteprotocol' => 'https',
+      'overwrite.cli.url' => 'https://files.${SECRET_DOMAIN}',
+      'filelocking.enabled' => 'true',
+      'loglevel' => '2',
+      'enable_previews' => true,
+      'trusted_domains' =>
+        [
+          'nextcloud',
+          'files.${SECRET_DOMAIN}'
+        ],
+      'trusted_proxies' =>
+        [
+          '10.244.0.0/16'
+        ],
+      'forwarded_for_headers' =>
+        [
+          0 => 'X-Forwarded-For',
+          1 => 'HTTP_X_FORWARDED_FOR',
+        ],
+      'default_phone_region' => 'ES',
+      'memcache.distributed' => '\OC\Memcache\Memcached',
+      'memcache.locking' => '\OC\Memcache\Memcached',
+      'check_data_directory_permissions' => false
+    );
