@@ -88,8 +88,7 @@ spec:
               name: *secret
       02-copy-config:
         image: busybox
-        command:
-          ["/bin/sh", "-c", "cp /data/custom-config/* /data/external_config/"]
+        command: ["/bin/sh", "-c", "cp /data/custom-config/* /data/config/"]
         volumeMounts:
           - name: custom-config
             mountPath: /data/custom-config
