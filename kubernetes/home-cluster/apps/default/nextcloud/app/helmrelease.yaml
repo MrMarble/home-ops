@@ -95,7 +95,9 @@ spec:
             mountPath: /data/custom-config
           - name: config
             mountPath: /data/config
-
+    podSecurityContext:
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
     volumeClaimTemplates:
       - name: config
         mountPath: /config
