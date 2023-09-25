@@ -42,8 +42,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        ingressClassName: "external"
         annotations:
+          external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}" # Create a CNAME registry
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           nginx.ingress.kubernetes.io/configuration-snippet: |
