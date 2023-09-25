@@ -34,8 +34,8 @@ spec:
     controller:
       type: statefulset
       annotations:
-      secret.reloader.stakater.com/reload: &secret nextcloud-secret
-      configmap.reloader.stakater.com/reload: &config nextcloud-config
+        secret.reloader.stakater.com/reload: &secret nextcloud-secret
+        configmap.reloader.stakater.com/reload: &config nextcloud-config
     env:
       PGID: 568
       PUID: 568
