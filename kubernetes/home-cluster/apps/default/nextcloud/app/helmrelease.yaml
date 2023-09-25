@@ -90,10 +90,6 @@ spec:
         image: busybox
         command:
           ["/bin/sh", "-c", "cp /data/custom-config/* /data/external_config/"]
-        volumes:
-          - name: custom-config
-            configMap:
-              name: *config
         volumeMounts:
           - name: custom-config
             mountPath: /data/custom-config
@@ -119,6 +115,11 @@ spec:
           - hard
           - noatime
           - nodiratime
+      custom-config:
+        enabled: true
+        type: configMap
+        name: *config
+
     resources:
       limits:
         memory: 512M
