@@ -84,6 +84,7 @@
       "versioningTemplate": "semver"
     },
     {
+      "customType": "regex",
       "description": "Process CloudnativePG Postgresql version",
       "fileMatch": [
         "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
