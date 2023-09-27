@@ -82,6 +82,17 @@
       ],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
+    },
+    {
+      "description": "Process CloudnativePG Postgresql version",
+      "fileMatch": [
+        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+      ],
+      "matchStrings": [
+        "imageName: (?<depName>\\S+):(?<currentValue>.*\\-.*)"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "redhat"
     }
   ],
   "packageRules": [
