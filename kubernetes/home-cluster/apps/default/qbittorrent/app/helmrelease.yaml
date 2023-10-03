@@ -122,7 +122,7 @@ spec:
 
     sidecars:
       cross-seed:
-        image: ghcr.io/cross-seed/cross-seed:5.5.1
+        image: ghcr.io/cross-seed/cross-seed:5.5.2
         imagePullPolicy: IfNotPresent
         args: ["daemon"]
         volumeMounts:
