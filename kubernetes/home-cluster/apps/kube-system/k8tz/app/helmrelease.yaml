@@ -24,6 +24,12 @@ spec:
     cronJobTimeZone: true
 
     webhook:
+      ignoredNamespaces:
+        - kube-system
+        - flux-system
+        - kyverno
+        - democratic-csi
+        - csi-addons-system
       certManager:
         enabled: true
         issuerRef:
