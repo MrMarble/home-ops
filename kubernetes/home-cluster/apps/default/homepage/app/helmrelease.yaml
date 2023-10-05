@@ -31,8 +31,8 @@ spec:
         configmap.reloader.stakater.com/reload: &config homepage
         secret.reloader.stakater.com/reload: homepage-secret
     image:
-      repository: ghcr.io/benphelps/homepage
-      tag: v0.7.1@sha256:0c0f25a30971c0dd7c2c64bfef870ffdaa7f1063082331b6d616755f836b1cdf
+      repository: ghcr.io/gethomepage/homepage
+      tag: v0.7.2@sha256:48eb14fe2bd20515507fc26154c452d14e77c2feabd65a398d92cc46e7e790ab
     service:
       main:
         ports:
