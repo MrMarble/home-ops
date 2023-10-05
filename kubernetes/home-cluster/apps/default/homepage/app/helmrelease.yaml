@@ -32,7 +32,7 @@ spec:
         secret.reloader.stakater.com/reload: homepage-secret
     image:
       repository: ghcr.io/benphelps/homepage
-      tag: v0.7.0@sha256:e9e453cc49d883da6ecabaefebd24df121e3a0ee0b9893896275b6652a96002d
+      tag: v0.7.1@sha256:0c0f25a30971c0dd7c2c64bfef870ffdaa7f1063082331b6d616755f836b1cdf
     service:
       main:
         ports:
