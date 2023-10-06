@@ -32,7 +32,7 @@ spec:
         secret.reloader.stakater.com/reload: homepage-secret
     image:
       repository: ghcr.io/gethomepage/homepage
-      tag: v0.7.2@sha256:48eb14fe2bd20515507fc26154c452d14e77c2feabd65a398d92cc46e7e790ab
+      tag: v0.7.3@sha256:b1c62bae0e4e798d15f497895a6bf17a48758e467409b641526607ab3f002c01
     service:
       main:
         ports:
