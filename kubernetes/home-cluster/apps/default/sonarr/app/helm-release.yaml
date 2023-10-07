@@ -35,7 +35,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.688@sha256:213596ee16fb09e2f49d8d9797a3d9e45e1904b7538f3a68b29df3549251af12
+      tag: 4.0.0.688@sha256:404f660af12e75f16de96a757beeb9822f33c71330ed01473a56322a62b5cb82
     env:
       TZ: Europe/Madrid
       SONARR__PORT: &port 80
