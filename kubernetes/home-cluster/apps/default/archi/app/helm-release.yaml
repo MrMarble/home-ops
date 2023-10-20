@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/justarchinet/archisteamfarm
-      tag: 5.4.11.2
+      tag: 5.4.12.3
     env:
       ASF_ARGS: "--process-required --no-restart"
     service:
