@@ -20,11 +20,7 @@ data:
         [
           '10.244.0.0/16'
         ],
-      'forwarded_for_headers' =>
-        [
-          0 => 'X-Forwarded-For',
-          1 => 'HTTP_X_FORWARDED_FOR',
-        ],
+      'forwarded_for_headers' => ['HTTP_X_FORWARDED', 'HTTP_FORWARDED_FOR'],
       'default_phone_region' => 'ES',
       'check_data_directory_permissions' => false
     );
