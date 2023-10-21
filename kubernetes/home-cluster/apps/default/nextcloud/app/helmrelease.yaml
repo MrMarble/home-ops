@@ -123,7 +123,10 @@ spec:
         enabled: true
         type: configMap
         name: *config
-
+      downloads:
+        enabled: true
+        existingClaim: media
+        mountPath: /downloads
     resources:
       limits:
         memory: 512M
