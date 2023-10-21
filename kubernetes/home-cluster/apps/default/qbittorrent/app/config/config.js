@@ -8,6 +8,11 @@ module.exports = {
     "http://prowlarr.default.svc.cluster.local/4/api?apikey=${SECRET_PROWLARR_APIKEY}",  // tl
     "http://prowlarr.default.svc.cluster.local/5/api?apikey=${SECRET_PROWLARR_APIKEY}", // xb
     "http://prowlarr.default.svc.cluster.local/6/api?apikey=${SECRET_PROWLARR_APIKEY}", // dt
+    "http://prowlarr.default.svc.cluster.local/7/api?apikey=${SECRET_PROWLARR_APIKEY}", // cz
+    "http://prowlarr.default.svc.cluster.local/8/api?apikey=${SECRET_PROWLARR_APIKEY}", // az
+    "http://prowlarr.default.svc.cluster.local/9/api?apikey=${SECRET_PROWLARR_APIKEY}", // at
+    "http://prowlarr.default.svc.cluster.local/10/api?apikey=${SECRET_PROWLARR_APIKEY}", // tt
+    "http://prowlarr.default.svc.cluster.local/11/api?apikey=${SECRET_PROWLARR_APIKEY}", // sa
   ],
   action: "inject",
   includeEpisodes: true,
