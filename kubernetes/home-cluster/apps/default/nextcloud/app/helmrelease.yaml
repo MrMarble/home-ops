@@ -30,7 +30,7 @@ spec:
   values:
     image:
       repository: linuxserver/nextcloud
-      tag: 27.1.2
+      tag: 27.1.3
     controller:
       type: statefulset
       annotations:
