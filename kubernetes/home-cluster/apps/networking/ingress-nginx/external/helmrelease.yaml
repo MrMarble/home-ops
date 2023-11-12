@@ -64,7 +64,7 @@ spec:
         enable-owasp-modsecurity-crs: true
         modsecurity-snippet: |
           # By default is DetectionOnly. Can be any of: DetectionOnly,On,Off
-          SecRuleEngine On
+          SecRuleEngine DetectionOnly
           # Avoid sending status information about ModSecurity in response header
           SecStatusEngine Off
           # Send ModSecurity audit logs to the stdout (only for rejected requests)
