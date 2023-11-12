@@ -1,0 +1,78 @@
+---
+trackers:
+  - name: animez
+    urls:
+      - animez.to
+      - animetorrents.me
+    required_seed_ratio: 1.05
+    required_seed_days: 1.5
+
+  - name: avistaz
+    urls:
+      - avistaz.to
+    required_seed_ratio: 1
+    required_seed_days: 10.5
+
+  - name: cinemaz
+    urls:
+      - cinemaz.to
+    required_seed_ratio: 1.05
+    required_seed_days: 10.5
+
+  - name: divteam
+    urls:
+      - divteam.com
+    required_seed_ratio: 0
+    required_seed_days: 2.5
+
+  - name: exoticaz
+    urls:
+      - exoticaz.to
+    required_seed_ratio: 1.05
+    required_seed_days: 10.5
+
+  - name: hd-olimpo
+    urls:
+      - hd-olimpo.club
+    required_seed_ratio: 0
+    required_seed_days: 3.5
+
+  - name: redbits
+    urls:
+      - redbits.xyz
+    required_seed_ratio: 0
+    required_seed_days: 4.5
+
+  - name: torrentland
+    urls:
+      - torrentland.li
+    required_seed_ratio: 0
+    required_seed_days: 4.5
+
+  - name: xbytesv2
+    urls:
+      - xbytesv2.li
+    required_seed_ratio: 1.05
+    required_seed_days: 3.5
+
+  - name: puntotorrent
+    urls:
+      - puntotorrent.com
+    required_seed_ratio: 0
+    required_seed_days: 3.5
+
+  - name: speedapp
+    urls:
+      - speedapp.io
+      - speedapp.to
+      - speedappio.org
+    required_seed_ratio: 1.05
+    required_seed_days: 2.5
+
+  - name: torrenteros
+    urls:
+      - speedapp.io
+      - speedapp.to
+      - speedappio.org
+    required_seed_ratio: 0.45
+    required_seed_days: 7.5
