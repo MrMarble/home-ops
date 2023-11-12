@@ -63,11 +63,17 @@ spec:
         enable-modsecurity: true
         enable-owasp-modsecurity-crs: true
         modsecurity-snippet: |
-          Include /etc/nginx/owasp-modsecurity-crs/nginx-modsecurity.conf
-          Include /etc/nginx/modsecurity/modsecurity.conf
+          # By default is DetectionOnly. Can be any of: DetectionOnly,On,Off
+          SecRuleEngine On
+          # Avoid sending status information about ModSecurity in response header
+          SecStatusEngine Off
+          # Send ModSecurity audit logs to the stdout (only for rejected requests)
           SecAuditLog /dev/stdout
           SecAuditLogFormat JSON
-          SecAuditEngine RelevantOnly
+          SecAuditEngine RelevantOnly # could be On/Off/RelevantOnly
+          # Include PUT/PATCH/DELETE in the allowed methods, otherwise those verbs will be rejected by rule 911100
+          SecAction "id:900200,phase:1,nolog,pass,t:none,\
+            setvar:tx.allowed_methods=GET HEAD POST OPTIONS PUT PATCH DELETE"
       metrics:
         enabled: true
         serviceMonitor:
