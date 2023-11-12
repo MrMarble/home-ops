@@ -69,8 +69,8 @@ spec:
           SecStatusEngine Off
           # Send ModSecurity audit logs to the stdout (only for rejected requests)
           SecAuditLog /dev/stdout
+          SecAuditLogFormat JSON
           SecAuditEngine RelevantOnly # could be On/Off/RelevantOnly
-
       metrics:
         enabled: true
         serviceMonitor:
