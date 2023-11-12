@@ -33,9 +33,6 @@ spec:
         type: cronjob
         cronjob:
           schedule: "@hourly"
-        initContainers:
-          tag:
-            order: 1
         containers:
           main:
             image:
