@@ -9,3 +9,4 @@ resources:
   - ./qbittorrent-exporter/ks.yaml
   - ./graphite-exporter/ks.yaml
   - ./loki/ks.yaml
+  - ./promtail/ks.yaml

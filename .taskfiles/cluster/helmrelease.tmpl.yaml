@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.2.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,24 +25,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-    ingress:
+    controllers:
       main:
-        enabled: true
-        ingressClassName: internal
-        hosts:
-          - host: &host "{{.Release.Name}}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
+        type: statefulset
+        containers:
+          main:
+            image:
+              repository: XXXX
+              tag: v0.0.0
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
