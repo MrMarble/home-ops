@@ -30,6 +30,8 @@ spec:
         replication_factor: 1
       storage:
         type: "filesystem"
+      auth:
+        enabled: false
     singleBinary:
       replicas: 1
     backend:
