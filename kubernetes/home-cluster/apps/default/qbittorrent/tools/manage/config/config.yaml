@@ -71,8 +71,6 @@ trackers:
 
   - name: torrenteros
     urls:
-      - speedapp.io
-      - speedapp.to
-      - speedappio.org
+      - torrenteros.org
     required_seed_ratio: 0.45
     required_seed_days: 7.5
