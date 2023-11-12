@@ -62,7 +62,12 @@ spec:
         ssl-protocols: "TLSv1.3 TLSv1.2"
         enable-modsecurity: true
         enable-owasp-modsecurity-crs: true
-
+        modsecurity-snippet: |
+          Include /etc/nginx/owasp-modsecurity-crs/nginx-modsecurity.conf
+          Include /etc/nginx/modsecurity/modsecurity.conf
+          SecAuditLog /dev/stdout
+          SecAuditLogFormat JSON
+          SecAuditEngine RelevantOnly
       metrics:
         enabled: true
         serviceMonitor:
