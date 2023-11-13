@@ -65,6 +65,10 @@ spec:
             access: proxy
             url: http://kube-prometheus-stack-prometheus:9090/
             isDefault: true
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki:3100
     dashboards:
       default:
         cloudflared:
