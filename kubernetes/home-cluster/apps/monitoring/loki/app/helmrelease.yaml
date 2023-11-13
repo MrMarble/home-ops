@@ -31,6 +31,13 @@ spec:
       storage:
         type: "filesystem"
       auth_enabled: false
+      limits_config:
+        split_queries_by_interval: 24h
+        max_query_parallelism: 100
+      query_scheduler:
+        max_outstanding_requests_per_tenant: 4096
+      frontend:
+        max_outstanding_per_tenant: 4096
     singleBinary:
       replicas: 1
     backend:
