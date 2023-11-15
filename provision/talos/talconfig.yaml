@@ -76,6 +76,18 @@ nodes:
             extraKernelArgs:
               - nomodeset
 
+  - hostname: erebos
+    disableSearchDomain: true
+    ipAddress: 192.168.1.13
+    installDisk: /dev/nvme0n1
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+    controlPlane: true
+    extensions: *extensions
+    patches:
+      - *network
+
 controlPlane:
   patches:
     - |-
