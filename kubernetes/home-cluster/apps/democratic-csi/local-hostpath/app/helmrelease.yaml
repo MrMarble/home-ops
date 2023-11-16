@@ -57,14 +57,16 @@ spec:
         extraArgs:
           - --leader-election=false
           - --node-deployment=true
-
+      nodeSelector:
+        ssd: "true"
     node:
       driver:
         extraVolumeMounts:
           - name: local-hostpath
             mountPath: /var/mnt/sata/demo-csi-local-path
             mountPropagation: Bidirectional
-
+      nodeSelector:
+        ssd: "true"
       extraVolumes:
         - name: local-hostpath
           hostPath:
