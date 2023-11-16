@@ -26,7 +26,7 @@ nodes:
     nodeLabels:
       ssd: "true"
     patches:
-      - &network |-
+      - |-
         machine:
           network:
             interfaces:
@@ -56,7 +56,14 @@ nodes:
           - mountpoint: /var/mnt/sata
     controlPlane: true
     patches:
-      - *network
+      - |-
+        machine:
+          network:
+            interfaces:
+              - interface: enp2s0
+                dhcp: true
+                vip:
+                  ip: 192.168.1.20
 
   - hostname: tartaro
     disableSearchDomain: true
@@ -68,7 +75,14 @@ nodes:
       - 1.1.1.1
       - 8.8.8.8
     patches:
-      - *network
+      - |-
+        machine:
+          network:
+            interfaces:
+              - interface: enp4s0
+                dhcp: true
+                vip:
+                  ip: 192.168.1.20
 
   - hostname: erebos
     disableSearchDomain: true
@@ -78,13 +92,11 @@ nodes:
     nameservers:
       - 1.1.1.1
       - 8.8.8.8
-    controlPlane: true
-    patches:
-      - *network
+    controlPlane: false
 
 controlPlane:
   patches:
-    - |-
+    - &machine |-
       machine:
         files:
           - op: create
@@ -101,10 +113,10 @@ controlPlane:
           extraConfig:
             maxPods: 150
         network:
-            extraHostEntries:
-              - ip: 192.168.1.20
+          extraHostEntries:
+            - ip: 192.168.1.20
 
-    - |-
+    - &cluster |-
       cluster:
         proxy:
           disabled: true
@@ -115,3 +127,8 @@ controlPlane:
     - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
+
+worker:
+  patches:
+    - *machine
+    - *cluster
