@@ -1,7 +1,7 @@
 ---
 clusterName: home-cluster
 
-talosVersion: v1.5.2
+talosVersion: v1.5.5
 kubernetesVersion: v1.28.1
 endpoint: https://192.168.1.20:6443
 allowSchedulingOnMasters: true
@@ -12,6 +12,7 @@ cniConfig:
 nodes:
   - hostname: caos
     disableSearchDomain: true
+    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
     nameservers:
@@ -24,9 +25,6 @@ nodes:
     controlPlane: true
     nodeLabels:
       ssd: "true"
-    extensions: &extensions
-      - image: ghcr.io/siderolabs/i915-ucode:20230804
-      - image: ghcr.io/siderolabs/intel-ucode:20230808
     patches:
       - &network |-
         machine:
@@ -45,6 +43,7 @@ nodes:
   - hostname: gaia
     disableSearchDomain: true
     ipAddress: 192.168.1.11
+    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     installDisk: /dev/sda
     nameservers:
       - 1.1.1.1
@@ -56,13 +55,13 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/sata
     controlPlane: true
-    extensions: *extensions
     patches:
       - *network
 
   - hostname: tartaro
     disableSearchDomain: true
     ipAddress: 192.168.1.12
+    talosImageURL: factory.talos.dev/installer/090095965ddf61642c79f38c70eb3ec6765fecc12e633eb6fbcb4ed164306a7d
     installDisk: /dev/sda
     controlPlane: true
     nameservers:
@@ -70,21 +69,16 @@ nodes:
       - 8.8.8.8
     patches:
       - *network
-      - |-
-        machine:
-          install:
-            extraKernelArgs:
-              - nomodeset
 
   - hostname: erebos
     disableSearchDomain: true
     ipAddress: 192.168.1.13
+    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     installDisk: /dev/nvme0n1
     nameservers:
       - 1.1.1.1
       - 8.8.8.8
     controlPlane: true
-    extensions: *extensions
     patches:
       - *network
 
@@ -109,9 +103,6 @@ controlPlane:
         network:
             extraHostEntries:
               - ip: 192.168.1.20
-        install:
-          extensions:
-            - image: ghcr.io/siderolabs/iscsi-tools:v0.1.4
 
     - |-
       cluster:
