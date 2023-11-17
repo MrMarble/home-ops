@@ -19,6 +19,9 @@
   "configMigration": true,
   "platform": "github",
   "username": "pepinillo-bot[bot]",
+  "ignorePaths": [
+    "kubernetes/archive/**"
+  ],
   "repositories": [
     "MrMarble/home-ops"
   ],
