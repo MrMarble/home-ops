@@ -17,7 +17,3 @@
   - [Storage](kubernetes/storage.md)
   - [Backups](kubernetes/backups.md)
 - [💪🏼 Helper Apps](apps/index.md)
-
-# Provision
-
-- [🤘🏼 Sidero Metal](provision/sidero.md)
