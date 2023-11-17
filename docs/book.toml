@@ -15,9 +15,13 @@ git-repository-url = "https://github.com/mrmarble/home-ops"
 git-repository-icon = "fa-github"
 no-section-label = true
 git-branch = "main"
-cname="mrmarble.dev"
+cname = "mrmarble.dev"
 open-on-text = "[Edit this page on GitHub]"
-additional-css = ["./theme/mdbook-admonish.css", "./theme/catppuccin.css", "./theme/catppuccin-highlight.css"]
+additional-css = [
+  "./theme/mdbook-admonish.css",
+  "./theme/catppuccin.css",
+  "./theme/catppuccin-highlight.css",
+]
 
 [output.html.fold]
 enable = true
@@ -39,14 +43,14 @@ renderer = ["html"]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
-assets_version = "2.0.1" # do not edit: managed by `mdbook-admonish install`
+assets_version = "3.0.1"    # do not edit: managed by `mdbook-admonish install`
 
 
 [preprocessor.emojicodes]
-after = [ "links" ]
+after = ["links"]
 
 [preprocessor.regex]
-after = [ "links" ]
+after = ["links"]
 patterns = "replace-patterns.json"
 
 # [preprocessor.catppuccin]
