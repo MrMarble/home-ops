@@ -29,6 +29,8 @@ spec:
       namespace: default
     - name: redis
       namespace: database
+    - name: cloudnative-pg
+      namespace: database
   values:
     initContainers:
       01-init-db:
@@ -45,6 +47,7 @@ spec:
         configmap.reloader.stakater.com/reload: *configMap
         secret.reloader.stakater.com/reload: *secret
     image:
+      # renovate: datasource=github-releases depName=immich-app/immich
       repository: ghcr.io/immich-app/immich-server
       tag: v1.85.0
     args: ["start-server.sh"]
