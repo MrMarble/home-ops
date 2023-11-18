@@ -1,0 +1,24 @@
+# Adds annotation `nginx.ingress.kubernetes.io/modsecurity-transaction-id: "$request_id"` to all ingress
+
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-modsecurity-annotation
+  annotations:
+    policies.kyverno.io/title: Add ModSecurity annotation
+spec:
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: add-mosecurity-annotation
+      match:
+        resources:
+          annotations:
+            external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
+          kinds:
+            - Ingress
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              nginx.ingress.kubernetes.io/modsecurity-transaction-id: "$request_id"
