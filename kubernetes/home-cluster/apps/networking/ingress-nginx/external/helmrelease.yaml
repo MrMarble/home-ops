@@ -28,7 +28,8 @@ spec:
     fullNameOverride: "nginx-external"
     controller:
       replicaCount: 1
-
+      annotations:
+        reloader.stakater.com/auto: "true"
       updateStrategy:
         type: RollingUpdate
 
@@ -64,22 +65,7 @@ spec:
         enable-modsecurity: true
         enable-owasp-modsecurity-crs: true
         modsecurity-snippet: |
-          # By default is DetectionOnly. Can be any of: DetectionOnly,On,Off
-          SecRuleEngine DetectionOnly
-          # Avoid sending status information about ModSecurity in response header
-          SecStatusEngine Off
-          # Send ModSecurity audit logs to the stdout (only for rejected requests)
-          SecAuditLog /dev/stdout
-          SecAuditLogFormat JSON
-          SecAuditEngine RelevantOnly # could be On/Off/RelevantOnly
-
-
-          # CRS Rule Exclusion: 911100 - Method is not allowed by policy
-          SecRuleUpdateTargetById 911100 "!REQUEST_BASENAME:/^remote.php\/dav\/files.*/"
-          # CRS Rule Exclusion: 921110 - HTTP Request Smuggling Attack
-          SecRuleUpdateTargetById 921110 "!REQUEST_BASENAME:/^remote.php\/dav\/files.*/"
-          # CRS Rule Exclusion: 949110 - Inbound Anomaly Score Exceeded
-          SecRuleUpdateTargetById 949110 "!REQUEST_BASENAME:/^remote.php\/dav\/files.*/"
+          Include /etc/nginx/owasp-modsecurity-crs/custom/custom-modsecurity.conf
         log-format-escape-json: "true"
         log-format-upstream: >
           {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for",
@@ -92,10 +78,15 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-
       extraArgs:
         default-ssl-certificate: "networking/home-dev-tls"
-
+      extraVolumeMounts:
+        - name: modsecurity-config
+          mountPath: /etc/nginx/owasp-modsecurity-crs/custom/
+      extraVolumes:
+        - name: modsecurity-config
+          configMap:
+            name: modsecurity-config
       admissionWebhooks:
         objectSelector:
           matchExpressions:
