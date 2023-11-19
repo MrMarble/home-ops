@@ -9,94 +9,140 @@ allowSchedulingOnMasters: true
 cniConfig:
   name: none
 
+# Image URL rendered on https://factory.talos.dev
+# customization:
+#     extraKernelArgs:
+#         - net.ifnames=0
+#     systemExtensions:
+#         officialExtensions:
+#             - siderolabs/iscsi-tools
+#             - siderolabs/i915-ucode
+#             - siderolabs/intel-ucode
+talosImageURL: factory.talos.dev/installer/e7cc50027e254420c7457c9e89339c444ffbc497d1cf5f2405ae1997bcc5eccc
+
 nodes:
   - hostname: caos
-    disableSearchDomain: true
-    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     ipAddress: 192.168.1.10
     installDisk: /dev/sda
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
     machineDisks:
       - device: /dev/disk/by-id/nvme-Force_MP510_2136824800012917531B
         partitions:
           - mountpoint: /var/mnt/sata
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "EC:8E:B5:6D:FF:6F"
+        dhcp: true
+        vip:
+          ip: 192.168.1.20
     controlPlane: true
     nodeLabels:
       ssd: "true"
     patches:
-      - |-
+      - &disk |-
         machine:
-          network:
-            interfaces:
-              - interface: eno1
-                dhcp: true
-                vip:
-                  ip: 192.168.1.20
-      - &udev |-
+          kubelet:
+            extraMounts:
+              - destination: /var/mnt/sata
+                type: bind
+                source: /var/mnt/sata
+                options:
+                  - rbind
+                  - rshared
+                  - rw
+      - |-
         machine:
           udev:
             rules:
               - SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="568", OWNER="568"
 
   - hostname: gaia
-    disableSearchDomain: true
     ipAddress: 192.168.1.11
-    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     installDisk: /dev/sda
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
     nodeLabels:
       ssd: "true"
     machineDisks:
       - device: /dev/disk/by-id/nvme-SAMSUNG_MZVLB512HBJQ-000H7_S4GMNF0N908288
         partitions:
           - mountpoint: /var/mnt/sata
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "84:A9:3E:1A:98:43"
+        dhcp: true
+        vip:
+          ip: 192.168.1.20
     controlPlane: true
     patches:
-      - |-
-        machine:
-          network:
-            interfaces:
-              - interface: enp2s0
-                dhcp: true
-                vip:
-                  ip: 192.168.1.20
+      - *disk
 
   - hostname: tartaro
-    disableSearchDomain: true
     ipAddress: 192.168.1.12
-    talosImageURL: factory.talos.dev/installer/090095965ddf61642c79f38c70eb3ec6765fecc12e633eb6fbcb4ed164306a7d
+    # customization:
+    #     extraKernelArgs:
+    #         - net.ifnames=0
+    #         - nomodeset
+    #     systemExtensions:
+    #         officialExtensions:
+    #             - siderolabs/iscsi-tools
+    talosImageURL: factory.talos.dev/installer/0e4ad9ce4404adc881a6d95a28abf6c343edfbca1a24f4411510a47d350dad02
     installDisk: /dev/sda
     controlPlane: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    patches:
-      - |-
-        machine:
-          network:
-            interfaces:
-              - interface: enp4s0
-                dhcp: true
-                vip:
-                  ip: 192.168.1.20
-
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "D8:9E:F3:DF:CC:15"
+        dhcp: true
+        vip:
+          ip: 192.168.1.20
   - hostname: erebos
-    disableSearchDomain: true
     ipAddress: 192.168.1.13
-    talosImageURL: factory.talos.dev/installer/2dcd442954d67662d41c61bdb92165aaf7189aff9997bd011b6968c12ce8d9c0
     installDisk: /dev/nvme0n1
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "6C:4B:90:41:9E:23"
+        dhcp: true
     controlPlane: false
 
 controlPlane:
   patches:
-    - &machine |-
+    # Disable search domain everywhere
+    - &searchDomain |-
+      machine:
+        network:
+          disableSearchDomain: true
+
+    # Configure NTP
+    - &ntp |-
+      machine:
+        time:
+          disabled: false
+          servers:
+            - es.pool.ntp.org
+
+    # Enable KubePrism
+    - &kubeprism |-
+      machine:
+        features:
+          kubePrism:
+            enabled: true
+            port: 7445
+
+    # Configure cluster loopback
+    - &loopback |-
+      machine:
+        network:
+          extraHostEntries:
+            - ip: 192.168.1.20
+              aliases:
+                - home-cluster.casa
+
+    # Cluster configuration
+    - &cluster |-
+      cluster:
+        allowSchedulingOnMasters: true
+        proxy:
+          disabled: true
+
+    # Configure containerd
+    - &containerd |-
       machine:
         files:
           - op: create
@@ -106,17 +152,29 @@ controlPlane:
                 [plugins."io.containerd.grpc.v1.cri"]
                   enable_unprivileged_ports = true
                   enable_unprivileged_icmp = true
+
+    # Disable default API server admission plugins.
+    - &admissionControl |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl
+
+    # Kubelet configuration
+    - &kubelet |-
+      machine:
         kubelet:
           extraArgs:
             feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
             rotate-server-certificates: "true"
           extraConfig:
             maxPods: 150
-        network:
-          extraHostEntries:
-            - ip: 192.168.1.20
 
-    - &cluster |-
+    # Custom sysctls
+    - &sysctl |-
+      machine:
+        sysctls:
+          fs.inotify.max_user_watches: "1048576"
+          fs.inotify.max_user_instances: "8192"
+    - |-
       cluster:
         proxy:
           disabled: true
@@ -124,11 +182,13 @@ controlPlane:
           - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/cilium/cilium.yaml
           - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
 
-    - |-
-      - op: remove
-        path: /cluster/apiServer/admissionControl
-
 worker:
   patches:
-    - *machine
+    - *searchDomain
+    - *ntp
+    - *kubeprism
+    - *loopback
     - *cluster
+    - *containerd
+    - *kubelet
+    - *sysctl
