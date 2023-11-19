@@ -30,7 +30,7 @@ nodes:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "EC:8E:B5:6D:FF:6F"
+          hardwareAddr: "ec:8e:b5:6d:ff:6f"
         dhcp: true
         vip:
           ip: 192.168.1.20
@@ -66,7 +66,7 @@ nodes:
           - mountpoint: /var/mnt/sata
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "84:A9:3E:1A:98:43"
+          hardwareAddr: "84:a9:3e:1a:98:43"
         dhcp: true
         vip:
           ip: 192.168.1.20
@@ -88,7 +88,7 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "D8:9E:F3:DF:CC:15"
+          hardwareAddr: "d8:9e:f3:df:cc:15"
         dhcp: true
         vip:
           ip: 192.168.1.20
@@ -97,7 +97,7 @@ nodes:
     installDisk: /dev/nvme0n1
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "6C:4B:90:41:9E:23"
+          hardwareAddr: "6c:4b:90:41:9e:23"
         dhcp: true
     controlPlane: false
 
