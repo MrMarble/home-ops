@@ -33,7 +33,7 @@ spec:
     node:
       hostPID: true
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:v1.8.3
+        image: ghcr.io/democratic-csi/democratic-csi:v1.8.4
         extraEnv:
           - name: ISCSIADM_HOST_STRATEGY
             value: nsenter
@@ -46,7 +46,7 @@ spec:
 
     controller:
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:v1.8.3
+        image: ghcr.io/democratic-csi/democratic-csi:v1.8.4
 
       externalAttacher:
         image: registry.k8s.io/sig-storage/csi-attacher:v4.4.0
