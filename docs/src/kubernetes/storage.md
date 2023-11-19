@@ -3,9 +3,9 @@
 Storage in my cluster is handled in a number of ways.
 The in-cluster storage is provided by a [longhorn](https://github.com/longhorn/longhorn) cluster that is running on a number of my nodes.
 
-## Longhorn storage
+## Distributed storage
 
-The bulk of my cluster storage relies on [longhorn](https://github.com/mrmarble/home-ops/tree/main/cluster/apps/longhorn-system/helm-release.yaml). This ensures that my data is replicated across my storage nodes.
+The bulk of my cluster storage relies on [democratic-csi](https://github.com/mrmarble/home-ops/tree/main/kubernetes/home-cluster/apps/democratic-csi). This ensures that my data is replicated across my storage nodes.
 
 ## NFS storage
 
