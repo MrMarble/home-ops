@@ -27,12 +27,9 @@ spec:
   values:
     fullNameOverride: "nginx-external"
     controller:
-      replicaCount: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
+      replicaCount: 2
       updateStrategy:
         type: RollingUpdate
-
       service:
         enabled: true
         type: LoadBalancer
