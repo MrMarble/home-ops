@@ -62,8 +62,8 @@ spec:
         proxy-body-size: 0
         proxy-buffer-size: "16k"
         ssl-protocols: "TLSv1.3 TLSv1.2"
-        enable-modsecurity: true
-        enable-owasp-modsecurity-crs: true
+        enable-modsecurity: false
+        enable-owasp-modsecurity-crs: false
         modsecurity-snippet: |
           Include /etc/nginx/owasp-modsecurity-crs/custom/custom-modsecurity.conf
         log-format-escape-json: "true"
