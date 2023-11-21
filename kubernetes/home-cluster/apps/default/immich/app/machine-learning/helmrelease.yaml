@@ -38,7 +38,7 @@ spec:
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.87.0
+      tag: v1.88.2
     envFrom:
       - configMapRef:
           name: *configMap
