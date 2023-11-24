@@ -78,7 +78,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  name: immich-server
                   port: 3001
         tls:
           - hosts:
