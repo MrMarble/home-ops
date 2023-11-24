@@ -79,7 +79,7 @@ spec:
                 pathType: Prefix
                 service:
                   name: main
-                  port: http
+                  port: 3001
         tls:
           - hosts:
               - *host
