@@ -6,6 +6,5 @@ resources:
   - configmap.yaml
   - ./typesense
   - ./server
-  - ./web
   - ./microservices
   - ./machine-learning
