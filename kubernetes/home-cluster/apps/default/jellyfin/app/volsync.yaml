@@ -23,6 +23,7 @@ spec:
     copyMethod: Snapshot
     pruneIntervalDays: 10
     repository: jellyfin-volsync
+    cacheCapacity: 8Gi
     retain:
       daily: 7
       within: 3d
