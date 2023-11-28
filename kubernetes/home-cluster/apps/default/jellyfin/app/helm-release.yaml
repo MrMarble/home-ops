@@ -108,6 +108,14 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /transcode
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /cache
+      metadata:
+        enabled: true
+        type: emptyDir
+        mountPath: /metadata
     nodeSelector:
       intel.feature.node.kubernetes.io/gpu: "true"
     resources:
