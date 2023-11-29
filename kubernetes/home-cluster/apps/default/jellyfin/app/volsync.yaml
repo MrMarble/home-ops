@@ -20,7 +20,7 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    accesssModes: ReadWriteOnce
+    accessModes: ReadWriteOnce
     copyMethod: Snapshot
     pruneIntervalDays: 7
     repository: jellyfin-volsync
