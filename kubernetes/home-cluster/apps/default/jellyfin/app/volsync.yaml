@@ -18,7 +18,7 @@ metadata:
 spec:
   sourcePVC: config-jellyfin-0
   trigger:
-    schedule: "0 * * * *"
+    schedule: "0 7 * * *"
   restic:
     accessModes: [ReadWriteOnce]
     copyMethod: Snapshot
