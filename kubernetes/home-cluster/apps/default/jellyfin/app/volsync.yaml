@@ -21,12 +21,13 @@ spec:
     schedule: "0 7 * * *"
   restic:
     copyMethod: Snapshot
-    pruneIntervalDays: 10
+    pruneIntervalDays: 7
     repository: jellyfin-volsync
     cacheCapacity: 8Gi
     retain:
+      hourly: 24
       daily: 7
-      within: 3d
+      weekly: 5
     volumeSnapshotClassName: zfs-block
     storageClassName: zfs-block
     moverSecurityContext:
