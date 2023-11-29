@@ -38,7 +38,7 @@ spec:
     image:
       repository: ghcr.io/immich-app/immich-server
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.88.2
+      tag: v1.89.0
     args: ["start-microservices.sh"]
     envFrom:
       - configMapRef:
