@@ -18,8 +18,9 @@ metadata:
 spec:
   sourcePVC: config-jellyfin-0
   trigger:
-    schedule: "0 7 * * *"
+    schedule: "0 * * * *"
   restic:
+    accesssModes: ReadWriteOnce
     copyMethod: Snapshot
     pruneIntervalDays: 7
     repository: jellyfin-volsync
