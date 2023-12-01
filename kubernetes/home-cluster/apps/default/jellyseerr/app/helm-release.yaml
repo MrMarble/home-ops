@@ -70,12 +70,12 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-    persistence:
-      config:
-        enabled: true
-        existingClaim: jellyseerr
-        accessMode: ReadWriteMany
+    volumeClaimTemplates:
+      - name: config
         mountPath: /app/config
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        storageClass: zfs-block
     resources:
       requests:
         memory: 210M
