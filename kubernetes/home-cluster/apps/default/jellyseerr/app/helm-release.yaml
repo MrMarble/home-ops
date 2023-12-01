@@ -73,6 +73,7 @@ spec:
     volumeClaimTemplates:
       - name: config
         existingClaim: overseerr
+        accessMode: ReadWriteOnce
     resources:
       requests:
         memory: 210M
