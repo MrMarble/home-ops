@@ -73,7 +73,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: overseerr
+        existingClaim: jellyseerr
         accessMode: ReadWriteOnce
         mountPath: /app/config
     resources:
