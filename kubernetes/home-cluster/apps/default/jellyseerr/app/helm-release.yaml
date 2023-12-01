@@ -70,10 +70,12 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-    volumeClaimTemplates:
-      - name: config
+    persistence:
+      config:
+        enabled: true
         existingClaim: overseerr
         accessMode: ReadWriteOnce
+        mountPath: /app/config
     resources:
       requests:
         memory: 210M
