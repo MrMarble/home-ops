@@ -74,7 +74,7 @@ spec:
       config:
         enabled: true
         existingClaim: jellyseerr
-        accessMode: ReadWriteOnce
+        accessMode: ReadWriteMany
         mountPath: /app/config
     resources:
       requests:
