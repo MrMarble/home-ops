@@ -72,10 +72,7 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
     volumeClaimTemplates:
       - name: config
-        mountPath: /app/config
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        storageClass: zfs-block
+        existingClaim: overseerr
     resources:
       requests:
         memory: 210M
