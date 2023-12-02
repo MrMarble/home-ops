@@ -5,4 +5,4 @@ metadata:
   name: linstorcluster
 spec:
   nodeSelector:
-    ssd: "yes"
+    ssd: "true"
