@@ -13,6 +13,11 @@ spec:
         metadata:
           name: satellite
         spec:
+          tolerations:
+            - key: node-role.kubernetes.io/master
+              $patch: delete
+            - key: node-role.kubernetes.io/control-plane
+              $patch: delete
           initContainers:
             - name: drbd-shutdown-guard
               $patch: delete
