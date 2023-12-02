@@ -4,3 +4,4 @@ resources:
   - ./talos-loader-override.yaml
   - ./cluster.yaml
   - ./storage-pool.yaml
+  - ./storageclass.yaml
