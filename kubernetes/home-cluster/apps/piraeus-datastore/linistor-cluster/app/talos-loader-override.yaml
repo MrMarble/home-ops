@@ -15,9 +15,11 @@ spec:
         spec:
           tolerations:
             - key: node-role.kubernetes.io/master
-              $patch: delete
+              operator: "Exists"
+              effect: "PreferNoSchedule"
             - key: node-role.kubernetes.io/control-plane
-              $patch: delete
+              operator: "Exists"
+              effect: "PreferNoSchedule"
           initContainers:
             - name: drbd-shutdown-guard
               $patch: delete
