@@ -6,3 +6,17 @@ metadata:
 spec:
   nodeSelector:
     ssd: "true"
+  patches:
+    - target:
+        kind: Deployment
+        name: linstor-controller
+      patch: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: linstor-controller
+        spec:
+          template:
+            spec:
+              tolerations:
+                - key: node-role.kube
