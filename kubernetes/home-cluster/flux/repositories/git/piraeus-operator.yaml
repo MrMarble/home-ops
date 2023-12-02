@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: hhttps://github.com/piraeusdatastore/piraeus-operator
+  url: https://github.com/piraeusdatastore/piraeus-operator
   ref:
     tag: v2.2.0
   ignore: |
