@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./talos-loader-override.yaml
   - ./cluster.yaml
+  - ./storage-pool.yaml
