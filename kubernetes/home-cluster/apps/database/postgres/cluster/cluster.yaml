@@ -15,13 +15,13 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
-    storageClass: local-hostpath
+    storageClass: piraeus-storage
   superuserSecret:
     name: postgres-superuser
   # Note: Bootstrap is needed when recovering from an existing cnpg cluster
-  # bootstrap:
-  #   recovery:
-  #     source: &previousCluster postgresv4
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresv4
   postgresql:
     parameters:
       max_connections: "600"
@@ -36,7 +36,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://postgres/
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-      serverName: &currentCluster postgres-v4
+      serverName: &currentCluster postgres-v5
       s3Credentials:
         accessKeyId:
           name: postgres-superuser
@@ -45,18 +45,18 @@ spec:
           name: postgres-superuser
           key: aws-secret-access-key
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       wal:
-  #         compression: bzip2
-  #         maxParallel: 8
-  #       destinationPath: s3://postgres/
-  #       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-  #       s3Credentials:
-  #         accessKeyId:
-  #         name: postgres-superuser
-  #         key: aws-access-key-id
-  #       secretAccessKey:
-  #         name: postgres-superuser
-  #         key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://postgres/
+        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+          name: postgres-superuser
+          key: aws-access-key-id
+        secretAccessKey:
+          name: postgres-superuser
+          key: aws-secret-access-key
