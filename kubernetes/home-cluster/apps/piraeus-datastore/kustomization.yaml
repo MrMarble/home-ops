@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./piraeus-operator/ks.yaml
+  - ./linistor-cluster/ks.yaml
