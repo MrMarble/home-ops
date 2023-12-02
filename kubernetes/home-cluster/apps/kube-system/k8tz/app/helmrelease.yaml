@@ -30,6 +30,7 @@ spec:
         - kyverno
         - democratic-csi
         - csi-addons-system
+        - piraeus-datastore
       certManager:
         enabled: true
         issuerRef:
