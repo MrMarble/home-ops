@@ -15,10 +15,11 @@ cniConfig:
 #         - net.ifnames=0
 #     systemExtensions:
 #         officialExtensions:
+#             - siderolabs/drbd
 #             - siderolabs/iscsi-tools
 #             - siderolabs/i915-ucode
 #             - siderolabs/intel-ucode
-talosImageURL: factory.talos.dev/installer/e7cc50027e254420c7457c9e89339c444ffbc497d1cf5f2405ae1997bcc5eccc
+talosImageURL: factory.talos.dev/installer/c6a472a10d65764de28827ca401e702f35b8919c9bdae24db534760e15ac5c74
 
 nodes:
   - hostname: caos
@@ -54,6 +55,14 @@ nodes:
           udev:
             rules:
               - SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="568", OWNER="568"
+      - &drbd |-
+        machine:
+          kernel:
+              modules:
+                - name: drbd
+                  parameters:
+                    - usermode_helper=disabled
+                - name: drbd_transport_tcp
 
   - hostname: gaia
     ipAddress: 192.168.1.11
@@ -73,6 +82,7 @@ nodes:
     controlPlane: true
     patches:
       - *disk
+      - *drbd
 
   - hostname: tartaro
     ipAddress: 192.168.1.12
@@ -92,6 +102,7 @@ nodes:
         dhcp: true
         vip:
           ip: 192.168.1.20
+
   - hostname: erebos
     ipAddress: 192.168.1.13
     installDisk: /dev/nvme0n1
@@ -100,7 +111,8 @@ nodes:
           hardwareAddr: "6c:4b:90:41:9e:23"
         dhcp: true
     controlPlane: false
-
+    patches:
+      - *drbd
 controlPlane:
   patches:
     # Disable search domain everywhere

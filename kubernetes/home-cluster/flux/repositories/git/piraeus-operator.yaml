@@ -1,0 +1,16 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kubernetes-csi-addons
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: hhttps://github.com/piraeusdatastore/piraeus-operator
+  ref:
+    tag: v2.2.0
+  ignore: |
+    # exclude all
+    /*
+    # include files
+    !/config/*
