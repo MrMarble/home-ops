@@ -41,10 +41,7 @@ spec:
               TZ: Europe/Madrid
               PROWLARR__PORT: &port 80
               PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              PROWLARR__INSTANCE_NAME: Prowlarr
             probes:
               liveness: &probes
                 enabled: true
@@ -60,12 +57,16 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                memory: 411M
-                cpu: 15m
+                cpu: 10m
+                memory: 128M
               limits:
-                memory: 420M
+                memory: 1Gi
         pod:
           securityContext:
             runAsUser: 568
