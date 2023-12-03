@@ -109,3 +109,5 @@ spec:
         existingClaim: jellyseerr
         globalMounts:
           - path: /app/config
+      tmp:
+        type: emptyDir
