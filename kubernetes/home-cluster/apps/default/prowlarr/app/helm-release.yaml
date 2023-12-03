@@ -42,6 +42,10 @@ spec:
               PROWLARR__PORT: &port 80
               PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
               PROWLARR__INSTANCE_NAME: Prowlarr
+              PROWLARR__LOG_LEVEL: info
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
             probes:
               liveness: &probes
                 enabled: true
