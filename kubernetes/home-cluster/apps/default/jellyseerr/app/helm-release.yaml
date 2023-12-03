@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -31,14 +31,55 @@ spec:
     - name: volsync
       namespace: volsync
   values:
-    controller:
-      type: statefulset
-    image:
-      repository: docker.io/fallenbagel/jellyseerr
-      tag: 1.7.0@sha256:d6aec40a75672dca505ddfd9ea8ad20627e79cd0cada92c6e629ae2a0181a6d5
-    env:
-      TZ: Europe/Madrid
-      PORT: &port 80
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: docker.io/fallenbagel/jellyseerr
+              tag: 1.7.0@sha256:d6aec40a75672dca505ddfd9ea8ad20627e79cd0cada92c6e629ae2a0181a6d5
+            env:
+              TZ: Europe/Madrid
+              PORT: &port 80
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/status
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                memory: 1Gi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      main:
+        ports:
+          http:
+            port: *port
     ingress:
       main:
         enabled: true
@@ -60,23 +101,9 @@ spec:
           gethomepage.dev/widget.type: "jellyseerr"
           gethomepage.dev/widget.url: "http://jellyseerr.default.svc.cluster.local"
           gethomepage.dev/widget.key: ${SECRET_JELLYSEERR_APIKEY}
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
-        enabled: "true"
+        enabled: true
         existingClaim: jellyseerr
-        mountPath: /app/config
-    resources:
-      requests:
-        memory: 210M
-      limits:
-        memory: 500M
+        globalMounts:
+          - path: /app/config
