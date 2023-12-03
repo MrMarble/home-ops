@@ -83,18 +83,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "external"
-        hosts:
-          - host: &host "jellyseerr.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                servie:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+        className: "external"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
           gethomepage.dev/enabled: "true"
@@ -104,6 +93,16 @@ spec:
           gethomepage.dev/widget.type: "jellyseerr"
           gethomepage.dev/widget.url: "http://jellyseerr.default.svc.cluster.local"
           gethomepage.dev/widget.key: ${SECRET_JELLYSEERR_APIKEY}
+        hosts:
+          - host: &host "jellyseerr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
