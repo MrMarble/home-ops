@@ -113,6 +113,7 @@ nodes:
     controlPlane: false
     patches:
       - *drbd
+
 controlPlane:
   patches:
     # Disable search domain everywhere

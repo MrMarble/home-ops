@@ -45,7 +45,6 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
-            probes:
               liveness: &probes
                 enabled: true
                 custom: true
