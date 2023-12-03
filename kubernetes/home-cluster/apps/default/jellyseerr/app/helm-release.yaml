@@ -28,8 +28,8 @@ spec:
     - name: jellyfin
     - name: radarr
     - name: sonarr
-    - name: freenas-iscsi
-      namespace: democratic-csi
+    - name: volsync
+      namespace: volsync
   values:
     controller:
       type: statefulset
@@ -70,12 +70,11 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-    volumeClaimTemplates:
-      - name: config
+    persistence:
+      config:
+        enabled: "true"
+        existingClaim: jellyseerr
         mountPath: /app/config
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        storageClass: zfs-block
     resources:
       requests:
         memory: 210M

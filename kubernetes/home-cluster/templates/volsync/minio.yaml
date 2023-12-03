@@ -46,10 +46,10 @@ spec:
   restic:
     repository: "${APP}-volsync"
     copyMethod: Snapshot # must be Snapshot
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-zfs-block}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-piraeus-storage}"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
-    storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-piraeus-storage}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
