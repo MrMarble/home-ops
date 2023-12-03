@@ -5,3 +5,4 @@ resources:
   - ./cluster.yaml
   - ./storage-pool.yaml
   - ./storageclass.yaml
+  - ./snapshot-class.yaml
