@@ -38,7 +38,6 @@ spec:
               # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
               # https://github.com/dotnet/runtime/issues/9336
               COMPlus_EnableDiagnostics: "0"
-              TZ: Europe/Madrid
               PROWLARR__PORT: &port 80
               PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
               PROWLARR__INSTANCE_NAME: Prowlarr
