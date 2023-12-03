@@ -5,6 +5,10 @@ metadata:
   name: &app prowlarr
   namespace: flux-system
 spec:
+  targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./kubernetes/home-cluster/apps/default/prowlarr/app
   prune: true
   sourceRef:
