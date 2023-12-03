@@ -27,52 +27,52 @@ spec:
   values:
     controllers:
       main:
-      annotations:
-        configmap.reloader.stakater.com/reload: cross-seed-config
-      containers:
-        main:
-          image:
-            repository: ghcr.io/onedr0p/prowlarr-nightly
-            tag: 1.10.5.4101@sha256:356cd94d7c6a117be1baca4ce4002d959c5f581709ecff5774c948489a227083
-          env:
-            # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
-            # https://github.com/dotnet/runtime/issues/9336
-            COMPlus_EnableDiagnostics: "0"
-            TZ: Europe/Madrid
-            PROWLARR__PORT: &port 80
-            PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
+        annotations:
+          configmap.reloader.stakater.com/reload: cross-seed-config
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/prowlarr-nightly
+              tag: 1.10.5.4101@sha256:356cd94d7c6a117be1baca4ce4002d959c5f581709ecff5774c948489a227083
+            env:
+              # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
+              # https://github.com/dotnet/runtime/issues/9336
+              COMPlus_EnableDiagnostics: "0"
+              TZ: Europe/Madrid
+              PROWLARR__PORT: &port 80
+              PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                memory: 411M
+                cpu: 15m
+              limits:
+                memory: 420M
+        pod:
           securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities: { drop: ["ALL"] }
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /ping
-                  port: *port
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          resources:
-            requests:
-              memory: 411M
-              cpu: 15m
-            limits:
-              memory: 420M
-      pod:
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
