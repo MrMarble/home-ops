@@ -18,6 +18,7 @@ spec:
     storageClass: piraeus-storage
   superuserSecret:
     name: postgres-superuser
+  enableSuperuserAccess: true
   # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   # bootstrap:
   #   recovery:
