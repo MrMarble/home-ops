@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - electrolama-zigbee-device.yaml
+  - google-coral-device.yaml
