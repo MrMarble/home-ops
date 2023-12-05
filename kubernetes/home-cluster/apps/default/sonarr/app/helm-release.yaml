@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,21 +26,65 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: freenas-iscsi
-      namespace: democratic-csi
+    - name: volsync
+      namespace: volsync
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.733@sha256:f2040da4a2559612cc810f1ecf6848b19ce38a31bf2bb686dae712b9c088a3e3
-    env:
-      TZ: Europe/Madrid
-      SONARR__PORT: &port 80
-      SONARR__API_KEY: ${SECRET_SONARR_APIKEY}
-    probes:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/sonarr-develop
+              tag: 4.0.0.733@sha256:f2040da4a2559612cc810f1ecf6848b19ce38a31bf2bb686dae712b9c088a3e3
+            env:
+              # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
+              # https://github.com/dotnet/runtime/issues/9336
+              COMPlus_EnableDiagnostics: "0"
+              SONARR__PORT: &port 80
+              SONARR__API_KEY: ${SECRET_SONARR_APIKEY}
+              SONARR__INSTANCE_NAME: Sonarr
+              SONARR__LOG_LEVEL: info
+              SONARR__THEME: dark
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 256M
+              limits:
+                memory: 1Gi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [10000, 100]
+    service:
+      main:
+        ports:
+          http:
+            port: *port
       liveness: &probes
         enabled: true
         custom: true
@@ -58,7 +102,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal"
+        className: "internal"
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Sonarr"
@@ -72,35 +116,17 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 10Gi
-        storageClass: zfs-block
     persistence:
+      config:
+        enabled: true
+        existingClaim: sonarr
       media:
         enabled: true
         existingClaim: media
         mountPath: /media
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
