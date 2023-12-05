@@ -42,6 +42,7 @@ spec:
               PROWLARR__API_KEY: ${SECRET_PROWLARR_APIKEY}
               PROWLARR__INSTANCE_NAME: Prowlarr
               PROWLARR__LOG_LEVEL: info
+              PROWLARR__THEME: dark
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
@@ -82,10 +83,6 @@ spec:
         enabled: true
         className: "internal"
         annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/prowlarr/nord.css"></head>';
-            sub_filter_once on;
           gethomepage.dev/enabled: "true"
           gethomepage.dev/name: "Prowlarr"
           gethomepage.dev/group: "Widgets"
