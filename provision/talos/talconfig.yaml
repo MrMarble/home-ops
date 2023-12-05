@@ -105,6 +105,17 @@ nodes:
 
   - hostname: erebos
     ipAddress: 192.168.1.13
+    # customization:
+    #     extraKernelArgs:
+    #         - net.ifnames=0
+    #     systemExtensions:
+    #         officialExtensions:
+    #             - siderolabs/i915-ucode
+    #             - siderolabs/intel-ucode
+    #             - siderolabs/iscsi-tools
+    #             - siderolabs/drbd
+    #             - siderolabs/gasket-driver
+    talosImageURL: factory.talos.dev/installer/6e71cd97ddc04dd60e595febe5192c1d5ffff8a927db317a343ff047a6190222
     installDisk: /dev/nvme0n1
     networkInterfaces:
       - deviceSelector:
