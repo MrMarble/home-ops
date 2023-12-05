@@ -3,6 +3,8 @@ kind: LinstorSatelliteConfiguration
 metadata:
   name: storage-pool
 spec:
+  nodeSelector:
+    ssd: "true"
   storagePools:
     - name: pool1
       fileThinPool:

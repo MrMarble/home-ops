@@ -4,8 +4,6 @@ kind: LinstorCluster
 metadata:
   name: linstorcluster
 spec:
-  nodeSelector:
-    ssd: "true"
   patches:
     - target:
         kind: Deployment
