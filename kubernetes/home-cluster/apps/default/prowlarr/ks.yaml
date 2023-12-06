@@ -23,5 +23,5 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: openebs-hostpath
+      VOLSYNC_STORAGECLASS: openebs-jiva-csi-default
       VOLSYNC_COPYMETHOD: Clone
