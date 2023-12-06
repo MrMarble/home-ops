@@ -29,7 +29,7 @@ spec:
       fullnameOverride: graphite-exporter
     image:
       repository: quay.io/prometheus/graphite-exporter
-      tag: v0.14.0
+      tag: v0.15.0
     command:
       [
         /bin/graphite_exporter,
