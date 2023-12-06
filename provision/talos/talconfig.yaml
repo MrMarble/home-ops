@@ -63,7 +63,17 @@ nodes:
                   parameters:
                     - usermode_helper=disabled
                 - name: drbd_transport_tcp
-
+      - &openebs |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/openebs/local
+                type: bind
+                source: /var/openebs/local
+                options:
+                  - bind
+                  - rshared
+                  - rw
   - hostname: gaia
     ipAddress: 192.168.1.11
     installDisk: /dev/sda
@@ -83,6 +93,7 @@ nodes:
     patches:
       - *disk
       - *drbd
+      - *openebs
 
   - hostname: tartaro
     ipAddress: 192.168.1.12
@@ -102,6 +113,8 @@ nodes:
         dhcp: true
         vip:
           ip: 192.168.1.20
+    patches:
+      - *openebs
 
   - hostname: erebos
     ipAddress: 192.168.1.13
@@ -124,6 +137,7 @@ nodes:
     controlPlane: false
     patches:
       - *drbd
+      - *openebs
 
 controlPlane:
   patches:

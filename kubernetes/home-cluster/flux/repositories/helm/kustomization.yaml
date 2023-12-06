@@ -27,3 +27,4 @@ resources:
   - cloudnative-pg.yaml
   - gitea.yaml
   - nextcloud.yaml
+  - openebs-jiva.yaml
