@@ -12,8 +12,10 @@ receivers:
         parse_mode: "HTML"
         message: |-
           {{- range .Alerts }}
-            {{- if ne .Labels.severity "" }}
-              <b>Severity:</b> <i>{{ .Labels.severity }}</i>
+            {{- if eq .Labels.severity "warning"}}
+              ⚠ <b>{{ .Labels.severity }}</b>
+            {{- else if ne .Labels.severity "" }}
+              <b>{{ .Labels.severity }}</b>
             {{- else }}
               <b>Severity:</b> <i>N/A</i>
             {{- end }}
@@ -42,10 +44,11 @@ route:
   routes:
     - receiver: "null"
       matchers:
-        - alertname =~ "InfoInhibitor|Watchdog"
+        - alertname =~ "InfoInhibitor|Watchdog|NodeCPUHighUsage"
+
     - receiver: "telegram"
       matchers:
-        - severity = critical
+        - severity = "critical"
       continue: true
 
 inhibit_rules:
