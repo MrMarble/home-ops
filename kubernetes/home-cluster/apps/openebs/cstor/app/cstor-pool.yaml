@@ -20,3 +20,10 @@ spec:
             - blockDeviceName: sparse-b8b77513021ddf3f73e5c7eba2d33f6c
       poolConfig:
         dataRaidGroupType: stripe
+    - nodeSelector:
+        kubernetes.io/hostname: "erebos"
+      dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: sparse-a71e12c5aa1c4fc13ed762288a87c9fc
+      poolConfig:
+        dataRaidGroupType: stripe
