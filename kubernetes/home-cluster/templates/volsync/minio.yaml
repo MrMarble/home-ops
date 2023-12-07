@@ -18,15 +18,15 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    copyMethod: "${VOLSYNC_COPYMETHOD:=Snapshot}"
+    copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
     pruneIntervalDays: 7
     repository: "${APP}-volsync"
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=zfs-block}"
-    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=8Gi}"
-    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:=local-hostpath}"
-    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
-    storageClassName: "${VOLSYNC_STORAGECLASS:=zfs-block}"
-    accessModes: ["${VOLSYNC_ACCESSMODES:=ReadWriteOnce}"]
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-zfs-block}"
+    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
+    storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
+    accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -46,10 +46,10 @@ spec:
   restic:
     repository: "${APP}-volsync"
     copyMethod: Snapshot # must be Snapshot
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=zfs-block}"
-    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:=local-hostpath}"
-    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
-    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=8Gi}"
-    storageClassName: "${VOLSYNC_STORAGECLASS:=zfs-block}"
-    accessModes: ["${VOLSYNC_ACCESSMODES:=ReadWriteOnce}"]
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-zfs-block}"
+    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
+    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
+    accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
