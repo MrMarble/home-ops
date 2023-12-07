@@ -23,4 +23,4 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_STORAGECLASS: cstor-sparse
-      VOLSYNC_SNAPSHOTCLASS: cstor-sparse
+      VOLSYNC_SNAPSHOTCLASS: csi-cstor-snapshotclass
