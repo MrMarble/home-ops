@@ -12,4 +12,4 @@ spec:
   resources:
     requests:
       storage: "${VOLSYNC_CAPACITY}"
-  storageClassName: "${VOLSYNC_STORAGECLASS:-piraeus-storage}"
+  storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
