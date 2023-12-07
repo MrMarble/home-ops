@@ -1,0 +1,22 @@
+---
+apiVersion: cstor.openebs.io/v1
+kind: CStorPoolCluster
+metadata:
+  name: sparse-pool
+  namespace: openebs
+spec:
+  pools:
+    - nodeSelector:
+        kubernetes.io/hostname: "caos"
+      dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: sparse-683bbd63774ff356a39f266d4110d7d5
+      poolConfig:
+        dataRaidGroupType: stripe
+    - nodeSelector:
+        kubernetes.io/hostname: "gaia"
+      dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: sparse-b8b77513021ddf3f73e5c7eba2d33f6c
+      poolConfig:
+        dataRaidGroupType: stripe
