@@ -22,4 +22,5 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: cstor-sparse
+      VOLSYNC_SNAPSHOTCLASS: csi-cstor-snapshotclass
