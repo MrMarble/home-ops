@@ -2,21 +2,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: jiva
+  name: cstor
   namespace: openebs
 spec:
-  interval: 5m
+  interval: 30m
   chart:
     spec:
-      chart: jiva
-      version: 3.5.1
+      chart: cstor
+      version: 3.5.0
       sourceRef:
         kind: HelmRepository
-        name: openebs-jiva
+        name: cstor
         namespace: flux-system
-      interval: 10m
   install:
-    timeout: 10m
+    timeout: 30m
     replace: true
     crds: CreateReplace
     createNamespace: true
@@ -39,33 +38,32 @@ spec:
     keepHistory: false
   maxHistory: 3
   values:
-    localpv-provisioner:
-      # Note: Nodes have been manually set with this custom label, EG. "kubectl label nodes <node-name> openebs.io/storage=true"
-      deviceClass:
-        nodeAffinityLabels:
-          - "openebs.io/storage"
-      hostpathClass:
-        nodeAffinityLabels:
-          - "openebs.io/storage"
-    # TODO: This is only temporarily set to 1
-    defaultPolicy:
-      replicas: 1
-  # Required: Must enable hostPID for JIVA to work on Talos
-  # https://www.talos.dev/v1.2/kubernetes-guides/configuration/replicated-local-storage-with-openebs-jiva/
+    # Required when using the same device that hosts the OS FS partition
+    openebs-ndm:
+      ndm:
+        sparse:
+          count: "1"
+        nodeSelector:
+          openebs.io/storage: "true"
+      featureGates:
+        APIService:
+          # Required to allow HostPID
+          # Ref: https://github.com/openebs/node-disk-manager/blob/da2a5b9eb773047a20c131a8802499299ea3135f/deploy/helm/charts/templates/daemonset.yaml#L31
+          enabled: true
   postRenderers:
     - kustomize:
         patchesJson6902:
           - target:
               version: v1
               kind: DaemonSet
-              name: jiva-csi-node
+              name: cstor-csi-node
             patch:
               - op: add
                 path: /spec/template/spec/hostPID
                 value: true
           - target:
               kind: ConfigMap
-              name: openebs-jiva-csi-iscsiadm
+              name: openebs-cstor-csi-iscsiadm
             patch:
               - op: replace
                 path: /data/iscsiadm

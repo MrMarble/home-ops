@@ -2,15 +2,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: jiva
+  name: cstor
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/openebs/jiva/app
-  prune: false
+  path: ./kubernetes/home-cluster/apps/openebs/cstor/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-ops-kubernetes
-  wait: true
+  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 5m
