@@ -36,17 +36,6 @@ spec:
       daily: 7
       weekly: 5
 ---
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: "${APP}-dst"
-spec:
-  accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
-  resources:
-    requests:
-      storage: "${VOLSYNC_CAPACITY}"
-  storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
----
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
@@ -57,8 +46,10 @@ spec:
   restic:
     repository: "${APP}-volsync"
     copyMethod: Snapshot # must be Snapshot
-    destinationPVC: "${APP}-dst"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-zfs-block}"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
     cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-zfs-block}"
+    accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
+    capacity: "${VOLSYNC_CAPACITY}"
