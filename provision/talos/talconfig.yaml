@@ -40,7 +40,12 @@ nodes:
           udev:
             rules:
               - SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="568", OWNER="568"
-
+      - &mayastor |-
+        machine:
+          sysctls:
+            vm.nr_hugepages: "1024"
+          nodeLabels:
+            openebs.io/engine: "mayastor"
   - hostname: gaia
     ipAddress: 192.168.1.11
     installDiskSelector:
@@ -54,6 +59,8 @@ nodes:
         vip:
           ip: 192.168.1.20
     controlPlane: true
+    patches:
+      - *mayastor
 
   - hostname: tartaro
     ipAddress: 192.168.1.12

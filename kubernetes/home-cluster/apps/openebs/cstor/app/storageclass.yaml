@@ -9,14 +9,3 @@ parameters:
   cas-type: cstor
   cstorPoolCluster: sparse-pool
   replicaCount: "2"
----
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: cstor-block
-provisioner: cstor.csi.openebs.io
-allowVolumeExpansion: true
-parameters:
-  cas-type: cstor
-  cstorPoolCluster: cstor-pool
-  replicaCount: "2"
