@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-alertmanager
+  name: alertmanager
   namespace: flux-system
 spec:
   path: ./kubernetes/home-cluster/apps/monitoring/alertmanager/app
@@ -15,4 +15,4 @@ spec:
   retryInterval: 1m
   timeout: 5m
   dependsOn:
-    - name: cluster-apps-freenas-iscsi
+    - name: freenas-iscsi
