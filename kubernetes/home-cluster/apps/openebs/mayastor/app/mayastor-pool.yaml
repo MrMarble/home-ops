@@ -1,0 +1,9 @@
+---
+apiVersion: "openebs.io/v1beta1"
+kind: DiskPool
+metadata:
+  name: caos-pool
+  namespace: mayastor
+spec:
+  node: caos
+  disks: ["/dev/disk/by-id/nvme-Force_MP510_2136824800012917531B"]
