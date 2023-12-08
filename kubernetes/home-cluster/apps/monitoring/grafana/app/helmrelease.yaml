@@ -180,10 +180,8 @@ spec:
 
     resources:
       limits:
-        memory: 219M
-      requests:
-        cpu: 23m
-        memory: 127M
+        memory: 400Mi
+        cpu: 70m
 
     serviceMonitor:
       enabled: true

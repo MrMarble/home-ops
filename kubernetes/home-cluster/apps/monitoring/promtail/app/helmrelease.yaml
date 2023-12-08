@@ -33,3 +33,7 @@ spec:
       lokiAddress: http://loki:3100/loki/api/v1/push
     serviceMonitor:
       enabled: true
+    resources:
+      limits:
+        cpu: 350m
+        memory: 350Mi
