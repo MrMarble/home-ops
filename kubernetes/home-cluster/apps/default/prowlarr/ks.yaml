@@ -22,5 +22,5 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_STORAGECLASS: cstor-sparse
-      VOLSYNC_SNAPSHOTCLASS: csi-cstor-snapshotclass
+      VOLSYNC_STORAGECLASS: mayastor-single-replica
+      VOLSYNC_SNAPSHOTCLASS: csi-mayastor-snapshotclass
