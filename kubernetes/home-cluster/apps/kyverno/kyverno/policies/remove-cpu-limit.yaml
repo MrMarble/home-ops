@@ -14,17 +14,6 @@ metadata:
 spec:
   generateExistingOnPolicyUpdate: true
   rules:
-    - name: remove-containers-cpu-limits
-      match:
-        any:
-          - resources:
-              kinds: ["Pod"]
-      mutate:
-        foreach:
-          - list: "request.object.spec.containers"
-            patchesJson6902: |-
-              - path: /spec/containers/{{elementIndex}}/resources/limits/cpu
-                op: remove
     - name: delete-initcontainers-cpu-limits
       match:
         any:
