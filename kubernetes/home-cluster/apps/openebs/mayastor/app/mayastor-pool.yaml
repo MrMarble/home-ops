@@ -7,3 +7,12 @@ metadata:
 spec:
   node: caos
   disks: ["/dev/disk/by-id/nvme-Force_MP510_2136824800012917531B"]
+---
+apiVersion: "openebs.io/v1beta1"
+kind: DiskPool
+metadata:
+  name: gaia-pool
+  namespace: openebs
+spec:
+  node: gaia
+  disks: ["/dev/disk/by-id/nvme-eui.0025388901b3bff0"]
