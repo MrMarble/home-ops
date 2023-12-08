@@ -29,3 +29,4 @@ resources:
   - nextcloud.yaml
   - openebs-jiva.yaml
   - cstor.yaml
+  - mayastor.yaml
