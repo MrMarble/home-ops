@@ -144,7 +144,7 @@ spec:
         cookie_samesite: grafana
 
     imageRenderer:
-      enabled: true
+      enabled: false
 
     ingress:
       enabled: true
