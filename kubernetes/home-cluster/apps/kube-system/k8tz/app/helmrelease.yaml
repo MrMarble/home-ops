@@ -30,7 +30,8 @@ spec:
         - kyverno
         - democratic-csi
         - csi-addons-system
-        - piraeus-datastore
+        - openebs
+        - volsync
       certManager:
         enabled: true
         issuerRef:

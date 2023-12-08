@@ -27,3 +27,25 @@ spec:
             - blockDeviceName: sparse-a71e12c5aa1c4fc13ed762288a87c9fc
       poolConfig:
         dataRaidGroupType: stripe
+---
+apiVersion: cstor.openebs.io/v1
+kind: CStorPoolCluster
+metadata:
+  name: cstor-pool
+  namespace: openebs
+spec:
+  pools:
+    - nodeSelector:
+        kubernetes.io/hostname: "caos"
+      dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: blockdevice-e91523c36930cb8766cccb457168e745
+      poolConfig:
+        dataRaidGroupType: stripe
+    - nodeSelector:
+        kubernetes.io/hostname: "gaia"
+      dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: blockdevice-d7123a4378b54160e58c5aff6793eebe
+      poolConfig:
+        dataRaidGroupType: stripe
