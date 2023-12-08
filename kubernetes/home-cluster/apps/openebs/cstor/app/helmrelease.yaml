@@ -50,6 +50,12 @@ spec:
           # Required to allow HostPID
           # Ref: https://github.com/openebs/node-disk-manager/blob/da2a5b9eb773047a20c131a8802499299ea3135f/deploy/helm/charts/templates/daemonset.yaml#L31
           enabled: true
+    csiController:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    csiNode:
+      annotations:
+        reloader.stakater.com/auto: "true"
   postRenderers:
     - kustomize:
         patchesJson6902:
