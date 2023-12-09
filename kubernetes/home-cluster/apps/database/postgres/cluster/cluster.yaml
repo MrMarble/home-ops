@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -27,6 +28,7 @@ spec:
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
+      huge_pages: "off"
   monitoring:
     enablePodMonitor: true
   backup:
