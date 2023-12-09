@@ -28,7 +28,11 @@ spec:
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
-      huge_pages: "off"
+  resources:
+    requests:
+      memory: "512Mi"
+    limits:
+      hugepages-2Mi: "512Mi"
   monitoring:
     enablePodMonitor: true
   backup:
