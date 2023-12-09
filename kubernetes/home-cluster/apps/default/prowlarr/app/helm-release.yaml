@@ -104,4 +104,5 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: prowlarr
+        storageClass: mayastor-single-replica
+        size: 1Gi
