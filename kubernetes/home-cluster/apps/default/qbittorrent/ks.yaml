@@ -5,6 +5,10 @@ metadata:
   name: qbittorrent
   namespace: flux-system
 spec:
+  targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./kubernetes/home-cluster/apps/default/qbittorrent/app
   prune: true
   sourceRef:
@@ -14,6 +18,10 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: qb
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization

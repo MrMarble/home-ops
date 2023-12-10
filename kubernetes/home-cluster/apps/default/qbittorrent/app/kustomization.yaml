@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ./helmrelease.yaml
+  - ../../../../templates/gatus/guarded
   - volsync.yaml
 configMapGenerator:
   - name: cross-seed-config
