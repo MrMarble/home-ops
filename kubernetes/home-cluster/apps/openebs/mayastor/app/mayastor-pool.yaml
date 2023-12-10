@@ -16,3 +16,12 @@ metadata:
 spec:
   node: gaia
   disks: ["/dev/disk/by-id/nvme-eui.0025388901b3bff0"]
+---
+apiVersion: "openebs.io/v1beta1"
+kind: DiskPool
+metadata:
+  name: cronos-pool
+  namespace: openebs
+spec:
+  node: cronos
+  disks: ["/dev/disk/by-id/nvme-CT500P3SSD8_2332E86BC354"]
