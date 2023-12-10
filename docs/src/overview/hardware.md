@@ -1,7 +1,7 @@
 # 🔧 Hardware
 
 | Device                   | Count | OS Disk Size | Data Disk Size | RAM   | Operating System                 | Purpose    |
-|--------------------------|-------|--------------|----------------|-------|----------------------------------|------------|
+| ------------------------ | ----- | ------------ | -------------- | ----- | -------------------------------- | ---------- |
 | MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.10                    | Router     |
 | HP ProCurve 1810G-24     | 1     | --           | --             | 512MB | --                               | Switch     |
 | HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | [Talos](https://talos.dev) 1.5.5 | k8s Master |
