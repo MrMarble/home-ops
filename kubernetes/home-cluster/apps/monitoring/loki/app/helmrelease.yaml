@@ -46,5 +46,4 @@ spec:
         maxReplicas: 1
     resources:
       limits:
-        cpu: 100m
         memory: 600Mi
