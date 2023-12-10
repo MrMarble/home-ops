@@ -43,7 +43,7 @@ data:
             href: http://truenas.${SECRET_DOMAIN}
         - GitHub:
             icon: github
-            href: https://gihub.com/mrmarble/home-ops
+            href: https://github.com/mrmarble/home-ops
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -57,8 +57,6 @@ data:
           cpu: true
           memory: true
           showLabel: true
-    - openmeteo:
-      label: Current
   settings.yaml: |
     title: Dashboard
     headerStyle: clean
