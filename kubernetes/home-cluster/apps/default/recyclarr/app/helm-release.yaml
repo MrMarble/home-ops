@@ -26,8 +26,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: volsync
-      namespace: volsync
+    - name: sonarr
+    - name: radarr
   values:
     controllers:
       main:
@@ -70,6 +70,9 @@ spec:
       main:
         enabled: false
     persistence:
+      config:
+        enabled: true
+        storageClass: mayastor-thin
       config-file:
         type: configMap
         name: recyclarr-configmap
