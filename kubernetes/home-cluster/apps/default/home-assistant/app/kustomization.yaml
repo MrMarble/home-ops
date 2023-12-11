@@ -6,5 +6,6 @@ resources:
   - helmrelease.yaml
   - secrets.sops.yaml
   - volsync.yaml
+  - ../../../../templates/gatus/external
 patchesStrategicMerge:
   - ./patches/addons.yaml

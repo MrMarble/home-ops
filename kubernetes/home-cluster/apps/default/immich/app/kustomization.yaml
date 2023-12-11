@@ -8,3 +8,4 @@ resources:
   - ./server
   - ./microservices
   - ./machine-learning
+  - ../../../../templates/gatus/external
