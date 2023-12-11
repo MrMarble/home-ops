@@ -6,4 +6,4 @@ resources:
   - secrets.sops.yaml
   - configmap.yaml
   - helmrelease.yaml
-  - ../../../../templates/gatus/guarded
+  - ../../../../templates/gatus/external
