@@ -99,7 +99,6 @@ spec:
       resources:
         limits:
           memory: 250Mi
-          cpu: 35m
 
     defaultBackend:
       enabled: false
