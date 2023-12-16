@@ -10,9 +10,6 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
-  inheritedMetadata:
-    labels:
-      kube-image-keeper.enix.io/image-caching-policy: ignore
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
@@ -29,6 +26,7 @@ spec:
       - "vectors.so"
     parameters:
       max_connections: "600"
+      max_slot_wal_keep_size: 10GB
       shared_buffers: 512MB
   resources:
     requests:
