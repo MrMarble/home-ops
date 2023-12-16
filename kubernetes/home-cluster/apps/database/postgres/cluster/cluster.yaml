@@ -9,7 +9,7 @@ metadata:
     kyverno.io/ignore: "true"
 spec:
   instances: 3
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.13
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
