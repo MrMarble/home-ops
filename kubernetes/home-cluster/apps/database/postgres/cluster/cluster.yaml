@@ -9,7 +9,7 @@ metadata:
     kyverno.io/ignore: "true"
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.10-5
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
   inheritedMetadata:
     labels:
       kube-image-keeper.enix.io/image-caching-policy: ignore
@@ -25,6 +25,8 @@ spec:
   #   recovery:
   #     source: &previousCluster postgres-v5
   postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
