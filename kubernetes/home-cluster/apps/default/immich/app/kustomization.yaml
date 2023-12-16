@@ -4,7 +4,6 @@ resources:
   - secret.sops.yaml
   - pvc.yaml
   - configmap.yaml
-  - ./typesense
   - ./server
   - ./microservices
   - ./machine-learning

@@ -25,8 +25,6 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: immich-typesense
-      namespace: default
     - name: redis
       namespace: database
     - name: cloudnative-pg
@@ -49,7 +47,7 @@ spec:
     image:
       repository: ghcr.io/immich-app/immich-server
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.90.2
+      tag: v1.91.0
     args: ["start-server.sh"]
     envFrom: *envFrom
     service:
