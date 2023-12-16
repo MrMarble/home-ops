@@ -25,9 +25,9 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: immich-typesense
-      namespace: default
     - name: redis
+      namespace: database
+    - name: cloudnative-pg
       namespace: database
   values:
     controller:
