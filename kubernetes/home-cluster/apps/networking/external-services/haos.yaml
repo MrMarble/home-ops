@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: haos
 spec:
   type: ExternalName
-  externalName: haos.
+  externalName: homeassistant
   ports:
     - name: http
       port: &port 8123
