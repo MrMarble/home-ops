@@ -8,13 +8,21 @@ metadata:
     app.kubernetes.io/name: haos
     app.kubernetes.io/instance: haos
 spec:
-  type: ExternalName
-  externalName: homeassistant.local
   ports:
     - name: http
       port: &port 8123
       protocol: TCP
       targetPort: *port
+---
+apiVersion: networking.k8s.io/v1
+kind: Endpoints
+metadata:
+  name: haos
+subsets:
+  - addresses:
+      - ip: 192.168.1.12
+    ports:
+      - port: 8123
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
