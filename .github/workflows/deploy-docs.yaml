@@ -19,7 +19,7 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Generate Token
-        uses: tibdex/github-app-token@v2
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2
         id: generate-token
         with:
           app_id: ${{ secrets.BOT_APP_ID }}
@@ -37,7 +37,7 @@ jobs:
           args: bash -c "cd docs && mdbook build"
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.9.3
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3.9.3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ steps.generate-token.outputs.token }}
