@@ -5,13 +5,15 @@ namespace: default
 resources:
   - helm-release.yaml
   - secrets.sops.yaml
+  - claim.yaml
 commonLabels:
   app.kubernetes.io/name: mosquitto
   app.kubernetes.io/instance: mosquitto
 configMapGenerator:
-  - name: mosquitto-config
-    namespace: default
+  - name: mosquitto-configmap
     files:
-      - config/mosquitto.conf
+      - mosquitto.conf=./resources/mosquitto.conf
 generatorOptions:
   disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

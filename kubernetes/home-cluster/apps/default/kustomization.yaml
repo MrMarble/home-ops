@@ -20,3 +20,4 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./wizarr/ks.yaml
   - ./immich/ks.yaml
+  - ./mosquitto/ks.yaml
