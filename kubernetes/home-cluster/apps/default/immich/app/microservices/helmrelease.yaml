@@ -99,4 +99,4 @@ spec:
         enabled: true
         type: emptyDir
         globalMounts:
-          -path: /usr/src/app/.transformers_cache
+          - path: /usr/src/app/.transformers_cache
