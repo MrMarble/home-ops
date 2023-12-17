@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Generate Token
-        uses: tibdex/github-app-token@v2
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2
         id: generate-token
         with:
           app_id: ${{ secrets.BOT_APP_ID }}
@@ -57,7 +57,7 @@ jobs:
           path: default
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3
         with:
           version: latest
 
@@ -71,7 +71,7 @@ jobs:
           diff="${diff//$'\r'/'%0D'}"
           echo "::set-output name=diff::$(echo ${diff})"
       - name: Find Comment
-        uses: peter-evans/find-comment@v2
+        uses: peter-evans/find-comment@a54c31d7fa095754bfef525c0c8e5e5674c4b4b1 # v2
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
@@ -79,7 +79,7 @@ jobs:
           body-includes: "${{ matrix.file }}"
 
       - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3
         with:
           token: "${{ steps.generate-token.outputs.token }}"
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
