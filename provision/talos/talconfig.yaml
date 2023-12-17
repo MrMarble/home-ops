@@ -62,25 +62,19 @@ nodes:
     patches:
       - *mayastor
 
-  - hostname: tartaro
-    ipAddress: 192.168.1.12
-    # customization:
-    #     extraKernelArgs:
-    #         - net.ifnames=0
-    #         - nomodeset
-    #     systemExtensions:
-    #         officialExtensions:
-    #             - siderolabs/iscsi-tools
-    talosImageURL: factory.talos.dev/installer/0e4ad9ce4404adc881a6d95a28abf6c343edfbca1a24f4411510a47d350dad02
+  - hostname: cronos
+    ipAddress: 192.168.1.14
     installDiskSelector:
-      busPath: /pci0000:00/0000:00:11.0/ata1/host0/target0:0:0/0:0:0:0/
-    controlPlane: true
+      busPath: /pci0000:00/0000:00:1b.4/0000:02:00.0/nvme/nvme1/nvme1n1
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "d8:9e:f3:df:cc:15"
+          hardwareAddr: "38:22:e2:1e:fb:02"
         dhcp: true
-        vip:
-          ip: 192.168.1.20
+    controlPlane: true
+    nodeLabels:
+      ssd: "true"
+    patches:
+      - *mayastor
 
   - hostname: erebos
     ipAddress: 192.168.1.13
@@ -104,20 +98,6 @@ nodes:
     nodeLabels:
       node-role.kubernetes.io/worker: "true"
 
-  - hostname: cronos
-    ipAddress: 192.168.1.14
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:1b.4/0000:02:00.0/nvme/nvme1/nvme1n1
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "38:22:e2:1e:fb:02"
-        dhcp: true
-    controlPlane: false
-    nodeLabels:
-      ssd: "true"
-      node-role.kubernetes.io/worker: "true"
-    patches:
-      - *mayastor
 controlPlane:
   patches:
     # Disable search domain everywhere
