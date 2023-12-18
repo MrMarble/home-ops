@@ -15,3 +15,21 @@ detectors:
   coral:
     type: edgetpu
     device: usb
+
+cameras:
+  office:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_OFFICE_PASSWORD}@{FRIGATE_OFFICE_IP}:554/h264Preview_01_sub
+          roles:
+            - detect
+        - path: rtsp://admin:{FRIGATE_OFFICE_PASSWORD}@{FRIGATE_OFFICE_IP}:554/h264Preview_01_main
+          roles:
+            - record
+      hwaccel: auto
+      hwaccel_output_format: cuda
+      hwaccel_device: /dev/dri/renderD128
+      rtsp_transport: tcp
+      max_fps: 15
+      timeout: 30
