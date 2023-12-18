@@ -30,3 +30,4 @@ resources:
   - openebs-jiva.yaml
   - cstor.yaml
   - mayastor.yaml
+  - openebs-nfs.yaml
