@@ -21,3 +21,4 @@ resources:
   - ./wizarr/ks.yaml
   - ./immich/ks.yaml
   - ./mosquitto/ks.yaml
+  - ./frigate/ks.yaml
