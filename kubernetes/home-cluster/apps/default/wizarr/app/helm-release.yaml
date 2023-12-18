@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -28,26 +28,45 @@ spec:
   dependsOn:
     - name: jellyfin
       namespace: default
-    - name: freenas-iscsi
-      namespace: democratic-csi
   values:
-    controller:
-      type: statefulset
-    image:
-      repository: ghcr.io/wizarrrr/wizarr
-      tag: 3.5.2
-    env:
-      TZ: Europe/Madrid
-      APP_URL: wizarr.${SECRET_DOMAIN}
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/wizarrrr/wizarr
+              tag: 3.5.1@sha256:660b309f8a8c298910cb8f0e1ba13b980d8b30df6d836e78c5e0f3d0713cc352
+            env:
+              APP_URL: wizarr.${SECRET_DOMAIN}
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+
     service:
       main:
         ports:
           http:
             port: 5690
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "external"
+        className: "external"
         hosts:
           - host: &host "wizarr.${SECRET_DOMAIN}"
             paths:
@@ -58,15 +77,9 @@ spec:
               - *host
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}" # Create a CNAME registry
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /data/database
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: zfs-block
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
+
+    persistence:
+      enabled: true
+      existingClaim: wizarr
+      globalMounts:
+        - path: /data/database

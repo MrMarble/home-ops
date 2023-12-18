@@ -5,3 +5,4 @@ namespace: default
 resources:
   - helm-release.yaml
   - ../../../../templates/gatus/external
+  - ../../../../templates/volsync
