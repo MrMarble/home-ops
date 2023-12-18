@@ -2,19 +2,18 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: ${name}
+  name: &app ${name}
   namespace: ${namespace}
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.2.0
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
@@ -27,13 +26,37 @@ spec:
   values:
     controllers:
       main:
-        type: statefulset
         containers:
           main:
             image:
-              repository: XXXX
-              tag: v0.0.0
+              repository: XXX
+              tag: XXX
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 5m
+                memory: 10M
+              limits:
+                memory: 64M
+
         pod:
           securityContext:
             runAsUser: 568
             runAsGroup: 568
+            runAsNonRoot: true
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
