@@ -63,6 +63,13 @@ spec:
                   name: *configMap
               - secretRef:
                   name: *secret
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 100m
