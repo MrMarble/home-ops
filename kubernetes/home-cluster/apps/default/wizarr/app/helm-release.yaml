@@ -79,7 +79,8 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}" # Create a CNAME registry
 
     persistence:
-      enabled: true
-      existingClaim: wizarr
-      globalMounts:
-        - path: /data/database
+      config:
+        enabled: true
+        existingClaim: wizarr
+        globalMounts:
+          - path: /data/database
