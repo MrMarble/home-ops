@@ -35,6 +35,9 @@ spec:
               tag: 0.13.0-beta7@sha256:c94995428b22a8eda07f92d7e47df5b9405240afbd5754def32e807183d88359
             env:
               LIBVA_DRIVER_NAME: i965
+            envFrom:
+              - secretRef:
+                  name: frigate
             probes:
               liveness: &probes
                 enabled: true
