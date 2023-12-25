@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./mayastor/ks.yaml
-  - ./nfs-provisioner/ks.yaml
