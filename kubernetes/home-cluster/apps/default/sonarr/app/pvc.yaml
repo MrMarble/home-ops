@@ -9,4 +9,4 @@ spec:
       storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: mayastor-thin
+  storageClassName: mayastor-single-replica
