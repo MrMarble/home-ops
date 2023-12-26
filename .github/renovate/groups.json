@@ -54,6 +54,31 @@
       "matchUpdateTypes": ["minor", "patch"],
       "group": { "commitMessageTopic": "{{{groupName}}} group" },
       "separateMinorPatch": false
+    },
+    {
+      "description": "System-Upgrade-Controller Group",
+      "groupName": "System-Upgrade-Controller",
+      "matchPackagePatterns": ["rancher/system-upgrade-controller"],
+      "matchDatasources": ["docker", "github-releases"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Talos Group",
+      "groupName": "Talos",
+      "matchPackagePatterns": [
+        "siderolabs/installer",
+        "siderolabs/talos",
+        "siderolabs/talosctl",
+        "deedee-ops/talosctl"
+      ],
+      "matchDatasources": ["docker", "github-releases"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
     }
   ]
 }

@@ -1,24 +1,30 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 clusterName: home-cluster
-
-talosVersion: v1.5.5
-kubernetesVersion: v1.28.1
 endpoint: https://192.168.1.20:6443
+
+clusterPodNets:
+  - 10.244.0.0/16
+
+clusterSvcNets:
+  - 10.96.0.0/12
+
 allowSchedulingOnMasters: true
 
 cniConfig:
   name: none
 
-# Image URL rendered on https://factory.talos.dev
-# customization:
-#     extraKernelArgs:
-#         - net.ifnames=0
-#     systemExtensions:
-#         officialExtensions:
-#             - siderolabs/iscsi-tools
-#             - siderolabs/i915-ucode
-#             - siderolabs/intel-ucode
-talosImageURL: factory.talos.dev/installer/32b8c8618884d2a591957795c874dd2284e420a8c09d94e45e8d423182c58def
+additionalApiServerCertSans: &san
+  - 192.168.1.20
+  - home-cluster.casa
+  - "127.0.0.1" # KubePrism
+additionalMachineCertSans: *san
+
+# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+talosVersion: v1.5.5
+
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.28.1
 
 nodes:
   - hostname: caos
@@ -35,17 +41,13 @@ nodes:
     nodeLabels:
       ssd: "true"
     patches:
-      - |-
-        machine:
-          udev:
-            rules:
-              - SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0660", GROUP="568", OWNER="568"
       - &mayastor |-
         machine:
           sysctls:
             vm.nr_hugepages: "2048"
           nodeLabels:
             openebs.io/engine: "mayastor"
+
   - hostname: gaia
     ipAddress: 192.168.1.11
     installDiskSelector:
@@ -78,16 +80,6 @@ nodes:
 
   - hostname: erebos
     ipAddress: 192.168.1.13
-    # customization:
-    #     extraKernelArgs:
-    #         - net.ifnames=0
-    #     systemExtensions:
-    #         officialExtensions:
-    #             - siderolabs/i915-ucode
-    #             - siderolabs/intel-ucode
-    #             - siderolabs/iscsi-tools
-    #             - siderolabs/gasket-driver
-    talosImageURL: factory.talos.dev/installer/50d9e2cc1e06c6534f14950422b591d97e15051485de8696203ce79721a2da10
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1b.0/0000:01:00.0/nvme/nvme0/nvme0n1
     networkInterfaces:
@@ -99,6 +91,15 @@ nodes:
       node-role.kubernetes.io/worker: "true"
 
 controlPlane:
+  schematic: &schematic
+    customization:
+      extraKernelArgs:
+        - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/intel-ucode
+          - siderolabs/i915-ucode
+          - siderolabs/iscsi-tools
   patches:
     # Disable search domain everywhere
     - &searchDomain |-
@@ -113,6 +114,17 @@ controlPlane:
           disabled: false
           servers:
             - es.pool.ntp.org
+
+    # Enable K8s Talos API Access
+    - |-
+      machine:
+        features:
+          kubernetesTalosAPIAccess:
+            enabled: true
+            allowedRoles:
+              - os:admin
+            allowedKubernetesNamespaces:
+              - kube-system
 
     # Enable KubePrism
     - &kubeprism |-
@@ -180,6 +192,7 @@ controlPlane:
           - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
 
 worker:
+  schematic: *schematic
   patches:
     - *searchDomain
     - *ntp
