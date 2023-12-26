@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/instance: kubelet-csr-approver
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kubelet-csr-approver
-    app.kubernetes.io/version: v1.0.5
-    helm.sh/chart: kubelet-csr-approver-1.0.5
+    app.kubernetes.io/version: v1.0.6
+    helm.sh/chart: kubelet-csr-approver-1.0.6
   name: kubelet-csr-approver
   namespace: kube-system
 ---
@@ -92,8 +92,8 @@ metadata:
     app.kubernetes.io/instance: kubelet-csr-approver
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kubelet-csr-approver
-    app.kubernetes.io/version: v1.0.5
-    helm.sh/chart: kubelet-csr-approver-1.0.5
+    app.kubernetes.io/version: v1.0.6
+    helm.sh/chart: kubelet-csr-approver-1.0.6
   name: kubelet-csr-approver
   namespace: kube-system
 spec:
@@ -117,8 +117,8 @@ metadata:
     app.kubernetes.io/instance: kubelet-csr-approver
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kubelet-csr-approver
-    app.kubernetes.io/version: v1.0.5
-    helm.sh/chart: kubelet-csr-approver-1.0.5
+    app.kubernetes.io/version: v1.0.6
+    helm.sh/chart: kubelet-csr-approver-1.0.6
   name: kubelet-csr-approver
   namespace: kube-system
 spec:
@@ -195,8 +195,8 @@ metadata:
     app.kubernetes.io/instance: kubelet-csr-approver
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kubelet-csr-approver
-    app.kubernetes.io/version: v1.0.5
-    helm.sh/chart: kubelet-csr-approver-1.0.5
+    app.kubernetes.io/version: v1.0.6
+    helm.sh/chart: kubelet-csr-approver-1.0.6
   name: kubelet-csr-approver-test-connection
   namespace: kube-system
 spec:
