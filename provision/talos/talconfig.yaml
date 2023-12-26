@@ -17,7 +17,6 @@ cniConfig:
 additionalApiServerCertSans: &san
   - 192.168.1.20
   - home-cluster.casa
-  - "127.0.0.1" # KubePrism
 additionalMachineCertSans: *san
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
@@ -156,11 +155,14 @@ controlPlane:
         files:
           - op: create
             path: /etc/cri/conf.d/20-customization.part
-            content: |
-              [plugins]
-                [plugins."io.containerd.grpc.v1.cri"]
-                  enable_unprivileged_ports = true
-                  enable_unprivileged_icmp = true
+            content: |-
+              [plugins."io.containerd.grpc.v1.cri"]
+                enable_unprivileged_ports = true
+                enable_unprivileged_icmp = true
+              [plugins."io.containerd.grpc.v1.cri".containerd]
+                discard_unpacked_layers = false
+              [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+                discard_unpacked_layers = false
 
     # Disable default API server admission plugins.
     - |-
