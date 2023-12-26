@@ -1061,7 +1061,7 @@ spec:
               value: "8090"
             - name: FLOWS_API_ADDR
               value: hubble-relay:80
-          image: quay.io/cilium/hubble-ui-backend:v0.12.1@sha256:1f86f3400827a0451e6332262467f894eeb7caf0eb8779bd951e2caa9d027cbe
+          image: quay.io/cilium/hubble-ui-backend:v0.12.2@sha256:910c77e083d49c370d31c622df8061efa6b5bcffe99caaf7e406105f48457bde
           imagePullPolicy: IfNotPresent
           name: backend
           ports:
