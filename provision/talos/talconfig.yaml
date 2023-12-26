@@ -24,7 +24,7 @@ additionalMachineCertSans: *san
 talosVersion: v1.5.5
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.28.1
+kubernetesVersion: v1.29.0
 
 nodes:
   - hostname: caos
