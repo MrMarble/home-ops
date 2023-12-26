@@ -163,7 +163,7 @@ controlPlane:
                   enable_unprivileged_icmp = true
 
     # Disable default API server admission plugins.
-    - &admissionControl |-
+    - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
 
@@ -172,10 +172,27 @@ controlPlane:
       machine:
         kubelet:
           extraArgs:
-            feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
+            feature-gates: GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
             rotate-server-certificates: "true"
           extraConfig:
             maxPods: 150
+
+    # Configure nfs mount options
+    - &nfs |-
+      machine:
+        files:
+          - op: overwrite
+            path: /etc/nfsmount.conf
+            permissions: 0o644
+            content: |
+              [ NFSMount_Global_Options ]
+              nfsvers=4.2
+              hard=True
+              noatime=True
+              nodiratime=True
+              rsize=131072
+              wsize=131072
+              nconnect=8
 
     # Custom sysctls
     - &sysctl |-
@@ -194,6 +211,7 @@ controlPlane:
 worker:
   schematic: *schematic
   patches:
+    - *nfs
     - *searchDomain
     - *ntp
     - *kubeprism
