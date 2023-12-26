@@ -4,7 +4,10 @@
     {
       "customType": "regex",
       "description": "Process custom dependencies",
-      "fileMatch": ["kubernetes/home-cluster/.+\\.ya?ml$"],
+      "fileMatch": [
+        "(^|/)provision/talos/.+\\.ya?ml(\\.j2)?$",
+        "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+      ],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n",
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?-\\s(.*?)/(?<currentValue>(v|\\d)[^/]+)/\\S+\n",
