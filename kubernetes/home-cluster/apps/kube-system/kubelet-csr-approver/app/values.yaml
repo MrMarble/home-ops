@@ -1,5 +1,0 @@
----
-providerRegex: |
-  ^(caos|geia|tartaro)$
-
-bypassDnsResolution: true

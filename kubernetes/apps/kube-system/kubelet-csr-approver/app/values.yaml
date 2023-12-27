@@ -1,0 +1,4 @@
+---
+providerRegex: ^(cronos)$
+
+bypassDnsResolution: true
