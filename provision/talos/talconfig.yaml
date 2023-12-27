@@ -151,7 +151,7 @@ controlPlane:
         sysctls:
           fs.inotify.max_user_watches: "1048576"
           fs.inotify.max_user_instances: "8192"
-
+          vm.nr_hugepages: "2048"
 worker:
   schematic: *schematic
   patches:
