@@ -19,15 +19,15 @@ tasks:
     vars:
       namespace: '{{.namespace | default "default"}}'
     cmds:
-      - mkdir -p ../../kubernetes/home-cluster/apps/{{.namespace}}
-      - envsubst < <(cat {{.namespaceTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
-      - cd ../../kubernetes/home-cluster/apps/{{.namespace}} && kustomize create --resources ./namespace.yaml
+      - mkdir -p ../../kubernetes/apps/{{.namespace}}
+      - envsubst < <(cat {{.namespaceTemplate}}) >> ../../kubernetes/apps/{{.namespace}}/namespace.yaml
+      - cd ../../kubernetes/apps/{{.namespace}} && kustomize create --resources ./namespace.yaml
     preconditions:
       - sh: test -f {{.namespaceTemplate}}
     status:
-      - test -d ../../kubernetes/home-cluster/apps/{{.namespace}}
-      - test -f ../../kubernetes/home-cluster/apps/{{.namespace}}/namespace.yaml
-      - test -f ../../kubernetes/home-cluster/apps/{{.namespace}}/kustomization.yaml
+      - test -d ../../kubernetes/apps/{{.namespace}}
+      - test -f ../../kubernetes/apps/{{.namespace}}/namespace.yaml
+      - test -f ../../kubernetes/apps/{{.namespace}}/kustomization.yaml
 
   app:
     desc: Create a helmrelease
@@ -37,18 +37,18 @@ tasks:
       namespace: '{{.namespace | default "default"}}'
       name: '{{ or .name (fail "name is required") }}'
     cmds:
-      - mkdir -p ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app
-      - envsubst < <(cat {{.kustomizeTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/ks.yaml
-      - envsubst '${namespace} ${name}' < <(cat {{.helmreleaseTemplate}}) >> ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app/helmrelease.yaml
-      - cd ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}/app && kustomize create --resources ./helmrelease.yaml
-      - yq -i ".resources += \"./{{.name}}/ks.yaml\"" ../../kubernetes/home-cluster/apps/{{.namespace}}/kustomization.yaml
+      - mkdir -p ../../kubernetes/apps/{{.namespace}}/{{.name}}/app
+      - envsubst < <(cat {{.kustomizeTemplate}}) >> ../../kubernetes/apps/{{.namespace}}/{{.name}}/ks.yaml
+      - envsubst '${namespace} ${name}' < <(cat {{.helmreleaseTemplate}}) >> ../../kubernetes/apps/{{.namespace}}/{{.name}}/app/helmrelease.yaml
+      - cd ../../kubernetes/apps/{{.namespace}}/{{.name}}/app && kustomize create --resources ./helmrelease.yaml
+      - yq -i ".resources += \"./{{.name}}/ks.yaml\"" ../../kubernetes/apps/{{.namespace}}/kustomization.yaml
     deps:
       - namespace
     preconditions:
       - sh: test -f {{.helmreleaseTemplate}}
       - sh: test -f {{.kustomizeTemplate}}
     status:
-      - test -d ../../kubernetes/home-cluster/apps/{{.namespace}}/{{.name}}
+      - test -d ../../kubernetes/apps/{{.namespace}}/{{.name}}
 
   repo:
     desc: Create a helm repository
@@ -60,12 +60,12 @@ tasks:
       name: "{{.name}}"
       url: "{{.url}}"
     cmds:
-      - envsubst < <(cat {{.helmrepoTemplate}}) >> ../../kubernetes/home-cluster/flux/repositories/helm/{{.name}}.yaml
-      - yq -i ".resources += \"{{.name}}.yaml\"" ../../kubernetes/home-cluster/flux/repositories/helm/kustomization.yaml
+      - envsubst < <(cat {{.helmrepoTemplate}}) >> ../../kubernetes/flux/repositories/helm/{{.name}}.yaml
+      - yq -i ".resources += \"{{.name}}.yaml\"" ../../kubernetes/flux/repositories/helm/kustomization.yaml
     preconditions:
       - sh: test -f {{.helmrepoTemplate}}
     status:
-      - test -f ../../kubernetes/home-cluster/flux/repositories/helm/{{.name}}.yaml
+      - test -f ../../kubernetes/flux/repositories/helm/{{.name}}.yaml
 
   clean:
     desc: Remove failed or completed pods

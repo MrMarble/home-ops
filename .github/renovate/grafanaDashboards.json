@@ -13,7 +13,7 @@
     {
       "customType": "regex",
       "description": "Process Grafana dashboards",
-      "fileMatch": ["kubernetes/home-cluster/.+\\.ya?ml$"],
+      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
       "matchStrings": [
         "depName=\"(?<depName>\\S+)\"\\n.*?gnetId: (?<packageName>\\d+)\\n.*?revision: (?<currentValue>\\d+)"
       ],
