@@ -57,34 +57,3 @@ spec:
       enabled: false
     localpv-provisioner:
       enabled: false
-  postRenderers:
-    - kustomize:
-        patches:
-          - patch: |
-              - op: add
-                path: /spec/template/spec/priorityClassName
-                value: platform-cluster-critical
-            target:
-              kind: Deployment
-              labelSelector: openebs.io/engine=mayastor
-          - patch: |
-              - op: add
-                path: /spec/template/spec/priorityClassName
-                value: platform-node-critical
-            target:
-              kind: DaemonSet
-              labelSelector: openebs.io/engine=mayastor
-          - patch: |
-              - op: add
-                path: /spec/template/spec/priorityClassName
-                value: platform-node-critical
-            target:
-              kind: StatefulSet
-              labelSelector: app.kubernetes.io/instance=mayastor
-          - patch: |
-              - op: add
-                path: /spec/template/spec/priorityClassName
-                value: platform-node-critical
-            target:
-              kind: StatefulSet
-              labelSelector: app=io-engine
