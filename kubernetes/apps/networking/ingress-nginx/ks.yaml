@@ -5,11 +5,11 @@ metadata:
   name: nginx-certificates
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/networking/ingress-nginx/certificates
+  path: ./kubernetes/apps/networking/ingress-nginx/certificates
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -24,11 +24,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./kubernetes/home-cluster/apps/networking/ingress-nginx/external"
+  path: "./kubernetes/apps/networking/ingress-nginx/external"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: true
   dependsOn:
     - name: nginx-certificates
@@ -39,11 +39,11 @@ metadata:
   name: nginx-internal
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/networking/ingress-nginx/internal
+  path: ./kubernetes/apps/networking/ingress-nginx/internal
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: true
   interval: 30m
   retryInterval: 1m
