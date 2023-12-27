@@ -50,6 +50,7 @@ spec:
               PROWLARR__LOG_LEVEL: info
               PROWLARR__THEME: dark
               PROWLARR__AUTHENTICATION_METHOD: External
+              TZ: Europe/Madrid
             envFrom: *envFrom
             probes:
               liveness: &probes
