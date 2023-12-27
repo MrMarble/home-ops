@@ -1,6 +1,6 @@
 ---
 cluster:
-  name: home-cluster
+  name: k8s
   id: 1
 
 cni:

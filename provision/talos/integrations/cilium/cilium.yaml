@@ -510,7 +510,7 @@ data:
   cgroup-root: /sys/fs/cgroup
   cilium-endpoint-gc-interval: 5m0s
   cluster-id: "1"
-  cluster-name: home-cluster
+  cluster-name: k8s
   cni-exclusive: "false"
   cni-log-file: /var/run/cilium/cilium-cni.log
   custom-cni-conf: "false"
@@ -617,7 +617,7 @@ metadata:
 apiVersion: v1
 data:
   config.yaml:
-    "cluster-name: home-cluster\npeer-service: \"hubble-peer.kube-system.svc.cluster.local:443\"\nlisten-address:
+    "cluster-name: k8s\npeer-service: \"hubble-peer.kube-system.svc.cluster.local:443\"\nlisten-address:
     :4245\ngops: true\ngops-port: \"9893\"\ndial-timeout: \nretry-timeout: \nsort-buffer-len-max:
     \nsort-buffer-drain-timeout: \ntls-hubble-client-cert-file: /var/lib/hubble-relay/tls/client.crt\ntls-hubble-client-key-file:
     /var/lib/hubble-relay/tls/client.key\ntls-hubble-server-ca-files: /var/lib/hubble-relay/tls/hubble-server-ca.crt\ndisable-server-tls:
