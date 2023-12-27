@@ -4,11 +4,10 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: postgres
-  namespace: database
   annotations:
     kyverno.io/ignore: "true"
 spec:
-  instances: 3
+  instances: 1
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
@@ -18,9 +17,9 @@ spec:
     name: postgres-superuser
   enableSuperuserAccess: true
   # Note: Bootstrap is needed when recovering from an existing cnpg cluster
-  # bootstrap:
-  #   recovery:
-  #     source: &previousCluster postgres-v5
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres-v6
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
@@ -34,7 +33,7 @@ spec:
     limits:
       hugepages-2Mi: "512Mi"
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
@@ -43,7 +42,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://postgres/
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-      serverName: &currentCluster postgres-v6
+      serverName: &currentCluster postgres-v1
       s3Credentials:
         accessKeyId:
           name: postgres-superuser
@@ -52,18 +51,18 @@ spec:
           name: postgres-superuser
           key: aws-secret-access-key
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       wal:
-  #         compression: bzip2
-  #         maxParallel: 8
-  #       destinationPath: s3://postgres/
-  #       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-  #       s3Credentials:
-  #         accessKeyId:
-  #           name: postgres-superuser
-  #           key: aws-access-key-id
-  #         secretAccessKey:
-  #           name: postgres-superuser
-  #           key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://postgres/
+        endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
+        s3Credentials:
+          accessKeyId:
+            name: postgres-superuser
+            key: aws-access-key-id
+          secretAccessKey:
+            name: postgres-superuser
+            key: aws-secret-access-key

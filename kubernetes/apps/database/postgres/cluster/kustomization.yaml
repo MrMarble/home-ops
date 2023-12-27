@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: database
 resources:
   - ./cluster.yaml
-  - ./prometheusrule.yaml
+  #- ./prometheusrule.yaml
   - ./service.yaml
   - ./scheduledbackup.yaml
