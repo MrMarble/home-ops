@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: xenitab
+  namespace: flux-system
+spec:
+  type: oci
+  interval: 30m
+  url: oci://ghcr.io/xenitab/helm-charts
+  timeout: 3m

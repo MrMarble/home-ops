@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./cilium/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
+  - ./spegel/ks.yaml

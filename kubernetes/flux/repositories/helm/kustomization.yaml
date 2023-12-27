@@ -31,3 +31,4 @@ resources:
   - cstor.yaml
   - mayastor.yaml
   - openebs-nfs.yaml
+  - xenitab.yaml
