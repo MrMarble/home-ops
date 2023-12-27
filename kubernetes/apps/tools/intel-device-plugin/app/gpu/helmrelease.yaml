@@ -25,9 +25,9 @@ spec:
     keepHistory: false
   dependsOn:
     - name: intel-device-plugin-operator
-      namespace: kube-system
+      namespace: tools
     - name: node-feature-discovery
-      namespace: kube-system
+      namespace: tools
   values:
     name: intel-gpu-plugin
     sharedDevNum: 3
