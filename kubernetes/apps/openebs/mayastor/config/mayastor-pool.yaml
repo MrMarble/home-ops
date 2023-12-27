@@ -11,10 +11,10 @@ spec:
 apiVersion: "openebs.io/v1beta1"
 kind: DiskPool
 metadata:
-  name: gaia-pool
+  name: gea-pool
   namespace: openebs
 spec:
-  node: gaia
+  node: gea
   disks: ["/dev/disk/by-id/nvme-eui.0025388901b3bff0"]
 ---
 apiVersion: "openebs.io/v1beta1"

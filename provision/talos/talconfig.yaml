@@ -28,6 +28,7 @@ kubernetesVersion: v1.29.0
 nodes:
   - hostname: cronos
     ipAddress: 192.168.1.14
+    controlPlane: true
     installDiskSelector:
       busPath: /pci0000:00/0000:00:1b.4/0000:02:00.0/nvme/nvme1/nvme1n1
     networkInterfaces:
@@ -36,7 +37,36 @@ nodes:
         dhcp: true
         vip:
           ip: ${clusterEndpointIP}
+    nodeLabels:
+      openebs.io/engine: "mayastor"
+
+  - hostname: caos
+    ipAddress: 192.168.1.10
     controlPlane: true
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "ec:8e:b5:6d:ff:6f"
+        dhcp: true
+        vip:
+          ip: ${clusterEndpointIP}
+    nodeLabels:
+      openebs.io/engine: "mayastor"
+
+  - hostname: gea
+    ipAddress: 192.168.1.11
+    controlPlane: true
+    installDiskSelector:
+      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    nodeLabels:
+      openebs.io/engine: "mayastor"
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "84:a9:3e:1a:98:43"
+        dhcp: true
+        vip:
+          ip: ${clusterEndpointIP}
 
 controlPlane:
   schematic: &schematic

@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: mayastor
-  namespace: openebs
 spec:
   interval: 5m
   chart:
@@ -45,11 +44,19 @@ spec:
       callhome:
         enabled: false
     etcd:
+      localpvScConfig:
+        name: local-hostpath
       nodeSelector:
         kubernetes.io/arch: amd64
-      replicaCount: 1
+      replicaCount: 3
       persistence:
         enabled: false
+    io_engine:
+      cpuCount: "1"
+    storageClass:
+      enabled: false
+    localpv-provisioner:
+      enabled: false
   postRenderers:
     - kustomize:
         patches:
