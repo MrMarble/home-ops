@@ -26,8 +26,6 @@ spec:
   dependsOn:
     - name: intel-device-plugin-operator
       namespace: tools
-    - name: node-feature-discovery
-      namespace: tools
   values:
     name: intel-gpu-plugin
     sharedDevNum: 3

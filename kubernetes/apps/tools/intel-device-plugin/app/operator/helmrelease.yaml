@@ -25,3 +25,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: node-feature-discovery
+      namespace: tools
