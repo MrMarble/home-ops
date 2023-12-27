@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
-clusterName: home-cluster
-endpoint: https://192.168.1.20:6443
+clusterName: &cluster k8s
+endpoint: https://${clusterEndpointIP}:6443
 
 clusterPodNets:
   - 10.244.0.0/16
@@ -15,8 +15,8 @@ cniConfig:
   name: none
 
 additionalApiServerCertSans: &san
-  - 192.168.1.20
-  - home-cluster.casa
+  - ${clusterEndpointIP}
+  - 127.0.0.1 # KubePrism
 additionalMachineCertSans: *san
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
@@ -26,43 +26,6 @@ talosVersion: v1.6.1
 kubernetesVersion: v1.29.0
 
 nodes:
-  - hostname: caos
-    ipAddress: 192.168.1.10
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "ec:8e:b5:6d:ff:6f"
-        dhcp: true
-        vip:
-          ip: 192.168.1.20
-    controlPlane: true
-    nodeLabels:
-      ssd: "true"
-    patches:
-      - &mayastor |-
-        machine:
-          sysctls:
-            vm.nr_hugepages: "2048"
-          nodeLabels:
-            openebs.io/engine: "mayastor"
-
-  - hostname: gaia
-    ipAddress: 192.168.1.11
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
-    nodeLabels:
-      ssd: "true"
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "84:a9:3e:1a:98:43"
-        dhcp: true
-        vip:
-          ip: 192.168.1.20
-    controlPlane: true
-    patches:
-      - *mayastor
-
   - hostname: cronos
     ipAddress: 192.168.1.14
     installDiskSelector:
@@ -71,23 +34,9 @@ nodes:
       - deviceSelector:
           hardwareAddr: "38:22:e2:1e:fb:02"
         dhcp: true
+        vip:
+          ip: ${clusterEndpointIP}
     controlPlane: true
-    nodeLabels:
-      ssd: "true"
-    patches:
-      - *mayastor
-
-  - hostname: erebos
-    ipAddress: 192.168.1.13
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:1b.0/0000:01:00.0/nvme/nvme0/nvme0n1
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "6c:4b:90:41:9e:23"
-        dhcp: true
-    controlPlane: false
-    nodeLabels:
-      node-role.kubernetes.io/worker: "true"
 
 controlPlane:
   schematic: &schematic
@@ -138,7 +87,7 @@ controlPlane:
       machine:
         network:
           extraHostEntries:
-            - ip: 192.168.1.20
+            - ip: ${clusterEndpointIP}
               aliases:
                 - home-cluster.casa
 
@@ -202,13 +151,6 @@ controlPlane:
         sysctls:
           fs.inotify.max_user_watches: "1048576"
           fs.inotify.max_user_instances: "8192"
-    - |-
-      cluster:
-        proxy:
-          disabled: true
-        extraManifests:
-          - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/cilium/cilium.yaml
-          - https://raw.githubusercontent.com/MrMarble/home-ops/main/provision/talos/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
 
 worker:
   schematic: *schematic

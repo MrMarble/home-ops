@@ -1,5 +1,2 @@
-home-cluster-caos.yaml
-home-cluster-gaia.yaml
-home-cluster-cronos.yaml
-home-cluster-erebos.yaml
+k8s-cronos.yaml
 talosconfig

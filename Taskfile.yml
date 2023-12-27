@@ -7,7 +7,7 @@ vars:
   CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes/home-cluster"
   CLUSTER_SECRETS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.env"
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
-
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
 dotenv:
   - .envrc
 

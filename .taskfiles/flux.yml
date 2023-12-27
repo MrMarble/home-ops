@@ -6,15 +6,41 @@ vars:
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
 
 tasks:
-  setup:
-    desc: Setup flux
+  bootstrap:
+    desc: Bootstrap Flux into a Kubernetes cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    prompt: Bootstrap Flux into the '{{.cluster}}' cluster... continue?
     cmds:
-      - flux check --pre
-      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap
-      - sops --decrypt {{.CLUSTER_DIR}}/bootstrap/age-key.sops.yaml | kubectl apply -f -
-      - kubectl apply -k kubernetes/home-cluster/flux/vars
-      - kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/flux/config
-    silent: true
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/bootstrap
+      - sops --decrypt {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml | kubectl --context {{.cluster}} apply -f -
+      - sops --decrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux/vars
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux/config
+      - defer: sops --encrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
+    preconditions:
+      - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
+      - {
+          msg: "Age secret not found",
+          sh: "test -f {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml",
+        }
+      - {
+          msg: "Cluster settings not found",
+          sh: "test -f {{.KUBERNETES_DIR}}/flux/vars/cluster-settings.env",
+        }
+      - {
+          msg: "Cluster secrets not found",
+          sh: "test -f {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env",
+        }
+      - {
+          msg: "Unable to decrypt sops secret",
+          sh: "sops --decrypt {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml",
+        }
+      - {
+          msg: "Unable to decrypt sops secret",
+          sh: "sops --decrypt {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env",
+        }
 
   sync:
     desc: Sync flux-system with the Git Repository
