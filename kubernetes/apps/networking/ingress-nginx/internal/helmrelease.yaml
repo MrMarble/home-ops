@@ -77,9 +77,9 @@ spec:
         ssl-protocols: TLSv1.3 TLSv1.2
 
       metrics:
-        enabled: true
+        enabled: false
         serviceMonitor:
-          enabled: true
+          enabled: false
           namespace: networking
           namespaceSelector:
             any: true
