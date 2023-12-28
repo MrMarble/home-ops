@@ -46,7 +46,7 @@ spec:
     domainFilters:
       - "${SECRET_DOMAIN}"
     serviceMonitor:
-      enabled: false
+      enabled: true
     resources:
       requests:
         memory: 100Mi

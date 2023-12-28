@@ -28,6 +28,6 @@ spec:
   values:
     controller:
       serviceMonitor:
-        create: false
+        create: true
     webhook:
       enabled: false

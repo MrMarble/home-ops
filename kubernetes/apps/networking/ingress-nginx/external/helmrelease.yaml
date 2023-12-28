@@ -76,9 +76,9 @@ spec:
           "ssl_cipher": "$ssl_cipher","scheme": "$scheme", "request_method": "$request_method", "server_protocol": "$server_protocol", "pipe": "$pipe",
           "gzip_ratio": "$gzip_ratio","http_cf_ray": "$http_cf_ray","geoip_country_code": "$http_cf_ipcountry","ingress":"$ingress_name","namespace":"$namespace"}
       metrics:
-        enabled: false
+        enabled: true
         serviceMonitor:
-          enabled: false
+          enabled: true
       extraArgs:
         default-ssl-certificate: "networking/home-dev-tls"
       extraVolumeMounts:
