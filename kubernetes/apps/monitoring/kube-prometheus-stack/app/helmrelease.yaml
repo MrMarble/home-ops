@@ -123,10 +123,7 @@ spec:
           - new-service-discovery-manager
         thanos:
           image: quay.io/thanos/thanos:v0.33.0
-          objectStorageConfig:
-            existingSecret:
-              name: thanos-objstore-secret
-              key: objstore.yml
+          objectStorageConfig: {}
         retention: 2d
         retentionSize: 15GB
         externalLabels:
