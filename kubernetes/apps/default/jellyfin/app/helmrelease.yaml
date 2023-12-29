@@ -24,8 +24,19 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    defaultPodOptions:
+      enableServiceLinks: false
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
     controllers:
       main:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           main:
             image:
@@ -101,6 +112,8 @@ spec:
       config:
         enabled: true
         existingClaim: jellyfin
+        globalMounts:
+          - path: /config
       media:
         enabled: true
         type: nfs
