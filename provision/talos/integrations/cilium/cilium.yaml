@@ -1043,7 +1043,7 @@ spec:
     spec:
       automountServiceAccountToken: true
       containers:
-        - image: quay.io/cilium/hubble-ui:v0.12.1@sha256:9e5f81ee747866480ea1ac4630eb6975ff9227f9782b7c93919c081c33f38267
+        - image: quay.io/cilium/hubble-ui:v0.12.2@sha256:978dacbe4bd1c9b815bc2257a1360a35d541e7fbb3e1f9b898c1823d9300a8f3
           imagePullPolicy: IfNotPresent
           name: frontend
           ports:
