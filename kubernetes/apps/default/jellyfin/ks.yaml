@@ -21,4 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_SIZE: 5Gi
+      VOLSYNC_CAPACITY: 5Gi
