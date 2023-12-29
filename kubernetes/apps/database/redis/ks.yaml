@@ -5,11 +5,11 @@ metadata:
   name: redis
   namespace: flux-system
 spec:
-  path: ./kubernetes/home-cluster/apps/database/redis/app
+  path: ./kubernetes/apps/database/redis/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: false
   interval: 30m
   retryInterval: 1m
