@@ -9,11 +9,11 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/home-cluster/apps/default/immich/app
+  path: ./kubernetes/apps/default/immich/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: false
   interval: 30m
   retryInterval: 1m
