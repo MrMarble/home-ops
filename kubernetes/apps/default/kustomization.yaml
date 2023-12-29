@@ -8,3 +8,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./immich/ks.yaml
+  - ./archi/ks.yaml
