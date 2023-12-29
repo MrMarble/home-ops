@@ -5,6 +5,10 @@ metadata:
   name: echo-server
   namespace: flux-system
 spec:
+  targetNamespace: networking
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   interval: 10m
   path: "./kubernetes/apps/networking/echo-server/app"
   prune: true
