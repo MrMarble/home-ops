@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./prowlarr/ks.yaml
+  - ./kromgo/ks.yaml
