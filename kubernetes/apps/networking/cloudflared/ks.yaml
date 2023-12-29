@@ -2,11 +2,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudflared
+  name: &app cloudflared
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  targetNamespace: networking
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./kubernetes/apps/networking/cloudflared/app
   prune: true
   sourceRef:
@@ -18,3 +22,4 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-dns
+    - name: nginx-external
