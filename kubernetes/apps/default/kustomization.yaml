@@ -9,3 +9,4 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./immich/ks.yaml
   - ./archi/ks.yaml
+  - ./radarr/ks.yaml

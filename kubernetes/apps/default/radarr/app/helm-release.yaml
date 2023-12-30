@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.3.0
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -22,13 +22,21 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: volsync
-      namespace: volsync
+    - name: mayastor
+      namespace: openebs
   values:
     controllers:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 14.10@sha256:71ddc70edccf201d6a521fe6216bc58d8c7c856a1ef96c4d4fbe9f548818ea4d
+            envFrom: &envFrom
+              - secretRef:
+                  name: radarr-secret
         containers:
           main:
             image:
@@ -38,11 +46,15 @@ spec:
               # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
               # https://github.com/dotnet/runtime/issues/9336
               COMPlus_EnableDiagnostics: "0"
-              RADARR__PORT: &port 80
-              RADARR__API_KEY: ${SECRET_RADARR_APIKEY}
+              PUSHOVER_DEBUG: "false"
+              RADARR__AUTHENTICATION_METHOD: External
+              RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               RADARR__INSTANCE_NAME: Radarr
+              RADARR__PORT: &port 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
+              TZ: Europe/Madrid
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
@@ -63,11 +75,11 @@ spec:
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
-              requests:
-                cpu: 10m
-                memory: 256M
-              limits:
+              limits: &resources
                 memory: 1Gi
+              requests:
+                <<: *resources
+                cpu: 10m
         pod:
           securityContext:
             runAsUser: 568
@@ -75,7 +87,7 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000, 100]
+            supplementalGroups: [10000]
     service:
       main:
         ports:
@@ -107,8 +119,12 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: radarr
+        existingClaim: radarr-config
+      tmp:
+        type: emptyDir
       media:
-        enabled: true
-        existingClaim: media
-        mountPath: /media
+        type: nfs
+        server: 192.168.1.25
+        path: /mnt/Data/Media
+        globalMounts:
+          - path: /media
