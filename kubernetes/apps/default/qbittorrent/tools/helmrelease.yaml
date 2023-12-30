@@ -122,8 +122,8 @@ spec:
         type: configMap
         name: qbtools-configmap
         advancedMounts:
-          tagging:
-            tagging:
+          main:
+            main:
               - path: /config/config.yaml
                 subPath: config.yaml
                 readOnly: true
