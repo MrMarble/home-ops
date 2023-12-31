@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: sonarr
     - name: radarr
-    - name: volsyn
+    - name: volsync
       namespace: storage
     - name: mayastor
       namespace: openebs
