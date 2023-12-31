@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: k8tz
-  namespace: kube-system
 spec:
   chart:
     spec:
@@ -16,9 +15,9 @@ spec:
         namespace: flux-system
   interval: 30m
   values:
-    namespace: kube-system
+    namespace: tools
 
-    replicaCount: 3
+    replicaCount: 1
 
     timezone: Europe/Madrid
     cronJobTimeZone: true
@@ -27,11 +26,9 @@ spec:
       ignoredNamespaces:
         - kube-system
         - flux-system
-        - kyverno
-        - democratic-csi
-        - csi-addons-system
         - openebs
-        - volsync
+        - tools
+        - storage
       certManager:
         enabled: true
         issuerRef:

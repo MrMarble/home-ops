@@ -11,3 +11,4 @@ resources:
   - ./reloader/ks.yaml
   - ./system-upgrade-controller/ks.yaml
   - ./descheduler/ks.yaml
+  - ./k8tz/ks.yaml
