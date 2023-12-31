@@ -11,12 +11,19 @@ sonarr:
       type: series
     quality_profiles:
       - name: WEB-DL (1080p)
+        min_format_score: 0
         reset_unmatched_scores:
           enabled: true
+        qualities:
+          - name: WEB 1080p
+            enabled: true
       - name: WEB-DL (2160p)
+        min_format_score: 0
         reset_unmatched_scores:
           enabled: true
-
+        qualities:
+          - name: WEB 2160p
+            enabled: true
     custom_formats:
       # Unwanted
       - trash_ids:
@@ -187,11 +194,22 @@ radarr:
       - name: HD Bluray + WEB
         reset_unmatched_scores:
           enabled: true
+        min_format_score: 0
+        qualities:
+          - name: Bluray-1080p
+            enabled: true
+          - name: WEB 1080p
+            enabled: true
 
       - name: UHD Bluray + WEB
         reset_unmatched_scores:
           enabled: true
-
+        min_format_score: 0
+        qualities:
+          - name: Bluray-2160p
+            enabled: true
+          - name: WEB 2160p
+            enabled: true
     custom_formats:
       # Unwanted
       - trash_ids:
