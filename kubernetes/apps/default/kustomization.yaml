@@ -10,3 +10,4 @@ resources:
   - ./immich/ks.yaml
   - ./archi/ks.yaml
   - ./radarr/ks.yaml
+  - ./recyclarr/ks.yaml
