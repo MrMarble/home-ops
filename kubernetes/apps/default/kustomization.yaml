@@ -11,3 +11,4 @@ resources:
   - ./archi/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./cross-seed/ks.yaml
