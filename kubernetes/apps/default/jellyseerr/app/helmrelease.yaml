@@ -36,7 +36,7 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/fallenbagel/jellyseerr:develop
+              repository: ghcr.io/fallenbagel/jellyseerr
               tag: develop@sha256:ed716933d1ad4de0705383fe841760ff34bb1ab7927445bbc70109cef7fda8ff
             env:
               TZ: Europe/Madrid
