@@ -95,3 +95,9 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      npm:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /.npm
