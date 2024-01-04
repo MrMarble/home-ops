@@ -101,3 +101,6 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /.npm
+      migrations:
+        enabled: true
+        type: emptyDir
