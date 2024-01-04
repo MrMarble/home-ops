@@ -13,3 +13,4 @@ resources:
   - ./recyclarr/ks.yaml
   - ./cross-seed/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./jellystat/ks.yaml
