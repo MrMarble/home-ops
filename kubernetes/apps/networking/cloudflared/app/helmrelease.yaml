@@ -122,5 +122,5 @@ spec:
         name: cloudflared-tunnel-secret
         globalMounts:
           - path: /etc/cloudflared/creds/credentials.json
-            subpath: credentials.json
+            subPath: credentials.json
             readOnly: true
