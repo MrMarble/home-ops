@@ -113,7 +113,7 @@ spec:
         name: cloudflared-configmap
         globalMounts:
           - path: /etc/cloudflared/config/config.yaml
-            subpath: config.yaml
+            subPath: config.yaml
             readOnly: true
 
       creds:
