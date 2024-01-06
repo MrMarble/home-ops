@@ -32,3 +32,4 @@ resources:
   - mayastor.yaml
   - openebs-nfs.yaml
   - xenitab.yaml
+  - kubernetes-sigs-nfs-provisioner.yaml
