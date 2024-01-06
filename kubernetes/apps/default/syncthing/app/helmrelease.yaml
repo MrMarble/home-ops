@@ -94,8 +94,7 @@ spec:
               - *host
     persistence:
       config:
-        type: nfs
-        server: 192.168.1.25
-        path: /mnt/Data/cluster/syncthing
+        enabled: true
+        existingClaim: syncthing-config
         globalMounts:
           - path: /var/syncthing
