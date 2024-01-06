@@ -9,11 +9,13 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/home-cluster/apps/monitoring/gatus/app
+  path: ./kubernetes/apps/monitoring/gatus/app
+  dependsOn:
+    - name: postgres-cluster
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: false
   interval: 30m
   retryInterval: 1m
