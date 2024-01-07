@@ -59,7 +59,7 @@ spec:
           cronjob:
             image:
               repository: ghcr.io/onedr0p/alpine
-              tag: 3.17.1@sha256:e8ef8dfe8682db795944aeca61b456e684754e8ca0b78a29849adc1e9bad86bc
+              tag: 3.19.0@sha256:51632d23e56ae28a34f8e90df6fe8d02730b5462697ae52e8b01ad6484497819
             command:
               - sh
             args:
