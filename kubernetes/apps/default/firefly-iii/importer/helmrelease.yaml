@@ -39,6 +39,7 @@ spec:
                   name: firefly-secret
             env:
               FIREFLY_III_URL: http://firefly-iii:8080
+              VANITY_URL: https://money.${SECRET_DOMAIN}
               TRUSTED_PROXIES: "*"
               DEFAULT_LANGUAGE: es_ES
               TZ: Europe/Madrid
