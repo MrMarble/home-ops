@@ -56,7 +56,24 @@ spec:
                 memory: 164Mi
               limits:
                 memory: 175Mi
-
+          cronjob:
+            image:
+              repository: ghcr.io/onedr0p/alpine
+              tag: 3.17.1@sha256:e8ef8dfe8682db795944aeca61b456e684754e8ca0b78a29849adc1e9bad86bc
+            command:
+              - sh
+            args:
+              - -c
+              - >-
+                echo "0 */3 * * * wget -qO- http://firefly-iii:8080/api/v1/cron/$(STATIC_CRON_TOKEN)"
+                | crontab -
+                && crond -f -L /dev/stdout
+            env:
+              - name: STATIC_CRON_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: firefly-secret
+                    key: STATIC_CRON_TOKEN
     service:
       main:
         ports:
