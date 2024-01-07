@@ -39,7 +39,7 @@ spec:
                   name: firefly-secret
             env:
               DB_CONNECTION: pgsql
-              APP_URL: &host https://money.${SECRET_DOMAIN}
+              APP_URL: &host money.${SECRET_DOMAIN}
               TRUSTED_PROXIES: "*"
               APP_ENV: local
               DEFAULT_LANGUAGE: es_ES
