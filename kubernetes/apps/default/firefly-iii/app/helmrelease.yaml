@@ -37,40 +37,25 @@ spec:
             envFrom: &envFrom
               - secretRef:
                   name: firefly-secret
-            env:
-              DB_CONNECTION: pgsql
-              APP_URL: &host money.${SECRET_DOMAIN}
-              TRUSTED_PROXIES: "*"
-              APP_ENV: local
-              DEFAULT_LANGUAGE: es_ES
-              TZ: Europe/Madrid
         containers:
           main:
             image:
               repository: docker.io/fireflyiii/core
               tag: version-6.1.6@sha256:e9dd87204f1777fc582e57cce5f1cd76df765b1ba1d17e224f55f3504fd38fc8
             envFrom: *envFrom
+            env:
+              DB_CONNECTION: pgsql
+              APP_URL: https://money.${SECRET_DOMAIN}
+              TRUSTED_PROXIES: "*"
+              APP_ENV: local
+              DEFAULT_LANGUAGE: es_ES
+              TZ: Europe/Madrid
             resources:
               requests:
                 cpu: 15m
                 memory: 164Mi
               limits:
                 memory: 175Mi
-
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: kubernetes.io/hostname
-              whenUnsatisfiable: DoNotSchedule
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: *app
 
     service:
       main:
@@ -83,7 +68,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: *host
+          - host: &host money.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
