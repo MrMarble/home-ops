@@ -13,7 +13,7 @@ spec:
   path: ./kubernetes/apps/default/firefly-iii/app
   dependsOn:
     - name: postgres-cluster
-      namespace: databas
+      namespace: database
   prune: true
   sourceRef:
     kind: GitRepository
