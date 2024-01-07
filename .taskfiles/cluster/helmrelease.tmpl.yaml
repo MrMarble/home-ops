@@ -47,6 +47,8 @@ spec:
             runAsUser: 568
             runAsGroup: 568
             runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
           topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: kubernetes.io/hostname
