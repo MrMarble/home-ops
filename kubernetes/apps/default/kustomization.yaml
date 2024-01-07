@@ -15,3 +15,4 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./jellystat/ks.yaml
   - ./syncthing/ks.yaml
+  - ./firefly-iii/ks.yaml
