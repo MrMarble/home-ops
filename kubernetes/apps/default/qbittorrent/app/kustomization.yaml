@@ -4,3 +4,9 @@ resources:
   - ./helmrelease.yaml
   - ../../../../templates/volsync
   - ../../../../templates/gatus/guarded
+configMapGenerator:
+  - name: qbittorrent-scripts
+    files:
+      - completed.sh=./resources/completed.sh
+generatorOptions:
+  disableNameSuffixHash: true
