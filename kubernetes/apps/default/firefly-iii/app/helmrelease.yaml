@@ -41,7 +41,7 @@ spec:
           main:
             image:
               repository: docker.io/fireflyiii/core
-              tag: version-6.1.6@sha256:e9dd87204f1777fc582e57cce5f1cd76df765b1ba1d17e224f55f3504fd38fc8
+              tag: version-6.1.6@sha256:560f47db628a472d44b084c9db17504311bd2da4e93c03906b3e0ad216be818a
             envFrom: *envFrom
             env:
               DB_CONNECTION: pgsql
