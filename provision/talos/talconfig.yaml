@@ -20,7 +20,7 @@ additionalApiServerCertSans: &san
 additionalMachineCertSans: *san
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.6.1
+talosVersion: v1.6.2
 
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.29.0
