@@ -31,4 +31,28 @@ resource "cloudflare_ruleset" "cache_settings" {
     enabled     = true
     expression  = "(http.host eq \"jellyfin.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}\" and http.request.uri.path contains \"/Items\" and http.request.uri.path contains \"/Images\") or (http.host eq \"jellyfin.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}\" and http.request.uri.path contains \"/assets/img\")"
   }
+  rules {
+    action = "set_cache_settings"
+    action_parameters {
+      browser_ttl {
+        default = 16070400
+        mode    = "override_origin"
+      }
+      cache = true
+      cache_key {
+        custom_key {
+          query_string {
+            exclude = ["*"]
+          }
+        }
+      }
+      edge_ttl {
+        default = 31536000
+        mode    = "override_origin"
+      }
+    }
+    description = "Set cache settings for immich: images"
+    enabled     = true
+    expression  = "(http.host eq \"photos.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}\" and http.request.uri.path contains \"/asset/thumbnail\")"
+  }
 }
