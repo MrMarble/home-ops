@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/prowlarr-nightly
-              tag: 1.13.2.4251@sha256:b0de12b3c7e755008dda1d08537d481c18b94f2ce8f3b775dd95eb73b0880e11
+              tag: 1.13.3.4259@sha256:cee3e3c8ce8efc301559bf4f6300a01d379ae4fdc0743a35a338bc69252da625
             env:
               # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
               # https://github.com/dotnet/runtime/issues/9336
