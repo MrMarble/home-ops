@@ -1140,7 +1140,7 @@ spec:
               value: localhost
             - name: KUBERNETES_SERVICE_PORT
               value: "7445"
-          image: quay.io/cilium/cilium:v1.15.1@sha256:351d6685dc6f6ffbcd5451043167cfa8842c6decf80d8c8e426a417c73fb56d4
+          image: quay.io/cilium/cilium:v1.15.3@sha256:da74ab61d1bc665c1c088dff41d5be388d252ca5800f30c7d88844e6b5e440b0
           imagePullPolicy: IfNotPresent
           lifecycle:
             postStart:
@@ -1287,7 +1287,7 @@ spec:
               value: localhost
             - name: KUBERNETES_SERVICE_PORT
               value: "7445"
-          image: quay.io/cilium/cilium:v1.15.1@sha256:351d6685dc6f6ffbcd5451043167cfa8842c6decf80d8c8e426a417c73fb56d4
+          image: quay.io/cilium/cilium:v1.15.3@sha256:da74ab61d1bc665c1c088dff41d5be388d252ca5800f30c7d88844e6b5e440b0
           imagePullPolicy: IfNotPresent
           name: config
           terminationMessagePolicy: FallbackToLogsOnError
@@ -1300,7 +1300,7 @@ spec:
             - /bin/bash
             - -c
             - --
-          image: quay.io/cilium/cilium:v1.15.1@sha256:351d6685dc6f6ffbcd5451043167cfa8842c6decf80d8c8e426a417c73fb56d4
+          image: quay.io/cilium/cilium:v1.15.3@sha256:da74ab61d1bc665c1c088dff41d5be388d252ca5800f30c7d88844e6b5e440b0
           imagePullPolicy: IfNotPresent
           name: mount-bpf-fs
           securityContext:
@@ -1329,7 +1329,7 @@ spec:
               value: localhost
             - name: KUBERNETES_SERVICE_PORT
               value: "7445"
-          image: quay.io/cilium/cilium:v1.15.1@sha256:351d6685dc6f6ffbcd5451043167cfa8842c6decf80d8c8e426a417c73fb56d4
+          image: quay.io/cilium/cilium:v1.15.3@sha256:da74ab61d1bc665c1c088dff41d5be388d252ca5800f30c7d88844e6b5e440b0
           imagePullPolicy: IfNotPresent
           name: clean-cilium-state
           securityContext:
@@ -1354,7 +1354,7 @@ spec:
               name: cilium-run
         - command:
             - /install-plugin.sh
-          image: quay.io/cilium/cilium:v1.15.1@sha256:351d6685dc6f6ffbcd5451043167cfa8842c6decf80d8c8e426a417c73fb56d4
+          image: quay.io/cilium/cilium:v1.15.3@sha256:da74ab61d1bc665c1c088dff41d5be388d252ca5800f30c7d88844e6b5e440b0
           imagePullPolicy: IfNotPresent
           name: install-cni-binaries
           resources:
