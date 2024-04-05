@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: external-dns
         namespace: flux-system
-      version: 1.14.3
+      version: 1.14.4
   install:
     createNamespace: true
   values:
