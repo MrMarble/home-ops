@@ -14,4 +14,3 @@ resources:
   - ./cross-seed/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./jellystat/ks.yaml
-  - ./syncthing/ks.yaml
