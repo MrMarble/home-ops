@@ -5,6 +5,7 @@ cluster:
 
 cni:
   exclusive: false
+routingMode: native
 
 bgp:
   enabled: false
