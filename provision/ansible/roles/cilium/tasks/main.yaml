@@ -12,8 +12,7 @@
     kind: CustomResourceDefinition
     name: "{{ item }}"
   loop:
-    - ciliuml2announcementpolicies.cilium.io
-    - ciliumloadbalancerippools.cilium.io
+    - ciliumbgppeeringpolicies.cilium.io
   register: crd
   until: crd.resources | length > 0
   retries: 5
@@ -23,5 +22,4 @@
   kubernetes.core.k8s:
     template: "{{ item }}"
   loop:
-    - ciliuml2announcementpolicy.yaml
-    - ciliumloadbalancerippool.yaml
+    - bgppeeringpoliciy.yaml
