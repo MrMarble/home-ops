@@ -1,0 +1,6 @@
+kubelet_csr_approver_repo_url: https://postfinance.github.io/kubelet-csr-approver
+kubelet_csr_approver_version: 1.1.0
+kubelet_csr_approver_namespace: kube-system
+kubelet_csr_approver_values:
+  providerRegex: ^k(m|w)\d\d?$
+  bypassDnsResolution: true

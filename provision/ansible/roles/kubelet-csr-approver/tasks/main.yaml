@@ -1,0 +1,8 @@
+- name: Install Kubernetes CSR approver
+  kubernetes.core.helm:
+    name: kubelet-csr-approver
+    chart_ref: kubelet-csr-approver
+    chart_repo_url: "{{ kubelet_csr_approver_repo_url }}"
+    chart_version: "{{ kubelet_csr_approver_version }}"
+    release_namespace: "{{ kubelet_csr_approver_namespace }}"
+    values: "{{ kubelet_csr_approver_values }}"

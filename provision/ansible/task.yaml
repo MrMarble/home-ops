@@ -1,0 +1,37 @@
+---
+version: "3"
+
+env:
+  KUBECONFIG:
+    sh: echo $(pwd)/kubeconfig.yaml
+
+tasks:
+  boot:
+    desc: |-
+      Bootstraps the cluster with the necessary components
+    cmd: ansible-playbook --inventory inventories/hosts.yaml boot.yaml
+
+  cluster:
+    desc: |-
+      Start the cluster
+    cmd: ansible-playbook --inventory inventories/hosts.yaml cluster.yaml
+
+  console:
+    desc: |-
+      Connect to the console of a machine
+    cmd: ansible-console --inventory inventories/hosts.yaml
+
+  pxe-logs:
+    desc: |-
+      Follow the logs of the PXE server
+    cmd: docker compose  --project-directory ./roles/pxe_server/files/ logs --follow "${@}"
+
+  pxe-stop:
+    desc: |-
+      Stop the PXE server
+    cmd: docker compose  --project-directory ./roles/pxe_server/files/ down
+
+  lint:
+    desc: |-
+      Lint the Ansible playbooks
+    cmd: ansible-lint boot.yaml {{.CLI_ARGS}}

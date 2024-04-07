@@ -8,8 +8,6 @@ vars:
   CLUSTER_SECRETS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.env"
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
-dotenv:
-  - .envrc
 
 includes:
   flux: .taskfiles/flux.yml
@@ -22,6 +20,9 @@ includes:
   cluster:
     taskfile: ".taskfiles/cluster"
     dir: .taskfiles/cluster
+  metal:
+    taskfile: "./provision/ansible/task.yaml"
+    dir: ./provision/ansible
 
 tasks:
   default:

@@ -14,3 +14,4 @@ kubeconfig
 terraform.tfstate*
 # act
 .secrets
+*kubeconfig.yaml

@@ -13,7 +13,12 @@
     "kubernetes://schema/v1@namespace": "kubernetes/**/namespace.yaml",
     "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/source.toolkit.fluxcd.io/helmrepository_v1beta2.json": "kubernetes/main/flux/repositories/helm/*.yaml",
     "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kustomize.toolkit.fluxcd.io/kustomization_v1.json": "kubernetes/**/ks.yaml",
-    "https://taskfile.dev/schema.json": "**/Taskfile.yaml"
+    "https://taskfile.dev/schema.json": [
+      "**/Taskfile.yaml",
+      "file:///home/mrmarble/Documentos/repos/home-ops/metal/task.yaml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/inventory.json": "file:///home/mrmarble/Documentos/repos/home-ops/metal/inventories/hosts.yaml",
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": "file:///home/mrmarble/Documentos/repos/home-ops/metal/cluster.yaml"
   },
   "yaml.schemaStore.enable": true,
   "conventionalCommits.scopes": [

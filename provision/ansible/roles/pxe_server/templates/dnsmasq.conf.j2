@@ -1,0 +1,21 @@
+# Disable DNS Server.
+port=0
+
+# We're DHCP proxying on the network of the homelab host
+dhcp-range={{ ansible_default_ipv4.address }},proxy
+pxe-service=X86-64_EFI, "Boot From Network, (UEFI)", grubx64.efi
+
+# inspect the vendor class string and match the text to set the tag
+dhcp-vendorclass=BIOS,PXEClient:Arch:00000
+dhcp-vendorclass=UEFI32,PXEClient:Arch:00006
+dhcp-vendorclass=UEFI,PXEClient:Arch:00007
+dhcp-vendorclass=UEFI64,PXEClient:Arch:00009
+
+# Log DHCP queries to stdout
+log-queries
+log-dhcp
+log-facility=-
+
+# Enable TFTP server
+enable-tftp
+tftp-root=/tftp
