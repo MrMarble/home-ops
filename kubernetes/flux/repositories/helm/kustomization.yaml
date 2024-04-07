@@ -31,5 +31,5 @@ resources:
   - cstor.yaml
   - mayastor.yaml
   - openebs-nfs.yaml
-  - xenitab.yaml
+  - spegel.yaml
   - kubernetes-sigs-nfs-provisioner.yaml
