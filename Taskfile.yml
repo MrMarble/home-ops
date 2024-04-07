@@ -9,6 +9,9 @@ vars:
   CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
 
+dotenv:
+  - .envrc
+
 includes:
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
