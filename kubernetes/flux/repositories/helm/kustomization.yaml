@@ -33,3 +33,4 @@ resources:
   - openebs-nfs.yaml
   - spegel.yaml
   - kubernetes-sigs-nfs-provisioner.yaml
+  - external-secrets.yaml
