@@ -4,13 +4,12 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app ${name}
-  namespace: ${namespace}
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -21,17 +20,28 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
   uninstall:
     keepHistory: false
+# dependsOn:
   values:
     controllers:
-      main:
+      ${name}:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: XXX
               tag: XXX
+            env:
+              TZ: Europe/Madrid
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -42,7 +52,6 @@ spec:
                 memory: 10M
               limits:
                 memory: 64M
-
         pod:
           securityContext:
             runAsUser: 568
@@ -50,16 +59,11 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: kubernetes.io/hostname
-              whenUnsatisfiable: DoNotSchedule
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: *app
 
     service:
-      main:
+      app:
+        controller: ${name}
         ports:
           http:
+            primary: true
             port: 80
