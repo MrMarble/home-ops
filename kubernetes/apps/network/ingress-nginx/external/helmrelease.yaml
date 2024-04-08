@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: nginx-internal
+  name: nginx-external
 spec:
   interval: 30m
   chart:
@@ -23,25 +23,25 @@ spec:
       retries: 3
       strategy: rollback
   values:
-    fullnameOverride: nginx-internal
+    fullnameOverride: nginx-external
 
     controller:
       replicaCount: 1
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: "192.168.10.2"
+          external-dns.alpha.kubernetes.io/hostname: "external.${SECRET_DOMAIN}"
+          io.cilium/lb-ipam-ips: "192.168.10.1"
       ingressClassResource:
-        default: true
-        name: internal
-        controllerValue: k8s.io/internal
+        default: false
+        name: external
+        controllerValue: k8s.io/external
 
       admissionWebhooks:
         objectSelector:
           matchExpressions:
             - key: ingress-class
               operator: In
-              values: ["internal"]
+              values: ["external"]
       allowSnippetAnnotations: true
       config:
         client-body-buffer-size: 100M
@@ -80,7 +80,7 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app.kubernetes.io/instance: nginx-internal
+              app.kubernetes.io/instance: nginx-external
               app.kubernetes.io/component: controller
 
       resources:

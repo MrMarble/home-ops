@@ -34,3 +34,21 @@ spec:
   timeout: 5m
   dependsOn:
     - name: nginx-certificates
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nginx-external
+  namespace: flux-system
+spec:
+  path: ./kubernetes/apps/network/ingress-nginx/external
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  dependsOn:
+    - name: nginx-certificates
