@@ -29,6 +29,13 @@ spec:
       enabled: false
       forceDeployDatasources: true
       forceDeployDashboards: true
+
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
     prometheus:
       ingress:
         enabled: true
