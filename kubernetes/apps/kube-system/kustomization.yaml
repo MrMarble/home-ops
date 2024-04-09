@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./cilium/ks.yaml
   - ./reloader/ks.yaml
+  - ./node-feature-discovery/ks.yaml

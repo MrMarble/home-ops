@@ -13,7 +13,6 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=%20&color=blue&logoColor=white)&nbsp;&nbsp;
 [![kubernetes](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMrMarble%2Fhome-ops%2Fmain%2Fkubernetes%2Fapps%2Fsystem-upgrade%2Fsystem-upgrade-controller%2Fplans%2Fserver.yaml&query=spec.version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20)](https://kubernetes.io/)
 
-
 </div>
 <div align="center">
 <br/>

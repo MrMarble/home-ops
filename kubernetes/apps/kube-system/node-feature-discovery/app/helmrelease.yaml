@@ -1,0 +1,53 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app node-feature-discovery
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: node-feature-discovery
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-sigs-nfd
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    master:
+      resources:
+        requests:
+          cpu: 21m
+          memory: 51Mi
+        limits:
+          memory: 51Mi
+    worker:
+      config:
+        core:
+          labelSources: ["custom", "pci", "usb"]
+        sources:
+          usb:
+            deviceClassWhitelist: ["02", "03", "0e", "ef", "fe", "ff"]
+            deviceLabelFields: ["class", "vendor", "device"]
+          pci:
+            deviceLabelFields: ["class", "vendor", "device"]
+            deviceClassWhitelist: ["02", "03", "0e", "ff"]
+      resources:
+        requests:
+          cpu: 5m
+          memory: 48Mi
+        limits:
+          memory: 48Mi
