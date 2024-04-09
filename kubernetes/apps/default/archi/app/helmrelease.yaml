@@ -39,7 +39,7 @@ spec:
               ASF_ARGS: "--process-required --no-restart"
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
