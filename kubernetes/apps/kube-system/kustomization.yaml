@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./cilium/ks.yaml
   - ./reloader/ks.yaml
+  - ./system-upgrade-controller/ks.yaml
