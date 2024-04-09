@@ -9,6 +9,7 @@ vars:
   helmreleaseTemplate: "helmrelease.tmpl.yaml"
   namespaceTemplate: "namespace.tmpl.yaml"
   kustomizeTemplate: "ks.tmpl.yaml"
+  secretTemplate: "externalsecret.templ.yaml"
   helmrepoTemplate: "helmrepository.templ.yaml"
 
 tasks:
@@ -49,6 +50,23 @@ tasks:
       - sh: test -f {{.kustomizeTemplate}}
     status:
       - test -d ../../kubernetes/apps/{{.namespace}}/{{.name}}
+
+  secret:
+    desc: Create a externalsecret
+    silent: false
+    env: *task-vars
+    vars:
+      namespace: '{{.namespace | default "default"}}'
+      name: '{{ or .name (fail "name is required") }}'
+      from: '{{ or .from (fail "from is required") }}'
+    cmds:
+      - envsubst '${namespace} ${name} ${from}' < <(cat {{.secretTemplate}}) >> ../../kubernetes/apps/{{.namespace}}/{{.name}}/app/externalsecret.yaml
+    deps:
+      - namespace
+    preconditions:
+      - sh: test -f {{.secretTemplate}}
+    status:
+      - test -d ../../kubernetes/apps/{{.namespace}}/{{.name}}/app/externalsecret.yaml
 
   repo:
     desc: Create a helm repository
