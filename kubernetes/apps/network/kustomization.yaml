@@ -6,3 +6,4 @@ resources:
   - ./ingress-nginx/ks.yaml
   - ./external-dns/ks.yaml
   - ./cloudflared/ks.yaml
+  - ./external-services
