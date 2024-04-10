@@ -5,6 +5,6 @@ metadata:
   name: mayastor
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 2h
   url: https://openebs.github.io/mayastor-extensions/
   timeout: 3m

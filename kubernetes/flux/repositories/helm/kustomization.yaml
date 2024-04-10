@@ -20,17 +20,18 @@ resources:
   - prometheus-community.yaml
   - grafana.yaml
   - k8s-gateway.yaml
-  - democratic-csi.yaml
+  #- democratic-csi.yaml
   - weave-gitops.yaml
   - k8tz.yaml
   - bitnami.yaml
   - cloudnative-pg.yaml
-  - gitea.yaml
-  - nextcloud.yaml
-  - openebs-jiva.yaml
-  - cstor.yaml
-  - mayastor.yaml
-  - openebs-nfs.yaml
-  - spegel.yaml
+  #- gitea.yaml
+  #- nextcloud.yaml
+  #- openebs-jiva.yaml
+  #- cstor.yaml
+  #- mayastor.yaml
+  #- openebs-nfs.yaml
+  #- spegel.yaml
   - kubernetes-sigs-nfs-provisioner.yaml
   - external-secrets.yaml
+  - openebs.yaml

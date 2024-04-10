@@ -5,6 +5,6 @@ metadata:
   name: openebs-nfs
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 2h
   url: https://openebs.github.io/dynamic-nfs-provisioner
   timeout: 3m
