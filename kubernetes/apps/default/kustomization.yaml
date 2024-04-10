@@ -4,3 +4,4 @@ resources:
   - ./namespace.yaml
   - ./archi/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./prowlarr/ks.yaml
