@@ -45,12 +45,10 @@ spec:
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
               QBT_Preferences__WebUI__LocalHostAuth: false
-              QBT_BitTorrent__Session__Interface: eno1
               QBT_BitTorrent__Session__InterfaceAddress:
                 valueFrom:
                   fieldRef:
                     fieldPath: status.podIP
-              QBT_BitTorrent__Session__InterfaceName: eno1
             probes:
               liveness: &probes
                 enabled: true
