@@ -26,7 +26,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      prowlarr:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -38,7 +38,7 @@ spec:
               - secretRef:
                   name: prowlarr-secret
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/prowlarr-nightly
               tag: 1.16.0.4392@sha256:887bf338a0cf916e7704bb078d1a0df4108ae39a57869675a67f796e7828a88f
