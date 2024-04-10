@@ -6,3 +6,4 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./prowlarr/ks.yaml
   - ./cross-seed/ks.yaml
+  - ./radarr/ks.yaml
