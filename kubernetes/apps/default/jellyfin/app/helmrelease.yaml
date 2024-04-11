@@ -114,24 +114,25 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: jellyfin
         globalMounts:
           - path: /config
       media:
-        enabled: true
         type: nfs
         server: 192.168.1.25
         path: /mnt/torrent/data
         globalMounts:
           - path: /media
       transcode:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /transcode
       cache:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /cache
+      tmp:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
