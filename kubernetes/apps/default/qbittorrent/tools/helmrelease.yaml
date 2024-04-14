@@ -90,7 +90,7 @@ spec:
               "orphaned",
               "--exclude-pattern", "*_unpackerred*",
               "--exclude-pattern", "*/manual/*",
-              "--dry-run",
+              #"--dry-run",
               "--server", "qbittorrent.default.svc.cluster.local",
               "--port", "80"
             ]
