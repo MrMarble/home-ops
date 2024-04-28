@@ -61,9 +61,8 @@ spec:
                   failureThreshold: 3
               readiness: *probes
             securityContext:
-              allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              privileged: true # Needed for HW acceleration
             resources:
               requests:
                 cpu: 100m
@@ -77,7 +76,7 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [39,44 ,105, 100] # cat /etc/group
+            supplementalGroups: [39, 44 ,105, 104, 100] # cat /etc/group
           nodeSelector:
             intel.feature.node.kubernetes.io/gpu: "true"
 
