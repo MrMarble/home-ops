@@ -76,7 +76,7 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [39, 44 ,105, 104, 100] # cat /etc/group
+            supplementalGroups: [39, 44, 105, 104, 100] # cat /etc/group
           nodeSelector:
             intel.feature.node.kubernetes.io/gpu: "true"
 

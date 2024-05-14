@@ -42,17 +42,21 @@ spec:
               tag: v0.15.2@sha256:6bf689ff6269e27293e1bf1cec03a965cd0c3d89d9c193e4b0b9275687fc9d63
             env: &env
               TZ: *timeZone
-            args: [
-              "tagging",
-              "--added-on",
-              "--expired",
-              "--sites",
-              "--unregistered",
-              "--not-working",
-              "--server", "qbittorrent.default.svc.cluster.local",
-              "--port", "80",
-              "--config", "/config/config.yaml"
-            ]
+            args:
+              [
+                "tagging",
+                "--added-on",
+                "--expired",
+                "--sites",
+                "--unregistered",
+                "--not-working",
+                "--server",
+                "qbittorrent.default.svc.cluster.local",
+                "--port",
+                "80",
+                "--config",
+                "/config/config.yaml",
+              ]
             resources: &resources
               requests:
                 cpu: 25m
@@ -62,14 +66,19 @@ spec:
           unregistered:
             image: *image
             env: *env
-            args: [
-              "prune",
-              "--exclude-category", "manual",
-              "--include-tag", "  ",
-              "--dry-run",
-              "--server", "qbittorrent.default.svc.cluster.local",
-              "--port", "80"
-            ]
+            args:
+              [
+                "prune",
+                "--exclude-category",
+                "manual",
+                "--include-tag",
+                "  ",
+                "--dry-run",
+                "--server",
+                "qbittorrent.default.svc.cluster.local",
+                "--port",
+                "80",
+              ]
             resources: *resources
         pod:
           restartPolicy: OnFailure
@@ -87,13 +96,17 @@ spec:
             image: *image
             env: *env
             args: [
-              "orphaned",
-              "--exclude-pattern", "*_unpackerred*",
-              "--exclude-pattern", "*/manual/*",
-              #"--dry-run",
-              "--server", "qbittorrent.default.svc.cluster.local",
-              "--port", "80"
-            ]
+                "orphaned",
+                "--exclude-pattern",
+                "*_unpackerred*",
+                "--exclude-pattern",
+                "*/manual/*",
+                #"--dry-run",
+                "--server",
+                "qbittorrent.default.svc.cluster.local",
+                "--port",
+                "80",
+              ]
             resources: *resources
         pod:
           restartPolicy: OnFailure
@@ -103,12 +116,15 @@ spec:
           app:
             image: *image
             env: *env
-            args: [
-              "reannounce",
-              "--process-seeding",
-              "--server", "qbittorrent.default.svc.cluster.local",
-              "--port", "80"
-            ]
+            args:
+              [
+                "reannounce",
+                "--process-seeding",
+                "--server",
+                "qbittorrent.default.svc.cluster.local",
+                "--port",
+                "80",
+              ]
             resources: *resources
         pod:
           securityContext: *securityContext

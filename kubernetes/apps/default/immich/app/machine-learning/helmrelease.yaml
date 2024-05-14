@@ -76,7 +76,7 @@ spec:
         ports:
           http:
             port: 3003
-            
+
     persistence:
       library:
         enabled: true
