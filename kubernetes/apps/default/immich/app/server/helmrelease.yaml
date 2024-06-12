@@ -40,13 +40,14 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v1.105.1
-            args: ["start-server.sh"]
+              tag: v1.106.2
             envFrom:
               - secretRef:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
+            env:
+              IMMICH_WORKERS_INCLUDE: 'api'
             probes:
               startup:
                 enabled: true

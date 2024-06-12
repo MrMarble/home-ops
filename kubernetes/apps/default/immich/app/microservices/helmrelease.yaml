@@ -40,8 +40,7 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v1.105.1
-            args: ["start-microservices.sh"]
+              tag: v1.106.2
             resources:
               requests:
                 cpu: 100m
@@ -63,6 +62,8 @@ spec:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
+            env:
+              IMMICH_WORKERS_EXCLUDE: 'api'
         pod:
           securityContext:
             runAsUser: 568
