@@ -40,7 +40,7 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v1.106.2
+              tag: v1.106.4
             resources:
               requests:
                 cpu: 100m
