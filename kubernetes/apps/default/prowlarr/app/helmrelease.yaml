@@ -43,11 +43,14 @@ spec:
               repository: ghcr.io/onedr0p/prowlarr-nightly
               tag: 1.20.1.4599@sha256:d2b7ac7e31c9ba711a12894e50fadfc5103e2411de981c045bd218bf7ddd73d9
             env:
-              PROWLARR__INSTANCE_NAME: Prowlarr
-              PROWLARR__PORT: &port 80
-              PROWLARR__LOG_LEVEL: info
-              PROWLARR__AUTHENTICATION_METHOD: External
-              PROWLARR__THEME: dark
+              PROWLARR__APP__INSTANCENAME: Prowlarr
+              PROWLARR__APP__THEME: dark
+              PROWLARR__AUTH__METHOD: External
+              PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              PROWLARR__LOG__DBENABLED: "False"
+              PROWLARR__LOG__LEVEL: info
+              PROWLARR__SERVER__PORT: &port 80
+              PROWLARR__UPDATE__BRANCH: develop
               TZ: Europe/Madrid
             envFrom: *envFrom
             probes:
