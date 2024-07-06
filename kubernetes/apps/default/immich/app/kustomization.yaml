@@ -5,5 +5,5 @@ resources:
   - pvc.yaml
   - configmap.yaml
   - ./server
-  - ./microservices
+  #- ./microservices
   - ./machine-learning

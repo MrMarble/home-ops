@@ -46,8 +46,6 @@ spec:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
-            env:
-              IMMICH_WORKERS_INCLUDE: 'api'
             probes:
               startup:
                 enabled: true
