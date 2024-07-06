@@ -41,21 +41,28 @@ spec:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
               tag: v1.107.2
+            env:
+              IMMICH_PORT: &port 3001
             envFrom:
               - secretRef:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
             probes:
-              startup:
+              liveness: &probes
                 enabled: true
+                custom: true
                 spec:
+                  httpGet:
+                    path: /api/server-info/ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
                   failureThreshold: 30
-                  periodSeconds: 5
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
+              readiness: *probes
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 100m
@@ -75,7 +82,7 @@ spec:
         controller: immich-server
         ports:
           http:
-            port: 3001
+            port: *port
 
     ingress:
       main:
