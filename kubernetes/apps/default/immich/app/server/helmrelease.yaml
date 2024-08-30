@@ -40,7 +40,7 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v1.112.1
+              tag: v1.113.0
             env:
               IMMICH_PORT: &port 3001
             envFrom:
