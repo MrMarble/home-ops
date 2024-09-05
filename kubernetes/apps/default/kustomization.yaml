@@ -11,3 +11,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./jellyfin/ks.yaml
   - ./immich/ks.yaml
+  - ./psitransfer/ks.yaml
