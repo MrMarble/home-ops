@@ -87,6 +87,8 @@
   ansible.builtin.slurp:
     src: "{{ k3s_kubeconfig_file }}"
   register: kubeconfig_base64
+  tags:
+    - kubeconfig
 
 - name: Write Kubernetes config file with the correct cluster address
   ansible.builtin.copy:
@@ -95,3 +97,5 @@
     mode: "0600"
   delegate_to: localhost
   run_once: true
+  tags:
+    - kubeconfig
