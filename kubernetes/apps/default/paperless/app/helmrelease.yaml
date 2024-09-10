@@ -56,7 +56,7 @@ spec:
               PAPERLESS_OCR_LANGUAGES: spa
               PAPERLESS_OCR_LANGUAGE: spa
               # Configure redis integration
-              PAPERLESS_REDIS: ioredis://eyJkYiI6MTUsInNlbnRpbmVscyI6W3siaG9zdCI6InJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYXRhYmFzZS5zdmMuY2x1c3Rlci5sb2NhbCIsInBvcnQiOjI2Mzc5fSx7Imhvc3QiOiJyZWRpcy1ub2RlLTEucmVkaXMtaGVhZGxlc3MuZGF0YWJhc2Uuc3ZjLmNsdXN0ZXIubG9jYWwiLCJwb3J0IjoyNjM3OX0seyJob3N0IjoicmVkaXMtbm9kZS0yLnJlZGlzLWhlYWRsZXNzLmRhdGFiYXNlLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9XSwibmFtZSI6InJlZGlzLW1hc3RlciJ9
+              PAPERLESS_REDIS: redis://paperless-redis.default.svc.cluster.local:6379
               # Configure user permissions
               USERMAP_GID: "568"
               # Configure admin user
@@ -87,13 +87,30 @@ spec:
               limits:
                 memory: 3Gi
 
+      redis:
+        containers:
+          redis:
+            image:
+              repository: docker.io/valkey/valkey
+              tag: 7.2.6
+            resources:
+              requests:
+                cpu: 5m
+                memory: 32Mi
+              limits:
+                memory: 128Mi
+
     service:
       app:
         controller: paperless
         ports:
           http:
             port: 8000
-
+      redis:
+        controller: redis
+        ports:
+          http:
+            port: 6379
     ingress:
       app:
         className: internal
