@@ -5,7 +5,7 @@ resources:
   - ./archi/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./prowlarr/ks.yaml
-  #- ./cross-seed/ks.yaml
+  - ./cross-seed/ks.yaml
   - ./radarr/ks.yaml
   - ./radarr-4k/ks.yaml
   - ./sonarr/ks.yaml
