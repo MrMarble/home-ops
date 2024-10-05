@@ -78,14 +78,14 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
 
     service:
-      main:
+      app:
         controller: immich-server
         ports:
           http:
             port: *port
 
     ingress:
-      main:
+      app:
         enabled: true
         className: internal
         annotations:
