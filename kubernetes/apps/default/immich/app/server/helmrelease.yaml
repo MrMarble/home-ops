@@ -55,7 +55,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/server/ping
-                    port: &port 8096
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
