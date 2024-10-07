@@ -48,21 +48,6 @@ spec:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
-            probes:
-              liveness: &probes
-                enabled: false
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/server-info/ping
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 30
-              readiness: *probes
-              startup:
-                enabled: false
             resources:
               requests:
                 cpu: 100m
@@ -71,11 +56,8 @@ spec:
                 memory: 1Gi
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups:
+              - 568
 
     service:
       main:
