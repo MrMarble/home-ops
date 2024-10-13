@@ -13,3 +13,4 @@ resources:
   - ./immich/ks.yaml
   - ./psitransfer/ks.yaml
   - ./paperless/ks.yaml
+  - ./sabnzbd/ks.yaml
