@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.4.0
+      version: 3.5.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -41,7 +41,7 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/prowlarr-nightly
-              tag: 1.25.1.4769@sha256:c2ca6ab392dd264a84df51611c205afb4e6d575983f1aa1df34fd7e4ec3b6dd0
+              tag: 1.25.2.4794@sha256:0a83281663225160984f5572ed8f2d700117f093b0d18334dfdb0e67d60fb5a3
             env:
               PROWLARR__APP__INSTANCENAME: Prowlarr
               PROWLARR__APP__THEME: dark
