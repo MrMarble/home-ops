@@ -59,13 +59,13 @@ spec:
   valuesFrom:
     - kind: Secret
       name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite.0.basic_auth.password
+      targetPath: prometheus.prometheusSpec.remoteWrite[0].basic_auth.password
       valuesKey: GRAFANA_CLOUD__PASSWORD
     - kind: Secret
       name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite.0.basic_auth.username
+      targetPath: prometheus.prometheusSpec.remoteWrite[0].basic_auth.username
       valuesKey: GRAFANA_CLOUD__USERNAME
     - kind: Secret
       name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite.0.url
+      targetPath: prometheus.prometheusSpec.remoteWrite[0].url
       valuesKey: GRAFANA_CLOUD__ENDPOINT
