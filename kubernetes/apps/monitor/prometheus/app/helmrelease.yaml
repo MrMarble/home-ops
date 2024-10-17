@@ -25,15 +25,28 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    crds:
+      enabled: true
+    cleanPrometheusOperatorObjectNames: true
     grafana:
       enabled: false
       forceDeployDatasources: true
       forceDeployDashboards: true
 
-    kubeControllerManager:
-      enabled: false
+    kubeApiServer:
+      serviceMonitor:
+        selector:
+          k8s-app: kube-apiserver
     kubeScheduler:
-      enabled: false
+      service:
+        selector:
+          k8s-app: kube-scheduler
+    kubeControllerManager: &kubeControllerManager
+      service:
+        selector:
+          k8s-app: kube-controller-manager
+    kubeEtcd:
+      <<: *kubeControllerManager # etcd runs on control plane nodes
     kubeProxy:
       enabled: false
     prometheus:
