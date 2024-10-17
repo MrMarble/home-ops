@@ -53,17 +53,17 @@ spec:
         probeSelectorNilUsesHelmValues: false
         remoteWrite:
           - url: replaced
-            basic_auth:
+            basicAuth:
               username: replaced
               password: replaced
   valuesFrom:
     - kind: Secret
       name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite[0].basic_auth.password
+      targetPath: prometheus.prometheusSpec.remoteWrite[0].basicAuth.password
       valuesKey: GRAFANA_CLOUD__PASSWORD
     - kind: Secret
       name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite[0].basic_auth.username
+      targetPath: prometheus.prometheusSpec.remoteWrite[0].basicAuth.username
       valuesKey: GRAFANA_CLOUD__USERNAME
     - kind: Secret
       name: prometheus-secret
