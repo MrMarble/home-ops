@@ -74,8 +74,12 @@ spec:
         remoteWrite:
           - url: replaced
             basicAuth:
-              username: replaced
-              password: replaced
+              username:
+                name: prometheus-secret
+                key: GRAFANA_CLOUD__USERNAME
+              password:
+                name: prometheus-secret
+                key: GRAFANA_CLOUD__PASSWORD
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -103,14 +107,6 @@ spec:
               sourceLabels: ["__meta_kubernetes_pod_node_name"]
               targetLabel: kubernetes_node
   valuesFrom:
-    - kind: Secret
-      name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite[0].basicAuth.password
-      valuesKey: GRAFANA_CLOUD__PASSWORD
-    - kind: Secret
-      name: prometheus-secret
-      targetPath: prometheus.prometheusSpec.remoteWrite[0].basicAuth.username
-      valuesKey: GRAFANA_CLOUD__USERNAME
     - kind: Secret
       name: prometheus-secret
       targetPath: prometheus.prometheusSpec.remoteWrite[0].url
