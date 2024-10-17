@@ -51,3 +51,21 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
+        remoteWrite:
+          - url: replaced
+            basic_auth:
+              username: replaced
+              password: replaced
+  valuesFrom:
+    - kind: Secret
+      name: prometheus-secret
+      targetPath: prometheus.prometheusSpec.remoteWrite.0.basic_auth.password
+      valuesKey: GRAFANA_CLOUD__PASSWORD
+    - kind: Secret
+      name: prometheus-secret
+      targetPath: prometheus.prometheusSpec.remoteWrite.0.basic_auth.username
+      valuesKey: GRAFANA_CLOUD__USERNAME
+    - kind: Secret
+      name: prometheus-secret
+      targetPath: prometheus.prometheusSpec.remoteWrite.0.url
+      valuesKey: GRAFANA_CLOUD__ENDPOINT
