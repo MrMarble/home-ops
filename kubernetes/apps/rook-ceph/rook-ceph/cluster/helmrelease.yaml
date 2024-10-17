@@ -30,12 +30,22 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
+    ingress:
+      dashboard:
+        annotations:
+        ingressClassName: internal
+        host:
+          name: rook.${SECRET_DOMAIN}
+          path: /
     cephClusterSpec:
       mon:
         count: 3
       mgr:
         count: 2
       dashboard:
+        enabled: true
+        urlPrefix: /
+        prometheusEndpoint:  http://prometheus-operated.monitor.svc.cluster.local:9090
         ssl: false
       logCollector:
         enabled: false
