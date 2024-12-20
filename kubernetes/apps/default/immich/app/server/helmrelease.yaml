@@ -41,8 +41,6 @@ spec:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
               tag: v1.122.3
-            env:
-              IMMICH_PORT: &port 2283
             envFrom:
               - secretRef:
                   name: immich-secret
@@ -64,7 +62,7 @@ spec:
         controller: immich-server
         ports:
           http:
-            port: *port
+            port: 2283
 
     ingress:
       main:
