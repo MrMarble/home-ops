@@ -81,7 +81,7 @@ spec:
               name: crowdsec-secret
               key: enroll_key
         - name: ENROLL_INSTANCE_NAME
-          value: "pepinillok @cluster-0"
+          value: "pepinillo@cluster-0"
       dashboard:
         enabled: false
         ingress:
