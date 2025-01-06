@@ -81,11 +81,11 @@ spec:
               name: crowdsec-secret
               key: enroll_key
         - name: ENROLL_INSTANCE_NAME
-          value: "pepinillo@cluster-0"
+          value: "pepinillok @cluster-0"
       dashboard:
-        enabled: true
+        enabled: false
         ingress:
-          enabled: true
+          enabled: false
           annotations:
           ingressClassName: internal
           host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
