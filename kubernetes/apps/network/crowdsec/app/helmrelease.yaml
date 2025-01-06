@@ -83,10 +83,9 @@ spec:
         - name: ENROLL_INSTANCE_NAME
           value: "pepinillok @cluster-0"
       dashboard:
-        enabled: false
+        enabled: true
         ingress:
-          enabled: false
-          annotations:
+          enabled: true
           ingressClassName: internal
           host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
           tls:
