@@ -41,7 +41,7 @@ spec:
           program: nginx
       env:
         - name: DISABLE_crONLINE_API
-          value: "true"
+          value: "false"
         # As we are running Nginx, we want to install the Nginx collection
         - name: COLLECTIONS
           value: "crowdsecurity/nginx crowdsecurity/linux crowdsecurity/base-http-scenarios crowdsecurity/http-cve crowdsecurity/pgsql crowdsecurity/sshd"
