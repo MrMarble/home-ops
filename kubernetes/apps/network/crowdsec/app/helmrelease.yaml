@@ -41,7 +41,7 @@ spec:
           program: nginx
       env:
         - name: DISABLE_crONLINE_API
-          value: "false"
+          value: "true"
         # As we are running Nginx, we want to install the Nginx collection
         - name: COLLECTIONS
           value: "crowdsecurity/nginx crowdsecurity/linux crowdsecurity/base-http-scenarios crowdsecurity/http-cve crowdsecurity/pgsql crowdsecurity/sshd"
@@ -86,6 +86,10 @@ spec:
         enabled: true
         ingress:
           enabled: true
+          labels:
+            version: v1
+            k8s-app: "{{ .Release.Name }}"
+            type: lapi-dashboard
           ingressClassName: internal
           host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
           tls:
