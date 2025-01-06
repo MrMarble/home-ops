@@ -44,9 +44,15 @@ spec:
           value: "false"
         # As we are running Nginx, we want to install the Nginx collection
         - name: COLLECTIONS
-          value: "crowdsecurity/nginx crowdsecurity/base-http-scenarios crowdsecurity/http-cve"
+          value: >-
+            crowdsecurity/linux
+            crowdsecurity/nginx
+            crowdsecurity/base-http-scenarios
+            crowdsecurity/http-cve
         - name: PARSERS
-          value: "crowdsecurity/cri-logs"
+          value: >-
+            crowdsecurity/cri-logs
+            crowdsecurity/docker-logs
         - name: TZ
           value: "Europe/Madrid"
         - name: DISABLE_ONLINE_API
