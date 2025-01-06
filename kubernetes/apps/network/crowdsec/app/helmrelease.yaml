@@ -53,6 +53,12 @@ spec:
           value: >-
             crowdsecurity/cri-logs
             crowdsecurity/docker-logs
+        - name: SCENARIOS
+          value: >-
+            LePresidente/jellyfin-bf
+            crowdsecurity/home-assistant-bf
+            crowdsecurity/http-cve-probing
+            crowdsecurity/http-admin-interface-probing
         - name: TZ
           value: "Europe/Madrid"
         - name: DISABLE_ONLINE_API
