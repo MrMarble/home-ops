@@ -44,7 +44,7 @@ spec:
           value: "false"
         # As we are running Nginx, we want to install the Nginx collection
         - name: COLLECTIONS
-          value: "crowdsecurity/nginx crowdsecurity/linux crowdsecurity/base-http-scenarios crowdsecurity/http-cve crowdsecurity/pgsql crowdsecurity/sshd"
+          value: "crowdsecurity/nginx crowdsecurity/base-http-scenarios crowdsecurity/http-cve"
         - name: PARSERS
           value: "crowdsecurity/cri-logs"
         - name: TZ
