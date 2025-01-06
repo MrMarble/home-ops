@@ -35,3 +35,4 @@ resources:
   - kubernetes-sigs-nfs-provisioner.yaml
   - external-secrets.yaml
   - openebs.yaml
+  - crowdsec.yaml
