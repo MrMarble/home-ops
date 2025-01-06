@@ -57,7 +57,6 @@ spec:
           value: >-
             LePresidente/jellyfin-bf
             crowdsecurity/home-assistant-bf
-            crowdsecurity/http-admin-interface-probing
         - name: TZ
           value: "Europe/Madrid"
         - name: DISABLE_ONLINE_API
