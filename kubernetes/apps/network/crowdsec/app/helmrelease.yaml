@@ -39,6 +39,8 @@ spec:
           podName: nginx-external-controller-*
           # as in crowdsec configuration, we need to specify the program name so the parser will match and parse logs
           program: nginx
+          # since the file is a symlink, we cant use inotify, so we need to use os.stat
+          poll_without_inotify: true
       env:
         - name: DISABLE_crONLINE_API
           value: "false"
