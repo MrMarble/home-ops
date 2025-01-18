@@ -37,11 +37,21 @@ spec:
         host:
           name: rook.${SECRET_DOMAIN}
           path: /
+    toolbox:
+      enabled: true
     cephClusterSpec:
+      crashCollector:
+        disable: false
       mon:
         count: 3
       mgr:
-        count: 2
+        modules:
+          - name: insights
+            enabled: true
+          - name: pg_autoscaler
+            enabled: true
+          - name: rook
+            enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
