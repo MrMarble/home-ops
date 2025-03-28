@@ -17,9 +17,9 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 <div align="center">
 <br/>
 
-[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877647-43f7de17c4661915fdcc503c?label=Home%20Internet&logo=googlehome&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)&nbsp;&nbsp;
-[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793877616-990da6b85bc8e4fc22832384?label=Home%20Assistant&logo=homeassistant&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
-[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796122890-9d5b880fdcd7965ad890820a?label=Status%20Page&logo=statuspage&logoColor=white&style=for-the-badge)](https://uptimerobot.com/)
+![Home Internet status](https://status.mrmarble.dev/api/badge/1/status?style=for-the-badge&label=Home%20Internet)
+![Home Assistant status](https://status.mrmarble.dev/api/badge/2/status?style=for-the-badge&label=Home%20Assistant)
+
 
 </div>
 
