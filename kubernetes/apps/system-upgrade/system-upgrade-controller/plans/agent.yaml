@@ -6,7 +6,7 @@ metadata:
   namespace: system-upgrade
 spec:
   serviceAccountName: system-upgrade
-  # renovate: datasource=github-releases depName=k3s-io/k3s
+  # renovate: datasource=github-releases depName=k3s-io/k3s versioning=loose
   version: "v1.29.3+k3s1"
   concurrency: 1
   nodeSelector:
