@@ -1,4 +1,4 @@
-# renovate: datasource=github-releases depName=k3s-io/k3s versioning=loose
+# renovate: datasource=github-releases depName=k3s-io/k3s
 k3s_version: v1.29.3+k3s1
 k3s_config_file: /etc/rancher/k3s/config.yaml
 k3s_token_file: /etc/rancher/node/password
