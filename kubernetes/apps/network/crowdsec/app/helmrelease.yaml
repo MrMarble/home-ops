@@ -109,10 +109,10 @@ spec:
           enabled: true
           labels:
             version: v1
-            k8s-app: "{{ .Release.Name }}"
+            k8s-app: crowdsec
             type: lapi-dashboard
           ingressClassName: internal
-          host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          host: &host "crowdsec.${SECRET_DOMAIN}"
           tls:
             - hosts:
               - *host
