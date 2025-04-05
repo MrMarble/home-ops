@@ -137,13 +137,16 @@ spec:
           storageClassName: standard-rwx
           size: 100Mi
       extraVolumes:
-        notifications:
-          type: secret
-          name: crowdsec-secret
-          globalMounts:
-            - path: /etc/crowdsec_data/notifications/http.yaml
-              subPath: http.yaml
-              readOnly: true
+        - name: http-config
+          secret:
+            secretName: crowdsec-secret
+            items:
+              - key: http.yaml
+      extraVolumeMounts:
+        - name: http-config
+          mountPath: /etc/crowdsec_data/notifications/http.yaml
+          subPath: http.yaml
+          readOnly: true
       metrics:
         enabled: false
         serviceMonitor:
