@@ -32,6 +32,8 @@ spec:
       tag: v1.6.8
     podAnnotations:
       reloader.stakater.com/auto: "true"
+    tls:
+      enabled: false
     config:
       # https://docs.crowdsec.net/docs/notification_plugins/http#enabling-the-plugin
       profiles.yaml: |
@@ -104,7 +106,7 @@ spec:
       dashboard:
         enabled: false
         ingress:
-          enabled: false
+          enabled: ingress
           labels:
             version: v1
             k8s-app: "{{ .Release.Name }}"
