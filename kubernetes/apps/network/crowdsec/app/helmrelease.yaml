@@ -35,8 +35,17 @@ spec:
     tls:
       enabled: false
     config:
-      common:
-        log_level: debug
+      config.yaml.local: |
+        api:
+          server:
+            auto_registration: # Activate if not using TLS for authentication
+              enabled: true
+              token: "${REGISTRATION_TOKEN}" # /!\ Do not modify this variable (auto-generated and handled by the chart)
+              allowed_ranges: # /!\ Make sure to adapt to the pod IP ranges used by your cluster
+                - "10.42.0.0/16"
+                - "10.43.0.0/16"
+        common:
+          log_level: debug
       # https://docs.crowdsec.net/docs/notification_plugins/http#enabling-the-plugin
       profiles.yaml: |
         notifications:
