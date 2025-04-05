@@ -35,6 +35,8 @@ spec:
     tls:
       enabled: false
     config:
+      common:
+        log_level: debug
       # https://docs.crowdsec.net/docs/notification_plugins/http#enabling-the-plugin
       profiles.yaml: |
         notifications:
@@ -104,9 +106,9 @@ spec:
         - name: ENROLL_INSTANCE_NAME
           value: "pepinillo@cluster-0"
       dashboard:
-        enabled: true
+        enabled: false
         ingress:
-          enabled: true
+          enabled: false
           labels:
             version: v1
             k8s-app: crowdsec
