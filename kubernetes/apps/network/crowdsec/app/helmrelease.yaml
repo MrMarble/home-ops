@@ -30,6 +30,11 @@ spec:
     image:
       repository: ghcr.io/crowdsecurity/crowdsec
       tag: v1.6.8
+    config:
+      # https://docs.crowdsec.net/docs/notification_plugins/http#enabling-the-plugin
+      profiles.yaml: |
+        notifications:
+          - http_default
     agent:
       # To specify each pod you want to process it logs (pods present in the node)
       acquisition:
@@ -129,6 +134,14 @@ spec:
             - ReadWriteOnce
           storageClassName: standard-rwx
           size: 100Mi
+      extraVolumeMounts:
+        notifications:
+          type: secret
+          name: crowdsec-secret
+          globalMounts:
+            - path: /etc/crowdsec_data/notifications/http.yaml
+              subPath: http.yaml
+              readOnly: true
       metrics:
         enabled: false
         serviceMonitor:
