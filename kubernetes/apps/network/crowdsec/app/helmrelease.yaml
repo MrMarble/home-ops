@@ -136,7 +136,7 @@ spec:
             - ReadWriteOnce
           storageClassName: standard-rwx
           size: 100Mi
-      extraVolumeMounts:
+      extraVolumes:
         notifications:
           type: secret
           name: crowdsec-secret
