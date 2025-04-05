@@ -104,9 +104,9 @@ spec:
         - name: ENROLL_INSTANCE_NAME
           value: "pepinillo@cluster-0"
       dashboard:
-        enabled: false
+        enabled: true
         ingress:
-          enabled: ingress
+          enabled: true
           labels:
             version: v1
             k8s-app: "{{ .Release.Name }}"
