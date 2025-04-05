@@ -30,6 +30,8 @@ spec:
     image:
       repository: ghcr.io/crowdsecurity/crowdsec
       tag: v1.6.8
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
     config:
       # https://docs.crowdsec.net/docs/notification_plugins/http#enabling-the-plugin
       profiles.yaml: |
