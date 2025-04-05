@@ -144,6 +144,7 @@ spec:
             secretName: crowdsec-secret
             items:
               - key: http.yaml
+                path: http.yaml
       extraVolumeMounts:
         - name: http-config
           mountPath: /etc/crowdsec_data/notifications/http.yaml
