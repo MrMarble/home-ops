@@ -57,15 +57,16 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-        # containers:
-        #   prune-unregistered:
-        #     <<: *container
-        #     args:
-        #       - prune
-        #       - --exclude-tag=expired
-        #       - --exclude-tag=added:1d
-        #       - --include-tag=unregistered
-        #       - --with-data
+        containers:
+          prune-unregistered:
+            <<: *container
+            args:
+              - prune
+              - --exclude-tag=expired
+              - --exclude-tag=added:1d
+              - --include-tag=unregistered
+              - --with-data
+              - --dry-run
         #   prune-expired:
         #     <<: *container
         #     args:
