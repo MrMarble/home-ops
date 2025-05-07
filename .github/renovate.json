@@ -25,22 +25,33 @@
   "requireConfig": "optional",
   "configMigration": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
+  "suppressNotifications": [
+    "prEditedNotification",
+    "prIgnoreNotification"
+  ],
   "rebaseWhen": "conflicted",
   "assigneesFromCodeOwners": true,
   "reviewersFromCodeOwners": true,
-  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "ignorePaths": [
+    "**/*.sops.*",
+    "**/.archive/**",
+    "**/resources/**"
+  ],
   "flux": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"]
+    "managerFilePatterns": [
+      "/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/"
+    ]
   },
   "helm-values": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"]
+    "managerFilePatterns": [
+      "/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/"
+    ]
   },
   "kubernetes": {
-    "fileMatch": [
-      "(^|/)\\.taskfiles/.+\\.ya?ml(\\.j2)?$",
-      "(^|/)provision/talos/.+\\.ya?ml(\\.j2)?$",
-      "(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$"
+    "managerFilePatterns": [
+      "/(^|/)\\.taskfiles/.+\\.ya?ml(\\.j2)?$/",
+      "/(^|/)provision/talos/.+\\.ya?ml(\\.j2)?$/",
+      "/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/"
     ]
   }
 }
