@@ -36,3 +36,4 @@ resources:
   - external-secrets.yaml
   - openebs.yaml
   - crowdsec.yaml
+  - longhorn.yaml
