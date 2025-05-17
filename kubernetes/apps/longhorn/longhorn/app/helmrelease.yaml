@@ -23,18 +23,18 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-values:
-  monitoring:
-    enabled: true
-    createPrometheusRules: true
-  ingress:
-    enabled: true
-    ingressClassName: internal
-    host: longhorn.${SECRET_DOMAIN}
-  defaultSettings:
-    defaultReplicaCount: 1
-    defaultLonghornStaticStorageClass: longhorn
-    systemManagedComponentsNodeSelector: kubernetes.io/hostname:metal3
-  global:
-    nodeSelector:
-      kubernetes.io/hostname: metal3
+  values:
+    monitoring:
+      enabled: true
+      createPrometheusRules: true
+    ingress:
+      enabled: true
+      ingressClassName: internal
+      host: longhorn.${SECRET_DOMAIN}
+    defaultSettings:
+      defaultReplicaCount: 1
+      defaultLonghornStaticStorageClass: longhorn
+      systemManagedComponentsNodeSelector: kubernetes.io/hostname:metal3
+    global:
+      nodeSelector:
+        kubernetes.io/hostname: metal3
