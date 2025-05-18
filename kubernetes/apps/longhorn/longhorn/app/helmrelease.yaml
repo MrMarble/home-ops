@@ -38,3 +38,6 @@ spec:
       storageMinimalAvailablePercentage: 0
       replicaAutoBalance: true
       allowCollectingLonghornUsageMetrics: false
+      systemManagedComponentsNodeSelector: ""
+    global:
+      nodeSelector: ""
