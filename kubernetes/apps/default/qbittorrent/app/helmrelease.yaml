@@ -72,6 +72,11 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 5
               readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
@@ -97,10 +102,11 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.10.202
         ports:
           http:
+            primary: true
             port: *port
           bittorrent:
             enabled: true
-            port: *bittorrentPort
+            port: *torrentPort
             protocol: TCP
     ingress:
       app:
