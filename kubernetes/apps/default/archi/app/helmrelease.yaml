@@ -38,8 +38,7 @@ spec:
             args:
               - |
                 for url in \
-                  https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip \
-                  https://github.com/Citrinate/BoosterManager/releases/latest/download/BoosterManager.zip; do
+                  https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip; do \
                   filename=$(basename "$url")
                   wget -O /tmp/$filename "$url" && \
                   unzip /tmp/$filename -d /app/plugins && \
