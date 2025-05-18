@@ -41,7 +41,7 @@ spec:
                   https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip; do \
                   filename=$(basename "$url")
                   wget -O /tmp/$filename "$url" && \
-                  unzip -o -l /tmp/$filename /app/plugins && \
+                  unzip -o -l /tmp/$filename -d /app/plugins && \
                   rm /tmp/$filename
                 done
         containers:
