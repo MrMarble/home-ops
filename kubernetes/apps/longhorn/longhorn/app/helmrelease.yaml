@@ -34,4 +34,3 @@ spec:
     defaultSettings:
       defaultReplicaCount: 1
       defaultLonghornStaticStorageClass: longhorn
-      systemManagedComponentsNodeSelector: kubernetes.io/hostname:metal3
