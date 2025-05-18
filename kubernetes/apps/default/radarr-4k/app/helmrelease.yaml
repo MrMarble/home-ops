@@ -102,7 +102,7 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: radarr-4k
+        existingClaim: radarr-4k-v1
       tmp:
         type: emptyDir
       media:
