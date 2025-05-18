@@ -102,7 +102,7 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: sonarr
+        existingClaim: sonarr-v1
       tmp:
         type: emptyDir
       media:
