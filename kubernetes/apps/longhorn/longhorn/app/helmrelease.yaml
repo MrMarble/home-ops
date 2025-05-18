@@ -37,3 +37,4 @@ spec:
       storageOverProvisioningPercentage: 100
       storageMinimalAvailablePercentage: 10
       replicaAutoBalance: true
+      allowCollectingLonghornUsageMetrics: false
