@@ -32,5 +32,8 @@ spec:
       ingressClassName: internal
       host: longhorn.${SECRET_DOMAIN}
     defaultSettings:
-      defaultReplicaCount: 1
       defaultLonghornStaticStorageClass: longhorn
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      storageOverProvisioningPercentage: 100
+      storageMinimalAvailablePercentage: 10
+      replicaAutoBalance: true
