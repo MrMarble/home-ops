@@ -109,7 +109,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: jellyfin
+        existingClaim: jellyfin-v1
         globalMounts:
           - path: /config
       media:
