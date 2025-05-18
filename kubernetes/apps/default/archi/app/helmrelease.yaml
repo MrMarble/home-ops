@@ -46,10 +46,6 @@ spec:
                   unzip /tmp/$filename -d /app/plugins && \
                   rm /tmp/$filename
                 done
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
         containers:
           app:
             image:
