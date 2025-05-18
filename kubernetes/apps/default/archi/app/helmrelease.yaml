@@ -37,12 +37,11 @@ spec:
             command: ['sh', '-c']
             args:
               - |
-                apk add --no-cache curl unzip && \
                 for url in \
                   https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip \
                   https://github.com/Citrinate/BoosterManager/releases/latest/download/BoosterManager.zip; do
                   filename=$(basename "$url")
-                  curl -L -o /tmp/$filename "$url" && \
+                  wget -O /tmp/$filename "$url" && \
                   unzip /tmp/$filename -d /app/plugins && \
                   rm /tmp/$filename
                 done
@@ -107,3 +106,8 @@ spec:
         globalMounts:
           - path: /app/plugins
             readOnly: false
+      tmp:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
