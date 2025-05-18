@@ -29,6 +29,25 @@ spec:
       archi:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          plugins:
+            image: alpine:latest
+            command: ['sh', '-c']
+            args:
+              - |
+                apk add --no-cache curl unzip && \
+                for url in \
+                  https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip \
+                  https://github.com/Citrinate/BoosterManager/releases/latest/download/BoosterManager.zip; do
+                  filename=$(basename "$url")
+                  curl -L -o /tmp/$filename "$url" && \
+                  unzip /tmp/$filename -d /app/plugins && \
+                  rm /tmp/$filename
+                done
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
         containers:
           app:
             image:
@@ -83,4 +102,10 @@ spec:
         path: "/mnt/Data/ASF"
         globalMounts:
           - path: /app/config
+            readOnly: false
+      plugins:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /app/plugins
             readOnly: false
