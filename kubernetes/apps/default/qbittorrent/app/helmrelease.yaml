@@ -116,7 +116,7 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: qbittorrent
+        existingClaim: qbittorrent-v1
       scripts:
         type: configMap
         name: qbittorrent-scripts

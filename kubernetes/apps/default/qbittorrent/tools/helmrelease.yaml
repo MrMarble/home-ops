@@ -44,6 +44,7 @@ spec:
               - --last-activity
               - --sites
               - --unregistered
+              - --not-working
             env:
               QBITTORRENT_HOST: qbittorrent.default.svc.cluster.local
               QBITTORRENT_PORT: 80
