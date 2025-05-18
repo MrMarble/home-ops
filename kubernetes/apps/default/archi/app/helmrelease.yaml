@@ -31,7 +31,9 @@ spec:
           reloader.stakater.com/auto: "true"
         initContainers:
           plugins:
-            image: alpine:latest
+            image:
+              repository: ghcr.io/linuxcontainers/alpine
+              tag: latest
             command: ['sh', '-c']
             args:
               - |
