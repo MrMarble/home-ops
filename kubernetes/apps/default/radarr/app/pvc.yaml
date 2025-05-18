@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: radarr
+  name: radarr-v1
 spec:
   accessModes: ["ReadWriteMany"]
   resources:
     requests:
-      storage: 15Gi
-  storageClassName: standard-rwx
+      storage: 10Gi
+  storageClassName: longhorn
