@@ -125,7 +125,7 @@ spec:
           - hosts: [*host]
     persistence:
       data:
-        existingClaim: paperless
+        existingClaim: paperless-v1
         advancedMounts:
           paperless:
             app:
