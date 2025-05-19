@@ -4,5 +4,6 @@
     "oderwat.indent-rainbow",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
     "signageos.signageos-vscode-sops",
+    "blueglassblock.better-json5",
   ]
 }
