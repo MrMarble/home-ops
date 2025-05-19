@@ -4,11 +4,11 @@
 | ------------------------ | ----- | ------------ | -------------- | ----- | -------------------------------- | ---------- |
 | MikroTik RB5009UG+S+IN   | 1     | --           | 1GB NAND       | 1GB   | RouterOS 7.10                    | Router     |
 | HP ProCurve 1810G-24     | 1     | --           | --             | 512MB | --                               | Switch     |
-| HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | [Talos](https://talos.dev) 1.5.5 | k8s Master |
-| HP 260 G3 DM             | 1     | 256GB SSD    | 540GB NvmE     | 16GB  | [Talos](https://talos.dev) 1.5.5 | k8s Master |
-| DELL Wyse 5060           | 1     | 240GB SSD    | --             | 16GB  | [Talos](https://talos.dev) 1.5.5 | k8s Master |
-| Lenovo M910x             | 1     | 256GB NVMe   | --             | 8GB   | [Talos](https://talos.dev) 1.5.5 | k8s Worker |
-| HP ProDesk G5 mini       | 1     | 256GB NVMe   | 500GB NvmE     | 16GB  | [Talos](https://talos.dev) 1.5.5 | k8s Worker |
+| HP EliteDesk 800 G2 mini | 1     | 240GB NVMe   | 256GB SSD      | 16GB  | Fedora Server                    | k8s Master |
+| HP 260 G3 DM             | 1     | 256GB SSD    | 540GB NvmE     | 16GB  | Fedora Server                    | k8s Master |
+| HP ProDesk G5 mini       | 1     | 256GB NVMe   | 500GB NvmE     | 16GB  | Fedora Server                    | k8s Worker |
+| Lenovo M910x             | 1     | 256GB NVMe   | --             | 8GB   | Fedora Server                    | k8s Worker |
+| DELL Wyse 5060           | 1     | 240GB SSD    | --             | 16GB  | Home Assistant OS                | Hass       |
 | Raspberry Pi 3B          | 1     | 32GB SDCard  | --             | 1GB   | Raspbian                         | Pi-hole    |
 | NAS                      | 1     | 120GB SSD    | 8TB ZRAID0     | 16GB  | TrueNas Core                     | NFS/BACKUP |
 
