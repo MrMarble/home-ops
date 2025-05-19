@@ -1,13 +1,25 @@
 ---
+area/ansible:
+  - changed-files:
+      - any-glob-to-any-file: "provision/ansible/**/*"
+area/docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "docs/**/*"
 area/github:
   - changed-files:
-      - any-glob-to-any-file:
-          - ".github/**/*"
+      - any-glob-to-any-file: ".github/**/*"
 area/kubernetes:
   - changed-files:
-      - any-glob-to-any-file:
-          - "kubernetes/**/*"
-area/terraform:
+      - any-glob-to-any-file: "kubernetes/**/*"
+area/renovate:
   - changed-files:
       - any-glob-to-any-file:
-          - "provision/terraform/**/*"
+          - ".renovate/**/*"
+          - ".renovaterc.json5"
+area/taskfile:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".taskfiles/**/*"
+          - "Taskfile.yaml"
