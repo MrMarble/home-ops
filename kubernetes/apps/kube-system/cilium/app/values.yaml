@@ -54,8 +54,6 @@ operator:
 autoDirectNodeRoutes: true
 ipv4NativeRoutingCIDR: 10.244.0.0/16
 tunnel: "disabled"
-containerRuntime:
-  integration: containerd
 
 hubble:
   enabled: true
