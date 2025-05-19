@@ -10,7 +10,7 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/schedule-renovate.yaml?&logo=renovatebot&style=for-the-badge&label=%20&color=blue&logoColor=white)&nbsp;&nbsp;
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mrmarble/home-ops/renovate.yaml?&logo=renovatebot&style=for-the-badge&label=%20&color=blue&logoColor=white)&nbsp;&nbsp;
 [![kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.atsbhome.xyz%2Fkubernetes_version%3Fformat%3Dendpoint&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20&color=blue)](https://kubernetes.io/)
 
 </div>
