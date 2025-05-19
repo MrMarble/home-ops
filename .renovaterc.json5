@@ -6,7 +6,6 @@
     "helpers:pinGitHubActionDigests",
     "github>mrmarble/home-ops//.renovate/autoMerge.json5",
     "github>mrmarble/home-ops//.renovate/customManagers.json5",
-    "github>mrmarble/home-ops//.renovate/grafanaDashboards.json5",
     "github>mrmarble/home-ops//.renovate/groups.json5",
     "github>mrmarble/home-ops//.renovate/labels.json5",
     "github>mrmarble/home-ops//.renovate/semanticCommits.json5",
