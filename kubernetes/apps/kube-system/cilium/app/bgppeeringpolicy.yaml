@@ -36,5 +36,5 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: main-pool
 spec:
-  cidrs:
+  blocks:
     - cidr: 192.168.10.0/24
