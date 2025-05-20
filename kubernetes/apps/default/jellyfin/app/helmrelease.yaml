@@ -81,7 +81,7 @@ spec:
         controller: jellyfin
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: *loadBalancerIP
+          lbipam.cilium.io/ips: *loadBalancerIP
         ports:
           http:
             port: *port
