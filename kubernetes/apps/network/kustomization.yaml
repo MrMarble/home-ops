@@ -7,4 +7,3 @@ resources:
   - ./external-dns/ks.yaml
   - ./cloudflared/ks.yaml
   - ./external-services
-  - ./crowdsec/ks.yaml
