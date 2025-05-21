@@ -81,7 +81,8 @@ spec:
           namespace: network
           namespaceSelector:
             any: true
-
+      publishService:
+        enabled: false
       extraArgs:
         default-ssl-certificate: "network/home-dev-tls"
         publish-status-address: *hostname
