@@ -5,3 +5,4 @@ resources:
   - ./prometheus/ks.yaml
   - ./kromgo/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
+  - ./gatus/ks.yaml
