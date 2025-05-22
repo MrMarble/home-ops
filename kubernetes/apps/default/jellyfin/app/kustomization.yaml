@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
-  - ../../../templates/gatus/external
+  - ../../../../templates/gatus/external
