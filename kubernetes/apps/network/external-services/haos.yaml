@@ -54,3 +54,23 @@ spec:
   tls:
     - hosts:
         - *host
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "hass-gatus-ep"
+  labels:
+    gatus.io/enabled: "true"
+data:
+  config.yaml: |
+    endpoints:
+      - name: "home-assistant"
+        group: external
+        url: "https://hass.${SECRET_DOMAIN}/"
+        interval: 1m
+        client:
+          dns-resolver: tcp://1.1.1.1:53
+        conditions:
+          - "[STATUS] == ${GATUS_STATUS:-200}"
+        alerts:
+          - type: telegram

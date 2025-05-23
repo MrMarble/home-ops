@@ -5,5 +5,5 @@ resources:
   - pvc.yaml
   - configmap.yaml
   - ./server
-  #- ./microservices
   - ./machine-learning
+  - ../../../../templates/gatus/guarded

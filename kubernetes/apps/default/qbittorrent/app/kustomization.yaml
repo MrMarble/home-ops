@@ -4,6 +4,7 @@ resources:
   - ./externalsecret.yaml
   - ./pvc.yaml
   - ./helmrelease.yaml
+  - ../../../../templates/gatus/guarded
 configMapGenerator:
   - name: qbittorrent-scripts
     files:
