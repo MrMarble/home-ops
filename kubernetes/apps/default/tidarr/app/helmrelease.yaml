@@ -33,10 +33,6 @@ spec:
               liveness: &probes
                 enabled: false
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
