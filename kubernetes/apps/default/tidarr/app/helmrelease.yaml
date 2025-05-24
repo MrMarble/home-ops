@@ -40,7 +40,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                memory: 256Mi
+                memory: 2Gi
     service:
       app:
         controller: tidarr
