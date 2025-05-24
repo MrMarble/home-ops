@@ -43,11 +43,7 @@ spec:
                 memory: 256Mi
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: false
-        runAsUser: 568
         runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: tidarr
