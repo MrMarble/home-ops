@@ -65,6 +65,12 @@ spec:
         existingClaim: tidarr
         globalMounts:
           - path: /home/app/standalone/shared
+      tiddl:
+        type: secret
+        name: tidarr-secret
+        globalMounts:
+          - path: /home/app/standalone/shared/tiddl.json
+            subPath: tiddl.json
       media:
         type: nfs
         server: 192.168.1.25
