@@ -31,6 +31,7 @@ spec:
               TZ: Europe/Madrid
             probes:
               liveness: &probes
+                enabled: false
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
