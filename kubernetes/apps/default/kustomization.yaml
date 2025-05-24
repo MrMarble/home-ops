@@ -14,4 +14,3 @@ resources:
   - ./psitransfer/ks.yaml
   - ./paperless/ks.yaml
   - ./jellyseerr/ks.yaml
-  - ./lidarr/ks.yaml
