@@ -38,13 +38,6 @@ spec:
                 cpu: 100m
               limits:
                 memory: 256Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: tidarr
