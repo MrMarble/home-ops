@@ -39,11 +39,24 @@ spec:
               LIDARR__AUTHENTICATION_METHOD: External
               LIDARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               LIDARR__INSTANCE_NAME: Lidarr
-              LIDARR__PORT: &port 80
+              LIDARR__PORT: &port 8686
               LIDARR__LOG_LEVEL: info
               LIDARR__THEME: dark
               TZ: Europe/Madrid
             envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
