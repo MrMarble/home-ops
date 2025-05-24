@@ -41,9 +41,6 @@ spec:
                 cpu: 100m
               limits:
                 memory: 256Mi
-    defaultPodOptions:
-      securityContext:
-        runAsGroup: 568
     service:
       app:
         controller: tidarr
