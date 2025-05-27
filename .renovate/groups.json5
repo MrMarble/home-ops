@@ -76,7 +76,7 @@
     {
       description: "Immich Group",
       groupName: "Immich",
-      matchDatasources: ["docker"],
+      matchDatasources: ["docker", "github-releases"],
       matchPackageNames: ["/immich/"],
       group: {
         commitMessageTopic: "{{{groupName}}} group"
