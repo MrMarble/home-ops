@@ -62,13 +62,6 @@ spec:
                   name: immich-secret
               - configMapRef:
                   name: immich-config
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
 
     service:
       main:
@@ -78,23 +71,8 @@ spec:
             port: 3003
 
     persistence:
-      library:
-        enabled: true
-        existingClaim: immich-nfs
-        globalMounts:
-          - path: /usr/src/app/upload
       cache:
         enabled: true
         type: emptyDir
         globalMounts:
           - path: /cache
-      geocoding-dump:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /usr/src/app/.reverse-geocoding-dump
-      transformers-cache:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /usr/src/app/.transformers_cache
