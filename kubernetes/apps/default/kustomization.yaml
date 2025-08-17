@@ -15,3 +15,4 @@ resources:
   - ./paperless/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./navidrome/ks.yaml
+  - ./tqm/ks.yaml
