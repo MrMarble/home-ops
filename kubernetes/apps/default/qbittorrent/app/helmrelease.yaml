@@ -38,10 +38,6 @@ spec:
               QBT_BitTorrent__Session__InterfaceName: eth0
               QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
                 10.42.0.0/16, 10.43.0.0/16, 192.168.10.0/24, 192.168.1.1/24
-              QBT_BitTorrent__Session__InterfaceAddress:
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.podIP
             probes:
               liveness: &probes
                 enabled: true
