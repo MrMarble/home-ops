@@ -1,0 +1,5 @@
+[tools]
+task = "latest"
+[env]
+KUBECONFIG = "{{config_root}}/kubeconfig.yaml"
+SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"

@@ -8,6 +8,7 @@ kubeconfig
 .decrypted~*.env
 .config.env
 *.agekey
+age.key
 # Terraform
 .terraform
 .terraform.tfstate*
