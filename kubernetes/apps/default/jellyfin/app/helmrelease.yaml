@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: docker.io/jellyfin/jellyfin
-              tag: 10.11.1@sha256:c7dd335d455c95ad3fe7550824d93ceb911914bf4210e7899e11f9611ae53a92
+              tag: 10.11.3@sha256:1edf3f17997acbe139718f252a7d2ded2706762390d787a34204668498dbc5f6
             env:
               TZ: Europe/Madrid
               JELLYFIN_PublishedServerUrl: &loadBalancerIP 192.168.10.55
