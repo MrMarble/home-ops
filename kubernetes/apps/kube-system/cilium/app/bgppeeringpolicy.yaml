@@ -25,6 +25,7 @@ spec:
           - network
           - default
           - database
+          - longhorn
       - key: io.kubernetes.service.name
         operator: In
         values:
@@ -32,7 +33,9 @@ spec:
           - nginx-internal-controller
           - k8s-gateway
           - jellyfin
+          - qbittorrent
           - qbittorrent-bittorrent
           - postgres-lb
+          - longhorn-frontend
   externalIPs: true
   loadBalancerIPs: true

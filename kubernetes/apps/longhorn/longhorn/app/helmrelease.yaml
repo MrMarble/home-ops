@@ -27,6 +27,11 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
+    service:
+      ui:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.39
     ingress:
       enabled: true
       ingressClassName: internal
