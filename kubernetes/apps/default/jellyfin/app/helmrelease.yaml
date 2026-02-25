@@ -39,7 +39,7 @@ spec:
               tag: 10.11.3@sha256:1edf3f17997acbe139718f252a7d2ded2706762390d787a34204668498dbc5f6
             env:
               TZ: Europe/Madrid
-              JELLYFIN_PublishedServerUrl: &loadBalancerIP 192.168.10.55
+              JELLYFIN_PublishedServerUrl: &loadBalancerIP 192.168.1.36
               JELLYFIN_FFmpeg__analyzeduration: 50000000
               JELLYFIN_FFmpeg__probesize: 50000000
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"

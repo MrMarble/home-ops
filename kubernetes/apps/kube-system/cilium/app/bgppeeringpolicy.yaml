@@ -1,40 +1,38 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumbgppeerconfig_v2alpha1.json
-apiVersion: cilium.io/v2alpha1
-kind: CiliumBGPPeerConfig
-metadata:
-  name: l3-bgp-peer-config
-spec:
-  families:
-    - afi: ipv4
-      safi: unicast
-      advertisements:
-        matchLabels:
-          advertise: bgp
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumbgpclusterconfig_v2alpha1.json
-apiVersion: cilium.io/v2alpha1
-kind: CiliumBGPClusterConfig
-metadata:
-  name: l3-bgp-cluster-config
-spec:
-  nodeSelector:
-    matchLabels:
-      kubernetes.io/os: linux
-  bgpInstances:
-    - name: cilium
-      localASN: 65533
-      peers:
-        - name: mikrotik
-          peerASN: 65534
-          peerAddress: 192.168.1.1
-          peerConfigRef:
-            name: l3-bgp-peer-config
----
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: main-pool
 spec:
   blocks:
-    - cidr: 192.168.10.0/24
+    - start: 192.168.1.32
+      stop: 192.168.1.63
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliuml2announcementpolicy_v2alpha1.json
+apiVersion: cilium.io/v2alpha1
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: main-policy
+spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: linux
+  serviceSelector:
+    matchExpressions:
+      - key: io.kubernetes.service.namespace
+        operator: In
+        values:
+          - network
+          - default
+          - database
+      - key: io.kubernetes.service.name
+        operator: In
+        values:
+          - nginx-external-controller
+          - nginx-internal-controller
+          - k8s-gateway
+          - jellyfin
+          - qbittorrent-bittorrent
+          - postgres-lb
+  externalIPs: true
+  loadBalancerIPs: true

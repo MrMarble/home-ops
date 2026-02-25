@@ -1,4 +1,6 @@
 [tools]
+k9s = "latest"
+kubectl = "latest"
 task = "latest"
 [env]
 KUBECONFIG = "{{config_root}}/kubeconfig.yaml"

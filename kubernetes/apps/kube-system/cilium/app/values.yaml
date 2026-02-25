@@ -9,7 +9,7 @@ bgp:
     podCIDR: false
   enabled: false
 bgpControlPlane:
-  enabled: true
+  enabled: false
 bpf:
   masquerade: true
   tproxy: false
@@ -59,6 +59,8 @@ l7Proxy: true
 loadBalancer:
   algorithm: maglev
   mode: dsr
+l2announcements:
+  enabled: true
 localRedirectPolicy: true
 operator:
   dashboards:
