@@ -68,7 +68,8 @@ spec:
           tls:
             - hosts:
                 - *host
-
+    l2announcements:
+      enabled: true
     prometheus:
       enabled: false
       serviceMonitor:
