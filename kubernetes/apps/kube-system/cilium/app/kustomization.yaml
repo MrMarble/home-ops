@@ -6,7 +6,7 @@ resources:
   - helmrelease.yaml
   - bgppeeringpolicy.yaml
 configMapGenerator:
-  - name: cilium-values
+  - name: cilium-config
     files:
       - values.yaml=./values.yaml
 configurations:
