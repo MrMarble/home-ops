@@ -7,6 +7,8 @@ resources:
   - bgppeeringpolicy.yaml
 configMapGenerator:
   - name: cilium-config
+    options:
+      disableNameSuffixHash: true
     files:
       - values.yaml=./values.yaml
 configurations:
