@@ -1,4 +1,5 @@
 [tools]
+helm = "latest"
 k9s = "latest"
 kubectl = "latest"
 task = "latest"
