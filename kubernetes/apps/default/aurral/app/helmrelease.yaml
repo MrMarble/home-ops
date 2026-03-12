@@ -1,0 +1,102 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: aurral
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: aurral
+  interval: 1h
+  values:
+    controllers:
+      aurral:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/lklynet/aurral
+              tag: 1.30.2@sha256:8fe93c3ffb7efaebe03f8f988c851d9aa050baa9187f1ab32a987199f22381c8
+            env:
+              TZ: Europe/Madrid
+              PORT: &port 3001
+              TRUST_PROXY: "1"
+              DOWNLOAD_FOLDER: /downloads
+              LIDARR_URL: http://lidarr.default.svc.cluster.local
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: *port
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+        statefulset:
+          volumeClaimTemplates:
+            - name: data
+              storageClass: longhorn
+              accessMode: ReadWriteOnce
+              size: 5Gi
+              globalMounts:
+                - path: /app/backend/data
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        forceRename: "{{ .Release.Name }}"
+        primary: true
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
+    persistence:
+      downloads:
+        type: nfs
+        server: 192.168.1.25
+        path: /mnt/torrent/data/Downloads/aurral
+        globalMounts:
+          - path: /downloads
+      tmp:
+        type: emptyDir

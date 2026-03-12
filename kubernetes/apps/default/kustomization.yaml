@@ -19,3 +19,4 @@ resources:
   - ./mantainerr/ks.yaml
   - ./lidarr/ks.yaml
   - ./slskd/ks.yaml
+  - ./aurral/ks.yaml
