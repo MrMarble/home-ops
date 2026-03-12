@@ -18,3 +18,4 @@ resources:
   - ./tqm/ks.yaml
   - ./mantainerr/ks.yaml
   - ./lidarr/ks.yaml
+  - ./slskd/ks.yaml
