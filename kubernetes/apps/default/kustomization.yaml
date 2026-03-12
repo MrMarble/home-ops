@@ -17,3 +17,4 @@ resources:
   - ./navidrome/ks.yaml
   - ./tqm/ks.yaml
   - ./mantainerr/ks.yaml
+  - ./lidarr/ks.yaml
