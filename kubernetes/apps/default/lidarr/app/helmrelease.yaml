@@ -90,8 +90,6 @@ spec:
       config:
         enabled: true
         existingClaim: lidarr-v1
-        globalMounts:
-          - path: /opt/data
       tmp:
         type: emptyDir
       logs:
