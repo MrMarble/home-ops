@@ -25,12 +25,10 @@ spec:
         containers:
           app:
             image:
-              repository: lscr.io/linuxserver/lidarr
-              tag: nightly
+              repository: ghcr.io/raefon/lidarr-nightly
+              tag: 3.1.2@sha256:a666048d392b00c8e54926a12a8b8aa6e6d5ec74a456ca32a06f9324640a1920
             env:
               TZ: Europe/Madrid
-              PUID: "1000"
-              PGID: "1000"
               LIDARR__APP__INSTANCENAME: Lidarr
               LIDARR__APP__THEME: dark
               LIDARR__AUTH__REQUIRED: DisabledForLocalAddresses
