@@ -25,7 +25,7 @@ spec:
         containers:
           app:
             image:
-              repository: lscr.io/linuxserver/lidarr:latest
+              repository: lscr.io/linuxserver/lidarr
               tag: nightly
             env:
               TZ: Europe/Madrid
