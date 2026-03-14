@@ -24,7 +24,7 @@ spec:
               TZ: Europe/Madrid
               PORT: &port 3001
               TRUST_PROXY: "1"
-              DOWNLOAD_FOLDER: /downloads
+              DOWNLOAD_FOLDER: /data/aurral-downloads
               LIDARR_URL: http://lidarr.default.svc.cluster.local
             envFrom:
               - secretRef:
@@ -97,6 +97,6 @@ spec:
         server: 192.168.1.25
         path: /mnt/torrent/data/Downloads/aurral
         globalMounts:
-          - path: /downloads
+          - path: /data/aurral-downloads
       tmp:
         type: emptyDir
