@@ -97,6 +97,6 @@ spec:
         server: 192.168.1.25
         path: /mnt/torrent/data/Downloads/aurral
         globalMounts:
-          - path: /data/aurral-downloads
+          - path: /app/downloads
       tmp:
         type: emptyDir
