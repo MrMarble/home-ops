@@ -33,6 +33,9 @@ spec:
               ND_MUSICFOLDER: /data/nfs-media
               ND_PORT: &port 80
               ND_SCANNER_PURGEMISSING: full
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: false
