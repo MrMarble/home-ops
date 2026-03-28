@@ -19,7 +19,7 @@ spec:
           app:
             image:
               repository: ghcr.io/lklynet/aurral
-              tag: 1.34.1@sha256:791c715b6c1a6643e07450988119c612724403f9d12a1f1354cafebecfc2972f
+              tag: 1.36.3@sha256:c4019ca1a14b7efb23039b70cc4c966de981784e3a89504967da72cf7bff4160
             env:
               TZ: Europe/Madrid
               PORT: &port 3001
