@@ -23,25 +23,25 @@ provider "registry.terraform.io/carlpett/sops" {
 }
 
 provider "registry.terraform.io/cloudflare/cloudflare" {
-  version     = "5.5.0"
-  constraints = "5.5.0"
+  version     = "5.18.0"
+  constraints = "5.18.0"
   hashes = [
-    "h1:9+ZXbLTmeAJdqSiz543TdhSOkCj7lgzsB2irSPekMT8=",
-    "h1:BOvaovMwesAuDAguOK/ful6FN3Qx8/z7ClTyvHIBZDE=",
-    "h1:Dz2qYhlGe1i4nBSMXy+3M+fli0zQvnN7Vf24F/+lLUo=",
-    "h1:HzVFE1F2FSqxr4x8+GDdxLJILqksHuyyrI/IDL/NKYM=",
-    "h1:Uu0YECGLZFEKCD/WdClf1APuY41uPEJA9wNLzwd0MwE=",
-    "h1:W7uCb3fcax/RBc1u/ac4ltgp0AIjK9IusimW5Np5W38=",
-    "h1:mUi7WsyN2X4okp7xci+viUAevxQihKzaik3s2y68zhs=",
-    "h1:wZhU174xytOMZ1t6uDUQiLtR/XKpi2RH9OzMz0XqP9Q=",
-    "zh:178f29dee2edac39252780819f34004b1841770c61ee7fb5a625afaece6495cd",
-    "zh:6faf26203167ae20ca5c8ece4a8bb1c4187137505058fb7b1a4bd5095823e648",
-    "zh:97c91a95819336b8c41618919786ddd2dca643d28219d52af1d80b88018c6eec",
-    "zh:bbc53670fc2613e3fe81b5bf7b8674c5ad083a206fa8af34f0f055a8d06b2d01",
-    "zh:d305bcb01249ada21b80e5038e371f6ca0a60d95d7052df82456e4c4963f3bfc",
-    "zh:e2f9db57ead7100676b790a3e4567d88443fae0e19127e66b3505210de93e4b5",
-    "zh:eb8cef2e6cbf05237b8a2f229314ae12c792ed5f8f60fe180102bdf17dc30841",
-    "zh:f51a5bb0130d2f42772988ee56723f176aa230701184a0f5598dbb1c7b4c3906",
+    "h1:2FKT5YVLuHLmv7BnFxDC3UtipD3hSSrb0iJ9Ei2C/ks=",
+    "h1:6FoKYTGqaCvKctMEm1Y1c06mmY3I04jhCBRXEYe6mcQ=",
+    "h1:AhWro37kF118sAjRjIZ27CuV6kFpg1d+XYDo/7diyjU=",
+    "h1:B9eoAx4QKNVuKHDahNl8JzuSLCCeIGAJiS0MckJu5wQ=",
+    "h1:KfnaaT3RFoyWvPHsNVmsrCV7QEAGPLGNyHWT9IY+bxY=",
+    "h1:SPFFA6LxyFkjpEnpWbyQVyVJVXxzP8RLpehfUMRXDp4=",
+    "h1:VMUOof+Cf2h4asIe2lin7Fvf15mGWQ9mQYiuGhYM1aw=",
+    "h1:ny17Q/ce8iuHxppA/yIuRpCkVDtqhE+LDynWtv9/qwI=",
+    "zh:47e7bdfd8eddd2685f383269c0b6936ef62edd6d8383c8d7757b0cce0a689737",
+    "zh:aa23eb6aa128667883cabc449ceca4072d0181f574cd727e08ebd6d69a4bfd48",
+    "zh:c3da673e05d3bd933c82e2b6ba0f85aa23c5e24fadd3932f7c066314feeb65a3",
+    "zh:c59f07c017fc78b79e80554a0737c9db2a2e681c3e46ff637942d28d1f1a3924",
+    "zh:d559074612835a37fa684d8d7d0cf68911487b71f4067acc59069cb00bb8baf0",
+    "zh:e12290a4eda757c183a4258230245dd170f0def389c37eb771db144ce3b382dd",
+    "zh:ed47e484432ba1bbbb4802061f395ebd253ae8e20be9b72552d3d830fd2ca268",
+    "zh:f35e08d468408697b3e7c4a7f548b874141ac8f8d395ab8edded322201cc7047",
     "zh:f809ab383cca0a5f83072981c64208cbd7fa67e986a86ee02dd2c82333221e32",
   ]
 }
