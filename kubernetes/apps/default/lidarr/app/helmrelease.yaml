@@ -26,7 +26,7 @@ spec:
           app:
             image:
               repository: ghcr.io/raefon/lidarr-nightly
-              tag: 3.1.2@sha256:a666048d392b00c8e54926a12a8b8aa6e6d5ec74a456ca32a06f9324640a1920
+              tag: 3.1.2@sha256:1724ffeab9b692ef36e53f4ee8a68898e6ac954ea1bcf84710068f0d4ef8f947
             env:
               TZ: Europe/Madrid
               LIDARR__APP__INSTANCENAME: Lidarr
