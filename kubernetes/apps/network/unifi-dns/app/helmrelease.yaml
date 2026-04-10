@@ -40,7 +40,7 @@ spec:
     triggerLoopOnEvent: true
     policy: sync
     sources:
-      - gateway-httproute
+      - ingress
       - service
     txtOwnerId: main
     txtPrefix: k8s.main.
