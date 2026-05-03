@@ -62,6 +62,15 @@ spec:
       ingressClassName: internal
       rules:
         - host: &host "grafana.${SECRET_DOMAIN}"
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: grafana-service
+                    port:
+                      number: 3000
+                path: /
+                pathType: Prefix
       tls:
         - hosts: [*host]
   persistentVolumeClaim:
