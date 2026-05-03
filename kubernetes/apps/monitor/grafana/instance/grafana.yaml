@@ -61,7 +61,7 @@ spec:
     spec:
       ingressClassName: internal
       rules:
-        - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - host: &host "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts: [*host]
   persistentVolumeClaim:
