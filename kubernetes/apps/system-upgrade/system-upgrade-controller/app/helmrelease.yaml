@@ -31,8 +31,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/buroa/system-upgrade-controller
-              tag: v0.15.0@sha256:e97af620194c4b48e26b2ecf71d24a0cadcb6b67a35c33b411549bd53ac0194d
+              repository: rancher/system-upgrade-controller
+              tag: v0.19.2
             env:
               SYSTEM_UPGRADE_CONTROLLER_DEBUG: false
               SYSTEM_UPGRADE_CONTROLLER_THREADS: 2
@@ -55,10 +55,6 @@ spec:
               seccompProfile:
                 type: RuntimeDefault
         pod:
-          securityContext:
-            runAsUser: 65534
-            runAsGroup: 65534
-            runAsNonRoot: true
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
