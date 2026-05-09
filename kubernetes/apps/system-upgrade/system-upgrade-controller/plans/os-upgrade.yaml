@@ -1,0 +1,27 @@
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: os-upgrade
+  namespace: system-upgrade
+spec:
+  serviceAccountName: system-upgrade
+  concurrency: 1
+  version: "2026-05-10"
+  cordon: true
+  nodeSelector:
+    matchExpressions:
+      - { key: node-role.kubernetes.io/control-plane, operator: Exists }
+  tolerations:
+    - { effect: NoSchedule, operator: Exists }
+    - { effect: NoExecute, operator: Exists }
+    - { key: node-role.kubernetes.io/control-plane, effect: NoSchedule, operator: Exists }
+    - { key: node-role.kubernetes.io/etcd, effect: NoExecute, operator: Exists }
+    - { key: CriticalAddonsOnly, operator: Exists }
+  upgrade:
+    image: debian:bookworm-slim
+    command:
+      - /bin/bash
+      - -c
+    args:
+      - nsenter -t 1 -m -u -i -n -p -- bash -c 'dnf upgrade -y && (needs-restarting -r || systemctl reboot)'
