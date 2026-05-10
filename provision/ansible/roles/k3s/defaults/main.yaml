@@ -17,3 +17,4 @@ k3s_server_config:
   disable-network-policy: true
   flannel-backend: none
   secrets-encryption: true
+  embedded-registry: true
