@@ -33,7 +33,7 @@
 
     - name: Reboot into upgrade mode
       ansible.builtin.reboot:
-        reboot_command: dnf system-upgrade reboot
+        reboot_command: dnf system-upgrade reboot -y
         reboot_timeout: 1200
         post_reboot_delay: 30
 
