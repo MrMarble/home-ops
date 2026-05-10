@@ -6,8 +6,8 @@ export default defineConfig({
 
   // --- Branding ---
   logo: {
-    light: 'assets/images/docmd-logo-dark.png',
-    dark: 'assets/images/docmd-logo-light.png',
+    light: 'assets/images/logo-light.png',
+    dark: 'assets/images/logo-dark.png',
     alt: 'Logo',
     href: '/',
   },
