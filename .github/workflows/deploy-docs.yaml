@@ -9,39 +9,22 @@ on:
     paths:
       - ".github/workflows/deploy-docs.yaml"
       - "docs/**"
-      - "README.md"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  release-docs:
-    name: Release documentation
-    runs-on: ubuntu-24.04
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+  deploy:
+    runs-on: ubuntu-slim
     steps:
-      - name: Generate Token
-        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2
-        id: generate-token
-        with:
-          app_id: ${{ secrets.BOT_APP_ID }}
-          private_key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
-
-      - name: Checkout main branch
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          fetch-depth: 0
-
-      - name: Build docs
-        uses: docker://ghcr.io/bjw-s/mdbook:0.4.44@sha256:82d38ed9bca2bbf0c3be62deef3ea1a27fdbffe3caf92fedf4a4b3c4c904ec48
-        with:
-          args: bash -c "cd docs && mdbook build"
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ steps.generate-token.outputs.token }}
-          publish_dir: ./docs/book/html
-          user_name: "pepinillo-bot[bot]"
-          user_email: "101514388+pepinillo-bot[bot]@users.noreply.github.com"
-          commit_message: ${{ github.event.head_commit.message }}
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: |
+          cd docs
+          npx @docmd/core build
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: ./docs/site }
+      - uses: actions/deploy-pages@v4
