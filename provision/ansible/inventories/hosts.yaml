@@ -21,15 +21,6 @@ metal:
             disk: nvme0n1,
             network_interface: eno1,
           }
-        metal2:
-          {
-            ansible_host: 192.168.1.14,
-            mac: "38:22:e2:1e:fb:02",
-            disk: nvme0n1,
-            network_interface: eno1,
-          }
-    workers:
-      hosts:
         metal3:
           {
             ansible_host: 192.168.1.13,

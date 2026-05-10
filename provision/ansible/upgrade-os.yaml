@@ -1,0 +1,58 @@
+---
+- name: Upgrade Fedora OS version
+  hosts: metal
+  serial: 1
+  gather_facts: false
+  vars:
+    target_releasever: "41"
+  tasks:
+    - name: Cordon node
+      delegate_to: localhost
+      kubernetes.core.k8s_drain:
+        name: "{{ inventory_hostname }}"
+        state: cordon
+
+    - name: Drain node
+      delegate_to: localhost
+      kubernetes.core.k8s_drain:
+        name: "{{ inventory_hostname }}"
+        state: drain
+        delete_options:
+          ignore_daemonsets: true
+          delete_emptydir_data: true
+          disable_eviction: true
+
+    - name: Install dnf-plugin-system-upgrade
+      ansible.builtin.dnf:
+        name: dnf-plugin-system-upgrade
+        state: present
+
+    - name: Download Fedora {{ target_releasever }} upgrade packages
+      ansible.builtin.command:
+        cmd: dnf system-upgrade download --releasever={{ target_releasever }} -y
+
+    - name: Reboot into upgrade mode
+      ansible.builtin.reboot:
+        reboot_command: dnf system-upgrade reboot
+        reboot_timeout: 1200
+        post_reboot_delay: 30
+
+    - name: Wait for node to be Ready in Kubernetes
+      delegate_to: localhost
+      kubernetes.core.k8s_info:
+        kind: Node
+        name: "{{ inventory_hostname }}"
+      register: node_info
+      until: >
+        node_info.resources | length > 0 and
+        (node_info.resources[0].status.conditions |
+         selectattr('type', 'eq', 'Ready') |
+         selectattr('status', 'eq', 'True') | list | length > 0)
+      retries: 30
+      delay: 10
+
+    - name: Uncordon node
+      delegate_to: localhost
+      kubernetes.core.k8s_drain:
+        name: "{{ inventory_hostname }}"
+        state: uncordon
