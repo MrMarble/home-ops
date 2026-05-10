@@ -89,7 +89,10 @@ spec:
           - hosts: [*host]
     persistence:
       config:
-        existingClaim: radarr-v1
+        type: persistentVolumeClaim
+        storageClass: longhorn
+        accessMode: ReadWriteMany
+        size: 10Gi
       tmp:
         type: emptyDir
       media:
