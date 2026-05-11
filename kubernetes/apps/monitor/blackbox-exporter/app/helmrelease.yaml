@@ -29,9 +29,13 @@ spec:
             preferred_ip_protocol: ip4
         tcp_connect:
           prober: tcp
-          timeout: 5s
+          timeout: 15s
           tcp:
             preferred_ip_protocol: ip4
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
     serviceMonitor:
       enabled: true
       selfMonitor:
