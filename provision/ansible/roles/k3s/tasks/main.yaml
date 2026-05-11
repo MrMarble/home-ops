@@ -65,6 +65,7 @@
     - src: registries.yaml.j2
       dest: /etc/rancher/k3s/registries.yaml
   notify: Restart k3s
+  tags: k3s-config
 
 - name: Copy kube-vip manifests
   when: "'masters' in group_names"

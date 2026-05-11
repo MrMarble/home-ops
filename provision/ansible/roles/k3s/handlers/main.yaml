@@ -2,3 +2,4 @@
   ansible.builtin.systemd:
     name: k3s
     state: restarted
+  tags: k3s-config
