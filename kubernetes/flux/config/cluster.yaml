@@ -34,7 +34,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-      namespace: flux-system
   dependsOn:
     - name: flux
   postBuild:
