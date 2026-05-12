@@ -2,6 +2,8 @@
 helm = "latest"
 k9s = "latest"
 kubectl = "latest"
+"npm:@docmd/core" = "latest"
+"pipx:flux-local" = "latest"
 task = "latest"
 [env]
 KUBECONFIG = "{{config_root}}/kubeconfig.yaml"
