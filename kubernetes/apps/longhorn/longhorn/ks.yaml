@@ -6,6 +6,9 @@ metadata:
   name: &app longhorn
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: snapshot-controller
+      namespace: flux-system
   targetNamespace: longhorn
   commonMetadata:
     labels:

@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+  - ./volumesnapshotclass.yaml
   - ../../../../templates/gatus/guarded
