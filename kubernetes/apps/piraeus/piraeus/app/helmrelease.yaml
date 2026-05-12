@@ -20,6 +20,7 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    installCRDs: true
     operator:
       satellite:
         kernelModuleInjectionMode: None
