@@ -1,0 +1,20 @@
+---
+# Nodes with /mnt/ssd — file-backed pool for LINSTOR volumes
+apiVersion: piraeus.io/v1
+kind: LinstorSatelliteConfiguration
+metadata:
+  name: storage-nodes
+spec:
+  nodeSelector:
+    linstor.linbit.com/storage: ssd
+  storagePools:
+    - name: pool1
+      filePool:
+        directory: /mnt/ssd/linstor
+---
+# Remaining node — diskless satellite, mounts volumes stored on storage nodes
+apiVersion: piraeus.io/v1
+kind: LinstorSatelliteConfiguration
+metadata:
+  name: default
+spec: {}
