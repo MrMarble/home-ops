@@ -18,6 +18,7 @@ spec:
     substitute:
       APP: radarr
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_ACCESSMODES: ReadWriteOnce
   prune: true
   sourceRef:
     kind: GitRepository
