@@ -13,7 +13,7 @@ spec:
     accessModes:
       - "${VOLSYNC_ACCESSMODES:=ReadWriteMany}"
     cacheAccessModes:
-      - "${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteMany}"
+      - "${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"
     cacheCapacity: "${VOLSYNC_CAPACITY:=5Gi}"
     cacheStorageClassName: "${VOLSYNC_CACHE_STORAGECLASS:=openebs-hostpath}"
     capacity: "${VOLSYNC_CAPACITY:=5Gi}"
