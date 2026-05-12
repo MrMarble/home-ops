@@ -139,6 +139,13 @@ spec:
         type: emptyDir
         advancedMounts:
           kopia:
+            init-repo:
+              - path: /config/cache
+                subPath: cache
+              - path: /config/logs
+                subPath: logs
+              - path: /tmp
+                subPath: tmp
             app:
               - path: /config/cache
                 subPath: cache
