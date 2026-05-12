@@ -3,9 +3,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: "${APP}"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   accessModes:
-    - "${VOLSYNC_ACCESSMODES:=ReadWriteMany}"
+    - "${VOLSYNC_ACCESSMODES:=ReadWriteOnce}"
   dataSourceRef:
     kind: ReplicationDestination
     apiGroup: volsync.backube
@@ -13,4 +15,4 @@ spec:
   resources:
     requests:
       storage: "${VOLSYNC_CAPACITY:=5Gi}"
-  storageClassName: "${VOLSYNC_STORAGECLASS:=longhorn}"
+  storageClassName: "${VOLSYNC_STORAGECLASS:=linstor-local}"

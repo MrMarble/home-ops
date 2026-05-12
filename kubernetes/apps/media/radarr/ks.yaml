@@ -10,7 +10,7 @@ spec:
     - ../../../../components/volsync
     - ../../../../components/zeroscaler
   dependsOn:
-    - name: longhorn
+    - name: piraeus
       namespace: flux-system
   interval: 1h
   path: ./kubernetes/apps/media/radarr/app

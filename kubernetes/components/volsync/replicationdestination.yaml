@@ -11,14 +11,14 @@ spec:
     manual: restore-once
   kopia:
     accessModes:
-      - "${VOLSYNC_ACCESSMODES:=ReadWriteMany}"
+      - "${VOLSYNC_ACCESSMODES:=ReadWriteOnce}"
     cacheAccessModes:
       - "${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"
     cacheCapacity: "${VOLSYNC_CAPACITY:=5Gi}"
     cacheStorageClassName: "${VOLSYNC_CACHE_STORAGECLASS:=openebs-hostpath}"
     capacity: "${VOLSYNC_CAPACITY:=5Gi}"
     cleanupCachePVC: true
-    cleanupTempPVC: false
+    cleanupTempPVC: true
     copyMethod: Snapshot
     enableFileDeletion: true
     moverSecurityContext:
@@ -34,5 +34,5 @@ spec:
     repository: "${APP}-volsync-secret"
     sourceIdentity:
       sourceName: ${APP}
-    storageClassName: "${VOLSYNC_STORAGECLASS:=longhorn}"
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=longhorn}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:=linstor-local}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=linstor}"
