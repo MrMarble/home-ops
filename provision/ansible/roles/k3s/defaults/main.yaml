@@ -19,3 +19,7 @@ k3s_server_config:
   flannel-backend: none
   secrets-encryption: true
   embedded-registry: true
+  kube-apiserver-arg:
+    - "feature-gates=HPAScaleToZero=true"
+  kube-controller-manager-arg:
+    - "feature-gates=HPAScaleToZero=true"
