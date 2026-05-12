@@ -32,5 +32,7 @@ spec:
             path: /mnt/Data/Kopia
             server: "192.168.1.25"
     repository: "${APP}-volsync-secret"
+    sourceIdentity:
+      sourceName: ${APP}
     storageClassName: "${VOLSYNC_STORAGECLASS:=longhorn}"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=longhorn}"
