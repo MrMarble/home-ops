@@ -76,6 +76,7 @@
   loop:
     - src: kube-vip.yaml.j2
       dest: "{{ k3s_data_dir }}/agent/pod-manifests/kube-vip.yaml"
+  tags: k3s-config
 
 - name: Enable k3s service
   ansible.builtin.systemd:
