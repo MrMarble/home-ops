@@ -90,6 +90,14 @@ export default defineConfig({
         { title: 'GitOps', path: '/gitops', icon: 'git-branch' },
       ],
     },
+    {
+      title: 'Deep Dive',
+      icon: 'layers',
+      collapsible: false,
+      children: [
+        { title: 'Storage', path: '/storage', icon: 'database' },
+      ],
+    },
   ],
 
   // --- Plugins ---
