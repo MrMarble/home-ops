@@ -10,7 +10,7 @@ spec:
     - ../../../../components/zeroscaler
   dependsOn:
     - name: longhorn
-      namespace: longhorn
+      namespace: flux-system
   interval: 1h
   path: ./kubernetes/apps/media/radarr/app
   postBuild:
