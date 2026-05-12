@@ -19,8 +19,10 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-settings
+        namespace: flux-system
       - kind: Secret
         name: cluster-secrets
+        namespace: flux-system
   patches:
     - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -33,12 +35,15 @@ spec:
             provider: sops
             secretRef:
               name: sops-age
+              namespace: flux-system
           postBuild:
             substituteFrom:
               - kind: ConfigMap
                 name: cluster-settings
+                namespace: flux-system
               - kind: Secret
                 name: cluster-secrets
+                namespace: flux-system
       target:
         group: kustomize.toolkit.fluxcd.io
         kind: Kustomization
