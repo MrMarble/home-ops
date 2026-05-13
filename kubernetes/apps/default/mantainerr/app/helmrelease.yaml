@@ -59,7 +59,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: &host "mantainerr.${SECRET_DOMAIN}"
+          - host: &host "mantainerr.atsbhome.xyz"
             paths:
               - path: /
                 service:

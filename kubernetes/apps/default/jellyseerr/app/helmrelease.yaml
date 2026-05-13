@@ -73,11 +73,11 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
         hosts:
-          - host: &host "requests.${SECRET_DOMAIN}"
+          - host: &host "requests.atsbhome.xyz"
             paths:
               - path: /
                 service:

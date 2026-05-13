@@ -50,7 +50,7 @@ spec:
     txtPrefix: "k8s."
     txtOwnerId: default
     domainFilters:
-      - "${SECRET_DOMAIN}"
+      - "atsbhome.xyz"
     serviceMonitor:
       enabled: false
     podAnnotations:

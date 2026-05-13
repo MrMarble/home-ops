@@ -95,7 +95,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: &host qb.${SECRET_DOMAIN}
+          - host: &host qb.atsbhome.xyz
             paths:
               - path: /
                 service:

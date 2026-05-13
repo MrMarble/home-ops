@@ -5,11 +5,11 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations:
-    external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "external.atsbhome.xyz"
 spec:
   ingressClassName: external
   rules:
-    - host: &host "flux-webhook.${SECRET_DOMAIN}"
+    - host: &host "flux-webhook.atsbhome.xyz"
       http:
         paths:
           - path: /hook/

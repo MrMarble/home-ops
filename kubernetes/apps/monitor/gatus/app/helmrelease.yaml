@@ -50,7 +50,7 @@ spec:
               GATUS_CONFIG_PATH: /config
               GATUS_DELAY_START_SECONDS: 5
               WEB_PORT: &port 80
-              SECRET_DOMAIN: ${SECRET_DOMAIN}
+              SECRET_DOMAIN: atsbhome.xyz
             probes:
               liveness: &probes
                 enabled: true
@@ -97,9 +97,9 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
         hosts:
-          - host: &host "status.${SECRET_DOMAIN}"
+          - host: &host "status.atsbhome.xyz"
             paths:
               - path: /
                 service:

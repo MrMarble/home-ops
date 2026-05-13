@@ -62,9 +62,9 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
         hosts:
-          - host: &host "navidrome.${SECRET_DOMAIN}"
+          - host: &host "navidrome.atsbhome.xyz"
             paths:
               - path: /
                 service:

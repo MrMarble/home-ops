@@ -35,7 +35,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: internal
-      host: longhorn.${SECRET_DOMAIN}
+      host: longhorn.atsbhome.xyz
     defaultSettings:
       defaultLonghornStaticStorageClass: longhorn
       concurrentAutomaticEngineUpgradePerNodeLimit: 1

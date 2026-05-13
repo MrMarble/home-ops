@@ -76,7 +76,7 @@ spec:
           nginx.ingress.kubernetes.io/cors-allow-headers: "X-Api-Key, User-Agent, Content-Type, Authorization"
           nginx.ingress.kubernetes.io/cors-max-age: "1728000"
         hosts:
-          - host: &host photos.${SECRET_DOMAIN}
+          - host: &host photos.atsbhome.xyz
             paths:
               - path: /
                 pathType: Prefix

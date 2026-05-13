@@ -38,7 +38,7 @@ spec:
                   secretKeyRef:
                     name: paperless-secret
                     key: PAPERLESS_SECRET_KEY
-              PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
+              PAPERLESS_URL: https://paperless.atsbhome.xyz
               PAPERLESS_PORT: "8000"
               PAPERLESS_TIME_ZONE: "Europe/Madrid"
               PAPERLESS_WEBSERVER_WORKERS: "2"
@@ -115,7 +115,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.atsbhome.xyz"
             paths:
               - path: /
                 service:

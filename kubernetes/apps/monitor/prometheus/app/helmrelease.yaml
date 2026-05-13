@@ -58,7 +58,7 @@ spec:
         ingressClassName: internal
         pathType: Prefix
         hosts:
-          - &host prometheus.${SECRET_DOMAIN}
+          - &host prometheus.atsbhome.xyz
         tls:
           - hosts:
               - *host

@@ -61,7 +61,7 @@ spec:
     spec:
       ingressClassName: internal
       rules:
-        - host: &host "grafana.${SECRET_DOMAIN}"
+        - host: &host "grafana.atsbhome.xyz"
           http:
             paths:
               - backend:
