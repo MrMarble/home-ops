@@ -4,7 +4,6 @@ resources:
   - ./namespace.yaml
   - ./archi/ks.yaml
   - ./qbittorrent/ks.yaml
-  - ./prowlarr/ks.yaml
   - ./cross-seed/ks.yaml
   - ./jellyfin/ks.yaml
   - ./immich/ks.yaml
