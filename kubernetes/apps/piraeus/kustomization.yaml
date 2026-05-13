@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ./namespace.yaml
   # Disabled until LINSTOR LVM thin pool is ready (Phase 2)
-  # - ./namespace.yaml
   # - ./piraeus/ks.yaml
