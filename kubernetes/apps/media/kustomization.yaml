@@ -12,3 +12,4 @@ resources:
   - ./jellyfin/ks.yaml
   - ./seerr/ks.yaml
   - ./qui/ks.yaml
+  - ./brrpolice/ks.yaml
