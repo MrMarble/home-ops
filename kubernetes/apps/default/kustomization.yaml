@@ -3,16 +3,10 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./archi/ks.yaml
-  - ./qbittorrent/ks.yaml
-  - ./cross-seed/ks.yaml
-  - ./jellyfin/ks.yaml
   - ./immich/ks.yaml
   - ./psitransfer/ks.yaml
   - ./paperless/ks.yaml
-  - ./jellyseerr/ks.yaml
   - ./navidrome/ks.yaml
-  - ./tqm/ks.yaml
-  - ./mantainerr/ks.yaml
   - ./lidarr/ks.yaml
   - ./slskd/ks.yaml
   - ./aurral/ks.yaml
