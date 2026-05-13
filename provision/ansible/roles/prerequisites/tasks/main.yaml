@@ -8,6 +8,21 @@
     - { name: "fs.inotify.max_user_watches", value: 524288 }
     - { name: "vm.nr_hugepages", value: 2048 }
 
+- name: Configure DNS server
+  community.general.nmcli:
+    conn_name: "{{ network_interface }}"
+    type: ethernet
+    dns4:
+      - "{{ dns_server }}"
+    state: present
+  register: nmcli_dns
+
+- name: Apply DNS configuration
+  ansible.builtin.command:
+    cmd: nmcli con up "{{ network_interface }}"
+  when: nmcli_dns.changed
+  changed_when: true
+
 - name: Install Utilities
   ansible.builtin.dnf:
     name:
