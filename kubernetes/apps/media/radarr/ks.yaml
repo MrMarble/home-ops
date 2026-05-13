@@ -7,18 +7,17 @@ metadata:
   namespace: flux-system
 spec:
   components:
-    - ../../../../components/volsync
+    # Disabled until LINSTOR LVM thin pool is ready (Phase 2)
+    # - ../../../../components/volsync
     - ../../../../components/zeroscaler
   dependsOn:
-    - name: piraeus
+    - name: longhorn
       namespace: flux-system
   interval: 1h
   path: ./kubernetes/apps/media/radarr/app
   postBuild:
     substitute:
       APP: radarr
-      VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_ACCESSMODES: ReadWriteOnce
   prune: true
   sourceRef:
     kind: GitRepository
