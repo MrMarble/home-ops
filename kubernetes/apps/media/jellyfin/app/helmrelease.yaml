@@ -55,6 +55,8 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [39, 44, 105, 104, 100] # cat /etc/group
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
         type: LoadBalancer
