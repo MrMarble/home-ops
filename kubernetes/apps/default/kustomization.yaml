@@ -6,8 +6,6 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./prowlarr/ks.yaml
   - ./cross-seed/ks.yaml
-  - ./radarr-4k/ks.yaml
-  - ./sonarr/ks.yaml
   - ./jellyfin/ks.yaml
   - ./immich/ks.yaml
   - ./psitransfer/ks.yaml
