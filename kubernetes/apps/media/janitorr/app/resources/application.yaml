@@ -25,13 +25,15 @@ application:
   media-deletion:
     enabled: true
     movie-expiration:
+      5: 90d
       10: 180d
-      20: 365d
-      50: 730d
+      15: 365d
+      20: 730d
     season-expiration:
+      5: 90d
       10: 180d
-      20: 365d
-      50: 730d
+      15: 365d
+      20: 730d
 
   tag-based-deletion:
     enabled: false
