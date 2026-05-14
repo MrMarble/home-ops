@@ -1,0 +1,74 @@
+logging:
+  level:
+    com.github.schaka: INFO
+  file:
+    name: "/logs/janitorr.log"
+
+file-system:
+  access: true
+  validate-seeding: false
+  leaving-soon-dir: "/leaving-soon"
+  media-server-leaving-soon-dir: "/leaving-soon"
+  from-scratch: true
+  free-space-check-dir: "/data"
+
+application:
+  dry-run: true
+  run-once: false
+  whole-tv-show: false
+  whole-show-seeding-check: false
+  leaving-soon: 14d
+  leaving-soon-threshold-offset-percent: 5
+  exclusion-tags:
+    - "janitorr-keep"
+
+  media-deletion:
+    enabled: true
+    movie-expiration:
+      10: 180d
+      20: 365d
+      50: 730d
+    season-expiration:
+      10: 180d
+      20: 365d
+      50: 730d
+
+  tag-based-deletion:
+    enabled: false
+
+  episode-deletion:
+    enabled: false
+
+clients:
+  default:
+    connect-timeout: 60s
+    read-timeout: 60s
+    level: NONE
+
+  sonarr:
+    enabled: true
+    url: "http://sonarr.media.svc.cluster.local"
+    delete-empty-shows: true
+    determine-age-by: MOST_RECENT
+    import-exclusions: false
+
+  radarr:
+    enabled: true
+    url: "http://radarr.media.svc.cluster.local"
+    only-delete-files: false
+    determine-age-by: MOST_RECENT
+    import-exclusions: false
+
+  jellyfin:
+    enabled: true
+    url: "http://jellyfin.media.svc.cluster.local"
+    delete: true
+    exclude-favorited: true
+    leaving-soon-tv: "Series (Se van a borrar pronto)"
+    leaving-soon-movies: "Peliculas (Se van a borrar pronto)"
+    leaving-soon-type: NONE
+
+  jellyseerr:
+    enabled: true
+    url: "http://seerr.media.svc.cluster.local"
+    match-server: false

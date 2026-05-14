@@ -1,0 +1,64 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: qui
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: qui
+  interval: 1h
+  values:
+    controllers:
+      qui:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/schaka/janitorr
+              tag: jvm-stable@sha256:6becfbed9098d27e6bf81a114976394a091d095ee5aba3ae8d86a4fd94af8e7a
+            env:
+              TZ: Europe/Madrid
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      config-file:
+        type: configMap
+        name: janitorr
+        globalMounts:
+          - path: /config/application.yml
+            subPath: application.yml
+            readOnly: true
+      data:
+        type: nfs
+        server: truenas.internal
+        path: /mnt/torrent/data
+        globalMounts:
+          - path: /data
+      tmp:
+        type: emptyDir
+      logs:
+        type: emptyDir
+      leaving-soon:
+        type: emptyDir

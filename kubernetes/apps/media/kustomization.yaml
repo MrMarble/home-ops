@@ -13,3 +13,4 @@ resources:
   - ./seerr/ks.yaml
   - ./qui/ks.yaml
   - ./brrpolice/ks.yaml
+  - ./janitorr/ks.yaml
