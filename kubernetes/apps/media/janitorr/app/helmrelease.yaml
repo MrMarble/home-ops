@@ -3,15 +3,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: qui
+  name: janitorr
 spec:
   chartRef:
     kind: OCIRepository
-    name: qui
+    name: janitorr
   interval: 1h
   values:
     controllers:
-      qui:
+      janitorr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
