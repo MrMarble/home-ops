@@ -1,6 +1,6 @@
 logging:
   level:
-    com.github.schaka: INFO
+    com.github.schaka: TRACE
   file:
     name: "/logs/janitorr.log"
 
