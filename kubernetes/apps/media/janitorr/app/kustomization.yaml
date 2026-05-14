@@ -9,7 +9,7 @@ resources:
   - ./pvc.yaml
 configMapGenerator:
   - files:
-      - application.yml=./resources/application.yml
+      - application.yml=./resources/application.yaml
     name: janitorr
 generatorOptions:
   annotations:
