@@ -61,7 +61,7 @@ clients:
 
   jellyfin:
     enabled: true
-    url: "http://jellyfin.media.svc.cluster.local"
+    url: "http://jellyfin.media.svc.cluster.local:8096"
     delete: true
     exclude-favorited: true
     leaving-soon-tv: "Series (Se van a borrar pronto)"
