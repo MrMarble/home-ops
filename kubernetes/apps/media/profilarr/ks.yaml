@@ -6,6 +6,8 @@ metadata:
   name: profilarr
   namespace: flux-system
 spec:
+  components:
+    - ../../../../components/oci-repository
   dependsOn:
     - name: longhorn
       namespace: flux-system

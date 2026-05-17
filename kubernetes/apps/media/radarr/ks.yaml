@@ -10,6 +10,7 @@ spec:
     # Disabled until LINSTOR LVM thin pool is ready (Phase 2)
     # - ../../../../components/volsync
     - ../../../../components/zeroscaler
+    - ../../../../components/oci-repository
   dependsOn:
     - name: longhorn
       namespace: flux-system
