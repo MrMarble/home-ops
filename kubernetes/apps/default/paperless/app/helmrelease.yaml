@@ -1,38 +1,25 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: paperless
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      interval: 30m
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
-
+  chartRef:
+    kind: OCIRepository
+    name: paperless
   values:
     controllers:
       paperless:
         annotations:
           reloader.stakater.com/auto: "true"
-        pod:
-          securityContext:
-            supplementalGroups:
-              - 568
-
         containers:
           app:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.16.2
             env:
-              # Configure application
               PAPERLESS_SECRET_KEY:
                 valueFrom:
                   secretKeyRef:
@@ -43,23 +30,17 @@ spec:
               PAPERLESS_TIME_ZONE: "Europe/Madrid"
               PAPERLESS_WEBSERVER_WORKERS: "2"
               PAPERLESS_TASK_WORKERS: "2"
-              # Configure folders
               PAPERLESS_CONSUMPTION_DIR: /data/nas/incoming
               PAPERLESS_DATA_DIR: /data/local/data
               PAPERLESS_EXPORT_DIR: /data/nas/export
               PAPERLESS_MEDIA_ROOT: /data/local/media
-              # Configure folder importer
               PAPERLESS_CONSUMER_POLLING: "60"
               PAPERLESS_CONSUMER_RECURSIVE: "true"
               PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-              # Configure OCR
               PAPERLESS_OCR_LANGUAGES: spa
               PAPERLESS_OCR_LANGUAGE: spa
-              # Configure redis integration
               PAPERLESS_REDIS: redis://paperless-redis.default.svc.cluster.local:6379
-              # Configure user permissions
               USERMAP_GID: "568"
-              # Configure admin user
               PAPERLESS_ADMIN_USER:
                 valueFrom:
                   secretKeyRef:
@@ -86,7 +67,6 @@ spec:
                 memory: 2Gi
               limits:
                 memory: 3Gi
-
       redis:
         containers:
           redis:
@@ -99,7 +79,10 @@ spec:
                 memory: 32Mi
               limits:
                 memory: 128Mi
-
+    defaultPodOptions:
+      securityContext:
+        supplementalGroups:
+          - 568
     service:
       app:
         controller: paperless

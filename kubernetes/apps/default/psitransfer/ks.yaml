@@ -6,6 +6,8 @@ metadata:
   name: &app psitransfer
   namespace: flux-system
 spec:
+  components:
+    - ../../../../components/oci-repository
   targetNamespace: default
   commonMetadata:
     labels:

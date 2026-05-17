@@ -27,6 +27,8 @@ metadata:
   name: &app external-secrets-stores
   namespace: flux-system
 spec:
+  components:
+    - ../../../../components/oci-repository
   targetNamespace: external-secrets
   commonMetadata:
     labels:
@@ -42,3 +44,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: onepassword-connect

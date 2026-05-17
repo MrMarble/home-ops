@@ -6,6 +6,8 @@ metadata:
   name: &app kopia
   namespace: flux-system
 spec:
+  components:
+    - ../../../../components/oci-repository
   targetNamespace: volsync
   commonMetadata:
     labels:

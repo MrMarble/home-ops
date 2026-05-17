@@ -6,6 +6,8 @@ metadata:
   name: &app cloudflared
   namespace: flux-system
 spec:
+  components:
+    - ../../../../components/oci-repository
   targetNamespace: network
   commonMetadata:
     labels:
@@ -22,3 +24,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app

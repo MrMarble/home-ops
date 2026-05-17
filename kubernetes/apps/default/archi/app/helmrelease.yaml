@@ -1,19 +1,14 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app archi
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: archi
   install:
     remediation:
       retries: 3
@@ -61,14 +56,13 @@ spec:
                 cpu: 15m
               limits:
                 memory: 500Mi
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: archi
@@ -76,7 +70,6 @@ spec:
           http:
             primary: true
             port: 1242
-
     ingress:
       app:
         className: internal
@@ -89,10 +82,8 @@ spec:
                   port: http
         tls:
           - hosts: [*host]
-
     persistence:
       data:
-        enabled: true
         type: nfs
         server: "192.168.1.25"
         path: "/mnt/Data/ASF"
@@ -100,13 +91,11 @@ spec:
           - path: /app/config
             readOnly: false
       plugins:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /app/plugins
             readOnly: false
       tmp:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /tmp

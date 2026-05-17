@@ -1,19 +1,14 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app psitransfer
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: psitransfer
   install:
     remediation:
       retries: 3
@@ -24,7 +19,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  # dependsOn:
   values:
     controllers:
       psitransfer:
@@ -55,14 +49,13 @@ spec:
                 memory: 10M
               limits:
                 memory: 64M
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: psitransfer
@@ -70,7 +63,6 @@ spec:
           http:
             primary: true
             port: 3000
-
     ingress:
       app:
         className: external
@@ -89,7 +81,6 @@ spec:
           - hosts: [*host]
     persistence:
       data:
-        enabled: true
         type: nfs
         server: "192.168.1.25"
         path: "/mnt/Data/psitransfer"
