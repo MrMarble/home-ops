@@ -26,7 +26,7 @@ spec:
         volumeSource:
           nfs:
             path: /mnt/Data/Kopia
-            server: "192.168.1.25"
+            server: "truenas.local"
     parallelism: 2
     repository: "${APP}-volsync-secret"
     retain:
