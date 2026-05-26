@@ -14,5 +14,5 @@ spec:
       dynamicPath: /run/cdi
     kubeletPlugin:
       privileged: true
-    healthMonitoring:
-      enabled: false
+      healthMonitoring:
+        enabled: false
