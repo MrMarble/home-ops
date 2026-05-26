@@ -94,7 +94,7 @@ spec:
     persistence:
       downloads:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data/Downloads/aurral
         globalMounts:
           - path: /app/downloads

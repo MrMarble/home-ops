@@ -82,7 +82,7 @@ spec:
     persistence:
       data:
         type: nfs
-        server: "truenas.local"
+        server: "truenas.internal"
         path: "/mnt/Data/psitransfer"
         globalMounts:
           - path: /data

@@ -93,7 +93,7 @@ spec:
             readOnly: true
       media:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data
         globalMounts:
           - path: /media/Downloads/qbittorrent

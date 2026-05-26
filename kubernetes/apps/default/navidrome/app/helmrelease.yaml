@@ -76,14 +76,14 @@ spec:
 
       media:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data/Library/music
         globalMounts:
           - path: /data/nfs-media
 
       aurral-downloads:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data/Downloads/aurral
         globalMounts:
           - path: /data/aurral-downloads

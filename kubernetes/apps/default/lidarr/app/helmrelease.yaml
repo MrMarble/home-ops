@@ -98,7 +98,7 @@ spec:
           - path: /config/logs
       media:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data
         globalMounts:
           - path: /media

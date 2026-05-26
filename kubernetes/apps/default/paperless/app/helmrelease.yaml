@@ -115,7 +115,7 @@ spec:
               - path: /data/local
       nas:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/Data/Paperless
         advancedMounts:
           paperless:

@@ -127,7 +127,7 @@ spec:
                 subPath: repository.config
       repository:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/Data/Kopia
         advancedMounts:
           kopia:

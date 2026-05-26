@@ -131,7 +131,7 @@ spec:
             subPath: slskd.yml
       media:
         type: nfs
-        server: truenas.local
+        server: truenas.internal
         path: /mnt/torrent/data
         globalMounts:
           - path: /media

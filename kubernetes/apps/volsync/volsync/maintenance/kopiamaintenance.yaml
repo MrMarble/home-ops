@@ -13,6 +13,6 @@ spec:
       volumeSource:
         nfs:
           path: /mnt/Data/Kopia
-          server: "truenas.local"
+          server: "truenas.internal"
   repository:
     repository: volsync-maintenance-secret
