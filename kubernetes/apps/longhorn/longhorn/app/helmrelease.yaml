@@ -44,5 +44,6 @@ spec:
       replicaAutoBalance: true
       allowCollectingLonghornUsageMetrics: false
       systemManagedComponentsNodeSelector: ""
+      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
     global:
       nodeSelector: ""
