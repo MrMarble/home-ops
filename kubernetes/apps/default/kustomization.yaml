@@ -5,8 +5,3 @@ resources:
   - ./archi/ks.yaml
   - ./immich/ks.yaml
   - ./psitransfer/ks.yaml
-  - ./paperless/ks.yaml
-  - ./navidrome/ks.yaml
-  - ./lidarr/ks.yaml
-  - ./slskd/ks.yaml
-  - ./aurral/ks.yaml
