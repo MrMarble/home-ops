@@ -1,5 +1,5 @@
 ---
-# All satellites: use host network so DRBD registers with real node IPs (192.168.1.x)
+# All satellites: use host network so DRBD registers with real node IPs (192.168.42.x)
 # and kernel-space DRBD can reach peer nodes without overlay routing issues
 apiVersion: piraeus.io/v1
 kind: LinstorSatelliteConfiguration
