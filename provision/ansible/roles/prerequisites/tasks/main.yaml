@@ -16,12 +16,14 @@
       - "{{ dns_server }}"
     state: present
   register: nmcli_dns
+  tags: dns
 
 - name: Apply DNS configuration
   ansible.builtin.command:
     cmd: nmcli con up "{{ network_interface }}"
   when: nmcli_dns.changed
   changed_when: true
+  tags: dns
 
 - name: Install Utilities
   ansible.builtin.dnf:
