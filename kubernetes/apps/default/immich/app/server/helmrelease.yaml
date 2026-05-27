@@ -57,26 +57,13 @@ spec:
         ports:
           http:
             port: 2283
-    ingress:
+    route:
       main:
-        className: internal
-        annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "*"
-          nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
-          nginx.ingress.kubernetes.io/cors-allow-headers: "X-Api-Key, User-Agent, Content-Type, Authorization"
-          nginx.ingress.kubernetes.io/cors-max-age: "1728000"
-        hosts:
-          - host: &host photos.atsbhome.xyz
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts: [*host]
+        hostnames:
+          - photos.atsbhome.xyz
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     persistence:
       library:
         existingClaim: immich-nfs

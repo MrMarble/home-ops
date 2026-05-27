@@ -93,18 +93,13 @@ spec:
         serviceName: gatus
         endpoints:
           - port: http
-    ingress:
+    route:
       app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
-        hosts:
-          - host: &host "status.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - status.atsbhome.xyz
+        parentRefs:
+          - name: envoy-external
+            namespace: network
     rbac:
       roles:
         gatus:

@@ -69,22 +69,13 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-        hosts:
-          - host: &host "{{ .Release.Name }}.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
+        hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
+        parentRefs:
+          - name: envoy-external
+            namespace: network
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"

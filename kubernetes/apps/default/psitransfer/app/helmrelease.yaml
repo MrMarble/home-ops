@@ -63,22 +63,13 @@ spec:
           http:
             primary: true
             port: 3000
-    ingress:
+    route:
       app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.atsbhome.xyz
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-        hosts:
-          - host: &host "share.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
+        hostnames:
+          - share.atsbhome.xyz
+        parentRefs:
+          - name: envoy-external
+            namespace: network
     persistence:
       data:
         type: nfs

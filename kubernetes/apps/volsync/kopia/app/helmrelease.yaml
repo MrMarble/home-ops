@@ -88,18 +88,13 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: &host "kopia.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
+        hostnames:
+          - kopia.atsbhome.xyz
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     configMaps:
       config:
         data:

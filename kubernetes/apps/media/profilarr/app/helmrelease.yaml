@@ -42,16 +42,13 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: "{{ .Release.Name }}.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"

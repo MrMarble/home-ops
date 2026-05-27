@@ -70,18 +70,13 @@ spec:
           http:
             primary: true
             port: 1242
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: &host "{{ .Release.Name }}.atsbhome.xyz"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts: [*host]
+        hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     persistence:
       data:
         type: nfs
