@@ -26,5 +26,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
   targetNamespace: external-secrets

@@ -16,7 +16,7 @@ spec:
     - name: onepassword-connect
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
   wait: true
   interval: 30m
   retryInterval: 1m
