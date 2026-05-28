@@ -7,16 +7,9 @@ metadata:
 spec:
   interval: 5m
   timeout: 15m
-  chart:
-    spec:
-      chart: cilium
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: cilium
-        namespace: flux-system
-      # The HelmRelease version of Cilium MUST match the version installed via Talos to avoid collisions on cluster rebuilds
-      version: 1.19.2
+  chartRef:
+    kind: OCIRepository
+    name: cilium
   install:
     timeout: 10m
     replace: true
@@ -63,13 +56,7 @@ spec:
 
       ui:
         ingress:
-          enabled: true
-          className: "internal"
-          hosts:
-            - &host hubble.atsbhome.xyz
-          tls:
-            - hosts:
-                - *host
+          enabled: false
     l2announcements:
       enabled: true
     prometheus:
