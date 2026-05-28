@@ -1,10 +1,6 @@
 ---
 version: "3"
 
-vars:
-  CLUSTER_SECRETS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.env"
-  CLUSTER_SETTINGS_FILE: "{{.CLUSTER_DIR}}/flux/vars/cluster-settings.env"
-
 tasks:
   bootstrap:
     desc: Bootstrap Flux into a Kubernetes cluster
@@ -14,33 +10,9 @@ tasks:
     prompt: Bootstrap Flux into the '{{.cluster}}' cluster... continue?
     cmds:
       - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/bootstrap
-      - sops --decrypt {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml | kubectl --context {{.cluster}} apply -f -
-      - sops --decrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux/vars
       - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux
-      - defer: sops --encrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
     preconditions:
       - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
-      - {
-          msg: "Age secret not found",
-          sh: "test -f {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml",
-        }
-      - {
-          msg: "Cluster settings not found",
-          sh: "test -f {{.KUBERNETES_DIR}}/flux/vars/cluster-settings.env",
-        }
-      - {
-          msg: "Cluster secrets not found",
-          sh: "test -f {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env",
-        }
-      - {
-          msg: "Unable to decrypt sops secret",
-          sh: "sops --decrypt {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml",
-        }
-      - {
-          msg: "Unable to decrypt sops secret",
-          sh: "sops --decrypt {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env",
-        }
 
   sync:
     desc: Sync flux-system with the Git Repository
@@ -55,29 +27,19 @@ tasks:
     silent: true
 
   apply:
-    desc: Apply a resource path that contains Flux substitution variables
-    dotenv: ["{{.CLUSTER_SETTINGS_FILE}}"]
+    desc: Apply a resource path
     vars:
       ks: '{{ or .ks (fail "Missing path (`ks` var)") }}'
     cmd: |
-      sops exec-env {{.CLUSTER_SECRETS_FILE}} \
-        "kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}} | \
-          envsubst | kubectl apply --server-side --field-manager=kustomize-controller -f -"
-    preconditions:
-      - sh: test -f {{.CLUSTER_SECRETS_FILE}}
-      - sh: test -f {{.CLUSTER_SETTINGS_FILE}}
+      kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}} | \
+        kubectl apply --server-side --field-manager=kustomize-controller -f -
 
   test:
-    desc: Generate a resource path that contains Flux substitution variables
-    dotenv: ["{{.CLUSTER_SETTINGS_FILE}}"]
+    desc: Generate a resource path
     vars:
       ks: '{{ or .ks (fail "Missing path (`ks` var)") }}'
     cmd: |
-      sops exec-env {{.CLUSTER_SECRETS_FILE}} \
-        "kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}} | envsubst"
-    preconditions:
-      - sh: test -f {{.CLUSTER_SECRETS_FILE}}
-      - sh: test -f {{.CLUSTER_SETTINGS_FILE}}
+      kustomize build --load-restrictor=LoadRestrictionsNone {{.ks}}
 
   fix:
     desc: Restart a helm release
