@@ -18,7 +18,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: nginx-external
+    - name: envoy-gateway
   values:
     controllers:
       cloudflared:
