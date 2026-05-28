@@ -38,11 +38,11 @@ spec:
       host: longhorn.atsbhome.xyz
     defaultSettings:
       defaultLonghornStaticStorageClass: longhorn
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      storageOverProvisioningPercentage: 100
-      storageMinimalAvailablePercentage: 0
+      concurrentAutomaticEngineUpgradePerNodeLimit: "1"
+      storageOverProvisioningPercentage: "100"
+      storageMinimalAvailablePercentage: "0"
       replicaAutoBalance: "true"
-      allowCollectingLonghornUsageMetrics: false
+      allowCollectingLonghornUsageMetrics: "false"
       systemManagedComponentsNodeSelector: ""
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
     global:
