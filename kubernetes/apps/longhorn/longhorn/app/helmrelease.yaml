@@ -29,13 +29,15 @@ spec:
       createPrometheusRules: true
     service:
       ui:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 192.168.42.39
-    ingress:
+        type: ClusterIP
+    httproute:
       enabled: true
-      ingressClassName: internal
-      host: longhorn.atsbhome.xyz
+      parentRefs:
+        - name: envoy-internal
+          namespace: network
+          sectionName: https
+      hostnames:
+        - longhorn.atsbhome.xyz
     defaultSettings:
       defaultLonghornStaticStorageClass: longhorn
       concurrentAutomaticEngineUpgradePerNodeLimit: "1"
