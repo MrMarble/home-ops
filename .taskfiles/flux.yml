@@ -17,7 +17,7 @@ tasks:
       - sops --decrypt {{.KUBERNETES_DIR}}/bootstrap/age-key.sops.yaml | kubectl --context {{.cluster}} apply -f -
       - sops --decrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
       - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux/vars
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux/config
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/flux
       - defer: sops --encrypt --in-place {{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.env
     preconditions:
       - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }

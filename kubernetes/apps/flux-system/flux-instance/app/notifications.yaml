@@ -1,0 +1,43 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: github
+  namespace: flux-system
+spec:
+  type: github
+  address: https://github.com/MrMarble/home-ops
+  secretRef:
+    name: github-token-secret
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: github
+  namespace: flux-system
+spec:
+  providerRef:
+    name: github
+  eventSeverity: info
+  eventSources:
+    - kind: Kustomization
+      name: "*"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: github-token
+  namespace: flux-system
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: github-token-secret
+    template:
+      engineVersion: v2
+      data:
+        token: "{{ .FLUX_GITHUB_TOKEN }}"
+  dataFrom:
+    - extract:
+        key: flux
