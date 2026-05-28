@@ -41,7 +41,7 @@ spec:
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
       storageOverProvisioningPercentage: 100
       storageMinimalAvailablePercentage: 0
-      replicaAutoBalance: true
+      replicaAutoBalance: "true"
       allowCollectingLonghornUsageMetrics: false
       systemManagedComponentsNodeSelector: ""
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
