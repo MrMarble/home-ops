@@ -6,3 +6,4 @@ resources:
   - ./helmrelease.yaml
   - ./envoy.yaml
   - ./o11y.yaml
+  - ./grafanadashboard.yaml
