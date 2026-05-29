@@ -10,3 +10,5 @@ resources:
   - ./httproute.yaml
   - ./notifications.yaml
   - ./grafanadashboard.yaml
+  - ./podmonitor.yaml
+  - ./prometheusrule.yaml
