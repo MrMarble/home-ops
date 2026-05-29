@@ -45,4 +45,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: cloudnative_pg_secret
+        name: cloudnative-pg-secret
