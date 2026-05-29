@@ -4,6 +4,7 @@ resources:
   - ./externalsecret.yaml
   - ./dnsendpoint.yaml
   - ./helmrelease.yaml
+  - ./grafanadashboard.yaml
 configMapGenerator:
   - name: cloudflared-configmap
     files:
