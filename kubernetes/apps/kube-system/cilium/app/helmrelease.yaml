@@ -42,14 +42,14 @@ spec:
   values:
     hubble:
       serviceMonitor:
-        enabled: false
+        enabled: true
       metrics:
         dashboards:
           enabled: true
       relay:
         prometheus:
           serviceMonitor:
-            enabled: false
+            enabled: true
 
       ui:
         ingress:
@@ -57,21 +57,21 @@ spec:
     l2announcements:
       enabled: true
     prometheus:
-      enabled: false
+      enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
 
       relay:
         enabled: false
         prometheus:
           serviceMonitor:
-            enabled: false
+            enabled: true
 
     operator:
       prometheus:
-        enabled: false
+        enabled: true
         serviceMonitor:
-          enabled: false
+          enabled: true
       dashboards:
         enabled: true
 
