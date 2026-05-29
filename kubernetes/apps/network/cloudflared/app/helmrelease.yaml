@@ -80,6 +80,10 @@ spec:
         ports:
           http:
             port: *port
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
     persistence:
       config:
         type: configMap
