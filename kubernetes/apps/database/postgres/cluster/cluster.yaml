@@ -43,10 +43,10 @@ spec:
       s3Credentials:
         accessKeyId:
           name: cloudnative_pg_secret
-          key: aws-access-key-id
+          key: aws_access_key_id
         secretAccessKey:
           name: cloudnative_pg_secret
-          key: aws-secret-access-key
+          key: aws_secret_access_key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
