@@ -45,10 +45,7 @@ spec:
         enabled: false
       metrics:
         dashboards:
-          enabled: false
-          annotations:
-            grafana_folder: Cilium
-
+          enabled: true
       relay:
         prometheus:
           serviceMonitor:
@@ -76,11 +73,7 @@ spec:
         serviceMonitor:
           enabled: false
       dashboards:
-        enabled: false
-        annotations:
-          grafana_folder: Cilium
+        enabled: true
 
     dashboards:
-      enabled: false
-      annotations:
-        grafana_folder: Cilium
+      enabled: true
