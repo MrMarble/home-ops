@@ -46,4 +46,3 @@ spec:
     substituteFrom:
       - kind: Secret
         name: cloudnative-pg-secret
-        namespace: database

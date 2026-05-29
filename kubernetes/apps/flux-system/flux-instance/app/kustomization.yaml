@@ -5,6 +5,7 @@ resources:
   - ./ocirepository.yaml
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+  - ./cloudnative-pg-externalsecret.yaml
   - ./receiver.yaml
   - ./httproute.yaml
   - ./notifications.yaml
