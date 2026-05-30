@@ -1,10 +1,14 @@
+[env]
+KUBECONFIG = "{{config_root}}/kubeconfig.yaml"
+
 [tools]
 helm = "latest"
 k9s = "latest"
 kubectl = "latest"
-"npm:@docmd/core" = "latest"
+lefthook = "latest"
 "pipx:flux-local" = "latest"
 task = "latest"
-[env]
-KUBECONFIG = "{{config_root}}/kubeconfig.yaml"
-SOPS_AGE_KEY_FILE = "{{config_root}}/age.key"
+yamlfmt = "latest"
+
+[hooks]
+postinstall = "lefthook install"
