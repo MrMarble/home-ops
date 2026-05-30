@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://gitlab.com/uploads/-/system/project/avatar/35246547/homelab.png" align="left" width="144px" height="144px"/>
+<img width="175" height="175" alt="logo" src="https://github.com/user-attachments/assets/fe3feb2f-3b03-4e72-acf1-c02ef21dc32d" />
 
-## My home operations repository
+### My home operations repository
 
 _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
@@ -15,7 +15,6 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 </div>
 <div align="center">
-<br/>
 
 ![Home Internet status](https://status.mrmarble.dev/api/badge/1/status?style=for-the-badge&label=Home%20Internet)
 ![Home Assistant status](https://status.mrmarble.dev/api/badge/2/status?style=for-the-badge&label=Home%20Assistant)
@@ -39,12 +38,6 @@ _... managed with Flux, Renovate and GitHub Actions_ 🐱
 
 ---
 
-### 📖 Docs
-
-The documentation that goes along with this repo can be found [over here](https://mrmarble.github.io/home-ops/).
-
----
-
 ### 🤝 Thanks
 
 Thanks to all the people who donate their time to the [Kubernetes @Home](https://discord.gg/k8s-at-home) Discord community. A lot of inspiration for my cluster comes from the people that have shared their clusters using the [k8s-at-home](https://github.com/topics/k8s-at-home) GitHub topic. Be sure to check out the [Kubernetes @Home search](https://nanne.dev/k8s-at-home-search/) for ideas on how to deploy applications or get ideas on what you can deploy.
@@ -53,7 +46,7 @@ Thanks to all the people who donate their time to the [Kubernetes @Home](https:/
 
 
 <div align="center">
-  s
+  
 [![DeepWiki](https://img.shields.io/badge/deepwiki-purple?label=&logo=deepl&style=for-the-badge&logoColor=white)](https://deepwiki.com/mrmarble/home-ops)
 
 </div>
