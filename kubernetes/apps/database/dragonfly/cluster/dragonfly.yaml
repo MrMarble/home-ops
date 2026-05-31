@@ -4,6 +4,8 @@ kind: Dragonfly
 metadata:
   name: dragonfly
 spec:
+  args:
+    - --default_lua_flags=allow-undeclared-keys
   replicas: 1
   resources:
     requests:
