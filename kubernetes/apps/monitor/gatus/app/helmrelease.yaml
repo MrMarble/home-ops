@@ -5,50 +5,41 @@ kind: HelmRelease
 metadata:
   name: gatus
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: gatus
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     controllers:
       gatus:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
-          init-config:
+          gatus-sidecar:
             image:
-              repository: ghcr.io/home-operations/k8s-sidecar
-              tag: 1.30.3@sha256:39cca7abcad8f1621b9462d95f7d0e60301b92fcb0ff4de0ad4561859011cddf
-            env:
-              FOLDER: /config
-              LABEL: gatus.io/enabled
-              NAMESPACE: ALL
-              RESOURCE: both
-              UNIQUE_FILENAMES: true
-              METHOD: WATCH
-            restartPolicy: Always
+              repository: ghcr.io/home-operations/gatus-sidecar
+              tag: 0.0.18@sha256:3e8ab2f65ac6eba268c963919e34e6f4c4e10439979de3ded71242240621edcd
+            args:
+              - --auto-httproute
+              - --enable-httproute
+              - --enable-service
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 128Mi
+            restartPolicy: Always
         containers:
           app:
             image:
               repository: ghcr.io/twin/gatus
               tag: v5.36.0@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0
             env:
-              TZ: Europe/Madrid
-              GATUS_CONFIG_PATH: /config
               GATUS_DELAY_START_SECONDS: 5
-              WEB_PORT: &port 80
+              GATUS_CONFIG_PATH: /config
+              GATUS_WEB_PORT: &port 80
+              TZ: Europe/Madrid
             probes:
               liveness: &probes
                 enabled: true
@@ -71,9 +62,14 @@ spec:
                 cpu: 100m
               limits:
                 memory: 256Mi
-        serviceAccount:
-          identifier: gatus
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              storageClass: longhorn
+              accessMode: ReadWriteOnce
+              size: 5Gi
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -82,18 +78,19 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: gatus
         ports:
           http:
             port: *port
     serviceMonitor:
       app:
-        serviceName: gatus
         endpoints:
           - port: http
     route:
       app:
+        annotations:
+          gatus.home-operations.com/enabled: "false"
         hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
           - status.atsbhome.xyz
         parentRefs:
           - name: envoy-external
@@ -103,9 +100,23 @@ spec:
         gatus:
           type: ClusterRole
           rules:
-            - apiGroups: [""]
-              resources: ["configmaps", "secrets"]
-              verbs: ["get", "watch", "list"]
+            - apiGroups:
+                - ""
+              resources:
+                - services
+              verbs:
+                - get
+                - watch
+                - list
+            - apiGroups:
+                - gateway.networking.k8s.io
+              resources:
+                - gateways
+                - httproutes
+              verbs:
+                - get
+                - watch
+                - list
       bindings:
         gatus:
           type: ClusterRoleBinding
@@ -113,15 +124,10 @@ spec:
             identifier: gatus
           subjects:
             - identifier: gatus
-    serviceAccount:
-      gatus: {}
     persistence:
-      config:
-        existingClaim: gatus
       config-file:
         type: configMap
-        name: gatus-configmap
+        name: "{{ .Release.Name }}-configmap"
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-            readOnly: true
