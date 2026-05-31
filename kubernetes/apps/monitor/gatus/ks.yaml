@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: &app gatus
 spec:
+  components:
+    - ../../../../components/oci-repository
   targetNamespace: monitor
   commonMetadata:
     labels:
