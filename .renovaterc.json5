@@ -98,6 +98,20 @@
       minimumGroupSize: 5,
     },
     {
+      description: "k3s Group",
+      groupName: "k3s",
+      matchDatasources: ["docker"],
+      matchPackageNames: [
+        "/k3s/",
+        "/k3s-io/",
+        "/k3s-io/k3s/",
+      ],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
+      },
+      minimumGroupSize: 2,
+    },
+    {
       description: "Rook-Ceph Group",
       groupName: "rook-ceph",
       matchDatasources: ["docker"],
