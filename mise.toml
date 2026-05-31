@@ -10,6 +10,7 @@ lefthook = "latest"
 "pipx:flux-local" = "latest"
 task = "latest"
 yamlfmt = "latest"
+zizmor = "latest"
 
 [hooks]
 postinstall = "lefthook install"
