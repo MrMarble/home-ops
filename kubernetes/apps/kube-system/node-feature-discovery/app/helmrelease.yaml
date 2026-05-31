@@ -6,14 +6,9 @@ metadata:
   name: &app node-feature-discovery
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: node-feature-discovery
-      version: 0.18.3
-      sourceRef:
-        kind: HelmRepository
-        name: kubernetes-sigs-nfd
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: node-feature-discovery
   install:
     remediation:
       retries: 3
@@ -37,14 +32,33 @@ spec:
     worker:
       config:
         core:
-          labelSources: ["custom", "pci", "usb"]
+          labelSources:
+            - "custom"
+            - "pci"
+            - "usb"
         sources:
           usb:
-            deviceClassWhitelist: ["02", "03", "0e", "ef", "fe", "ff"]
-            deviceLabelFields: ["class", "vendor", "device"]
+            deviceClassWhitelist:
+              - "02"
+              - "03"
+              - "0e"
+              - "ef"
+              - "fe"
+              - "ff"
+            deviceLabelFields:
+              - "class"
+              - "vendor"
+              - "device"
           pci:
-            deviceLabelFields: ["class", "vendor", "device"]
-            deviceClassWhitelist: ["02", "03", "0e", "ff"]
+            deviceLabelFields:
+              - "class"
+              - "vendor"
+              - "device"
+            deviceClassWhitelist:
+              - "02"
+              - "03"
+              - "0e"
+              - "ff"
       resources:
         requests:
           cpu: 5m
