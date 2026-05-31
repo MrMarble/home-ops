@@ -4,6 +4,7 @@ FLATE_PATH = '{{config_root}}/kubernetes/flux/cluster'
 
 [tools]
 helm = "latest"
+just = "latest"
 k9s = "latest"
 kubectl = "latest"
 lefthook = "latest"
