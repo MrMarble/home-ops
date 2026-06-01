@@ -25,6 +25,29 @@
   changed_when: true
   tags: dns
 
+- name: Disable systemd-resolved stub listener
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/resolved.conf
+    regexp: "^#?DNSStubListener="
+    line: "DNSStubListener=no"
+  register: resolved_conf
+  tags: dns
+
+- name: Restart systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    state: restarted
+  when: resolved_conf.changed
+  tags: dns
+
+- name: Link resolv.conf to systemd-resolved
+  ansible.builtin.file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: true
+  tags: dns
+
 - name: Install Utilities
   ansible.builtin.dnf:
     name:

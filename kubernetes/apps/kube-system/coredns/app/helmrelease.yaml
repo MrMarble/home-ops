@@ -23,18 +23,6 @@ spec:
       clusterIP: 10.43.0.10
     servers:
       - zones:
-          - zone: internal.
-        port: 53
-        plugins:
-          - name: errors
-          - name: forward
-            parameters: . 192.168.42.1
-          - name: cache
-            configBlock: |-
-              prefetch 20
-              serve_stale
-          - name: reload
-      - zones:
           - zone: .
             scheme: dns://
             use_tcp: true
