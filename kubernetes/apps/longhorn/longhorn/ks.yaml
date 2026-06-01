@@ -4,11 +4,10 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app longhorn
-  namespace: flux-system
 spec:
   dependsOn:
     - name: snapshot-controller
-      namespace: flux-system
+      namespace: kube-system
   targetNamespace: longhorn
   commonMetadata:
     labels:

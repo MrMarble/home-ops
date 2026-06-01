@@ -11,7 +11,7 @@ spec:
     - ../../../../components/oci-repository
   dependsOn:
     - name: longhorn
-      namespace: flux-system
+      namespace: longhorn
   interval: 1h
   path: ./kubernetes/apps/media/qbittorrent/app
   postBuild:

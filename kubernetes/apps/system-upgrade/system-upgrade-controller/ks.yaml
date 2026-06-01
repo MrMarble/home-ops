@@ -4,7 +4,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app system-upgrade-controller
-  namespace: flux-system
 spec:
   components:
     - ../../../../components/oci-repository
@@ -30,7 +29,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app system-upgrade-controller-plans
-  namespace: flux-system
 spec:
   targetNamespace: system-upgrade
   commonMetadata:
