@@ -50,6 +50,7 @@ spec:
               seccompProfile:
                 type: RuntimeDefault
     defaultPodOptions:
+      automountServiceAccountToken: true
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
