@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: dragonfly-prometheus-metrics
+  name: dragonfly
 spec:
   podSelector:
     matchLabels:
@@ -12,13 +12,22 @@ spec:
   policyTypes:
     - Ingress
   ingress:
+    - ports:
+        - port: 6379
+          protocol: TCP
     - from:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              control-plane: controller-manager
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: monitor
           podSelector:
             matchLabels:
               app.kubernetes.io/name: prometheus
+        - ipBlock:
+            cidr: 192.168.42.0/24
       ports:
-        - protocol: TCP
-          port: 9999
+        - port: 9999
+          protocol: TCP
