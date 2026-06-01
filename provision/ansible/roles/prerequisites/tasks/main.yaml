@@ -25,11 +25,15 @@
   changed_when: true
   tags: dns
 
-- name: Disable systemd-resolved stub listener
+- name: Disable systemd-resolved stub listener and set DNS
   ansible.builtin.lineinfile:
     path: /etc/systemd/resolved.conf
-    regexp: "^#?DNSStubListener="
-    line: "DNSStubListener=no"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: "^#?DNSStubListener=", line: "DNSStubListener=no" }
+    - { regexp: "^#?DNS=", line: "DNS={{ dns_server }}" }
+    - { regexp: "^#?FallbackDNS=", line: "FallbackDNS=" }
   register: resolved_conf
   tags: dns
 
