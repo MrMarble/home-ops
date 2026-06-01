@@ -13,7 +13,7 @@ data:
   IMMICH_TRUSTED_PROXIES: 10.42.0.0/16,10.43.0.0/16
   IMMICH_ENV: production
   NODE_ENV: production
-  REDIS_URL: ioredis://eyJkYiI6MTUsInNlbnRpbmVscyI6W3siaG9zdCI6InJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYXRhYmFzZS5zdmMuY2x1c3Rlci5sb2NhbCIsInBvcnQiOjI2Mzc5fSx7Imhvc3QiOiJyZWRpcy1ub2RlLTEucmVkaXMtaGVhZGxlc3MuZGF0YWJhc2Uuc3ZjLmNsdXN0ZXIubG9jYWwiLCJwb3J0IjoyNjM3OX0seyJob3N0IjoicmVkaXMtbm9kZS0yLnJlZGlzLWhlYWRsZXNzLmRhdGFiYXNlLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9XSwibmFtZSI6InJlZGlzLW1hc3RlciJ9
+  REDIS_URL: ioredis://eyJob3N0IjoiZHJhZ29uZmx5LmRhdGFiYXNlLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6NjM3OSwiZGIiOjE1fQ==
   TRANSFORMERS_CACHE: /usr/src/app/.transformers_cache
   TYPESENSE_DATA_DIR: /config
   TYPESENSE_HOST: immich-typesense.default.svc.cluster.local
