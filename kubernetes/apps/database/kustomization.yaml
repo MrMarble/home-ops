@@ -4,3 +4,4 @@ resources:
   - ./namespace.yaml
   - ./priority-class.yaml
   - ./postgres/ks.yaml
+  - ./dragonfly-operator/ks.yaml
