@@ -148,7 +148,9 @@ spec:
   tcpKeepalive: {}
   tls:
     minVersion: "1.2"
+    maxVersion: "1.3"
     alpnProtocols:
+      - h3
       - h2
       - http/1.1
 ---
