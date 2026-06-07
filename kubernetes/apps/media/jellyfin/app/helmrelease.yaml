@@ -46,9 +46,9 @@ spec:
                 - name: gpu
               requests:
                 cpu: 100m
-                memory: 2Gi
+                memory: 1Gi
               limits:
-                memory: 6Gi
+                memory: 4Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -56,8 +56,13 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [39, 44, 105, 104, 100] # cat /etc/group
-      nodeSelector:
+        supplementalGroups:
+          - 39
+          - 44
+          - 105
+          - 104
+          - 100
+      nodeSelector: # cat /etc/group
         intel.feature.node.kubernetes.io/gpu: "true"
       resourceClaims:
         - name: gpu
