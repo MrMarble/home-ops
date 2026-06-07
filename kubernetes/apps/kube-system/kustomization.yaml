@@ -9,3 +9,4 @@ resources:
   - ./node-feature-discovery/ks.yaml
   - ./intel-gpu-resource-driver/ks.yaml
   - ./snapshot-controller/ks.yaml
+  - ./descheduler/ks.yaml
