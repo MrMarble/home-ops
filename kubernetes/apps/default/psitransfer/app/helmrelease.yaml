@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: docker.io/psitrax/psitransfer
-              tag: v2.4.3@sha256:56aeed8acb1f1e9e712a229f9bbdeadceb5e4a695cfd16a6df3c018be7f209c0
+              tag: v2.4.4@sha256:312d060e0e2934ff618b3e361d766872b89892dc33c5456858b4aa04dc17a18d
             env:
               TZ: Europe/Madrid
             envFrom:
