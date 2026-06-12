@@ -17,8 +17,8 @@ spec:
         containers:
           app:
             image:
-              repository: santiagosayshey/profilarr
-              tag: v1.1.4@sha256:8a514f8429cd33885166facc9eb6504fa9ded056c737609e5e8ef32ae0afb350
+              repository: ghcr.iodictionarry-hub/profilarr
+              tag: v2.0.8@sha256:bcec9c579358163004145105c2747d3513ae75a56cd8b6c3ac759a0166d5b4af 
             env:
               TZ: Europe/Madrid
             probes:
