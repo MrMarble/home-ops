@@ -17,7 +17,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.iodictionarry-hub/profilarr
+              repository: ghcr.io/dictionarry-hub/profilarr
               tag: v2.0.8@sha256:bcec9c579358163004145105c2747d3513ae75a56cd8b6c3ac759a0166d5b4af 
             env:
               TZ: Europe/Madrid
