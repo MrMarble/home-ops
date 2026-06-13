@@ -18,11 +18,13 @@ spec:
           app:
             image:
               repository: ghcr.io/dictionarry-hub/profilarr
-              tag: v2.0.8@sha256:bcec9c579358163004145105c2747d3513ae75a56cd8b6c3ac759a0166d5b4af 
+              tag: v2.0.8@sha256:bcec9c579358163004145105c2747d3513ae75a56cd8b6c3ac759a0166d5b4af
             env:
               TZ: Europe/Madrid
               AUTH: off
               ORIGIN: "https://{{ .Release.Name }}.atsbhome.xyz"
+              PARSER_HOST: profilarr-parser
+              PARSER_PORT: &parserPort 5000
             probes:
               liveness:
                 enabled: true
@@ -39,11 +41,62 @@ spec:
                 cpu: 25m
               limits:
                 memory: 1Gi
+      parser:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/dictionarry-hub/profilarr-parser
+              tag: 2.0.8@sha256:083a6bcd3234c1eb98cf3a202daa4070cd93fecce08f8cf51e4ab0a035d95a56
+            env:
+              ASPNETCORE_URLS: http://+:5000
+              ASPNETCORE_ENVIRONMENT: Production
+            probes:
+              liveness: &parserProbes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *parserPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 2
+                  failureThreshold: 3
+              readiness: *parserProbes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *parserPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 2
+                  failureThreshold: 30
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 25m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+
     service:
       app:
         ports:
           http:
             port: *port
+      parser:
+        controller: parser
+        ports:
+          http:
+            port: *parserPort
     route:
       app:
         hostnames:
