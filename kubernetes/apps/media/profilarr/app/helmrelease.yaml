@@ -89,7 +89,7 @@ spec:
 
     service:
       app:
-        controller: app
+        controller: profilarr
         ports:
           http:
             port: *port
