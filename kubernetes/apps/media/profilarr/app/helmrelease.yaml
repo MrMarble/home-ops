@@ -24,7 +24,7 @@ spec:
               AUTH: off
               ORIGIN: "https://{{ .Release.Name }}.atsbhome.xyz"
               PARSER_HOST: profilarr-parser
-              PARSER_PORT: &parserPort 5000
+              PARSER_PORT: 5000
             probes:
               liveness:
                 enabled: true
@@ -59,7 +59,7 @@ spec:
                 spec:
                   httpGet:
                     path: /health
-                    port: *parserPort
+                    port: 5000
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 2
@@ -71,7 +71,7 @@ spec:
                 spec:
                   httpGet:
                     path: /health
-                    port: *parserPort
+                    port: 5000
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 2
@@ -97,7 +97,7 @@ spec:
         controller: parser
         ports:
           http:
-            port: *parserPort
+            port: 5000
     route:
       app:
         hostnames:
