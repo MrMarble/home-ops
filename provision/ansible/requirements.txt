@@ -1,5 +1,5 @@
 ansible-lint==26.3.0
-ansible==13.7.0
+ansible==13.8.0
 jmespath==1.1.0
 kubernetes==32.0.1
 openshift==0.13.2
