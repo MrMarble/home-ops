@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/mrmarble/dilna
-              tag: main
+              tag: latest
               pullPolicy: Always
             env:
               TZ: Europe/Madrid
