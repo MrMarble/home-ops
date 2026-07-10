@@ -1,0 +1,85 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app dilna
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: dilna
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      dilna:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/mrmarble/dilna
+              tag: main
+              pullPolicy: Always
+            env:
+              TZ: Europe/Madrid
+            probes:
+              liveness: &probes
+                enabled: true
+                type: HTTP
+                path: /api/health
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+    defaultPodOptions:
+      imagePullSecrets:
+        - name: dilna-pull-secret
+    service:
+      app:
+        controller: dilna
+        ports:
+          http:
+            primary: true
+            port: 3001
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      data:
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        storageClass: longhorn
+        globalMounts:
+          - path: /data
+      ssh:
+        type: secret
+        name: dilna-secret
+        defaultMode: 0400
+        items:
+          - key: SSH_PRIVATE_KEY
+            path: id_rsa
+        globalMounts:
+          - path: /root/.ssh/id_rsa
+            subPath: id_rsa
+            readOnly: true
