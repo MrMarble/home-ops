@@ -3,6 +3,7 @@ KUBECONFIG = "{{config_root}}/kubeconfig.yaml"
 FLATE_PATH = '{{config_root}}/kubernetes/flux/cluster'
 
 [tools]
+"go:github.com/home-operations/flate/cmd/flate" = "latest"
 helm = "latest"
 just = "latest"
 k9s = "latest"
