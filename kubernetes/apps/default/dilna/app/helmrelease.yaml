@@ -33,10 +33,11 @@ spec:
             env:
               TZ: Europe/Madrid
             probes:
-              liveness:
+              liveness: &probes
                 enabled: true
-              readiness:
-                enabled: true
+                type: HTTP
+                path: /api/health
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
