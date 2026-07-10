@@ -42,6 +42,18 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
+              # Claude Code's own sandbox shells out to bubblewrap per Bash
+              # command (dilna's ADR-0010). bwrap needs to create a user
+              # namespace, which containerd's default seccomp profile blocks
+              # outright (containers/bubblewrap#505). bwrap.json is Podman's
+              # default profile (containers/common) distributed to every node
+              # by the k3s Ansible role — identical to the default except it
+              # also allows the specific namespace syscalls bwrap needs, so
+              # this stays scoped instead of disabling seccomp for the whole
+              # container.
+              seccompProfile:
+                type: Localhost
+                localhostProfile: bwrap.json
             resources:
               requests:
                 cpu: 10m
@@ -49,6 +61,17 @@ spec:
               limits:
                 memory: 512Mi
     defaultPodOptions:
+      securityContext:
+        # Claude Code's bypassPermissions mode (dilna's ADR-0003/0010)
+        # refuses to run as root, and dilna's image itself now runs as the
+        # non-root `node` user (uid 1000) baked into its node:24 base image.
+        # fsGroup replaces the chown dilna's own docker-entrypoint.sh would
+        # otherwise do for the Longhorn PVC on a Docker host.
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
       imagePullSecrets:
         - name: dilna-pull-secret
     service:
@@ -80,6 +103,8 @@ spec:
           - key: SSH_PRIVATE_KEY
             path: id_rsa
         globalMounts:
-          - path: /root/.ssh/id_rsa
+          # dilna's image no longer runs as root (see securityContext above),
+          # so the container's $HOME is /home/node, not /root.
+          - path: /home/node/.ssh/id_rsa
             subPath: id_rsa
             readOnly: true
