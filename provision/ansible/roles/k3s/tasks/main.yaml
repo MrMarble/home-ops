@@ -25,14 +25,21 @@
     - /etc/rancher/k3s
     - /etc/rancher/node
     - "{{ k3s_data_dir }}/agent/pod-manifests"
-    - /var/lib/kubelet/seccomp
 
 # Podman's default seccomp profile (containers/common), which unlike
 # Docker's/containerd's default also allows the clone/unshare/setns calls
 # bubblewrap needs to create its sandbox's user namespace. Lets workloads
 # opt in via `seccompProfile: {type: Localhost, localhostProfile: bwrap.json}`
 # instead of disabling seccomp outright (containers/bubblewrap#505) — dilna
-# uses this for Claude Code's own per-command sandbox (its ADR-0010).
+# uses this for Claude Code's own per-command sandbox (its ADR-0010). Tagged
+# separately so it can be applied on its own: `--tags seccomp`.
+- name: Ensure kubelet seccomp profile directory exists
+  ansible.builtin.file:
+    path: /var/lib/kubelet/seccomp
+    state: directory
+    mode: 0755
+  tags: seccomp
+
 - name: Copy bubblewrap seccomp profile for sandboxed workloads
   ansible.builtin.copy:
     src: seccomp/bwrap.json
@@ -40,6 +47,7 @@
     owner: root
     group: root
     mode: 0644
+  tags: seccomp
 
 - name: Check if k3s token file exists on the first node
   run_once: true
