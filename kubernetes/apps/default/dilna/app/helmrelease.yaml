@@ -32,13 +32,9 @@ spec:
               pullPolicy: Always
             env:
               TZ: Europe/Madrid
+              DILNA_PROVIDER: deepseek
+              DILNA_MODEL: deepseek-v4-flash
             envFrom:
-              # Claude Agent SDK auth (dilna's ADR-0005/0009, host-passthrough
-              # extended to Claude): needs CLAUDE_CODE_OAUTH_TOKEN (from
-              # `claude setup-token`) or ANTHROPIC_API_KEY as an env var — the
-              # SDK reads it straight from the process environment, no config
-              # file. Pulled from the same dilna-secret the ExternalSecret
-              # already populates from 1Password.
               - secretRef:
                   name: dilna-secret
             probes:
