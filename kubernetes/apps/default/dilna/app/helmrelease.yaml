@@ -96,7 +96,7 @@ spec:
     persistence:
       data:
         accessMode: ReadWriteOnce
-        size: 5Gi
+        size: 10Gi
         storageClass: longhorn
         globalMounts:
           - path: /data
