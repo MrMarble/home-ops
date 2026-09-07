@@ -62,9 +62,18 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
+                memory: 512Mi
               limits:
-                memory: 1Gi
+                # dilna's own operational notes document `tsc --noEmit` on
+                # apps/server alone needing NODE_OPTIONS=--max-old-space-size=4096
+                # to avoid OOM; an agentic turn can trigger that (plus node's own
+                # baseline + other spawned tool processes: biome, git, pnpm) well
+                # above the previous 1Gi limit, which was silently OOM-killing the
+                # pod mid-turn and losing in-flight session history. 5Gi (not
+                # higher) chosen to stay survivable on the tightest node in this
+                # 3-node cluster (metal1, ~4Gi free at time of writing) rather than
+                # risk node-wide memory pressure.
+                memory: 4Gi
     defaultPodOptions:
       securityContext:
         # Claude Code's bypassPermissions mode (dilna's ADR-0003/0010)
