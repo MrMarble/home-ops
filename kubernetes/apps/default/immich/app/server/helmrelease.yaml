@@ -35,7 +35,7 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               # renovate: datasource=github-releases depName=immich-app/immich
-              tag: v3.0.3
+              tag: v3.2.0
             envFrom:
               - secretRef:
                   name: immich-secret
