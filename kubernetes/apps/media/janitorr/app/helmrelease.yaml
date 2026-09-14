@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/schaka/janitorr
-              tag: jvm-stable@sha256:270e9113c71182d30929f253ff6ff49c63078f4556487a668602c4114c7d665a
+              tag: jvm-stable@sha256:0f5d7099ee1cb013765919c5e701d44405c345a151d2e81ebed61d0f8439e286
             env:
               TZ: Europe/Madrid
             envFrom:
