@@ -61,7 +61,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 300Gi
+                memory: 400Mi
               limits:
                 memory: 700Mi
     defaultPodOptions:
