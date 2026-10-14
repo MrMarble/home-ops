@@ -67,18 +67,21 @@ spec:
         primary: true
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 192.168.42.40
+          lbipam.cilium.io/ips: 192.168.40.40
         ports:
           http:
             port: *port
       bittorrent:
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: 192.168.42.37
+          lbipam.cilium.io/ips: 192.168.40.37
         ports:
           bittorrent-tcp:
             port: *torrentPort
             protocol: TCP
+          bittorrent-udp:
+            port: *torrentPort
+            protocol: UDP
     route:
       app:
         hostnames:
