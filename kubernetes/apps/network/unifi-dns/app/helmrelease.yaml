@@ -44,7 +44,5 @@ spec:
       - service
     txtOwnerId: main
     txtPrefix: k8s.main.
-    serviceMonitor:
-      enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret

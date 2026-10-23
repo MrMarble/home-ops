@@ -1,10 +1,6 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: [
-    "github>home-operations/renovate-presets#10.0.1",
-    "github>home-operations/renovate-presets//apps/grafanaDashboards.json5#10.0.1",
-    ":timezone(Europe/Madrid)",
-  ],
+  extends: ["github>home-operations/renovate-presets#10.0.1", ":timezone(Europe/Madrid)"],
   lockFileMaintenance: {
     enabled: true,
     schedule: ["before 3am on the first day of the month"],
@@ -49,14 +45,6 @@
       automerge: true,
       automergeType: "branch",
       minimumReleaseAge: "1 minute",
-      ignoreTests: true,
-    },
-    {
-      description: "Auto-merge Grafana dashboards",
-      matchDatasources: ["custom.grafana-dashboards"],
-      matchUpdateTypes: ["major"],
-      automerge: true,
-      automergeType: "branch",
       ignoreTests: true,
     },
     {
@@ -108,11 +96,7 @@
       description: "k3s Group",
       groupName: "k3s",
       matchDatasources: ["docker"],
-      matchPackageNames: [
-        "/k3s/",
-        "/k3s-io/",
-        "/k3s-io/k3s/",
-      ],
+      matchPackageNames: ["/k3s/", "/k3s-io/", "/k3s-io/k3s/"],
       group: {
         commitMessageTopic: "{{{groupName}}} group",
       },
@@ -134,7 +118,7 @@
       matchDatasources: ["docker", "github-releases"],
       matchPackageNames: ["/immich/"],
       group: {
-        commitMessageTopic: "{{{groupName}}} group"
+        commitMessageTopic: "{{{groupName}}} group",
       },
     },
     // Labeling rules

@@ -20,12 +20,6 @@ spec:
           podSelector:
             matchLabels:
               control-plane: controller-manager
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: monitor
-          podSelector:
-            matchLabels:
-              app.kubernetes.io/name: prometheus
         - ipBlock:
             cidr: 192.168.42.0/24
       ports:

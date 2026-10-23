@@ -6,7 +6,6 @@ resources:
   - ocirepository.yaml
   - helmrelease.yaml
   - bgppeeringpolicy.yaml
-  - grafanadashboard.yaml
 configMapGenerator:
   - name: cilium-values
     options:

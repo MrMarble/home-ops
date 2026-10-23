@@ -26,5 +26,3 @@ spec:
     dns01RecursiveNameserversOnly: true
     prometheus:
       enabled: true
-      servicemonitor:
-        enabled: true

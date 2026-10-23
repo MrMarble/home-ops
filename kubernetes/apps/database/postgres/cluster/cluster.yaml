@@ -27,8 +27,6 @@ spec:
       memory: "512Mi"
     limits:
       hugepages-2Mi: "512Mi"
-  monitoring:
-    enablePodMonitor: true
   backup:
     retentionPolicy: 30d
     barmanObjectStore: &barmanObjectStore

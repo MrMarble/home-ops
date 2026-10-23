@@ -63,7 +63,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -78,10 +78,6 @@ spec:
             port: *port
           metrics:
             port: *metricsPort
-    serviceMonitor:
-      app:
-        endpoints:
-          - port: metrics
     route:
       app:
         hostnames:

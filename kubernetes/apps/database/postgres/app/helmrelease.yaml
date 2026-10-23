@@ -24,7 +24,3 @@ spec:
     crds:
       create: true
     priorityClassName: databases-cluster-critical
-    monitoring:
-      podMonitorEnabled: true
-      grafanaDashboard:
-        create: true
