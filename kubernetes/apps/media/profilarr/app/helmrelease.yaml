@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dictionarry-hub/profilarr
-              tag: 2.2.0@sha256:ddcdd0f340043c2ec0a85ca74b9a6be9be42b1c0288c75fc36a26a43f695860b
+              tag: 2.3.1@sha256:352e42dec74ecfd68d13bb198fbc6d9346e3a8c55003026e1814e59319a2176d
             env:
               TZ: Europe/Madrid
               AUTH: off
@@ -48,7 +48,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dictionarry-hub/profilarr-parser
-              tag: 2.2.0@sha256:3cd3f8c4979ee66304a518462cc6c5b59825bae6b25e7dfa51b30178b9265df7
+              tag: 2.3.1@sha256:234084df7037e76b98c66f5ab220dc0d10ef8f34145ded57b9af257f057bdda6
             env:
               ASPNETCORE_URLS: http://+:5000
               ASPNETCORE_ENVIRONMENT: Production
