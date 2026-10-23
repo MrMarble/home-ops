@@ -18,8 +18,5 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    controller:
-      serviceMonitor:
-        create: true
     webhook:
       enabled: false

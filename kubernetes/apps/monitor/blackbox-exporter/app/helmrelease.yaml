@@ -39,19 +39,3 @@ spec:
       options:
         - name: ndots
           value: "1"
-    serviceMonitor:
-      enabled: true
-      selfMonitor:
-        enabled: true
-    prometheusRule:
-      enabled: true
-      rules:
-        - alert: LanProbeFailed
-          expr: |-
-            probe_success{service="blackbox-exporter"} == 0
-          for: 15m
-          labels:
-            severity: critical
-          annotations:
-            summary: |-
-              The probe targeting {{ $labels.instance }} is currently having connectivity issues

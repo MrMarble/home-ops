@@ -55,6 +55,8 @@ jobs:
       - name: Run flate diff
         env:
           FLATE_PATH: ./kubernetes/flux/cluster
+          # CRDs installed by kube-prometheus-stack; charts like cilium refuse to render ServiceMonitors without them
+          FLATE_API_VERSIONS: monitoring.coreos.com/v1
           KIND: ${{ matrix.kind }}
         run: |
           flate diff "$KIND" > "$KIND.diff"

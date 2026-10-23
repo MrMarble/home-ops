@@ -13,6 +13,3 @@ spec:
     manager:
       image:
         repository: ghcr.io/dragonflydb/operator
-    grafanaDashboard:
-      enabled: true
-      folder: database

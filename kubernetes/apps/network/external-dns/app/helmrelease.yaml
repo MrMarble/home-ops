@@ -42,7 +42,5 @@ spec:
     txtOwnerId: default
     domainFilters:
       - "atsbhome.xyz"
-    serviceMonitor:
-      enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret

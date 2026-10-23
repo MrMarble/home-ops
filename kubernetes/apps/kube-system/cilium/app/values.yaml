@@ -63,12 +63,8 @@ l2announcements:
   enabled: true
 localRedirectPolicy: true
 operator:
-  dashboards:
-    enabled: true
   prometheus:
     enabled: true
-    serviceMonitor:
-      enabled: true
   replicas: 1
   rollOutPods: true
 rollOutCiliumPods: true
