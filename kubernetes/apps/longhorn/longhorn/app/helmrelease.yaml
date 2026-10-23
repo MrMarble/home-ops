@@ -32,6 +32,7 @@ spec:
     defaultSettings:
       defaultLonghornStaticStorageClass: longhorn
       concurrentAutomaticEngineUpgradePerNodeLimit: "1"
+      concurrentReplicaRebuildPerNodeLimit: "1"
       storageOverProvisioningPercentage: "100"
       storageMinimalAvailablePercentage: "0"
       replicaAutoBalance: "true"
