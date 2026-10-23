@@ -121,6 +121,16 @@
         commitMessageTopic: "{{{groupName}}} group",
       },
     },
+    {
+      description: "Profilarr Group",
+      groupName: "profilarr",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["/profilarr/", "/profilarr-parser/"],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
+      },
+      minimumGroupSize: 2,
+    },
     // Labeling rules
     {
       matchUpdateTypes: ["major"],
