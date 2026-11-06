@@ -43,7 +43,7 @@ spec:
           app:
             image:
               repository: ghcr.io/justarchinet/archisteamfarm
-              tag: 6.3.11.6
+              tag: 6.3.11.7
             env:
               TZ: Europe/Madrid
               ASF_ARGS: "--process-required --no-restart"
