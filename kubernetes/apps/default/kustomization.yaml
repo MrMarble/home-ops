@@ -4,6 +4,6 @@ namespace: default
 resources:
   - ./namespace.yaml
   - ./archi/ks.yaml
-  - ./dilna/ks.yaml
+  - ./paseo/ks.yaml
   - ./immich/ks.yaml
   - ./psitransfer/ks.yaml

@@ -1,0 +1,85 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app paseo
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: paseo
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      paseo:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/mrmarble/paseo
+              tag: 0.15.3@sha256:b44996acfb9caad95dae86e64e45976b058015782bf6b26061f804dcc2f95e9b
+            env:
+              TZ: Europe/Madrid
+              PASEO_HOSTNAMES: "{{ .Release.Name }}.atsbhome.xyz"
+            envFrom:
+              - secretRef:
+                  name: paseo-secret
+            probes:
+              liveness: &probes
+                enabled: true
+                type: HTTP
+                path: /api/health
+              readiness: *probes
+            # The image entrypoint starts as root to prepare the mounted
+            # volumes, then drops the daemon and agents to the `paseo` user
+            # (uid/gid 1000), so no runAsNonRoot / drop ALL here.
+            securityContext:
+              allowPrivilegeEscalation: true
+            resources:
+              requests:
+                cpu: 10m
+                memory: 512Mi
+              limits:
+                memory: 4Gi
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: paseo
+        ports:
+          http:
+            primary: true
+            port: 6767
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.atsbhome.xyz"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      data:
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        storageClass: longhorn
+        advancedMounts:
+          paseo:
+            app:
+              - path: /home/paseo
+                subPath: home
+              - path: /workspace
+                subPath: workspace
