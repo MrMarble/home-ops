@@ -64,6 +64,15 @@ spec:
               fallthrough in-addr.arpa ip6.arpa
           - name: autopath
             parameters: "@kubernetes"
+          # The cluster has no IPv6 egress, but some clients (e.g. 1Password
+          # Connect's sync, which talks to my.1password.eu) pick an AAAA
+          # record and never fall back to IPv4 ("network is unreachable").
+          # Answer every AAAA query with an empty NOERROR so only A records
+          # are returned.
+          - name: template
+            parameters: ANY AAAA
+            configBlock: |-
+              rcode NOERROR
           - name: forward
             parameters: . /etc/resolv.conf
           - name: cache
