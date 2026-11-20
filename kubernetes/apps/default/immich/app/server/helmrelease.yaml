@@ -62,7 +62,7 @@ spec:
         hostnames:
           - photos.atsbhome.xyz
         parentRefs:
-          - name: envoy-internal
+          - name: envoy-external
             namespace: network
     persistence:
       library:
