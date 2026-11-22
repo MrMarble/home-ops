@@ -29,7 +29,7 @@ spec:
           app:
             image:
               repository: ghcr.io/mrmarble/paseo
-              tag: 0.16.2@sha256:bba8b1ddbb07c707eba2a9d15d3ff879f0d09f49a80501bc53658b7516a335f8
+              tag: 0.17.0@sha256:83764c0e9c335b9ce09722b4939fe8baa28c7cf7fd47b932134294071419b2c3
             env:
               TZ: Europe/Madrid
               PASEO_HOSTNAMES: "{{ .Release.Name }}.atsbhome.xyz"
